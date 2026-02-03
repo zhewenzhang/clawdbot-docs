@@ -1,0 +1,68 @@
+{
+  "meta": {
+    "version": 2,
+    "created_at": "2026-01-31T23:02:00+08:00",
+    "updated_at": "2026-02-03T08:30:26.421020",
+    "notes": "Token usage tracking for daily reports - 支持多模型分账"
+  },
+  "current_baseline": {
+    "timestamp": "2026-02-03T08:30:26.421016",
+    "total_in": 56000,
+    "total_out": 1100,
+    "total": 57100,
+    "by_model": {
+      "minimax/MiniMax-M2.1": {
+        "in": 56000,
+        "out": 1100,
+        "total": 57100
+      }
+    },
+    "model": "minimax/MiniMax-M2.1"
+  },
+  "daily_history": [
+    {
+      "date": "2026-02-01",
+      "total_in": 49021,
+      "total_out": 560,
+      "total": 49581,
+      "by_model": {
+        "minimax/MiniMax-M2.1": {
+          "in": 49021,
+          "out": 560,
+          "total": 49581
+        }
+      }
+    },
+    {
+      "date": "2026-02-02",
+      "total_in": 52421,
+      "total_out": 945,
+      "total": 53366,
+      "by_model": {
+        "minimax/MiniMax-M2.1": {
+          "in": 52421,
+          "out": 945,
+          "total": 53366
+        }
+      },
+      "optimization_task": {
+        "executed": true,
+        "log_file": "optimization_log_2026-02-02.md",
+        "notes": "Daily system optimization task executed"
+      }
+    },
+    {
+      "date": "2026-02-03",
+      "total_in": 56000,
+      "total_out": 1100,
+      "total": 57100,
+      "by_model": {
+        "minimax/MiniMax-M2.1": {
+          "in": 56000,
+          "out": 1100,
+          "total": 57100
+        }
+      }
+    }
+  ]
+}

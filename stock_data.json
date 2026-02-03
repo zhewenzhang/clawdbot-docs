@@ -1,0 +1,31 @@
+{
+  "code": "2486",
+  "fetch_time": "2026-02-01T08:44:51.545798",
+  "data_type": "all",
+  "basic_info": {
+    "code": "2486",
+    "error": "If using all scalar values, you must pass an index"
+  },
+  "financial_data": {
+    "balance_sheet": [],
+    "income_statement": [],
+    "cash_flow": [],
+    "balance_sheet_error": "'NoneType' object is not subscriptable",
+    "income_statement_error": "'NoneType' object is not subscriptable",
+    "cash_flow_error": "'NoneType' object is not subscriptable"
+  },
+  "financial_indicators": [],
+  "valuation": {
+    "error": "stock_a_ttm_lyr() got an unexpected keyword argument 'symbol'",
+    "note": "估值历史数据获取失败，将使用基本信息中的估值"
+  },
+  "price": {},
+  "holder": {
+    "top_10_holders_error": "'sdgd'",
+    "holder_count_error": "'NoneType' object is not subscriptable"
+  },
+  "dividend": {
+    "dividend_history": [],
+    "dividend_count": 0
+  }
+}

@@ -1,0 +1,9 @@
+Category,Region,Company,CoWoS_Wafers_2026,Market_Share,TSMC_Wafers,OSAT_Wafers,Notes
+AI-GPU,WW,NVIDIA,595000,60%,510000,85000,Rubin architecture, 5.4M chips total
+AI-ASIC,WW,Broadcom,150000,15%,145000,5000,TPU for Google 90K, Meta 50K, OpenAI 10K
+AI-GPU,WW,AMD,105000,11%,80000,25000,MI355 and MI400 series
+Cloud-AI,WW,Amazon,50000,5%,50000,0,Via Alchip partnership
+Chip-Design,WW,Marvell,55000,5.5%,55000,0,For AWS and Microsoft custom chips
+Chip-Design,TW,MediaTek,20000,2%,20000,0,For Google TPU project
+CPU,WW,Intel-OSAT,80000,8%,0,80000,Amkor/ASE for Vera CPU and automotive chips
+,,Total,1000000,100%,850000,150000,TSMC 85%, OSAT 15%

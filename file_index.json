@@ -1,0 +1,253 @@
+{
+  "created": "2026-02-02 22:51",
+  "total_files": 30,
+  "categories": {
+    "01": "半导体科普",
+    "02": "DeepSeek科普",
+    "03": "公司档案",
+    "04": "半导体Roadmap",
+    "05": "工具脚本"
+  },
+  "files": [
+    {
+      "id": "01-01",
+      "category": "半导体科普",
+      "name": "01_ai_chip_internals",
+      "path": "/Users/dave/clawd/docs/semiconductor/01_ai_chip_internals.md",
+      "lines": 209,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-02",
+      "category": "半导体科普",
+      "name": "02_advanced_packaging",
+      "path": "/Users/dave/clawd/docs/semiconductor/02_advanced_packaging.md",
+      "lines": 189,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-03",
+      "category": "半导体科普",
+      "name": "03_hbm_memory",
+      "path": "/Users/dave/clawd/docs/semiconductor/03_hbm_memory.md",
+      "lines": 96,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-04",
+      "category": "半导体科普",
+      "name": "04_domestic_substitution",
+      "path": "/Users/dave/clawd/docs/semiconductor/04_domestic_substitution.md",
+      "lines": 82,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-05",
+      "category": "半导体科普",
+      "name": "05_tsmc_roadmap",
+      "path": "/Users/dave/clawd/docs/semiconductor/05_tsmc_roadmap.md",
+      "lines": 59,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-06",
+      "category": "半导体科普",
+      "name": "06_importance_of_advanced_packaging",
+      "path": "/Users/dave/clawd/docs/semiconductor/06_importance_of_advanced_packaging.md",
+      "lines": 309,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-07",
+      "category": "半导体科普",
+      "name": "07_riscv",
+      "path": "/Users/dave/clawd/docs/semiconductor/07_riscv.md",
+      "lines": 204,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-08",
+      "category": "半导体科普",
+      "name": "08_storage_chip",
+      "path": "/Users/dave/clawd/docs/semiconductor/08_storage_chip.md",
+      "lines": 164,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-09",
+      "category": "半导体科普",
+      "name": "09_lithography",
+      "path": "/Users/dave/clawd/docs/semiconductor/09_lithography.md",
+      "lines": 178,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-10",
+      "category": "半导体科普",
+      "name": "10_investment_logic",
+      "path": "/Users/dave/clawd/docs/semiconductor/10_investment_logic.md",
+      "lines": 177,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-11",
+      "category": "半导体科普",
+      "name": "11_automotive_chip",
+      "path": "/Users/dave/clawd/docs/semiconductor/11_automotive_chip.md",
+      "lines": 299,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-12",
+      "category": "半导体科普",
+      "name": "12_chiplet_technology",
+      "path": "/Users/dave/clawd/docs/semiconductor/12_chiplet_technology.md",
+      "lines": 437,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-13",
+      "category": "半导体科普",
+      "name": "README",
+      "path": "/Users/dave/clawd/docs/semiconductor/README.md",
+      "lines": 61,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-14",
+      "category": "半导体科普",
+      "name": "cowos_capacity_analysis",
+      "path": "/Users/dave/clawd/docs/semiconductor/cowos_capacity_analysis.md",
+      "lines": 110,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "01-15",
+      "category": "半导体科普",
+      "name": "ethernet_switch_market",
+      "path": "/Users/dave/clawd/docs/semiconductor/ethernet_switch_market.md",
+      "lines": 167,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-01",
+      "category": "DeepSeek科普",
+      "name": "01_什么是DeepSeek",
+      "path": "/Users/dave/clawd/deepseek_research/articles/01_什么是DeepSeek.md",
+      "lines": 263,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-02",
+      "category": "DeepSeek科普",
+      "name": "02_开源vs闭源",
+      "path": "/Users/dave/clawd/deepseek_research/articles/02_开源vs闭源.md",
+      "lines": 273,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-03",
+      "category": "DeepSeek科普",
+      "name": "03_大模型的注意力是什么",
+      "path": "/Users/dave/clawd/deepseek_research/articles/03_大模型的注意力是什么.md",
+      "lines": 149,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-04",
+      "category": "DeepSeek科普",
+      "name": "04_MLA终极压缩",
+      "path": "/Users/dave/clawd/deepseek_research/articles/04_MLA终极压缩.md",
+      "lines": 120,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-05",
+      "category": "DeepSeek科普",
+      "name": "05_MoE是什么",
+      "path": "/Users/dave/clawd/deepseek_research/articles/05_MoE是什么.md",
+      "lines": 147,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-06",
+      "category": "DeepSeek科普",
+      "name": "06_RL是什么",
+      "path": "/Users/dave/clawd/deepseek_research/articles/06_RL是什么.md",
+      "lines": 133,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-07",
+      "category": "DeepSeek科普",
+      "name": "07_GRPO算法",
+      "path": "/Users/dave/clawd/deepseek_research/articles/07_GRPO算法.md",
+      "lines": 151,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-08",
+      "category": "DeepSeek科普",
+      "name": "08_从V2到V3",
+      "path": "/Users/dave/clawd/deepseek_research/articles/08_从V2到V3.md",
+      "lines": 173,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-09",
+      "category": "DeepSeek科普",
+      "name": "09_成本对比",
+      "path": "/Users/dave/clawd/deepseek_research/articles/09_成本对比.md",
+      "lines": 123,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-10",
+      "category": "DeepSeek科普",
+      "name": "10_AGI之路",
+      "path": "/Users/dave/clawd/deepseek_research/articles/10_AGI之路.md",
+      "lines": 211,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "02-11",
+      "category": "DeepSeek科普",
+      "name": "README",
+      "path": "/Users/dave/clawd/deepseek_research/articles/README.md",
+      "lines": 162,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "03-01",
+      "category": "公司档案",
+      "name": "礼鼎半导体",
+      "path": "/Users/dave/clawd/companies/礼鼎半导体.md",
+      "lines": 133,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "03-02",
+      "category": "公司档案",
+      "name": "礼鼎半导体_产品介绍",
+      "path": "/Users/dave/clawd/companies/礼鼎半导体_产品介绍.md",
+      "lines": 132,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "04-01",
+      "category": "半导体Roadmap",
+      "name": "File_Architecture_Plan",
+      "path": "/Users/dave/clawd/semiconductor_roadmaps/File_Architecture_Plan.md",
+      "lines": 158,
+      "updated": "2026-02-02"
+    },
+    {
+      "id": "04-02",
+      "category": "半导体Roadmap",
+      "name": "INDEX",
+      "path": "/Users/dave/clawd/semiconductor_roadmaps/INDEX.md",
+      "lines": 94,
+      "updated": "2026-02-02"
+    }
+  ]
+}

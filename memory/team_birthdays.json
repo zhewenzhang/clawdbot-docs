@@ -1,0 +1,107 @@
+{
+  "updated_at": "2026-02-02",
+  "team": [
+    {
+      "name": "李健东（Jaydon）",
+      "month": 1,
+      "day": 4,
+      "birthday_str": "01-04"
+    },
+    {
+      "name": "李維佳",
+      "month": 1,
+      "day": 19,
+      "birthday_str": "01-19"
+    },
+    {
+      "name": "李謙紅",
+      "month": 1,
+      "day": 24,
+      "birthday_str": "01-24"
+    },
+    {
+      "name": "申以培（Rachel）",
+      "month": 2,
+      "day": 18,
+      "birthday_str": "02-18"
+    },
+    {
+      "name": "喬美麗",
+      "month": 2,
+      "day": 19,
+      "birthday_str": "02-19"
+    },
+    {
+      "name": "辛利任",
+      "month": 2,
+      "day": 24,
+      "birthday_str": "02-24"
+    },
+    {
+      "name": "李思雨（Lina）",
+      "month": 3,
+      "day": 3,
+      "birthday_str": "03-03"
+    },
+    {
+      "name": "朱麗",
+      "month": 3,
+      "day": 20,
+      "birthday_str": "03-20"
+    },
+    {
+      "name": "陸柏勳",
+      "month": 4,
+      "day": 20,
+      "birthday_str": "04-20"
+    },
+    {
+      "name": "李浩然（Oliver）",
+      "month": 5,
+      "day": 6,
+      "birthday_str": "05-06"
+    },
+    {
+      "name": "董正君",
+      "month": 5,
+      "day": 7,
+      "birthday_str": "05-07"
+    },
+    {
+      "name": "王茵",
+      "month": 6,
+      "day": 1,
+      "birthday_str": "06-01"
+    },
+    {
+      "name": "哲聞哥",
+      "month": 7,
+      "day": 22,
+      "birthday_str": "07-22"
+    },
+    {
+      "name": "吕鸿洋（Joey）",
+      "month": 7,
+      "day": 31,
+      "birthday_str": "07-31"
+    },
+    {
+      "name": "林雨萱（Elsa）",
+      "month": 8,
+      "day": 24,
+      "birthday_str": "08-24"
+    },
+    {
+      "name": "孟思阳（Sia）",
+      "month": 11,
+      "day": 11,
+      "birthday_str": "11-11"
+    },
+    {
+      "name": "吴思萤（Sin）",
+      "month": 11,
+      "day": 20,
+      "birthday_str": "11-20"
+    }
+  ]
+}

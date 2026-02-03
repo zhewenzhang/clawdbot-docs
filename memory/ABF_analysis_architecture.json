@@ -1,0 +1,73 @@
+{
+  "task_name": "ABF 分析",
+  "created_at": "2026-02-02",
+  "data_sources": {
+    "required": [
+      "全球 TAM 市场规模 (2018-2030)",
+      "细分应用市场 (AI GPU/Switch/CPU/ADAS)",
+      "主要客户市占率 (NVIDIA/AMD/Google/AWS/Meta)",
+      "供应商产能与份额 (Ibiden/欣興/南亞/景碩)",
+      "客户产品 Roadmap",
+      "中国市场数据 (国产替代率)",
+      "供应链情报 (ABF 胶片/设备)",
+      "财务投资数据"
+    ]
+  },
+  "work_schedule": {
+    "daily": {
+      "time": "09:00-10:00",
+      "duration_minutes": 30,
+      "tasks": [
+        "检查行业新闻 (Google Alert)",
+        "监控主要厂商动态",
+        "更新关键数据表"
+      ]
+    },
+    "weekly": {
+      "day": "Friday",
+      "duration_minutes": 60,
+      "tasks": [
+        "生成本周市场动态摘要",
+        "更新关键指标图表",
+        "发送周报到 Telegram"
+      ]
+    },
+    "monthly": {
+      "day": "last day",
+      "duration_minutes": 120,
+      "tasks": [
+        "深度分析 1 个专题",
+        "更新 TAM 预测模型",
+        "生成月度分析报告"
+      ]
+    }
+  },
+  "output_files": {
+    "data": [
+      "memory/ABF_TAM_history.csv",
+      "memory/ABF_supplier_capacity.csv",
+      "memory/ABF_customer_demand.csv",
+      "memory/ABF_china_market.csv"
+    ],
+    "reports": [
+      "memory/ABF_daily_brief_YYYY-MM-DD.md",
+      "memory/ABF_weekly_YYYY-MM.md",
+      "memory/ABF_monthly_YYYY-MM.md"
+    ]
+  },
+  "kpis": {
+    "short_term_1_3m": [
+      "建立完整 ABF 市场数据库",
+      "每日市场动态追踪覆盖 >90%",
+      "每周发送市场简报"
+    ],
+    "medium_term_3_6m": [
+      "TAM 预测准确率 >85%",
+      "每月 1 份深度报告 (20+ 页)"
+    ],
+    "long_term_6_12m": [
+      "预测 6-12 个月市场趋势",
+      "建立 ABF 市场知识库"
+    ]
+  }
+}
