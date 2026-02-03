@@ -1,0 +1,75 @@
+{
+  "version": "1.0",
+  "lastUpdate": "2026-02-04T07:35:14.209729",
+  "lastUpdateTimestamp": 1770161714,
+  "totalFiles": 6,
+  "dashboardUrl": "https://zhewenzhang.github.io/clawdbot-docs/dashboard.html",
+  "files": [
+    {
+      "name": "China_Semiconductor_Fab_Map.xlsx",
+      "path": "/Users/dave/clawd/China_Semiconductor_Fab_Map.xlsx",
+      "size": 39792,
+      "size_kb": 38.9,
+      "modified": "2026-02-03T22:30:54.014755",
+      "modified_timestamp": 1770129054,
+      "url": "https://raw.githubusercontent.com/zhewenzhang/clawdbot-docs/main/China_Semiconductor_Fab_Map.xlsx",
+      "location": "root",
+      "description": "中国半导体晶圆厂分布图"
+    },
+    {
+      "name": "CoWoS_Capacity_2026.xlsx",
+      "path": "/Users/dave/clawd/CoWoS_Capacity_2026.xlsx",
+      "size": 25275,
+      "size_kb": 24.7,
+      "modified": "2026-02-03T22:30:54.015055",
+      "modified_timestamp": 1770129054,
+      "url": "https://raw.githubusercontent.com/zhewenzhang/clawdbot-docs/main/CoWoS_Capacity_2026.xlsx",
+      "location": "root",
+      "description": "2026年 CoWoS 产能预测"
+    },
+    {
+      "name": "NVIDIA_Roadmap.xlsx",
+      "path": "/Users/dave/clawd/NVIDIA_Roadmap.xlsx",
+      "size": 17495,
+      "size_kb": 17.1,
+      "modified": "2026-02-03T22:30:54.016078",
+      "modified_timestamp": 1770129054,
+      "url": "https://raw.githubusercontent.com/zhewenzhang/clawdbot-docs/main/NVIDIA_Roadmap.xlsx",
+      "location": "root",
+      "description": "NVIDIA 产品路线图"
+    },
+    {
+      "name": "Competitor_Roadmaps.xlsx",
+      "path": "/Users/dave/clawd/Competitor_Roadmaps.xlsx",
+      "size": 10181,
+      "size_kb": 9.9,
+      "modified": "2026-02-03T22:30:54.015239",
+      "modified_timestamp": 1770129054,
+      "url": "https://raw.githubusercontent.com/zhewenzhang/clawdbot-docs/main/Competitor_Roadmaps.xlsx",
+      "location": "root",
+      "description": "竞争对手路线图"
+    },
+    {
+      "name": "TPU_ASIC_Analysis_20260130.xlsx",
+      "path": "/Users/dave/clawd/TPU_ASIC_Analysis_20260130.xlsx",
+      "size": 7800,
+      "size_kb": 7.6,
+      "modified": "2026-02-03T22:30:54.016817",
+      "modified_timestamp": 1770129054,
+      "url": "https://raw.githubusercontent.com/zhewenzhang/clawdbot-docs/main/TPU_ASIC_Analysis_20260130.xlsx",
+      "location": "root",
+      "description": "TPU/ASIC 分析数据"
+    },
+    {
+      "name": "Roadmap_Summary.xlsx",
+      "path": "/Users/dave/clawd/memory/semiconductor_roadmaps/Roadmap_Summary.xlsx",
+      "size": 6158,
+      "size_kb": 6.0,
+      "modified": "2026-02-03T08:50:54.500924",
+      "modified_timestamp": 1770079854,
+      "url": "https://raw.githubusercontent.com/zhewenzhang/clawdbot-docs/main/Roadmap_Summary.xlsx",
+      "location": "memory",
+      "description": "半导体 Roadmap 汇总表"
+    }
+  ]
+}

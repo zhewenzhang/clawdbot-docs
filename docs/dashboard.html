@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📊 数据仪表板 - Clawdbot</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            color: #fff;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        header {
+            text-align: center;
+            padding: 40px 20px;
+            margin-bottom: 30px;
+        }
+        
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .subtitle {
+            color: #8892b0;
+            font-size: 1.1em;
+        }
+        
+        .status-bar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+        
+        .status-item {
+            background: rgba(255,255,255,0.1);
+            padding: 15px 25px;
+            border-radius: 12px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .status-item .number {
+            font-size: 2em;
+            font-weight: bold;
+            color: #00d2ff;
+        }
+        
+        .status-item .label {
+            color: #8892b0;
+            font-size: 0.9em;
+            margin-top: 5px;
+        }
+        
+        .update-time {
+            text-align: center;
+            color: #8892b0;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #3a7bd5;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .file-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+        }
+        
+        .file-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .file-card:hover {
+            transform: translateY(-5px);
+            background: rgba(255,255,255,0.1);
+            border-color: #00d2ff;
+        }
+        
+        .file-icon {
+            font-size: 2.5em;
+            margin-bottom: 15px;
+        }
+        
+        .file-name {
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+        
+        .file-description {
+            color: #8892b0;
+            font-size: 0.9em;
+            margin-bottom: 15px;
+            line-height: 1.5;
+        }
+        
+        .file-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .file-size {
+            color: #00d2ff;
+            font-size: 0.9em;
+        }
+        
+        .file-date {
+            color: #8892b0;
+            font-size: 0.8em;
+        }
+        
+        .download-btn {
+            display: block;
+            text-align: center;
+            background: linear-gradient(90deg, #00d2ff, #3a7bd5);
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            margin-top: 15px;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(0,210,255,0.3);
+        }
+        
+        .location-badge {
+            display: inline-block;
+            padding: 4px 10px;
+            background: rgba(58, 123, 213, 0.3);
+            border-radius: 20px;
+            font-size: 0.75em;
+            color: #8892b0;
+            margin-bottom: 10px;
+        }
+        
+        .refresh-btn {
+            display: inline-block;
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 0.9em;
+            transition: all 0.3s ease;
+            margin-left: 10px;
+        }
+        
+        .refresh-btn:hover {
+            background: rgba(255,255,255,0.2);
+        }
+        
+        footer {
+            text-align: center;
+            padding: 40px 20px;
+            color: #8892b0;
+            font-size: 0.9em;
+        }
+        
+        footer a {
+            color: #00d2ff;
+            text-decoration: none;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8em;
+            }
+            
+            .file-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .status-bar {
+                gap: 10px;
+            }
+            
+            .status-item {
+                padding: 10px 15px;
+                flex: 1;
+                min-width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📊 数据仪表板</h1>
+            <p class="subtitle">Clawdbot 实时数据监控中心</p>
+        </header>
+        
+        <div class="status-bar">
+            <div class="status-item">
+                <div class="number" id="totalFiles">-</div>
+                <div class="label">文件总数</div>
+            </div>
+            <div class="status-item">
+                <div class="number" id="totalSize">-</div>
+                <div class="label">总大小 (KB)</div>
+            </div>
+            <div class="status-item">
+                <div class="number" id="lastUpdate">-</div>
+                <div class="label">更新时间</div>
+            </div>
+        </div>
+        
+        <div class="update-time">
+            <span id="updateTime">加载中...</span>
+            <button class="refresh-btn" onclick="location.reload()">🔄 刷新</button>
+        </div>
+        
+        <div class="section">
+            <h2 class="section-title">📁 Excel 数据文件</h2>
+            <div class="file-grid" id="fileGrid">
+                <!-- 文件卡片将通过 JS 插入 -->
+            </div>
+        </div>
+        
+        <footer>
+            <p>🤖 Powered by Clawdbot</p>
+            <p>📅 数据自动同步 | <a href="https://github.com/zhewenzhang/clawdbot-docs" target="_blank">GitHub Pages</a></p>
+        </footer>
+    </div>
+    
+    <script>
+        // 加载索引数据
+        async function loadIndex() {
+            try {
+                const response = await fetch('excel_index.json');
+                const data = await response.json();
+                renderDashboard(data);
+            } catch (error) {
+                console.error('加载索引失败:', error);
+                document.getElementById('fileGrid').innerHTML = '<p style="text-align:center;color:#8892b0;">加载失败，请刷新重试</p>';
+            }
+        }
+        
+        function renderDashboard(data) {
+            // 更新状态栏
+            document.getElementById('totalFiles').textContent = data.totalFiles;
+            
+            // 计算总大小
+            const totalSize = data.files.reduce((sum, f) => sum + f.size_kb, 0);
+            document.getElementById('totalSize').textContent = Math.round(totalSize);
+            
+            // 更新时间
+            const updateDate = new Date(data.lastUpdate);
+            document.getElementById('updateTime').textContent = `最后更新: ${formatDate(updateDate)}`;
+            document.getElementById('lastUpdate').textContent = formatTime(updateDate);
+            
+            // 渲染文件卡片
+            const grid = document.getElementById('fileGrid');
+            grid.innerHTML = data.files.map(file => `
+                <div class="file-card">
+                    <div class="file-icon">📊</div>
+                    <span class="location-badge">${getLocationIcon(file.location)} ${file.location}</span>
+                    <div class="file-name">${file.name}</div>
+                    <div class="file-description">${file.description || 'Excel 数据文件'}</div>
+                    <div class="file-meta">
+                        <span class="file-size">${file.size_kb} KB</span>
+                        <span class="file-date">${formatDate(file.modified)}</span>
+                    </div>
+                    <a href="${file.url}" class="download-btn" target="_blank">📥 下载文件</a>
+                </div>
+            `).join('');
+        }
+        
+        function getLocationIcon(location) {
+            const icons = {
+                'root': '📂',
+                'memory': '💾',
+                'docs': '📄',
+                'output': '📤'
+            };
+            return icons[location] || '📁';
+        }
+        
+        function formatDate(dateStr) {
+            const date = new Date(dateStr);
+            return `${date.getMonth() + 1}/${date.getDate()} ${date.getHours()}:${String(date.getMinutes()).padStart(2, '0')}`;
+        }
+        
+        function formatTime(date) {
+            const now = new Date();
+            const diff = now - date;
+            const hours = Math.floor(diff / 3600000);
+            const minutes = Math.floor((diff % 3600000) / 60000);
+            
+            if (hours < 1) return `${minutes}分钟前`;
+            if (hours < 24) return `${hours}小时前`;
+            return `${Math.floor(hours / 24)}天前`;
+        }
+        
+        // 页面加载时获取数据
+        document.addEventListener('DOMContentLoaded', loadIndex);
+    </script>
+</body>
+</html>
