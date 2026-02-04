@@ -2,10 +2,415 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="refresh" content="0; url=dashboard.html">
-    <title>Redirecting...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>📚 Clawdbot Docs</title>
+    <meta name="theme-color" content="#667eea">
+    <meta name="description" content="Clawdbot 半导体文档库">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;600;700&family=Noto+Serif+SC:wght@600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Noto Sans SC', 'system-ui', 'sans-serif'],
+                        serif: ['Noto Serif SC', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        body {
+            font-family: 'Noto Sans SC', system-ui, sans-serif;
+            background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+            min-height: 100vh;
+            color: #1e293b;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #9f7aea 100%);
+            padding: 48px 24px 64px;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 60%);
+            animation: rotate 30s linear infinite;
+        }
+        @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .hero-content { position: relative; text-align: center; color: white; }
+        .hero h1 { font-family: 'Noto Serif SC', serif; font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+        .hero p { font-size: 14px; opacity: 0.9; }
+        .stats-row { display: flex; justify-content: center; gap: 32px; margin-top: 28px; }
+        .stat-item { text-align: center; }
+        .stat-num { font-size: 26px; font-weight: 700; display: block; }
+        .stat-lbl { font-size: 11px; opacity: 0.8; text-transform: uppercase; letter-spacing: 0.5px; }
+        
+        /* Search */
+        .search-wrapper { max-width: 440px; margin: -32px auto 24px; padding: 0 20px; position: relative; z-index: 10; }
+        .search-box { background: white; border-radius: 16px; padding: 6px; box-shadow: 0 4px 24px rgba(102,126,234,0.15); display: flex; }
+        .search-box input { flex: 1; border: none; outline: none; padding: 14px 16px; font-size: 15px; }
+        .search-btn { width: 44px; height: 44px; background: linear-gradient(135deg, #667eea, #764ba2); border: none; border-radius: 12px; color: white; cursor: pointer; }
+        .search-btn:active { transform: scale(0.95); }
+        
+        /* Sections */
+        .main-content { max-width: 900px; margin: 0 auto; padding: 0 16px 32px; }
+        .section { margin-bottom: 20px; }
+        .section-header { display: flex; align-items: center; gap: 10px; padding: 16px 20px; margin-bottom: 12px; }
+        .section-icon { width: 36px; height: 36px; background: linear-gradient(135deg, #667eea20, #764ba220); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 18px; }
+        .section-title { font-size: 17px; font-weight: 600; }
+        .section-count { margin-left: auto; font-size: 12px; color: #94a3b8; background: #f1f5f9; padding: 4px 10px; border-radius: 20px; }
+        
+        /* Doc List */
+        .doc-list { background: white; border-radius: 16px; overflow: hidden; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
+        .doc-item { display: flex; align-items: center; padding: 16px 20px; border-bottom: 1px solid #f1f5f9; text-decoration: none; color: inherit; transition: background 0.2s; gap: 14px; }
+        .doc-item:last-child { border-bottom: none; }
+        .doc-item:active { background: #f8fafc; }
+        .doc-item.hidden { display: none; }
+        .doc-icon { width: 40px; height: 40px; border-radius: 10px; background: linear-gradient(135deg, #667eea, #764ba2); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+        .doc-icon.xlsx { background: linear-gradient(135deg, #10b981, #059669); }
+        .doc-info { flex: 1; min-width: 0; }
+        .doc-name { font-size: 15px; font-weight: 500; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .doc-meta { font-size: 12px; color: #94a3b8; }
+        .doc-arrow { color: #cbd5e1; font-size: 14px; transition: all 0.2s; }
+        .doc-item:active .doc-arrow { color: #667eea; transform: translateX(3px); }
+        
+        /* Footer */
+        .footer { text-align: center; padding: 32px 20px; color: #94a3b8; font-size: 12px; }
+        .footer a { color: #667eea; text-decoration: none; }
+        
+        /* Empty */
+        .empty-state { text-align: center; padding: 48px 20px; color: #94a3b8; display: none; }
+        .empty-state.show { display: block; }
+        .empty-icon { font-size: 40px; margin-bottom: 12px; opacity: 0.5; }
+        
+        /* Reader Modal */
+        .modal { position: fixed; top: 0; left: 0; right: 0; bottom: 0; background: white; z-index: 1000; display: none; flex-direction: column; }
+        .modal.show { display: flex; }
+        .modal-header { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid #f1f5f9; background: white; position: sticky; top: 0; z-index: 10; }
+        .modal-back { background: none; border: none; font-size: 16px; color: #667eea; cursor: pointer; padding: 8px; margin: -8px; display: flex; align-items: center; gap: 6px; }
+        .modal-title { font-size: 15px; font-weight: 600; color: #1e293b; flex: 1; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; padding: 0 12px; }
+        .modal-body { flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+        .reader { max-width: 680px; margin: 0 auto; padding: 24px 20px 48px; }
+        .reader h1 { font-size: 24px; font-weight: 700; color: #1e293b; margin: 24px 0 16px; padding-bottom: 12px; border-bottom: 2px solid #667eea; }
+        .reader h2 { font-size: 20px; font-weight: 600; color: #334155; margin: 28px 0 14px; }
+        .reader h3 { font-size: 16px; font-weight: 600; color: #475569; margin: 24px 0 12px; }
+        .reader p { font-size: 15px; line-height: 1.8; color: #475569; margin: 12px 0; }
+        .reader table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
+        .reader th, .reader td { border: 1px solid #e2e8f0; padding: 10px 12px; text-align: left; }
+        .reader th { background: #f8fafc; font-weight: 600; color: #374151; }
+        .reader tr:nth-child(even) { background: #f9fafb; }
+        .reader code { background: #f1f5f9; padding: 2px 6px; border-radius: 4px; font-size: 13px; color: #e11d48; }
+        .reader pre { background: #1e293b; color: #e2e8f0; padding: 16px; border-radius: 10px; overflow-x: auto; margin: 16px 0; font-size: 13px; }
+        .reader pre code { background: none; color: inherit; padding: 0; }
+        .reader ul, .reader ol { padding-left: 20px; margin: 12px 0; }
+        .reader li { font-size: 15px; line-height: 1.7; color: #475569; margin: 8px 0; }
+        .reader blockquote { border-left: 3px solid #667eea; padding-left: 14px; margin: 16px 0; color: #64748b; font-style: italic; }
+        .reader a { color: #667eea; text-decoration: none; }
+        .reader hr { border: none; border-top: 1px solid #e2e8f0; margin: 24px 0; }
+        
+        /* Loading */
+        .loading { text-align: center; padding: 60px 20px; color: #94a3b8; }
+        .spinner { width: 32px; height: 32px; border: 3px solid #f1f5f9; border-top-color: #667eea; border-radius: 50%; animation: spin 0.8s linear infinite; margin: 0 auto 12px; }
+        @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Error State */
+        .error-state { text-align: center; padding: 48px 20px; }
+        .error-icon { font-size: 48px; margin-bottom: 16px; }
+        .error-title { font-size: 18px; font-weight: 600; color: #1e293b; margin-bottom: 8px; }
+        .error-msg { font-size: 14px; color: #64748b; margin-bottom: 20px; }
+        .retry-btn { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; padding: 12px 24px; border-radius: 10px; font-size: 14px; font-weight: 500; border: none; cursor: pointer; }
+        .retry-btn:active { transform: scale(0.95); }
+        
+        /* Excel */
+        .excel-notice { text-align: center; padding: 60px 20px; background: #f8fafc; border-radius: 12px; margin: 20px 0; }
+        .excel-notice .icon { font-size: 48px; margin-bottom: 16px; }
+        .excel-notice p { color: #64748b; margin-bottom: 16px; }
+        .excel-btn { display: inline-block; background: linear-gradient(135deg, #10b981, #059669); color: white; padding: 12px 24px; border-radius: 10px; text-decoration: none; font-size: 14px; }
+    </style>
 </head>
 <body>
-    <p>正在跳转到 <a href="dashboard.html">数据仪表板</a>...</p>
+    <!-- Hero -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>📚 Clawdbot 文档库</h1>
+            <p>半导体 Roadmap 与分析</p>
+            <div class="stats-row">
+                <div class="stat-item"><span class="stat-num" id="docCount">-</span><span class="stat-lbl">文档</span></div>
+                <div class="stat-item"><span class="stat-num" id="catCount">-</span><span class="stat-lbl">分类</span></div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Search -->
+    <div class="search-wrapper">
+        <div class="search-box">
+            <input type="text" id="search" placeholder="搜索文档..." oninput="handleSearch()">
+            <button class="search-btn" onclick="handleSearch()">🔍</button>
+        </div>
+    </div>
+    
+    <!-- Content -->
+    <div class="main-content" id="content"></div>
+    
+    <!-- Empty -->
+    <div class="empty-state" id="empty">
+        <div class="empty-icon">🔍</div>
+        <p>没有找到匹配的文档</p>
+    </div>
+    
+    <!-- Footer -->
+    <div class="footer">
+        <p>🤖 Clawdbot · 半导体文档库</p>
+        <p style="margin-top: 6px; opacity: 0.7;"><a href="https://zhewenzhang.github.io/clawdbot-docs/" target="_blank">GitHub Pages</a> · 自动同步</p>
+    </div>
+    
+    <!-- Reader Modal -->
+    <div class="modal" id="reader">
+        <div class="modal-header">
+            <button class="modal-back" onclick="closeReader()">← 返回</button>
+            <div class="modal-title" id="readerTitle"></div>
+        </div>
+        <div class="modal-body">
+            <div class="reader" id="readerContent">
+                <div class="loading"><div class="spinner"></div><p>加载中...</p></div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        // Data
+        const docs = {
+            categories: [
+                {
+                    name: "AI 芯片与处理器", icon: "🤖",
+                    items: [
+                        { n: "Apple Chip Analysis", f: "Apple_Chip_Analysis.md", s: "10 KB", d: "2026-02-03" },
+                        { n: "Cambricon 寒武纪", f: "Cambricon_Roadmap.md", s: "5 KB", d: "2026-02-03" },
+                        { n: "Cerebras", f: "Cerebras_Roadmap.md", s: "5 KB", d: "2026-02-03" },
+                        { n: "Google TPU", f: "Google_TPU_Analysis.md", s: "11 KB", d: "2026-02-03" },
+                        { n: "Graphcore", f: "Graphcore_Roadmap.md", s: "5 KB", d: "2026-02-03" },
+                        { n: "HiSilicon 海思", f: "HiSilicon_Analysis.md", s: "9 KB", d: "2026-02-03" },
+                        { n: "Intel GPU", f: "Intel_GPU_Roadmap.md", s: "5 KB", d: "2026-02-03" },
+                        { n: "MediaTek Dimensity", f: "MediaTek_Dimensity_Analysis.md", s: "10 KB", d: "2026-02-03" },
+                        { n: "NVIDIA", f: "NVIDIA_roadmap.md", s: "4 KB", d: "2026-02-03" },
+                        { n: "Nuclei 芯来科技", f: "Nuclei_Roadmap.md", s: "6 KB", d: "2026-02-03" },
+                        { n: "Qualcomm Snapdragon", f: "Qualcomm_Snapdragon_Analysis.md", s: "9 KB", d: "2026-02-03" },
+                        { n: "Samsung Exynos", f: "Samsung_Exynos_Roadmap.md", s: "6 KB", d: "2026-02-03" },
+                        { n: "SiFive RISC-V", f: "SiFive_Roadmap.md", s: "6 KB", d: "2026-02-03" },
+                        { n: "Tesla FSD", f: "Tesla_FSD_Analysis.md", s: "10 KB", d: "2026-02-03" },
+                        { n: "UNISOC 紫光展锐", f: "UNISOC_Roadmap.md", s: "6 KB", d: "2026-02-03" }
+                    ]
+                },
+                {
+                    name: "车载芯片与智能驾驶", icon: "🚗",
+                    items: [
+                        { n: "Black Sesame 黑芝麻", f: "Black_Sesame_Roadmap.md", s: "5 KB", d: "2026-02-03" },
+                        { n: "Horizon 地平线", f: "Horizon_Robotics_Roadmap.md", s: "6 KB", d: "2026-02-03" },
+                        { n: "Infineon 英飞凌", f: "Infineon_Roadmap.md", s: "5 KB", d: "2026-02-03" },
+                        { n: "NXP 恩智浦", f: "NXP_Roadmap.md", s: "6 KB", d: "2026-02-03" },
+                        { n: "Renesas 瑞萨", f: "Renesas_Roadmap.md", s: "5 KB", d: "2026-02-03" },
+                        { n: "SemiDrive 芯驰科技", f: "SemiDrive_Roadmap.md", s: "6 KB", d: "2026-02-03" }
+                    ]
+                },
+                {
+                    name: "Foundry 与设备", icon: "🏭",
+                    items: [
+                        { n: "AMD", f: "AMD_roadmap.md", s: "5 KB", d: "2026-02-03" },
+                        { n: "ASML", f: "ASML_roadmap.md", s: "8 KB", d: "2026-02-03" },
+                        { n: "Broadcom", f: "Broadcom_roadmap.md", s: "6 KB", d: "2026-02-03" },
+                        { n: "Equipment 设备", f: "Equipment_Roadmap.md", s: "10 KB", d: "2026-02-03" },
+                        { n: "Intel", f: "Intel_roadmap.md", s: "6 KB", d: "2026-02-03" },
+                        { n: "Marvell", f: "Marvell_Roadmap.md", s: "5 KB", d: "2026-02-03" },
+                        { n: "RF Chip 射频芯片", f: "RF_Chip_Roadmap.md", s: "5 KB", d: "2026-02-03" },
+                        { n: "TSMC 台积电", f: "TSMC_roadmap.md", s: "6 KB", d: "2026-02-03" }
+                    ]
+                },
+                {
+                    name: "存储与封装", icon: "💾",
+                    items: [
+                        { n: "ASE 日月光", f: "ASE_roadmap.md", s: "8 KB", d: "2026-02-03" },
+                        { n: "Advanced Packaging 先进封装", f: "Advanced_Packaging.md", s: "7 KB", d: "2026-02-03" },
+                        { n: "Micron 美光", f: "Micron_roadmap.md", s: "7 KB", d: "2026-02-03" },
+                        { n: "SK Hynix 海力士", f: "SK_Hynix_roadmap.md", s: "8 KB", d: "2026-02-03" }
+                    ]
+                },
+                {
+                    name: "总览与摘要", icon: "📊",
+                    items: [
+                        { n: "Chip Design Companies 芯片设计公司总览", f: "Chip_Design_Companies_Roadmap.md", s: "15 KB", d: "2026-02-03" },
+                        { n: "Roadmap Summary 总览表", f: "Roadmap_Summary.xlsx", s: "6 KB", d: "2026-02-03", xlsx: true },
+                        { n: "Timeline Overview 时间线总览", f: "Timeline_Overview.md", s: "7 KB", d: "2026-02-03" }
+                    ]
+                }
+            ]
+        };
+        
+        const baseUrl = "https://raw.githubusercontent.com/zhewenzhang/clawdbot-docs/main/memory/semiconductor_roadmaps/";
+        let retryFn = null;
+        
+        // Init
+        document.addEventListener('DOMContentLoaded', () => {
+            render();
+            updateStats();
+        });
+        
+        function render(filter = '') {
+            const content = document.getElementById('content');
+            let html = '';
+            let visibleCount = 0;
+            
+            docs.categories.forEach((cat, ci) => {
+                const items = filter ? cat.items.filter(i => i.n.toLowerCase().includes(filter.toLowerCase())) : cat.items;
+                
+                if (items.length > 0) {
+                    visibleCount += items.length;
+                    html += `
+                        <div class="section">
+                            <div class="section-header">
+                                <div class="section-icon">${cat.icon}</div>
+                                <div class="section-title">${cat.name}</div>
+                                <div class="section-count">${items.length}</div>
+                            </div>
+                            <div class="doc-list">
+                                ${items.map((item, ii) => `
+                                    <a href="#" class="doc-item" onclick="openDoc(${ci}, ${ii})">
+                                        <div class="doc-icon ${item.xlsx ? 'xlsx' : ''}">${item.xlsx ? '📊' : '📄'}</div>
+                                        <div class="doc-info">
+                                            <div class="doc-name">${item.n}</div>
+                                            <div class="doc-meta">${item.d} · ${item.xlsx ? 'Excel' : 'Markdown'}</div>
+                                        </div>
+                                        <div class="doc-arrow">›</div>
+                                    </a>
+                                `).join('')}
+                            </div>
+                        </div>
+                    `;
+                }
+            });
+            
+            content.innerHTML = html;
+            
+            const empty = document.getElementById('empty');
+            if (visibleCount === 0) {
+                empty.classList.add('show');
+                content.style.display = 'none';
+            } else {
+                empty.classList.remove('show');
+                content.style.display = 'block';
+            }
+        }
+        
+        function updateStats() {
+            const total = docs.categories.reduce((s, c) => s + c.items.length, 0);
+            document.getElementById('docCount').textContent = total;
+            document.getElementById('catCount').textContent = docs.categories.length;
+        }
+        
+        function handleSearch() {
+            const q = document.getElementById('search').value.trim();
+            render(q);
+        }
+        
+        function showLoading() {
+            document.getElementById('readerContent').innerHTML = '<div class="loading"><div class="spinner"></div><p>加载中...</p></div>';
+        }
+        
+        function showError(msg, retryFn_) {
+            retryFn = retryFn_;
+            document.getElementById('readerContent').innerHTML = `
+                <div class="error-state">
+                    <div class="error-icon">⚠️</div>
+                    <div class="error-title">加载失败</div>
+                    <div class="error-msg">${msg}</div>
+                    <button class="retry-btn" onclick="handleRetry()">
+                        🔄 重试
+                    </button>
+                </div>
+            `;
+        }
+        
+        function handleRetry() {
+            if (retryFn) {
+                showLoading();
+                retryFn();
+            }
+        }
+        
+        function openDoc(ci, ii) {
+            const item = docs.categories[ci].items[ii];
+            const modal = document.getElementById('reader');
+            const title = document.getElementById('readerTitle');
+            
+            title.textContent = item.n;
+            showLoading();
+            modal.classList.add('show');
+            
+            if (item.xlsx) {
+                document.getElementById('readerContent').innerHTML = `
+                    <div class="excel-notice">
+                        <div class="icon">📊</div>
+                        <p>Excel 文件请下载后查看</p>
+                        <a href="${baseUrl}${item.f}" target="_blank" class="excel-btn">📥 下载文件</a>
+                    </div>
+                `;
+            } else {
+                // 带有重试机制的加载函数
+                const loadWithRetry = (attempt = 1) => {
+                    const url = baseUrl + item.f;
+                    console.log(`[Docs] 加载文档 (尝试 ${attempt}): ${item.n}`);
+                    
+                    fetch(url)
+                        .then(r => {
+                            if (!r.ok) {
+                                throw new Error(`HTTP ${r.status}: ${r.statusText}`);
+                            }
+                            return r.text();
+                        })
+                        .then(md => {
+                            document.getElementById('readerContent').innerHTML = marked.parse(md);
+                            console.log(`[Docs] 成功加载: ${item.n}`);
+                        })
+                        .catch(e => {
+                            console.error(`[Docs] 加载失败: ${e.message}`);
+                            if (attempt < 3) {
+                                // 自动重试
+                                setTimeout(() => loadWithRetry(attempt + 1), 1000 * attempt);
+                            } else {
+                                // 3次失败后显示错误
+                                let errorMsg = e.message;
+                                if (errorMsg.includes('Failed to fetch') || errorMsg.includes('network')) {
+                                    errorMsg = '网络连接失败，请检查网络后重试';
+                                } else if (errorMsg.includes('404')) {
+                                    errorMsg = '文档不存在，可能还未同步到 GitHub';
+                                } else {
+                                    errorMsg = `加载失败: ${errorMsg}`;
+                                }
+                                showError(errorMsg, () => loadWithRetry(1));
+                            }
+                        });
+                };
+                
+                loadWithRetry(1);
+            }
+        }
+        
+        function closeReader() {
+            document.getElementById('reader').classList.remove('show');
+        }
+    </script>
 </body>
 </html>
