@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>群策科技深度分析报告</title>
+    <style>
+        :root {
+            --blue-dark: #003366;
+            --blue-light: #336699;
+            --gold: #C4A962;
+            --text-main: #222;
+            --text-light: #666;
+            --bg: #fff;
+            --bg-gray: #f5f7fa;
+            --border: #ddd;
+        }
+        
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", sans-serif;
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-main);
+            background: #e0e0e0;
+        }
+        
+        .paper {
+            width: 210mm;
+            margin: 10mm auto;
+            background: var(--bg);
+            padding: 15mm 18mm;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+        }
+        
+        /* 封面 */
+        .cover {
+            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-light) 100%);
+            color: white;
+            padding: 50mm 20mm;
+            margin: -15mm -18mm;
+            text-align: center;
+            min-height: 260mm;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .cover h1 { font-size: 28px; font-weight: 300; margin-bottom: 8px; }
+        .cover .subtitle { font-size: 14px; opacity: 0.9; margin-bottom: 40px; }
+        .cover .divider { width: 60px; height: 2px; background: var(--gold); margin: 20px auto; }
+        .cover .meta { font-size: 11px; opacity: 0.7; }
+        .cover .meta span { display: block; margin: 5px 0; }
+        
+        /* 页面 */
+        .page { page-break-after: always; }
+        
+        /* 标题 */
+        .page-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: var(--blue-dark);
+            border-bottom: 2px solid var(--blue-dark);
+            padding-bottom: 6px;
+            margin-bottom: 12px;
+        }
+        
+        .section { margin-bottom: 14px; }
+        
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--blue-dark);
+            background: var(--bg-gray);
+            padding: 5px 10px;
+            margin-bottom: 8px;
+            border-left: 3px solid var(--gold);
+        }
+        
+        /* 表格 */
+        table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 10px; }
+        th { background: var(--blue-dark); color: white; padding: 5px 8px; text-align: left; font-weight: 500; }
+        td { padding: 4px 8px; border-bottom: 1px solid var(--border); }
+        tr:hover { background: var(--bg-gray); }
+        .highlight { background: #fff3cd; font-weight: 600; }
+        .text-right { text-align: right; }
+        .text-center { text-align: center; }
+        
+        /* 架构图 */
+        .org-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px 0;
+        }
+        
+        .org-node {
+            background: var(--blue-dark);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 3px;
+            font-size: 9px;
+            text-align: center;
+            min-width: 100px;
+        }
+        
+        .org-node.holding { background: var(--gold); color: var(--blue-dark); }
+        .org-node.sub { background: var(--blue-light); }
+        .org-line { width: 1px; height: 15px; background: var(--border); }
+        .org-line-h { width: 80px; height: 1px; background: var(--border); }
+        .org-flex { display: flex; gap: 10px; margin-top: 8px; }
+        
+        /* 时间线 */
+        .timeline { padding-left: 15px; margin: 10px 0; border-left: 2px solid var(--gold); }
+        .timeline-item { position: relative; padding: 4px 0 10px 10px; }
+        .timeline-item::before {
+            content: ''; position: absolute; left: -7px; top: 8px;
+            width: 10px; height: 10px; background: var(--blue-dark); border-radius: 50%;
+        }
+        .timeline-date { font-size: 9px; color: var(--blue-dark); font-weight: 600; }
+        .timeline-content { background: var(--bg-gray); padding: 5px 8px; border-radius: 3px; margin-top: 3px; }
+        .timeline-title { font-size: 10px; font-weight: 600; }
+        .timeline-desc { font-size: 9px; color: var(--text-light); }
+        
+        /* 卡片网格 */
+        .card-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin: 10px 0; }
+        .card {
+            background: var(--bg-gray); padding: 8px; text-align: center; border-radius: 4px;
+            border-top: 3px solid var(--blue-dark);
+        }
+        .card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .card .score { font-size: 20px; font-weight: 700; color: var(--blue-dark); }
+        .card .label { font-size: 8px; color: var(--text-light); text-transform: uppercase; margin-top: 3px; }
+        .card.highlight { background: var(--blue-dark); }
+        .card.highlight .score, .card.highlight .label { color: white; }
+        
+        /* 发现卡片 */
+        .finding-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; margin: 10px 0; }
+        .finding { background: var(--bg); border: 1px solid var(--border); padding: 8px; border-left: 3px solid var(--gold); }
+        .finding .stars { color: var(--gold); font-size: 9px; letter-spacing: 2px; }
+        .finding .title { font-size: 10px; font-weight: 600; margin: 4px 0; color: var(--blue-dark); }
+        .finding .desc { font-size: 9px; color: var(--text-light); }
+        
+        /* 警告框 */
+        .alert { padding: 8px 10px; margin: 8px 0; border-radius: 4px; font-size: 9px; }
+        .alert.warning { background: #fff3cd; border-left: 3px solid #ffc107; }
+        .alert.info { background: #d1ecf1; border-left: 3px solid #17a2b8; }
+        .alert h4 { font-size: 10px; margin-bottom: 4px; }
+        
+        /* 指标网格 */
+        .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; margin: 8px 0; }
+        .metric { background: var(--bg-gray); padding: 6px 8px; border-radius: 3px; text-align: center; }
+        .metric .value { font-size: 14px; font-weight: 700; color: var(--blue-dark); }
+        .metric .label { font-size: 8px; color: var(--text-light); margin-top: 2px; }
+        
+        /* 双列布局 */
+        .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        
+        /* 页脚 */
+        .footer {
+            margin-top: 12px;
+            padding-top: 8px;
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 8px;
+            color: var(--text-light);
+        }
+        
+        /* 评分表 */
+        .score-table td { vertical-align: middle; }
+        .stars { color: var(--gold); letter-spacing: 1px; }
+        
+        @media print {
+            body { background: none; }
+            .paper { box-shadow: none; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <!-- 封面 -->
+    <div class="paper">
+        <div class="cover">
+            <h1>群策科技深度分析报告</h1>
+            <p class="subtitle">Qunc CI Technology · In-depth Analysis Report</p>
+            <div class="divider"></div>
+            <div class="meta">
+                <span>分析日期：2026年2月8日</span>
+                <span>报告版本：v2.0</span>
+                <span>机密等级：内部使用</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第1页：执行摘要 -->
+    <div class="paper">
+        <div class="page-title">执行摘要 Executive Summary</div>
+        
+        <div class="section">
+            <div class="section-title">核心发现</div>
+            <div class="finding-grid">
+                <div class="finding">
+                    <div class="stars">★★★★★</div>
+                    <div class="title">群策科技(香港)成立</div>
+                    <div class="desc">2024年1月新成立香港控股平台，便于跨境资金调度</div>
+                </div>
+                <div class="finding">
+                    <div class="stars">★★★★☆</div>
+                    <div class="title">股权架构优化</div>
+                    <div class="desc">从UHL直接控股→双层架构（群策香港→苏州群策86.22%）</div>
+                </div>
+                <div class="finding">
+                    <div class="stars">★★★★☆</div>
+                    <div class="title">并购扩张</div>
+                    <div class="desc">2024/10并购黄石群立、昆山群启，100%持股</div>
+                </div>
+                <div class="finding">
+                    <div class="stars">★★★☆☆</div>
+                    <div class="title">关联交易规模</div>
+                    <div class="desc">苏州群策销货9.22亿TWD（16%），占比适中</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">投资评级</div>
+            <div class="card-grid">
+                <div class="card highlight">
+                    <div class="score">A</div>
+                    <div class="label">综合评级</div>
+                </div>
+                <div class="card">
+                    <div class="score">A</div>
+                    <div class="label">产业地位</div>
+                </div>
+                <div class="card">
+                    <div class="score">B+</div>
+                    <div class="label">财务状况</div>
+                </div>
+                <div class="card">
+                    <div class="score">A-</div>
+                    <div class="label">成长性</div>
+                </div>
+            </div>
+            <div class="alert info">
+                <h4>投资建议</h4>
+                综合评分：A（4/5）。建议逢低布局，长期持有。受惠于AI/5G带动PCB需求增长，产能整合后规模效应将显现。
+            </div>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">历年发展轨迹</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>年份</th>
+                        <th>群策香港</th>
+                        <th>苏州群策</th>
+                        <th>黄石群立</th>
+                        <th>昆山群启</th>
+                        <th>关联交易(亿TWD)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>2020</td><td>—</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr>
+                    <tr><td>2021</td><td>—</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr>
+                    <tr><td>2022</td><td>—</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr>
+                    <tr><td>2023</td><td>—</td><td>✓</td><td>✓</td><td>—</td><td>—</td></tr>
+                    <tr class="highlight"><td>2024</td><td>✓ 新设</td><td>✓</td><td>✓ 并购</td><td>✓ 并购</td><td>~16</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="footer"><span>群策科技深度分析报告</span><span>第 1 页</span><span>机密文件</span></div>
+    </div>
+
+    <!-- 第2页：公司概览 -->
+    <div class="paper">
+        <div class="page-title">公司概览 Company Overview</div>
+        
+        <div class="two-col">
+            <div>
+                <div class="section">
+                    <div class="section-title">股权架构（2024年）</div>
+                    <div class="org-box">
+                        <div class="org-node">欣兴电子股份有限公司</div>
+                        <div class="org-line"></div>
+                        <div class="org-node holding">UHL（BVI离岸公司）</div>
+                        <div class="org-line"></div>
+                        <div class="org-node holding">群策科技(香港)有限公司</div>
+                        <div class="org-line"></div>
+                        <div class="org-flex">
+                            <div style="text-align:center">
+                                <div class="org-node sub">苏州群策 86.22%</div>
+                                <div class="org-line-h" style="margin:0 auto"></div>
+                            </div>
+                        </div>
+                        <div class="org-flex" style="margin-top:8px">
+                            <div class="org-node sub">黄石群立 100%</div>
+                            <div class="org-node sub">昆山群启 100%</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">子公司基本信息</div>
+                    <table>
+                        <thead><tr><th>公司</th><th>成立</th><th>地址</th><th>注册资本</th></tr></thead>
+                        <tbody>
+                            <tr><td>苏州群策</td><td>2004/03</td><td>昆山汉浦路999号</td><td>US$148.6M</td></tr>
+                            <tr><td>黄石群立</td><td>2015/09</td><td>黄石开发区</td><td>US$153M</td></tr>
+                            <tr><td>昆山群启</td><td>—</td><td>昆山</td><td>—</td></tr>
+                            <tr class="highlight"><td>群策香港</td><td>2024/01</td><td>香港</td><td>—</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div>
+                <div class="section">
+                    <div class="section-title">重大事件时间线</div>
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-date">2004/03</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">苏州群策成立</div>
+                                <div class="timeline-desc">注册资本US$148.6M，PCB/HDI生产基地</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2015/09</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">黄石群立成立</div>
+                                <div class="timeline-desc">注册资本US$153M，华中产能布局</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024/01</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">群策香港成立</div>
+                                <div class="timeline-desc">香港控股平台，便于跨境资金调度</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2024/10/01</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">并购完成</div>
+                                <div class="timeline-desc">苏州群策并购黄石群立、昆山群启</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-date">2025/01/01</div>
+                            <div class="timeline-content">
+                                <div class="timeline-title">旭德科技合并</div>
+                                <div class="timeline-desc">集团进一步整合</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer"><span>群策科技深度分析报告</span><span>第 2 页</span><span>机密文件</span></div>
+    </div>
+
+    <!-- 第3页：关联交易 -->
+    <div class="paper">
+        <div class="page-title">关联交易分析 Related Party Transactions</div>
+        
+        <div class="section">
+            <div class="section-title">关联交易金额（2024年）</div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th>交易对象</th>
+                        <th class="text-right">金额(仟元)</th>
+                        <th class="text-right">占比</th>
+                        <th>关系</th>
+                        <th>账期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>1</td><td>群策科技(香港)有限公司</td><td class="text-right">289,684</td><td class="text-right">2%</td><td>子公司</td><td>月结3个月</td></tr>
+                    <tr class="highlight"><td>2</td><td>苏州群策科技有限公司</td><td class="text-right">921,562</td><td class="text-right">16%</td><td>子公司</td><td>月结3个月</td></tr>
+                    <tr><td>3</td><td>黄石群立电子科技</td><td class="text-right">393,695</td><td class="text-right">7%</td><td>子公司</td><td>月结3个月</td></tr>
+                    <tr><td>4</td><td>黄石欣益兴电子科技</td><td class="text-right">752,525</td><td class="text-right">13%</td><td>同一母公司</td><td>月结3个月</td></tr>
+                    <tr><td>5</td><td>昆山鼎鑫电子</td><td class="text-right">2,030,492</td><td class="text-right">33%</td><td>同一母公司</td><td>月结3个月</td></tr>
+                    <tr><td>6</td><td>昆山欣富兴</td><td class="text-right">1,022,249</td><td class="text-right">17%</td><td>同一母公司</td><td>月结3个月</td></tr>
+                    <tr><td>7</td><td>Unimicron JAPAN</td><td class="text-right">453,838</td><td class="text-right">7%</td><td>子公司</td><td>月结3个月</td></tr>
+                    <tr class="highlight"><td colspan="2">群策系列合计</td><td class="text-right">~1,605,000</td><td class="text-right">~25%</td><td colspan="2">—</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">应收款项（2024年）</div>
+            <table>
+                <thead><tr><th>序号</th><th>交易对象</th><th class="text-right">应收余额(仟元)</th><th class="text-right">占比</th><th class="text-right">周转率</th></tr></thead>
+                <tbody>
+                    <tr><td>1</td><td>昆山鼎鑫电子</td><td class="text-right">1,236,899</td><td class="text-right">38%</td><td class="text-right">3.99</td></tr>
+                    <tr><td>2</td><td>黄石欣益兴</td><td class="text-right">786,073</td><td class="text-right">24%</td><td class="text-right">2.60</td></tr>
+                    <tr class="highlight"><td>3</td><td>苏州群策科技</td><td class="text-right">498,301</td><td class="text-right">15%</td><td class="text-right">2.70</td></tr>
+                    <tr><td>4</td><td>黄石群立电子</td><td class="text-right">393,695</td><td class="text-right">12%</td><td class="text-right">—</td></tr>
+                    <tr><td>5</td><td>Unimicron JAPAN</td><td class="text-right">498,301</td><td class="text-right">15%</td><td class="text-right">2.70</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="two-col">
+            <div>
+                <div class="section">
+                    <div class="section-title">关联交易分析</div>
+                    <table class="score-table">
+                        <tr><td>集中度</td><td><span class="stars">★★★★☆</span>适中</td></tr>
+                    <tr><td>账期</td><td><span class="stars">★★★★★</span>正常（月结3个月）</td></tr>
+                    <tr><td>周转率</td><td><span class="stars">★★★★☆</span>2.70（中等）</td></tr>
+                    <tr><td>定价公允性</td><td><span class="stars">★★★☆☆</span>需持续关注</td></tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="section">
+                    <div class="section-title">重大交易事项</div>
+                    <table>
+                        <thead><tr><th>事项</th><th>内容</th></tr></thead>
+                        <tbody>
+                            <tr><td>土地购置</td><td>苏州群策向苏州联致购置不动产（凤里街158号）</td></tr>
+                            <tr><td>处置价款</td><td>17,276仟元</td></tr>
+                            <tr><td>并购基准日</td><td>2024/10/01</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="footer"><span>群策科技深度分析报告</span><span>第 3 页</span><span>机密文件</span></div>
+    </div>
+
+    <!-- 第4页：战略与风险 -->
+    <div class="paper">
+        <div class="page-title">战略分析 Strategic Analysis</div>
+        
+        <div class="section">
+            <div class="section-title">2024年三大战略动作</div>
+            <table>
+                <thead><tr><th>战略动作</th><th>目的</th><th>时间</th><th>影响</th></tr></thead>
+                <tbody>
+                    <tr><td>设立香港平台</td><td>国际化布局、税务优化、资本操作</td><td>2024/01</td><td>便于未来融资</td></tr>
+                    <tr><td>股权架构整合</td><td>统一管理、简化层级</td><td>2024/04</td><td>配合旭德合并</td></tr>
+                    <tr><td>并购扩张</td><td>扩大产能、整合资源</td><td>2024/10</td><td>产能增30%+</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="section">
+            <div class="section-title">风险评估矩阵</div>
+            <div class="metric-grid">
+                <div class="metric"><div class="value">中</div><div class="label">大陆经营风险</div></div>
+                <div class="metric"><div class="value">中</div><div class="label">关联交易依赖</div></div>
+                <div class="metric"><div class="value">中</div><div class="label">整合风险</div></div>
+                <div class="metric"><div class="value">中</div><div class="label">技术更新压力</div></div>
+                <div class="metric"><div class="value">低</div><div class="label">汇率风险</div></div>
+                <div class="metric"><div class="value">低</div><div class="label">资金风险</div></div>
+            </div>
+        </div>
+        
+        <div class="two-col">
+            <div>
+                <div class="section">
+                    <div class="section-title">未来展望</div>
+                    <table>
+                        <thead><tr><th>时期</th><th>展望</th></tr></thead>
+                        <tbody>
+                            <tr><td>短期(2025)</td><td>旭德科技合并、产能整合</td></tr>
+                            <tr><td>中期(2026-27)</td><td>AI芯片带动需求、资本操作可能</td></tr>
+                            <tr><td>长期(2028+)</td><td>大陆上市可能性、国际化扩张</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <div class="section">
+                    <div class="section-title">后续研究建议</div>
+                    <table>
+                        <thead><tr><th>优先级</th><th>项目</th></tr></thead>
+                        <tbody>
+                            <tr><td>高</td><td>获取2021-2023年PDF进行完整对比</td></tr>
+                            <tr><td>高</td><td>分析苏州群策个别财报</td></tr>
+                            <tr><td>中</td><td>同业对比（深南、兴森科技）</td></tr>
+                            <tr><td>中</td><td>追踪旭德合并影响</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <div class="alert warning">
+            <h4>⚠️ 重要提示</h4>
+            1. 关联交易占比25%适中，但定价公允性需持续关注<br>
+            2. 2024年并购的黄石群立、昆山群启需时间整合<br>
+            3. AI/5G带动需求，但PCB行业竞争激烈
+        </div>
+        
+        <div class="footer"><span>群策科技深度分析报告</span><span>第 4 页</span><span>机密文件</span></div>
+    </div>
+</body>
+</html>

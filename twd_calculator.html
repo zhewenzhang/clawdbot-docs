@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>台幣↔人民币↔坪 計算器</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Microsoft JhengHei', Arial, sans-serif;
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #333;
+        }
+        .calculator {
+            max-width: 500px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        h1 {
+            text-align: center;
+            color: #1a365d;
+            margin-bottom: 10px;
+            font-size: 24px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+        .section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1a365d;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-title::before {
+            content: '';
+            width: 4px;
+            height: 18px;
+            background: #1a365d;
+            border-radius: 2px;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+        .input-group label {
+            width: 100px;
+            font-size: 14px;
+            color: #555;
+        }
+        .input-group input {
+            flex: 1;
+            padding: 12px 15px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+        }
+        .input-group input:focus {
+            outline: none;
+            border-color: #1a365d;
+        }
+        .input-group .unit {
+            width: 50px;
+            text-align: right;
+            color: #888;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        .result-box {
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
+            color: white;
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+        .result-title {
+            font-size: 14px;
+            opacity: 0.9;
+            margin-bottom: 10px;
+        }
+        .result-value {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .result-unit {
+            font-size: 16px;
+            opacity: 0.8;
+        }
+        .result-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        .result-item {
+            background: rgba(255,255,255,0.15);
+            border-radius: 10px;
+            padding: 15px;
+        }
+        .result-item .label {
+            font-size: 12px;
+            opacity: 0.9;
+            margin-bottom: 5px;
+        }
+        .result-item .value {
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .info {
+            background: #fff9e6;
+            border-left: 4px solid #f39c12;
+            padding: 15px;
+            border-radius: 0 10px 10px 0;
+            margin-top: 20px;
+        }
+        .info p {
+            font-size: 13px;
+            color: #666;
+            line-height: 1.6;
+        }
+        .quick-calc {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 2px dashed #e2e8f0;
+        }
+        .quick-calc h3 {
+            font-size: 16px;
+            color: #1a365d;
+            margin-bottom: 15px;
+        }
+        .quick-buttons {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+        .quick-btn {
+            padding: 12px 5px;
+            background: #e2e8f0;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: all 0.3s;
+        }
+        .quick-btn:hover {
+            background: #1a365d;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <div class="calculator">
+        <h1>💰 臺幣↔人民币↔坪 計算器</h1>
+        <p class="subtitle">輸入金額，自動換算出多種單位</p>
+        
+        <!-- 匯率設置 -->
+        <div class="section">
+            <div class="section-title">匯率設置</div>
+            <div class="input-group">
+                <label>1 臺幣 =</label>
+                <input type="number" id="twdToRmb" value="0.23" step="0.01">
+                <span class="unit">人民币</span>
+            </div>
+            <div class="input-group">
+                <label>1 坪 =</label>
+                <input type="number" id="pingToTwd" value="50000" step="1000">
+                <span class="unit">臺幣</span>
+            </div>
+            <p style="font-size: 12px; color: #888; margin-top: 10px;">
+                💡 提示：點擊右上角可保存設置
+            </p>
+        </div>
+        
+        <!-- 輸入金額 -->
+        <div class="section">
+            <div class="section-title">輸入金額</div>
+            <div class="input-group">
+                <label>新臺幣</label>
+                <input type="number" id="twdInput" placeholder="輸入金額" step="1000">
+                <span class="unit">TWD</span>
+            </div>
+        </div>
+        
+        <!-- 換算結果 -->
+        <div class="result-box">
+            <div class="result-title">輸入金額換算結果</div>
+            <div class="result-value" id="rmbResult">0.00</div>
+            <div class="result-unit">人民币 (CNY)</div>
+            
+            <div class="result-grid">
+                <div class="result-item">
+                    <div class="label">可買坪數</div>
+                    <div class="value" id="pingResult">0.00</div>
+                </div>
+                <div class="result-item">
+                    <div class="label">平方米</div>
+                    <div class="value" id="sqmResult">0.00</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 快速計算 -->
+        <div class="quick-calc">
+            <h3>⚡ 快速計算</h3>
+            <div class="quick-buttons">
+                <button class="quick-btn" onclick="calc(10000)">1萬</button>
+                <button class="quick-btn" onclick="calc(50000)">5萬</button>
+                <button class="quick-btn" onclick="calc(100000)">10萬</button>
+                <button class="quick-btn" onclick="calc(500000)">50萬</button>
+                <button class="quick-btn" onclick="calc(1000000)">100萬</button>
+                <button class="quick-btn" onclick="calc(5000000)">500萬</button>
+                <button class="quick-btn" onclick="calc(10000000)">1000萬</button>
+                <button class="quick-btn" onclick="calc(100000000)">1億</button>
+            </div>
+        </div>
+        
+        <!-- 說明 -->
+        <div class="info">
+            <p><strong>📚 單位說明：</strong></p>
+            <p>• 1 坪 ≈ 3.3058 平方米<br>
+            • 匯率僅供參考，請以銀行實際匯率為準<br>
+            • 房價計算：(坪數 × 每坪單價 = 總價)</p>
+        </div>
+    </div>
+    
+    <script>
+        // 匯率設置
+        const twdToRmbInput = document.getElementById('twdToRmb');
+        const pingToTwdInput = document.getElementById('pingToTwd');
+        const twdInput = document.getElementById('twdInput');
+        
+        // 顯示結果
+        const rmbResult = document.getElementById('rmbResult');
+        const pingResult = document.getElementById('pingResult');
+        const sqmResult = document.getElementById('sqmResult');
+        
+        // 常數
+        const PING_TO_SQM = 3.3058;
+        
+        function calculate() {
+            const twd = parseFloat(twdInput.value) || 0;
+            const twdToRmb = parseFloat(twdToRmbInput.value) || 0;
+            const pingToTwd = parseFloat(pingToTwdInput.value) || 1;
+            
+            // 計算
+            const rmb = twd * twdToRmb;
+            const ping = twd / pingToTwd;
+            const sqm = ping * PING_TO_SQM;
+            
+            // 顯示
+            rmbResult.textContent = rmb.toLocaleString('zh-TW', {
+                minimumFractionDigits: 2,
+                maximumFractionDigits: 2
+            });
+            pingResult.textContent = ping.toFixed(2);
+            sqmResult.textContent = sqm.toFixed(2);
+        }
+        
+        function calc(amount) {
+            twdInput.value = amount;
+            calculate();
+        }
+        
+        // 監聽輸入變化
+        twdInput.addEventListener('input', calculate);
+        twdToRmbInput.addEventListener('input', calculate);
+        pingToTwdInput.addEventListener('input', calculate);
+        
+        // 初始化
+        calculate();
+    </script>
+</body>
+</html>

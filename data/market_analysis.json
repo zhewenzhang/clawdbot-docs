@@ -1,0 +1,56 @@
+{
+  "analysis_date": "2026-02-04 22:59",
+  "commodities": [
+    {
+      "name": "黄金(COMEX)",
+      "latest": 5009.7,
+      "week_change": -5.8,
+      "month_change": 12.6,
+      "quarter_change": 25.26
+    },
+    {
+      "name": "白银(COMEX)",
+      "latest": 89.75,
+      "week_change": -21.3,
+      "month_change": 16.35,
+      "quarter_change": 86.91
+    },
+    {
+      "name": "铜(LME)",
+      "latest": 5.96,
+      "week_change": -3.45,
+      "month_change": 2.64,
+      "quarter_change": 20.75
+    },
+    {
+      "name": "铂金(NYMEX)",
+      "latest": 2282.8,
+      "week_change": -12.11,
+      "month_change": 1.3,
+      "quarter_change": 48.3
+    },
+    {
+      "name": "钯金(NYMEX)",
+      "latest": 1829.0,
+      "week_change": -8.58,
+      "month_change": 3.5,
+      "quarter_change": 30.9
+    }
+  ],
+  "indices": [
+    {
+      "name": "上证指数",
+      "latest": 4102.2,
+      "week_change": -1.34,
+      "month_change": 0.47,
+      "quarter_change": 2.48
+    },
+    {
+      "name": "深证成指",
+      "latest": 14156.27,
+      "week_change": -1.01,
+      "month_change": 1.41,
+      "quarter_change": 6.53
+    }
+  ]
+}

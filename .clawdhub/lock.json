@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "skills": {
+    "agent-browser": {
+      "version": "0.2.0",
+      "installedAt": 1770171327012
+    },
+    "frontend-design": {
+      "version": "1.0.0",
+      "installedAt": 1770171349859
+    },
+    "web-design-guidelines": {
+      "version": "1.0.0",
+      "installedAt": 1770171362804
+    },
+    "excel-weekly-dashboard": {
+      "version": "1.0.0",
+      "installedAt": 1770213674999
+    },
+    "moltsheet": {
+      "version": "1.0.1",
+      "installedAt": 1770213678875
+    }
+  }
+}

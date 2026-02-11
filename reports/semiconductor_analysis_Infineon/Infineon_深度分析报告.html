@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>Infineon深度分析报告</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        @page { size: A4 landscape; margin: 0; }
+        body { 
+            font-family: 'Microsoft YaHei', Arial, sans-serif; 
+            font-size: 11pt; 
+            line-height: 1.3;
+            background: #1a1a2e;
+            color: #333;
+        }
+        
+        /* 封面 */
+        .cover {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 40px 50px;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .cover h1 { font-size: 56px; margin-bottom: 20px; letter-spacing: 10px; }
+        .cover h2 { font-size: 28px; font-weight: normal; margin-bottom: 40px; border-bottom: 2px solid rgba(255,255,255,0.3); padding-bottom: 20px; display: inline-block; }
+        .cover .meta { font-size: 14px; opacity: 0.8; line-height: 2.2; }
+        .cover .tag { 
+            position: absolute; top: 30px; right: 30px; 
+            background: rgba(255,255,255,0.15); padding: 10px 20px; border-radius: 25px; font-size: 12px; 
+        }
+        
+        /* 页面 */
+        .page { 
+            background: #fff; 
+            min-height: 100vh; 
+            padding: 25px 35px; 
+            position: relative;
+        }
+        
+        /* 页眉 */
+        .header {
+            display: flex; justify-content: space-between; align-items: center;
+            margin-bottom: 15px; padding-bottom: 10px; border-bottom: 2px solid #0f3460;
+        }
+        .header h3 { color: #0f3460; font-size: 20px; }
+        .header .page-num { font-size: 10px; color: #666; }
+        
+        /* 核心指标 */
+        .metrics {
+            display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-bottom: 15px;
+        }
+        .metric {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 12px; border-radius: 8px; text-align: center; border-left: 4px solid #0f3460;
+        }
+        .metric .label { font-size: 9px; color: #666; text-transform: uppercase; margin-bottom: 5px; }
+        .metric .value { font-size: 22px; font-weight: bold; color: #0f3460; }
+        .metric .change { font-size: 10px; margin-top: 3px; }
+        .positive { color: #27ae60; }
+        .negative { color: #e74c3c; }
+        .neutral { color: #7f8c8d; }
+        
+        /* 内容区 */
+        .content { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+        .full-width { grid-column: 1 / -1; }
+        
+        /* 卡片 */
+        .card {
+            background: #f8f9fa; border-radius: 8px; padding: 15px;
+            border: 1px solid #e9ecef;
+        }
+        .card h4 {
+            color: #0f3460; font-size: 14px; margin-bottom: 10px;
+            display: flex; align-items: center; gap: 8px;
+        }
+        .card h4::before { content: ""; width: 4px; height: 16px; background: #0f3460; border-radius: 2px; }
+        
+        /* 表格 */
+        table { width: 100%; border-collapse: collapse; font-size: 9pt; }
+        th { background: #0f3460; color: white; padding: 8px 10px; text-align: left; font-weight: 600; }
+        td { padding: 7px 10px; border-bottom: 1px solid #e9ecef; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        
+        /* 进度条 */
+        .progress-bar {
+            height: 18px; background: #e9ecef; border-radius: 9px; overflow: hidden; margin: 6px 0;
+        }
+        .progress-fill {
+            height: 100%; background: linear-gradient(90deg, #0f3460, #3498db); border-radius: 9px;
+            display: flex; align-items: center; justify-content: flex-end; padding-right: 8px;
+            color: white; font-size: 9px; font-weight: bold;
+        }
+        
+        /* 摘要框 */
+        .summary {
+            background: linear-gradient(135deg, #fff9e6 0%, #fff3cd 100%);
+            border-left: 4px solid #f39c12; padding: 12px 15px; border-radius: 0 8px 8px 0; margin-bottom: 15px;
+        }
+        .summary p { font-size: 11pt; line-height: 1.5; }
+        
+        /* BCG矩阵 */
+        .bcg-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .bcg-item {
+            padding: 12px; border-radius: 8px; text-align: center;
+        }
+        .bcg-stars { background: linear-gradient(135deg, #d4efdf 0%, #a9dfbf 100%); border: 2px solid #27ae60; }
+        .bcg-cash { background: linear-gradient(135deg, #d6eaf8 0%, #aed6f1 100%); border: 2px solid #3498db; }
+        .bcg-question { background: linear-gradient(135deg, #fcf3cf 0%, #f9e79f 100%); border: 2px solid #f39c12; }
+        .bcg-dog { background: linear-gradient(135deg, #fadbd8 0%, #f5b7b1 100%); border: 2px solid #e74c3c; }
+        .bcg-item .label { font-size: 12px; font-weight: bold; margin-bottom: 5px; }
+        .bcg-item .biz { font-size: 10px; color: #555; }
+        
+        /* 风险矩阵 */
+        .risk-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+        .risk {
+            padding: 10px; border-radius: 6px; text-align: center;
+        }
+        .risk-high { background: #fadbd8; border: 1px solid #e74c3c; }
+        .risk-med { background: #fcf3cf; border: 1px solid #f39c12; }
+        .risk-low { background: #d4efdf; border: 1px solid #27ae60; }
+        .risk .level { font-size: 9px; font-weight: bold; padding: 2px 8px; border-radius: 10px; display: inline-block; margin-bottom: 5px; }
+        .risk-high .level { background: #e74c3c; color: white; }
+        .risk-med .level { background: #f39c12; color: white; }
+        .risk-low .level { background: #27ae60; color: white; }
+        .risk .title { font-size: 11px; font-weight: bold; margin-bottom: 3px; }
+        .risk .desc { font-size: 9px; color: #666; }
+        
+        /* 估值卡片 */
+        .valuation { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 15px; }
+        .val-card {
+            background: white; border: 2px solid #0f3460; border-radius: 10px; padding: 15px; text-align: center;
+        }
+        .val-card .type { font-size: 10px; color: #666; margin-bottom: 5px; }
+        .val-card .value { font-size: 26px; font-weight: bold; color: #0f3460; }
+        .val-card .premium { font-size: 10px; padding: 3px 10px; border-radius: 15px; display: inline-block; margin-top: 5px; }
+        .up { background: #fadbd8; color: #e74c3c; }
+        .down { background: #d4efdf; color: #27ae60; }
+        
+        /* 投资建议 */
+        .recommend {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%); color: white;
+            padding: 15px 20px; border-radius: 10px; text-align: center; margin-bottom: 15px;
+        }
+        .recommend .grade { font-size: 36px; font-weight: bold; margin-bottom: 5px; }
+        .recommend .target { font-size: 14px; opacity: 0.9; }
+        .recommend .catalysts { margin-top: 10px; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .catalyst { background: rgba(255,255,255,0.2); padding: 5px 12px; border-radius: 15px; font-size: 10px; }
+        
+        /* 竞争格局 */
+        .competitor { display: flex; align-items: center; gap: 12px; margin-bottom: 8px; }
+        .competitor .name { width: 100px; font-size: 11px; font-weight: bold; }
+        .competitor .bar { flex: 1; height: 16px; background: #e9ecef; border-radius: 8px; overflow: hidden; }
+        .competitor .share { height: 100%; background: linear-gradient(90deg, #0f3460, #3498db); border-radius: 8px; }
+        .competitor .pct { width: 45px; text-align: right; font-size: 10px; font-weight: bold; color: #0f3460; }
+        
+        /* 竞争对比表格 */
+        .comp-table td { padding: 6px 10px; }
+        .comp-table .rank { color: #0f3460; font-weight: bold; }
+        
+        /* 附录 */
+        .glossary { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+        .term { background: #f8f9fa; padding: 8px 12px; border-radius: 5px; border-left: 3px solid #0f3460; }
+        .term .name { font-weight: bold; color: #0f3460; font-size: 10px; }
+        .term .desc { font-size: 9px; color: #666; margin-top: 2px; }
+        
+        /* 页脚 */
+        .footer {
+            position: absolute; bottom: 10px; left: 35px; right: 35px;
+            display: flex; justify-content: space-between; font-size: 8px; color: #999;
+            border-top: 1px solid #e9ecef; padding-top: 8px;
+        }
+        
+        /* 目录 */
+        .toc { padding: 30px 40px; }
+        .toc h3 { color: #0f3460; font-size: 24px; margin-bottom: 25px; padding-bottom: 10px; border-bottom: 2px solid #0f3460; }
+        .toc-item { 
+            display: flex; justify-content: space-between; padding: 10px 0; 
+            border-bottom: 1px solid #e9ecef; font-size: 13px; 
+        }
+        .toc-item span:last-child { color: #0f3460; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+    <!-- 封面 -->
+    <div class="cover">
+        <div class="tag">📊 MBB咨询框架</div>
+        <h1>Infineon</h1>
+        <h2>深度分析报告</h2>
+        <div class="meta">
+            <p>英飞凌半导体 N.V. (NASDAQ: IFX)</p>
+            <p>报告日期: 2026年2月8日</p>
+            <p>财务年度: FY2024</p>
+            <p>分析框架: McKinsey + BCG + Bain</p>
+        </div>
+    </div>
+
+    <!-- 目录 -->
+    <div class="page">
+        <div class="toc">
+            <h3>目录</h3>
+            <div class="toc-item"><span>1. 执行摘要</span><span>01</span></div>
+            <div class="toc-item"><span>2. 公司概况</span><span>02</span></div>
+            <div class="toc-item"><span>3. 财务分析</span><span>03</span></div>
+            <div class="toc-item"><span>4. 业绩表现</span><span>04</span></div>
+            <div class="toc-item"><span>5. 公司策略</span><span>05</span></div>
+            <div class="toc-item"><span>6. 竞争地位</span><span>06</span></div>
+            <div class="toc-item"><span>7. 风险评估</span><span>07</span></div>
+            <div class="toc-item"><span>8. 投资价值</span><span>08</span></div>
+            <div class="toc-item"><span>9. 附录</span><span>09</span></div>
+        </div>
+    </div>
+
+    <!-- 1. 执行摘要 -->
+    <div class="page">
+        <div class="header">
+            <h3>01 执行摘要</h3>
+            <span class="page-num">Infineon深度分析报告</span>
+        </div>
+        <div class="summary">
+            <p><strong>核心发现：</strong>Infineon FY2024营收€149.55亿（YoY-5%），汽车电子占比50%成为最大业务板块。毛利率保持55%高于行业平均，Q4营收€39.19亿显示市场需求回暖。评级<strong>持有</strong>，目标价€50（当前~€38，上行空间30%）。</p>
+        </div>
+        <div class="metrics">
+            <div class="metric">
+                <div class="label">FY2024营收</div>
+                <div class="value">€149.55亿</div>
+                <div class="change negative">YoY -5%</div>
+            </div>
+            <div class="metric">
+                <div class="label">Q4营收</div>
+                <div class="value">€39.19亿</div>
+                <div class="change negative">YoY -3.2%</div>
+            </div>
+            <div class="metric">
+                <div class="label">毛利率</div>
+                <div class="value">55%</div>
+                <div class="change neutral">持平 · 高于行业</div>
+            </div>
+            <div class="metric">
+                <div class="label">净利润率</div>
+                <div class="value">22%</div>
+                <div class="change negative">YoY下降</div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="card">
+                <h4>营收结构 (MECE)</h4>
+                <div class="progress-bar"><div class="progress-fill" style="width:50%">汽车电子 45%</div></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:25%;background:linear-gradient(90deg,#3498db,#5dade2)">电源与传感 25%</div></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:15%;background:linear-gradient(90deg,#27ae60,#58d68d)">工业功率控制 20%</div></div>
+                <div class="progress-bar"><div class="progress-fill" style="width:10%;background:linear-gradient(90deg,#f39c12,#f5b041)">安全互联系统 10%</div></div>
+            </div>
+            <div class="card">
+                <h4>分季度趋势</h4>
+                <table>
+                    <tr><th>季度</th><th>营收</th><th>YoY</th><th>业务亮点</th></tr>
+                    <tr><td>Q1</td><td>$31.3亿</td><td>持平</td><td>汽车稳健</td></tr>
+                    <tr><td>Q2</td><td>$31.3亿</td><td>-5%</td><td>工业调整</td></tr>
+                    <tr><td>Q3</td><td>$32.5亿</td><td>-5.4%</td><td>通信回暖</td></tr>
+                    <tr><td>Q4</td><td>€39.19亿</td><td>-3.2%</td><td>环比改善</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer"><span>报告日期: 2026年2月8日</span><span>McKinsey + BCG + Bain 框架</span></div>
+    </div>
+
+    <!-- 2. 公司概况 -->
+    <div class="page">
+        <div class="header">
+            <h3>02 公司概况</h3>
+            <span class="page-num">Infineon深度分析报告</span>
+        </div>
+        <div class="content">
+            <div class="card">
+                <h4>公司简介</h4>
+                <p style="font-size:11pt;line-height:1.6;">Infineon Semiconductors N.V.总部位于德国埃因霍温，是全球领先的嵌入式应用连接半导体解决方案提供商。前身为飞利浦半导体部门，2006年独立上市，在30多个国家拥有约31,000名员工。</p>
+            </div>
+            <div class="card">
+                <h4>全球布局</h4>
+                <table>
+                    <tr><th>地区</th><th>占比</th><th>主要业务</th></tr>
+                    <tr><td>亚太</td><td>40%</td><td>移动设备、工业IoT</td></tr>
+                    <tr><td>欧洲</td><td>35%</td><td>汽车电子、工业</td></tr>
+                    <tr><td>美国</td><td>25%</td><td>通信基础设施、汽车</td></tr>
+                </table>
+            </div>
+            <div class="card full-width">
+                <h4>市场地位</h4>
+                <table>
+                    <tr><th>业务领域</th><th>全球排名</th><th>竞争优势</th></tr>
+                    <tr><td>汽车半导体</td><td class="rank">Top 3</td><td>功率器件、MCU、安全芯片</td></tr>
+                    <tr><td>车规级MCU</td><td class="rank">#2</td><td>SiC、IGBT技术领先</td></tr>
+                    <tr><td>NFC芯片</td><td class="rank">#1</td><td>IGBT、SiC技术领先</td></tr>
+                    <tr><td>车载网络</td><td class="rank">Top 3</td><td>8英寸SiC晶圆技术</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer"><span>报告日期: 2026年2月8日</span><span>McKinsey + BCG + Bain 框架</span></div>
+    </div>
+
+    <!-- 3. 财务分析 -->
+    <div class="page">
+        <div class="header">
+            <h3>03 财务分析</h3>
+            <span class="page-num">Infineon深度分析报告</span>
+        </div>
+        <div class="metrics">
+            <div class="metric">
+                <div class="label">经营现金流</div>
+                <div class="value">€35亿</div>
+                <div class="change positive">健康</div>
+            </div>
+            <div class="metric">
+                <div class="label">净现金</div>
+                <div class="value">€30亿</div>
+                <div class="change positive">稳健</div>
+            </div>
+            <div class="metric">
+                <div class="label">资本支出</div>
+                <div class="value">$15亿</div>
+                <div class="change neutral">产能扩张</div>
+            </div>
+            <div class="metric">
+                <div class="label">研发费用率</div>
+                <div class="value">19%</div>
+                <div class="change positive">持续创新</div>
+            </div>
+        </div>
+        <div class="content">
+            <div class="card">
+                <h4>盈利能力趋势</h4>
+                <table>
+                    <tr><th>指标</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr>
+                    <tr><td>营收($B)</td><td>13.2</td><td>13.3</td><td>12.6</td></tr>
+                    <tr><td>毛利率</td><td>56.8%</td><td>55.5%</td><td>55.0%</td></tr>
+                    <tr><td>营业利润率</td><td>27.5%</td><td>26.0%</td><td>25.0%</td></tr>
+                    <tr><td>净利润($B)</td><td>2.8</td><td>2.7</td><td>2.5</td></tr>
+                    <tr><td>EPS($)</td><td>10.8</td><td>10.5</td><td>10.0</td></tr>
+                </table>
+            </div>
+            <div class="card">
+                <h4>现金流与资产负债表</h4>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;font-size:10pt;">
+                    <div>
+                        <strong style="color:#0f3460;">现金流状况</strong>
+                        <ul style="margin-top:8px;line-height:1.8;color:#555;">
+                            <li>经营现金流：约€35亿</li>
+                            <li>自由现金流：充裕</li>
+                            <li>资本支出：$15亿</li>
+                            <li>FCF转换率：>100%</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <strong style="color:#0f3460;">资产负债表质量</strong>
+                        <ul style="margin-top:8px;line-height:1.8;color:#555;">
+                            <li>净现金：约€30亿</li>
+                            <li>债务结构：长期为主</li>
+                            <li>流动比率：~2.0</li>
+                            <li>短期偿债能力：强</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer"><span>报告日期: 2026年2月8日</span><span>McKinsey + BCG + Bain 框架</span></div>
+    </div>
+
+    <!-- 4. 业绩表现 -->
+    <div class="page">
+        <div class="header">
+            <h3>04 业绩表现</h3>
+            <span class="page-num">Infineon深度分析报告</span>
+        </div>
+        <div class="content">
+            <div class="card full-width">
+                <h4>业务部门表现分析</h4>
+                <table>
+                    <tr><th>业务部门</th><th>占比</th><th>表现</th><th>驱动因素</th><th>挑战</th></tr>
+                    <tr><td><strong>汽车电子</strong></td><td>50%</td><td class="positive">⭐ 稳健增长</td><td>电动车渗透率↑、ADAS需求↑</td><td>供应链波动</td></tr>
+                    <tr><td><strong>工业/物联网</strong></td><td>25%</td><td class="negative">⚠️ 面临压力</td><td>智能工厂长期增长</td><td>客户去库存</td></tr>
+                    <tr><td><strong>通信基础设施</strong></td><td>15%</td><td class="neutral">📊 温和增长</td><td>5G网络持续部署</td><td>中国市场激烈竞争</td></tr>
+                    <tr><td><strong>移动设备</strong></td><td>10%</td><td class="negative">📉 下滑</td><td>移动支付安全芯片</td><td>智能手机市场饱和</td></tr>
+                </table>
+            </div>
+            <div class="card full-width">
+                <h4>季度趋势分析</h4>
+                <p style="font-size:11pt;line-height:1.5;">FY2024全年营收同比下降5%，但下半年呈现逐季改善趋势。Q4营收€39.19亿（YoY-3.2%），较Q3的-5.4%显著收窄，表明市场需求正在逐步回暖。汽车电子业务成为最大亮点，受益于汽车电子化和电动车渗透率提升的双重驱动。</p>
+            </div>
+        </div>
+        <div class="footer"><span>报告日期: 2026年2月8日</span><span>McKinsey + BCG + Bain 框架</span></div>
+    </div>
+
+    <!-- 5. 公司策略 -->
+    <div class="page">
+        <div class="header">
+            <h3>05 公司策略</h3>
+            <span class="page-num">Infineon深度分析报告</span>
+        </div>
+        <div class="content">
+            <div class="card">
+                <h4>BCG矩阵分析</h4>
+                <div class="bcg-grid">
+                    <div class="bcg-item bcg-stars">
+                        <div class="label">⭐ Stars</div>
+                        <div class="biz">汽车电子<br>→ 加大投资</div>
+                    </div>
+                    <div class="bcg-item bcg-question">
+                        <div class="label">❓ Question</div>
+                        <div class="biz">工业/IoT<br>→ 选择性投资</div>
+                    </div>
+                    <div class="bcg-item bcg-cash">
+                        <div class="label">💵 Cash Cow</div>
+                        <div class="biz">通信基础设施<br>→ 维持利润</div>
+                    </div>
+                    <div class="bcg-item bcg-dog">
+                        <div class="label">📉 Dog</div>
+                        <div class="biz">移动设备<br>→ 逐步退出</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h4>2024年重要事件</h4>
+                <ul style="line-height:2;font-size:10pt;color:#555;">
+                    <li><strong>GaN功率技术收购</strong> - 增强电力系统能力</li>
+                    <li><strong>马来西亚封测厂扩建</strong> - 提升亚洲产能</li>
+                    <li><strong>软件定义汽车平台</strong> - S32平台升级版</li>
+                    <li><strong>氮化镓技术突破</strong> - 提升竞争力</li>
+                </ul>
+            </div>
+            <div class="card full-width">
+                <h4>Bain价值创造分析</h4>
+                <table>
+                    <tr><th>战略支柱</th><th>具体举措</th><th>价值创造</th><th>目标</th></tr>
+                    <tr><td>聚焦高增长市场</td><td>汽车电子、工业IoT</td><td>营收增长</td><td>年均增速5-7%</td></tr>
+                    <tr><td>技术创新驱动</td><td>10%+研发费用率</td><td>利润率提升</td><td>毛利率>55%</td></tr>
+                    <tr><td>产能扩张</td><td>新加坡、德国建厂</td><td>规模效应</td><td>ROIC>15%</td></tr>
+                    <tr><td>股东回报</td><td>50% FCF用于回购</td><td>每股收益提升</td><td>持续增厚EPS</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer"><span>报告日期: 2026年2月8日</span><span>McKinsey + BCG + Bain 框架</span></div>
+    </div>
+
+    <!-- 6. 竞争地位 -->
+    <div class="page">
+        <div class="header">
+            <h3>06 竞争地位</h3>
+            <span class="page-num">Infineon深度分析报告</span>
+        </div>
+        <div class="content">
+            <div class="card">
+                <h4>全球汽车功率半导体市场份额</h4>
+                <div class="competitor">
+                    <div class="name">英飞凌</div>
+                    <div class="bar"><div class="share" style="width:15%"></div></div>
+                    <div class="pct">15%</div>
+                </div>
+                <div class="competitor">
+                    <div class="name">Infineon</div>
+                    <div class="bar"><div class="share" style="width:12%;background:linear-gradient(90deg,#e74c3c,#f1948a)"></div></div>
+                    <div class="pct" style="color:#e74c3c">12%</div>
+                </div>
+                <div class="competitor">
+                    <div class="name">安森美</div>
+                    <div class="bar"><div class="share" style="width:10%"></div></div>
+                    <div class="pct">10%</div>
+                </div>
+                <div class="competitor">
+                    <div class="name">Wolfspeed</div>
+                    <div class="bar"><div class="share" style="width:8%"></div></div>
+                    <div class="pct">8%</div>
+                </div>
+                <div class="competitor">
+                    <div class="name">其他</div>
+                    <div class="bar"><div class="share" style="width:55%;background:#95a5a6"></div></div>
+                    <div class="pct">55%</div>
+                </div>
+            </div>
+            <div class="card">
+                <h4>竞争优势 vs 劣势</h4>
+                <table class="comp-table">
+                    <tr><th>类型</th><th>评估</th></tr>
+                    <tr><td>✅ 车规级安全芯片全球领先</td><td class="positive">⭐⭐⭐</td></tr>
+                    <tr><td>✅ 雷达和视觉系统技术成熟</td><td class="positive">⭐⭐⭐</td></tr>
+                    <tr><td>✅ Tier 1供应商深度合作</td><td class="positive">⭐⭐⭐</td></tr>
+                    <tr><td>⚠️ 对中国市场依赖度高(40%)</td><td class="negative">风险</td></tr>
+                    <tr><td>⚠️ 制造能力依赖代工厂</td><td class="negative">风险</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer"><span>报告日期: 2026年2月8日</span><span>McKinsey + BCG + Bain 框架</span></div>
+    </div>
+
+    <!-- 7. 风险评估 -->
+    <div class="page">
+        <div class="header">
+            <h3>07 风险评估</h3>
+            <span class="page-num">Infineon深度分析报告</span>
+        </div>
+        <div class="content">
+            <div class="card full-width">
+                <h4>风险矩阵</h4>
+                <div class="risk-grid">
+                    <div class="risk risk-high">
+                        <div class="level">高风险</div>
+                        <div class="title">地缘政治紧张</div>
+                        <div class="desc">中美贸易摩擦影响中国市场</div>
+                    </div>
+                    <div class="risk risk-high">
+                        <div class="level">高风险</div>
+                        <div class="title">中国经济放缓</div>
+                        <div class="desc">占营收40%，影响显著</div>
+                    </div>
+                    <div class="risk risk-med">
+                        <div class="level">中风险</div>
+                        <div class="title">全球经济衰退</div>
+                        <div class="desc">汽车和工业需求下滑</div>
+                    </div>
+                    <div class="risk risk-med">
+                        <div class="level">中风险</div>
+                        <div class="title">汽车行业周期</div>
+                        <div class="desc">直接影响营收和利润</div>
+                    </div>
+                    <div class="risk risk-med">
+                        <div class="level">中风险</div>
+                        <div class="title">库存周期波动</div>
+                        <div class="desc">客户去库存影响短期业绩</div>
+                    </div>
+                    <div class="risk risk-low">
+                        <div class="level">低风险</div>
+                        <div class="title">汇率波动</div>
+                        <div class="desc">可通过套期保值对冲</div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h4>应对策略</h4>
+                <table>
+                    <tr><th>风险</th><th>应对</th></tr>
+                    <tr><td>宏观风险</td><td>业务多元化，降低汽车依赖度</td></tr>
+                    <tr><td>供应链</td><td>垂直整合，多地建厂分散风险</td></tr>
+                    <tr><td>技术风险</td><td>保持10%+研发费用率</td></tr>
+                    <tr><td>人才风险</td><td>与高校合作，员工激励</td></tr>
+                </table>
+            </div>
+            <div class="card">
+                <h4>SWOT分析</h4>
+                <table>
+                    <tr><th>优势S</th><th>劣势W</th></tr>
+                    <tr><td>汽车MCU技术领先</td><td>对中国市场依赖</td></tr>
+                    <tr><td>Tier 1供应商合作深</td><td>制造能力依赖代工</td></tr>
+                    <tr><th>机会O</th><th>威胁T</th></tr>
+                    <tr><td>电动车渗透率提升</td><td>宏观经济不确定性</td></tr>
+                    <tr><td>ADAS需求增长</td><td>中国厂商崛起</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer"><span>报告日期: 2026年2月8日</span><span>McKinsey + BCG + Bain 框架</span></div>
+    </div>
+
+    <!-- 8. 投资价值 -->
+    <div class="page">
+        <div class="header">
+            <h3>08 投资价值</h3>
+            <span class="page-num">Infineon深度分析报告</span>
+        </div>
+        <div class="valuation">
+            <div class="val-card">
+                <div class="type">相对估值 - P/E</div>
+                <div class="value">22x</div>
+                <div class="premium up">vs行业24x (-10%)</div>
+            </div>
+            <div class="val-card">
+                <div class="type">相对估值 - P/S</div>
+                <div class="value">5x</div>
+                <div class="premium up">vs行业6x (-20%)</div>
+            </div>
+            <div class="val-card">
+                <div class="type">DCF估值</div>
+                <div class="value">€50</div>
+                <div class="premium up">vs当前$220 (+30%)</div>
+            </div>
+        </div>
+        <div class="recommend">
+            <div class="grade">持有</div>
+            <div class="target">目标价: €50 | 当前价: ~€38 | 上行空间: 30%</div>
+            <div class="catalysts">
+                <span class="catalyst">📈 宏观改善</span>
+                <span class="catalyst">🚗 电动车渗透率提升</span>
+                <span class="catalyst">💡 新产品发布</span>
+                <span class="catalyst">🔄 产能利用率提升</span>
+                <span class="catalyst">🤝 并购机会</span>
+            </div>
+        </div>
+        <div class="content">
+            <div class="card">
+                <h4>买入理由</h4>
+                <ul style="line-height:1.8;font-size:10pt;color:#555;">
+                    <li>估值折价：相对历史和行业存在10-20%折价</li>
+                    <li>汽车电子增长：长期增长确定性高</li>
+                    <li>现金流充裕：支持持续股东回报</li>
+                    <li>技术护城河深：汽车MCU和安全芯片领先地位</li>
+                </ul>
+            </div>
+            <div class="card">
+                <h4>风险因素</h4>
+                <ul style="line-height:1.8;font-size:10pt;color:#555;">
+                    <li>宏观经济不确定性：经济衰退风险</li>
+                    <li>周期波动：汽车行业周期性</li>
+                    <li>竞争加剧：中国厂商崛起</li>
+                    <li>地缘政治：中美贸易摩擦</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer"><span>报告日期: 2026年2月8日</span><span>McKinsey + BCG + Bain 框架</span></div>
+    </div>
+
+    <!-- 9. 附录 -->
+    <div class="page">
+        <div class="header">
+            <h3>09 附录</h3>
+            <span class="page-num">Infineon深度分析报告</span>
+        </div>
+        <div class="content">
+            <div class="card full-width">
+                <h4>术语解释</h4>
+                <div class="glossary">
+                    <div class="term"><div class="name">YoY</div><div class="desc">Year over Year，同比增长</div></div>
+                    <div class="term"><div class="name">MCU</div><div class="desc">Microcontroller Unit，微控制器</div></div>
+                    <div class="term"><div class="name">ADAS</div><div class="desc">高级驾驶辅助系统</div></div>
+                    <div class="term"><div class="name">NFC</div><div class="desc">Near Field Communication，近场通信</div></div>
+                    <div class="term"><div class="name">Tier 1</div><div class="desc">一级供应商，直接向OEM供货</div></div>
+                    <div class="term"><div class="name">GaN</div><div class="desc">Gallium Nitride，氮化镓</div></div>
+                    <div class="term"><div class="name">ROIC</div><div class="desc">Return on Invested Capital，投资回报率</div></div>
+                    <div class="term"><div class="name">DCF</div><div class="desc">Discounted Cash Flow，现金流折现</div></div>
+                </div>
+            </div>
+            <div class="card full-width">
+                <h4>关键财务数据汇总</h4>
+                <table>
+                    <tr><th>指标</th><th>FY2022</th><th>FY2023</th><th>FY2024</th><th>CAGR</th></tr>
+                    <tr><td>营收($B)</td><td>13.2</td><td>13.3</td><td>12.6</td><td>-2.3%</td></tr>
+                    <tr><td>毛利率</td><td>56.8%</td><td>55.5%</td><td>55.0%</td><td>-0.9pp</td></tr>
+                    <tr><td>净利润($B)</td><td>2.8</td><td>2.7</td><td>2.5</td><td>-5.4%</td></tr>
+                    <tr><td>EPS($)</td><td>10.8</td><td>10.5</td><td>10.0</td><td>-3.7%</td></tr>
+                </table>
+            </div>
+        </div>
+        <div class="footer"><span>报告日期: 2026年2月8日</span><span>McKinsey + BCG + Bain 框架</span></div>
+    </div>
+
+</body>
+</html>

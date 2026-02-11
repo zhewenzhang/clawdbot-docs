@@ -1,0 +1,54 @@
+{
+  "generated_at": "2026-02-07 23:05:00",
+  "directory": "/Users/dave/clawd/semiconductor_roadmaps/",
+  "summary": {
+    "total_md_files": 10,
+    "total_xlsx_files": 27,
+    "total_csv_files": 2,
+    "total_html_files": 4,
+    "total_subdirectories": 16
+  },
+  "subdirectories": {
+    "amd": { "type": "dir", "files": ["AMD_Roadmap.xlsx"] },
+    "china": { "type": "dir", "files": ["Loongson_Roadmap.xlsx", "Hygon_Roadmap.xlsx", "THead_Roadmap.xlsx", "Phytium_Roadmap.xlsx", "Zhaoxin_Roadmap.xlsx", "Huawei_Roadmap.xlsx", "Cambricon_Roadmap.xlsx"] },
+    "europe": { "type": "dir", "files": ["Infineon_Roadmap.xlsx", "STMicro_Roadmap.xlsx", "NXP_Roadmap.xlsx"] },
+    "foundry": { "type": "dir", "files": ["TSMC_Roadmap.xlsx"] },
+    "intel": { "type": "dir", "files": ["Intel_Roadmap.xlsx"] },
+    "japan": { "type": "dir", "files": ["Renesas_Roadmap.xlsx", "Fujitsu_Roadmap.xlsx", "SonyCIS_Roadmap.xlsx", "Toshiba_Roadmap.xlsx"] },
+    "korea": { "type": "dir", "files": ["SamsungExynos_Roadmap.xlsx", "SKHynix_Roadmap.xlsx"] },
+    "nvidia": { "type": "dir", "files": [] },
+    "packaging": { "type": "dir", "files": [] },
+    "taiwan": { "type": "dir", "files": ["MediaTek_Roadmap.xlsx", "GlobalUnichip_Roadmap.xlsx", "Novatek_Roadmap.xlsx", "Realtek_Roadmap.xlsx", "SiliconPower_Roadmap.xlsx"] },
+    "usa": { "type": "dir", "files": ["Broadcom_Roadmap.xlsx"] },
+    "competitors": { "type": "dir", "files": ["Competitor_Comparison.xlsx"] },
+    "history": { "type": "dir", "files": [] },
+    "source_references": { "type": "dir", "files": [] }
+  },
+  "root_files": {
+    "md": ["INDEX.md", "File_Architecture_Plan.md", "competitor_list.md", "TASK_COMPLETION_REPORT.md"],
+    "xlsx": ["CHIP_Master_Database.xlsx"],
+    "csv": ["competitor_list.csv", "packaging_substrate_top20.csv"],
+    "html": ["companies.html", "index.html", "insights.html", "roadmap.html"]
+  },
+  "companies_covered": {
+    "total": 28,
+    "by_region": {
+      "usa": 1,
+      "taiwan": 5,
+      "korea": 2,
+      "japan": 4,
+      "china": 7,
+      "europe": 3,
+      "foundry": 1,
+      "intel": 1,
+      "amd": 1,
+      "nvidia": 0
+    }
+  },
+  "html_dashboards": {
+    "companies.html": "公司列表仪表板",
+    "index.html": "主仪表板",
+    "insights.html": "行业洞察",
+    "roadmap.html": "Roadmap时间线"
+  }
+}

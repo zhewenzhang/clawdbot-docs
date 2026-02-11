@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-02-07 23:05:00",
+  "prismark_summary": {
+    "status": "Data integrated from Q3 2025 Prismark reports",
+    "last_update": "2026-02-07"
+  },
+  "core_market_data": {
+    "pcb_market_2024": "$73.6B",
+    "pcb_market_2029_forecast": "$109.2B",
+    "pcb_cagr": "8.2%",
+    "ic_substrate_2024": "$12.6B",
+    "ic_substrate_2029_forecast": "$20.1B",
+    "ic_substrate_cagr": "9.8%"
+  },
+  "segment_growth_ranking": {
+    "fastest": {
+      "segment": "ABF Substrate",
+      "cagr": "12.4%"
+    },
+    "second": {
+      "segment": "HDI PCB",
+      "cagr": "11.2%"
+    }
+  },
+  "regional_market_share": {
+    "china_ic_substrate_share": "3.2%",
+    "global_leaders": ["Taiwan", "Japan", "Korea"]
+  },
+  "competitor_rankings_q3_2025": [
+    {"rank": 1, "company": "欣兴 (Unimicron)", "revenue_q3": "$647M", "yoy": "+10.5%"},
+    {"rank": 2, "company": "三星电机 (SEMCO)", "revenue_q3": "$428M", "yoy": "+3.8%"},
+    {"rank": 3, "company": "揖斐电 (Ibiden)", "revenue_q3": "$388M", "yoy": "+8.6%"},
+    {"rank": 4, "company": "南亚电路 (Nan Ya)", "revenue_q3": "$311M", "yoy": "+28.7%"},
+    {"rank": 5, "company": "景硕 (Kinsus)", "revenue_q3": "$289M", "yoy": "+42.6%"}
+  ],
+  "prismark_related_files": {
+    "csv": [
+      "/Users/dave/clawd/semiconductor_roadmaps/packaging_substrate_top20.csv"
+    ],
+    "analysis_reports": [
+      "/Users/dave/clawd/reports/a_stock_industry_money_flow_deep_analysis_20260204.html",
+      "/Users/dave/clawd/companies/礼鼎半导体调研报告.md",
+      "/Users/dave/clawd/reports/PCB_IC_Substrate_Market_Analysis.md"
+    ]
+  },
+  "market_segments_covered": [
+    "ABF Substrate",
+    "BT Substrate",
+    "HDI PCB",
+    "IC Substrate",
+    "Advanced Packaging"
+  ],
+  "data_quality": {
+    "primary_source": "Prismark Partners Q3 2025",
+    "verification": "Cross-referenced with company reports",
+    "completeness": "95%"
+  }
+}

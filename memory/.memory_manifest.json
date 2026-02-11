@@ -1,0 +1,516 @@
+{
+  "created": "2026-02-10T20:56:06.700203",
+  "files": [
+    {
+      "name": "consulting_reports_best_practices_2026-02-08.md",
+      "size": 16250,
+      "modified": "2026-02-08T19:55:19.996177",
+      "checksum": "00a30dd57c992e9271d079a023afc46a"
+    },
+    {
+      "name": "Stock_Flow_Analysis.md",
+      "size": 8798,
+      "modified": "2026-02-03T22:30:54.030829",
+      "checksum": "6deef2229945394b711008fb834763c8"
+    },
+    {
+      "name": "Investment_Checklist.md",
+      "size": 12012,
+      "modified": "2026-02-03T22:30:54.028144",
+      "checksum": "9b3c94d72c9ed9312243e5da650b4869"
+    },
+    {
+      "name": "DCF_Valuation_Practice_Unimicron.md",
+      "size": 5737,
+      "modified": "2026-02-03T22:30:54.027180",
+      "checksum": "0f2fd40be74b66de388257cae2898d63"
+    },
+    {
+      "name": "2026-02-04-贵金属A股分析报告.md",
+      "size": 3397,
+      "modified": "2026-02-04T23:06:46.424693",
+      "checksum": "52117741c8034038c678b4d202b9ea18"
+    },
+    {
+      "name": "Semiconductor_Investment_Checklist.md",
+      "size": 8174,
+      "modified": "2026-02-03T22:30:54.030324",
+      "checksum": "fa9c778a65dc87e588a72dc6eb60b34c"
+    },
+    {
+      "name": "1h_autonomous_work_report.md",
+      "size": 9659,
+      "modified": "2026-02-04T08:27:07.609938",
+      "checksum": "39d2c42743c8d706814e020a419388d4"
+    },
+    {
+      "name": "2026-02-08.md",
+      "size": 849,
+      "modified": "2026-02-08T19:33:26.283525",
+      "checksum": "db967b0e105651ad60dffa8f45a9915a"
+    },
+    {
+      "name": "china_ai_research.md",
+      "size": 1354,
+      "modified": "2026-02-03T22:30:54.031216",
+      "checksum": "371717a5b37647c1ad0e43c50a9f1c05"
+    },
+    {
+      "name": "China_IC_Substrate_Companies.md",
+      "size": 8937,
+      "modified": "2026-02-03T22:30:54.026762",
+      "checksum": "cc2ecaeef4cb9c4804ffe21dc5549f4e"
+    },
+    {
+      "name": "skills_optimization_system_design.md",
+      "size": 15609,
+      "modified": "2026-02-04T10:24:06.778283",
+      "checksum": "11b7e3645af588ea0b138ce47b267d5d"
+    },
+    {
+      "name": "Semiconductor_Cycle_Deep_Analysis.md",
+      "size": 15494,
+      "modified": "2026-02-03T22:30:54.030010",
+      "checksum": "ce03dea176d5c13d314fc3c9e99c2b35"
+    },
+    {
+      "name": "Risk_Assessment_Methods.md",
+      "size": 14778,
+      "modified": "2026-02-03T22:30:54.029686",
+      "checksum": "e067e6a8d28098c8919d854e6080d75c"
+    },
+    {
+      "name": "ABF_PDF_Extraction_Learning.md",
+      "size": 2169,
+      "modified": "2026-02-03T22:30:54.025583",
+      "checksum": "e62b646f802c3fcc4c3d399f8a0215a4"
+    },
+    {
+      "name": "report_output_checklist.md",
+      "size": 2375,
+      "modified": "2026-02-09T07:49:32.671975",
+      "checksum": "0372965b89c199664bb4a4f8baf9cc77"
+    },
+    {
+      "name": "Semiconductor_Portfolio_Analysis.md",
+      "size": 5948,
+      "modified": "2026-02-03T22:30:54.030639",
+      "checksum": "6c3fa0afe3cb0c9e9222521d1670828a"
+    },
+    {
+      "name": "Geopolitics_Semiconductor.md",
+      "size": 7876,
+      "modified": "2026-02-03T22:30:54.027719",
+      "checksum": "b065ff2500bd3a7a7e33d4e27ae89c59"
+    },
+    {
+      "name": "Financial_Analysis_Quick_Reference.md",
+      "size": 8443,
+      "modified": "2026-02-03T22:30:54.027508",
+      "checksum": "6426de3aa9f9f105ae1970c8855d6c79"
+    },
+    {
+      "name": "Realtime_Monitoring_Dashboard.md",
+      "size": 22289,
+      "modified": "2026-02-03T22:30:54.029446",
+      "checksum": "62f68bf549f3a065cac7d9798d205bbb"
+    },
+    {
+      "name": "Advanced_Financial_Modeling.md",
+      "size": 8378,
+      "modified": "2026-02-03T22:30:54.026297",
+      "checksum": "3a93b4dcc34acddfccd47a9af89ade09"
+    },
+    {
+      "name": "PCB_IC_Substrate_Market_Analysis.md",
+      "size": 15280,
+      "modified": "2026-02-03T22:30:54.028713",
+      "checksum": "9b98771602f27be56f7ef20cf688c836"
+    },
+    {
+      "name": "2026-02-06.md",
+      "size": 1896,
+      "modified": "2026-02-06T16:15:58.817681",
+      "checksum": "d07a5e0507421ad9a1ca1e4ee918fde1"
+    },
+    {
+      "name": "Valuation_Report_Comprehensive.md",
+      "size": 4936,
+      "modified": "2026-02-03T22:30:54.031027",
+      "checksum": "f85eee8a2af26e5ea226b1f3db191b88"
+    },
+    {
+      "name": "semiconductor_roadmap_optimization_analysis.md",
+      "size": 8876,
+      "modified": "2026-02-04T10:32:37.491356",
+      "checksum": "86587fe8a69bc1f6c80aaa0e5435388a"
+    },
+    {
+      "name": "Financial_Analysis_Framework.md",
+      "size": 8574,
+      "modified": "2026-02-03T22:30:54.027406",
+      "checksum": "5536265d4f8bd5cec71ed9ddb4f30249"
+    },
+    {
+      "name": "DCF_Valuation_Practice_TSM.md",
+      "size": 5480,
+      "modified": "2026-02-03T22:30:54.027081",
+      "checksum": "47c1ff25f5986fd3b23b9ef139ed1f16"
+    },
+    {
+      "name": "2026-02-02.md",
+      "size": 6904,
+      "modified": "2026-02-03T22:30:54.025229",
+      "checksum": "433fd19fb6d5c1e22397e64bdcf78d7d"
+    },
+    {
+      "name": "Financial_Modeling_Practice.md",
+      "size": 14770,
+      "modified": "2026-02-03T22:30:54.027619",
+      "checksum": "809efbab193ec4c7cf803b72e7f19834"
+    },
+    {
+      "name": "capdca-optimizations.md",
+      "size": 2287,
+      "modified": "2026-02-04T19:09:11.672722",
+      "checksum": "f9fa76b7548e82554266629036371757"
+    },
+    {
+      "name": "deep-self-critique-2026-02-07.md",
+      "size": 8865,
+      "modified": "2026-02-07T00:08:04.991677",
+      "checksum": "a31b2144cd8c2e5bae8323d460cee52c"
+    },
+    {
+      "name": "Valuation_Methods_Comprehensive.md",
+      "size": 11980,
+      "modified": "2026-02-03T22:30:54.030933",
+      "checksum": "9b7ce3fe20c8c275af621359fd011ddc"
+    },
+    {
+      "name": "ABF_analysis.md",
+      "size": 7592,
+      "modified": "2026-02-05T09:00:50.713732",
+      "checksum": "c16ef649167cc4a20a8688ac272bf58d"
+    },
+    {
+      "name": "PCB_IC_Substrate_Deep_Analysis.md",
+      "size": 8423,
+      "modified": "2026-02-03T22:30:54.028599",
+      "checksum": "f8fe12a980568ec9994af1d0fc75af75"
+    },
+    {
+      "name": "Investment_Case_Studies.md",
+      "size": 7814,
+      "modified": "2026-02-03T22:30:54.028038",
+      "checksum": "efe6e07129aa543d906c4c6775478340"
+    },
+    {
+      "name": "2026-02-04-深度任务完成报告.md",
+      "size": 12726,
+      "modified": "2026-02-04T23:52:57.298198",
+      "checksum": "0685f7f1699828ac5d74fd5fdcbf67f0"
+    },
+    {
+      "name": "Semiconductor_Materials_Industry.md",
+      "size": 7288,
+      "modified": "2026-02-03T22:30:54.030535",
+      "checksum": "a421356a4bbf32b62f970b6c6dd0faa2"
+    },
+    {
+      "name": "2026-02-03.md",
+      "size": 2198,
+      "modified": "2026-02-03T22:30:54.025346",
+      "checksum": "e7908750476ad802771356f405165e66"
+    },
+    {
+      "name": "skills_usage_deep_analysis.md",
+      "size": 10694,
+      "modified": "2026-02-04T10:19:37.616220",
+      "checksum": "ae2fba25b54c36d32afba9c574031498"
+    },
+    {
+      "name": "Semiconductor_Cycle_Analysis.md",
+      "size": 8307,
+      "modified": "2026-02-03T22:30:54.029893",
+      "checksum": "9880740bb12f203eb8bde770061c1381"
+    },
+    {
+      "name": "2026-02-07.md",
+      "size": 2364,
+      "modified": "2026-02-07T20:13:25.839021",
+      "checksum": "0aa5eb3ff5bf3b031879a8e151a2a4e6"
+    },
+    {
+      "name": "capdca-cycles.md",
+      "size": 2805,
+      "modified": "2026-02-04T19:09:11.668626",
+      "checksum": "e9c52a579391c0b44e0947712a1f5b96"
+    },
+    {
+      "name": "IC_Substrate_Intelligence.md",
+      "size": 5257,
+      "modified": "2026-02-03T22:30:54.027824",
+      "checksum": "2309c1c9e7b4c2fe311a2fb51cc69b4d"
+    },
+    {
+      "name": "qmd_usage_guide.md",
+      "size": 3608,
+      "modified": "2026-02-05T10:01:01.471618",
+      "checksum": "ec01da8b03ba0a8a3e63ae0b37cc02ab"
+    },
+    {
+      "name": "habits.md",
+      "size": 2178,
+      "modified": "2026-02-10T20:54:35.144824",
+      "checksum": "7b3f640f93f404c0737ea5d7243c27c6"
+    },
+    {
+      "name": "Excel_Automation.md",
+      "size": 14487,
+      "modified": "2026-02-03T22:30:54.027293",
+      "checksum": "d76bdec7aeb7a31f6fae64157b00213e"
+    },
+    {
+      "name": "consulting_ppt_resources_2026-02-08.md",
+      "size": 4675,
+      "modified": "2026-02-08T20:58:11.160434",
+      "checksum": "f3f4f30b3b27d8d387e823e765cd4ba8"
+    },
+    {
+      "name": "Consulting_Analysis_Framework.md",
+      "size": 9182,
+      "modified": "2026-02-03T22:30:54.026980",
+      "checksum": "84fd45c10e2bb94324c14e9c70056a63"
+    },
+    {
+      "name": "2026-02-10.md",
+      "size": 2628,
+      "modified": "2026-02-10T18:49:26.811798",
+      "checksum": "2eb67007e8bd2d3e70e2def63e10c8c0"
+    },
+    {
+      "name": "China_Semiconductor_Industry.md",
+      "size": 7988,
+      "modified": "2026-02-03T22:30:54.026875",
+      "checksum": "2ca20e8c09199d8835b3c43d1ff9ecb9"
+    },
+    {
+      "name": "2026-02-04.md",
+      "size": 2986,
+      "modified": "2026-02-04T22:43:59.320472",
+      "checksum": "69da3456c083ffc9602ff24fd3ff5ca8"
+    },
+    {
+      "name": "deepseek_research.md",
+      "size": 1794,
+      "modified": "2026-02-03T22:30:54.031307",
+      "checksum": "949e4ae79758f404098d0199d648efb0"
+    },
+    {
+      "name": "AI_Investment_Assistant.md",
+      "size": 21260,
+      "modified": "2026-02-03T22:30:54.026170",
+      "checksum": "27c96cd867c5b9bb708b3c13fbfd2239"
+    },
+    {
+      "name": "cron_tasks_format_analysis.md",
+      "size": 5881,
+      "modified": "2026-02-04T10:08:20.672043",
+      "checksum": "1654c8f5196fa0506aabfb3a75651235"
+    },
+    {
+      "name": "Advanced_Packaging_Technology.md",
+      "size": 8419,
+      "modified": "2026-02-03T22:30:54.026657",
+      "checksum": "cdab922be16402ad65d8175cbbbd3f82"
+    },
+    {
+      "name": "2026-02-05.md",
+      "size": 3548,
+      "modified": "2026-02-05T23:45:26.948800",
+      "checksum": "21abe269491424e794611eda9a687e0b"
+    },
+    {
+      "name": "Knowledge_Base_Index.md",
+      "size": 7663,
+      "modified": "2026-02-03T22:30:54.028246",
+      "checksum": "44e529dbcf206e2f6108cd9955d57f63"
+    },
+    {
+      "name": "1_hour_autonomous_work_report.md",
+      "size": 9235,
+      "modified": "2026-02-04T08:28:20.146781",
+      "checksum": "e3863fb0419afe9874c4997d47561c2d"
+    },
+    {
+      "name": "2026-02-04-资金流向规律与选股策略深度报告.md",
+      "size": 21119,
+      "modified": "2026-02-04T22:48:09.022640",
+      "checksum": "ed1179346728391f495c4717db5c09b2"
+    },
+    {
+      "name": "Paper_Trading.md",
+      "size": 23280,
+      "modified": "2026-02-03T22:30:54.028952",
+      "checksum": "c537d38dec3cab2bb9eb6f3c612cf6af"
+    },
+    {
+      "name": "Semiconductor_Equipment_Deep_Analysis.md",
+      "size": 12122,
+      "modified": "2026-02-03T22:30:54.030118",
+      "checksum": "8561d2780ebeed048d4e16472d3c0e1d"
+    },
+    {
+      "name": "Portfolio_Backtesting.md",
+      "size": 20169,
+      "modified": "2026-02-03T22:30:54.029084",
+      "checksum": "3e69810e22791959afc4860d4e1a93c6"
+    },
+    {
+      "name": "2026-02-01.md",
+      "size": 1759,
+      "modified": "2026-02-03T22:30:54.025104",
+      "checksum": "6b00c9f73a9958d2841d705187faae22"
+    },
+    {
+      "name": "Semiconductor_Materials_Deep_Analysis.md",
+      "size": 11781,
+      "modified": "2026-02-03T22:30:54.030436",
+      "checksum": "63af7b043f03d1c24d52ea3dd04428a4"
+    },
+    {
+      "name": "deep_self_criticism_20260204.md",
+      "size": 6315,
+      "modified": "2026-02-04T21:28:06.575931",
+      "checksum": "a7ab5eb0d90ed5c2c5e06eee99cfe468"
+    },
+    {
+      "name": "Python_Data_Acquisition.md",
+      "size": 10847,
+      "modified": "2026-02-03T22:30:54.029202",
+      "checksum": "1b409dceae7006b5c52fdf22d6e90d04"
+    },
+    {
+      "name": "model_history.md",
+      "size": 575,
+      "modified": "2026-02-03T22:30:54.031485",
+      "checksum": "3519f3bc86036a11d5f11260c3f7eef5"
+    },
+    {
+      "name": "AI_Investment_Analysis.md",
+      "size": 11032,
+      "modified": "2026-02-03T22:30:54.026043",
+      "checksum": "ab0a5d1d9d4264193dd216d9330fd526"
+    },
+    {
+      "name": "preferences.md",
+      "size": 2646,
+      "modified": "2026-02-10T20:54:18.487921",
+      "checksum": "5344d5ea38890ebaad9b6d04934494bd"
+    },
+    {
+      "name": "PCB_IC_Substrate_Quick_Reference.md",
+      "size": 5147,
+      "modified": "2026-02-03T22:30:54.028817",
+      "checksum": "da1b311f7883e4941953dbe1cc1d853f"
+    },
+    {
+      "name": "Realtime_Monitoring_Framework.md",
+      "size": 9815,
+      "modified": "2026-02-03T22:30:54.029572",
+      "checksum": "f9fc7ac72ec4023ea384e3a00ed89bb7"
+    },
+    {
+      "name": "2026-02-03_Afternoon_Learning_Report.md",
+      "size": 5792,
+      "modified": "2026-02-03T22:30:54.025467",
+      "checksum": "6f27ca1a941ff3a98b11e9cebdfb8b47"
+    },
+    {
+      "name": "Macroeconomics_Semiconductor_Impact.md",
+      "size": 14393,
+      "modified": "2026-02-03T22:30:54.028489",
+      "checksum": "c997afc40a8e9cccc4e527b9eff02e45"
+    },
+    {
+      "name": "calendar_events.md",
+      "size": 298,
+      "modified": "2026-02-03T22:30:54.031121",
+      "checksum": "0c8f90ca223bb65cc348fed24c0dc29e"
+    },
+    {
+      "name": "Machine_Learning_Scikit_Learn.md",
+      "size": 15160,
+      "modified": "2026-02-03T22:30:54.028369",
+      "checksum": "31cbddecf5fddeec8ba487f3901e14de"
+    },
+    {
+      "name": "Interest_Rate_Exchange_Inflation_Cycle.md",
+      "size": 14741,
+      "modified": "2026-02-03T22:30:54.027937",
+      "checksum": "68e1e9213d95dff7c27c1c746accc5d9"
+    },
+    {
+      "name": "2026-02-08_工作总结.md",
+      "size": 3052,
+      "modified": "2026-02-08T23:23:21.095180",
+      "checksum": "ac0cb1d44a45d40f4cd5649f4b399155"
+    },
+    {
+      "name": "Semiconductor_Portfolio_Construction.md",
+      "size": 5652,
+      "modified": "2026-02-03T22:30:54.030731",
+      "checksum": "ef7fd3dbac7c222dd861b0d040cbd276"
+    },
+    {
+      "name": "qmd_learning_notes.md",
+      "size": 7109,
+      "modified": "2026-02-05T09:51:16.795196",
+      "checksum": "a44acf54a2f35fab0b7670c435410610"
+    },
+    {
+      "name": "2026-01-31.md",
+      "size": 1327,
+      "modified": "2026-02-03T22:30:54.024990",
+      "checksum": "6ce91c67602141170c4294ae18995004"
+    },
+    {
+      "name": "ABF_daily_2026-02-02.md",
+      "size": 279,
+      "modified": "2026-02-03T22:30:54.025924",
+      "checksum": "9b7ad0e9f49d4a518cf8a95efa02b139"
+    },
+    {
+      "name": "Semiconductor_Equipment_Industry.md",
+      "size": 6849,
+      "modified": "2026-02-03T22:30:54.030222",
+      "checksum": "2730304c23e3b6b0ab4848c9ecf4507f"
+    },
+    {
+      "name": "2026-02-04-行业资金流向情报报告.md",
+      "size": 7604,
+      "modified": "2026-02-04T22:47:43.461124",
+      "checksum": "6507a56e43bb8aa6cf74ce886608cb00"
+    },
+    {
+      "name": "Python_Visualization.md",
+      "size": 14954,
+      "modified": "2026-02-03T22:30:54.029320",
+      "checksum": "10336fc848deb16a1ccddf9f3b0d54c3"
+    },
+    {
+      "name": "Scenario_Analysis_Risk_Assessment.md",
+      "size": 6718,
+      "modified": "2026-02-03T22:30:54.029784",
+      "checksum": "4a8db2aaf787f7c87fd828bbdd0f9e88"
+    },
+    {
+      "name": "Advanced_Packaging_CoWoS_SoIC_FOCoS.md",
+      "size": 12620,
+      "modified": "2026-02-03T22:30:54.026555",
+      "checksum": "3ca58982f6c51647889d7d0ab522f65d"
+    }
+  ],
+  "version": "1.0.0"
+}

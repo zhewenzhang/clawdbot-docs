@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SK海力士 (SK Hynix) - 载板市场开发评估报告 | McKinsey Style</title>
+<style>
+@page { size: A4 landscape; margin: 0; }
+* { box-sizing: border-box; }
+body { font-family: 'Microsoft JhengHei', 'Noto Sans TC', Arial, sans-serif; margin: 0; padding: 0; background: #0a0a0a; color: #ffffff; }
+.page { width: 297mm; height: 210mm; background: linear-gradient(135deg, #0f1419 0%, #1a1f2e 50%, #151922 100%); page-break-after: always; padding: 12mm 15mm 40mm 15mm; position: relative; overflow: hidden; box-sizing: border-box; }
+.page::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px; background: linear-gradient(90deg, #c41230 0%, #e31837 50%, #c41230 100%); }
+.cover-page { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding-top: 15mm; }
+.cover-page .report-type { font-size: 13px; color: #c41230; letter-spacing: 3px; text-transform: uppercase; margin-bottom: 15px; font-weight: 600; }
+.cover-page h1 { font-size: 44px; margin-bottom: 8px; font-weight: 700; color: #ffffff; letter-spacing: -1px; }
+.cover-page h2 { font-size: 22px; color: #8b92a8; margin-bottom: 40px; font-weight: 400; }
+.cover-page .meta { font-size: 13px; line-height: 1.8; color: #6b7280; margin-bottom: 30px; }
+.cover-page .version { position: absolute; top: 10mm; right: 15mm; font-size: 10px; color: #4b5563; }
+.exec-summary { background: rgba(196, 18, 48, 0.08); border: 1px solid rgba(196, 18, 48, 0.3); border-radius: 8px; padding: 18px 25px; margin: 15px 0; text-align: left; width: 88%; }
+.exec-summary .recommendation { font-size: 26px; font-weight: 700; color: #c41230; margin-bottom: 12px; display: flex; align-items: center; gap: 12px; }
+.exec-summary .key-points { font-size: 12px; line-height: 1.7; color: #d1d5db; list-style: none; padding: 0; margin: 0; }
+.exec-summary .key-points li { margin-bottom: 6px; position: relative; padding-left: 18px; }
+.exec-summary .key-points li::before { content: '▸'; position: absolute; left: 0; color: #c41230; font-weight: bold; }
+.priority-tag { display: inline-block; padding: 5px 14px; border-radius: 4px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; }
+.priority-p0 { background: #c41230; color: white; }
+.priority-p1 { background: #ea580c; color: white; }
+.header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 1px solid rgba(196, 18, 48, 0.3); margin-bottom: 12px; }
+.header .section-name { font-size: 11px; color: #c41230; text-transform: uppercase; letter-spacing: 2px; font-weight: 600; }
+.header .page-num { font-size: 10px; color: #6b7280; background: rgba(255,255,255,0.05); padding: 3px 10px; border-radius: 10px; }
+.section-title { font-size: 16px; color: #ffffff; margin: 14px 0 10px 0; padding-bottom: 6px; border-bottom: 2px solid #c41230; font-weight: 600; display: flex; align-items: center; gap: 8px; }
+.section-title .number { background: #c41230; color: white; width: 22px; height: 22px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; font-weight: 700; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0; font-size: 10px; }
+th { background: rgba(196, 18, 48, 0.12); color: #c41230; font-weight: 600; padding: 8px 10px; text-align: left; border-bottom: 2px solid #c41230; text-transform: uppercase; font-size: 9px; letter-spacing: 0.5px; }
+td { padding: 6px 10px; border-bottom: 1px solid rgba(255,255,255,0.06); color: #d1d5db; }
+.eval-matrix td:first-child { font-weight: 600; color: #ffffff; width: 22%; }
+.eval-matrix .score { display: inline-block; background: rgba(196, 18, 48, 0.2); color: #c41230; padding: 2px 8px; border-radius: 10px; font-weight: 700; font-size: 11px; }
+.card { background: rgba(255, 255, 255, 0.02); border-radius: 5px; padding: 12px; margin-bottom: 8px; border-left: 2px solid #c41230; }
+.card h4 { color: #ffffff; margin: 0 0 8px 0; font-size: 12px; font-weight: 600; }
+.card p, .card li { font-size: 10px; line-height: 1.5; color: #9ca3af; margin: 5px 0; }
+.card ul { margin: 0; padding-left: 16px; }
+.two-col { display: flex; gap: 12px; margin: 8px 0; }
+.two-col > div { flex: 1; }
+.three-col { display: flex; gap: 10px; margin: 8px 0; }
+.three-col > div { flex: 1; }
+.metric-card { background: rgba(255, 255, 255, 0.02); border-radius: 5px; padding: 12px; text-align: center; border-top: 2px solid #c41230; }
+.metric-card .label { font-size: 9px; color: #6b7280; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px; }
+.metric-card .value { font-size: 24px; font-weight: 700; color: #ffffff; margin-bottom: 4px; }
+.metric-card .change { font-size: 10px; color: #22c55e; }
+.quadrant-container { display: grid; grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 10px; margin: 12px 0; height: 180px; }
+.quadrant-item { background: rgba(255, 255, 255, 0.02); border-radius: 5px; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 1px solid rgba(255, 255, 255, 0.08); position: relative; }
+.quadrant-item::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; }
+.quadrant-item.star { border-color: rgba(196, 18, 48, 0.4); }
+.quadrant-item.star::before { background: #c41230; }
+.quadrant-item.cash { border-color: rgba(34, 197, 94, 0.4); }
+.quadrant-item.cash::before { background: #22c55e; }
+.quadrant-item.question { border-color: rgba(234, 88, 12, 0.4); }
+.quadrant-item.question::before { background: #ea580c; }
+.quadrant-item.dog { border-color: rgba(107, 114, 128, 0.4); opacity: 0.7; }
+.quadrant-item.dog::before { background: #6b7280; }
+.quadrant-item .icon { font-size: 20px; margin-bottom: 6px; }
+.quadrant-item .title { font-size: 12px; font-weight: 600; color: #ffffff; margin-bottom: 4px; }
+.quadrant-item .desc { font-size: 9px; color: #6b7280; margin-bottom: 6px; }
+.quadrant-item .position { background: rgba(255, 255, 255, 0.06); padding: 3px 10px; border-radius: 10px; font-size: 9px; color: #d1d5db; }
+.score-container { display: flex; gap: 25px; margin: 12px 0; justify-content: center; }
+.score-item { text-align: center; }
+.score-item .score { font-size: 32px; font-weight: 700; color: #c41230; line-height: 1; margin-bottom: 4px; }
+.score-item .label { font-size: 10px; color: #6b7280; margin-bottom: 6px; }
+.score-item .bar { width: 70px; height: 3px; background: rgba(255, 255, 255, 0.1); border-radius: 2px; margin: 0 auto; overflow: hidden; }
+.score-item .bar-fill { height: 100%; background: #c41230; border-radius: 2px; }
+.recommendation-box { background: rgba(196, 18, 48, 0.06); border: 1px solid rgba(196, 18, 48, 0.25); border-radius: 6px; padding: 15px; margin: 12px 0; display: flex; align-items: center; gap: 20px; }
+.recommendation-box .grade { font-size: 42px; font-weight: 700; color: #c41230; line-height: 1; }
+.recommendation-box .content { flex: 1; }
+.recommendation-box .rating { font-size: 14px; font-weight: 600; color: #ffffff; margin-bottom: 4px; }
+.recommendation-box .target { font-size: 11px; color: #d1d5db; margin-bottom: 4px; }
+.recommendation-box .reason { font-size: 10px; color: #8b92a8; line-height: 1.4; }
+.risk-high { color: #ef4444; font-weight: 600; }
+.risk-medium { color: #f59e0b; font-weight: 600; }
+.summary-box { background: rgba(255, 255, 255, 0.02); border-left: 2px solid #c41230; padding: 12px 15px; margin: 12px 0; font-size: 11px; line-height: 1.6; color: #d1d5db; }
+.tag-cloud { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin: 12px 0; }
+.tag { background: rgba(196, 18, 48, 0.12); border: 1px solid rgba(196, 18, 48, 0.25); padding: 5px 12px; border-radius: 4px; font-size: 11px; color: #ffffff; }
+.footer { position: absolute; bottom: 6mm; left: 15mm; right: 15mm; display: flex; justify-content: space-between; font-size: 8px; color: #4b5563; border-top: 1px solid rgba(255, 255, 255, 0.04); padding-top: 6px; }
+.chart-container { background: rgba(255, 255, 255, 0.01); border-radius: 5px; padding: 12px; margin: 8px 0; }
+.chart-title { font-size: 10px; color: #6b7280; margin-bottom: 8px; text-transform: uppercase; letter-spacing: 1px; }
+.bar-chart { display: flex; align-items: flex-end; height: 80px; gap: 6px; padding: 8px 0; }
+.bar-item { flex: 1; background: linear-gradient(to top, #c41230, #e31837); border-radius: 2px 2px 0 0; position: relative; min-height: 15px; }
+.bar-item .value { position: absolute; top: -16px; left: 50%; transform: translateX(-50%); font-size: 8px; color: #ffffff; white-space: nowrap; }
+.bar-item .label { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 8px; color: #6b7280; }
+.timeline { position: relative; margin: 12px 0; padding-left: 18px; }
+.timeline::before { content: ''; position: absolute; left: 4px; top: 0; bottom: 0; width: 2px; background: rgba(196, 18, 48, 0.25); }
+.timeline-item { position: relative; margin-bottom: 10px; padding-left: 12px; }
+.timeline-item::before { content: ''; position: absolute; left: -16px; top: 3px; width: 6px; height: 6px; background: #c41230; border-radius: 50%; }
+.timeline-item .year { font-size: 10px; color: #c41230; font-weight: 600; margin-bottom: 2px; }
+.timeline-item .event { font-size: 10px; color: #d1d5db; }
+.highlight { color: #c41230; font-weight: 600; }
+.info-note { background: rgba(59, 130, 246, 0.08); border-left: 2px solid #3b82f6; padding: 8px 12px; margin: 8px 0; font-size: 10px; color: #93c5fd; }
+.warning-note { background: rgba(245, 158, 11, 0.08); border-left: 2px solid #f59e0b; padding: 8px 12px; margin: 8px 0; font-size: 10px; color: #fcd34d; }
+</style>
+</head>
+<body>
+
+<!-- 第1页：执行摘要 -->
+<div class="page cover-page">
+<span class="version">CONFIDENTIAL | v3.0 | 2026-02-12</span>
+<div class="report-type">Substrate Market Development Assessment</div>
+<h1>SK海力士 (SK Hynix)</h1>
+<h2>载板市场开发评估报告</h2>
+
+<div class="meta">
+<p>代码：000660.KS | 韩国交易所</p>
+<p>市值：$100B+ | 员工：35,000人</p>
+<p>评估日期：2026年2月12日</p>
+</div>
+
+<div class="exec-summary">
+<div class="recommendation">
+<span class="priority-tag priority-p0">P0 - 战略级</span>
+<span>🔥 战略级开发</span>
+</div>
+<ul class="key-points">
+<li><strong>载板需求爆发：</strong>HBM（高带宽内存）采用2.5D/3D先进封装，需高端ABF载板+TSV中介层，2024年HBM营收$15B对应载板需求约$600M，CAGR 80%</li>
+<li><strong>AI时代核心受益：</strong>NVIDIA独家HBM供应商，AI算力需求驱动HBM产能扩张，2025-2027年载板需求持续爆发</li>
+<li><strong>供应链重构机会：</strong>当前HBM载板由日韩系垄断（三星电机、揖斐电），地缘政治+产能缺口提供切入窗口，大陆载板厂商有望突破</li>
+</ul>
+</div>
+
+<div class="tag-cloud">
+<span class="tag">🏆 HBM全球第一</span>
+<span class="tag">🚀 AI核心受益</span>
+<span class="tag">📈 HBM CAGR 80%</span>
+<span class="tag">💎 2.5D/3D封装</span>
+<span class="tag">🔥 载板需求爆发</span>
+</div>
+</div>
+
+<!-- 后续页面将在下一次编辑中添加 -->
+
+</body>
+</html>

@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>[公司名稱] 公司分析報告 v2</title>
+<style>
+@page { size: A4 landscape; margin: 0; }
+body { font-family: 'Microsoft JhengHei', 'Noto Sans TC', Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+.page { width: 297mm; height: 210mm; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; page-break-after: always; padding: 10mm 12mm 35mm 12mm; box-sizing: border-box; position: relative; overflow: hidden; }
+.cover-page { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.cover-page h1 { font-size: 48px; margin-bottom: 15px; text-shadow: 0 0 30px rgba(255, 100, 100, 0.6); }
+.cover-page h2 { font-size: 28px; color: #ff6b6b; margin-bottom: 50px; }
+.cover-page .meta { font-size: 18px; line-height: 2; color: #b0bec5; }
+.cover-page .version { position: absolute; top: 10mm; right: 15mm; font-size: 14px; color: rgba(255,255,255,0.5); }
+.cover-page .tags { margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center; }
+.cover-page .tag { background: rgba(255, 107, 107, 0.2); padding: 8px 20px; border-radius: 20px; font-size: 14px; }
+.header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 2px solid rgba(255, 107, 107, 0.3); margin-bottom: 10px; font-size: 13px; color: #ff8a80; }
+.page-num { background: rgba(255, 107, 107, 0.2); padding: 3px 12px; border-radius: 12px; }
+.section-title { font-size: 20px; color: #ff6b6b; margin: 15px 0 10px 0; padding-left: 10px; border-left: 4px solid #ff6b6b; background: rgba(255, 107, 107, 0.1); padding: 8px 12px; border-radius: 0 8px 8px 0; }
+.content table { width: 100%; border-collapse: collapse; margin: 6px 0; background: rgba(255, 255, 255, 0.05); border-radius: 6px; overflow: hidden; }
+.content td { padding: 8px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 11px; }
+.content td:first-child { background: rgba(255, 107, 107, 0.15); width: 22%; font-weight: bold; }
+.two-col { display: flex; gap: 10px; margin: 8px 0; }
+.two-col > div { flex: 1; }
+.card { background: rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px; margin-bottom: 8px; border: 1px solid rgba(255, 255, 255, 0.1); }
+.card h4 { color: #ff6b6b; margin: 0 0 8px 0; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+.card p, .card li { font-size: 11px; line-height: 1.5; color: #e0e0e0; margin: 6px 0; }
+.card ul { margin: 0; padding-left: 20px; }
+.metrics { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+.metric { background: rgba(255, 107, 107, 0.15); padding: 10px; border-radius: 8px; text-align: center; min-width: 80px; flex: 1; }
+.metric .label { font-size: 10px; color: #ff8a80; margin-bottom: 4px; }
+.metric .value { font-size: 18px; font-weight: bold; color: white; }
+.metric .change { font-size: 10px; margin-top: 4px; }
+.metric .change.positive { color: #4caf50; }
+.metric .change.negative { color: #f44336; }
+.chart-container { background: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 10px; margin: 8px 0; }
+.chart-title { font-size: 14px; color: #ff8a80; margin-bottom: 10px; }
+.chart { display: flex; align-items: flex-end; height: 80px; gap: 8px; padding: 6px 0; }
+.chart-bar { flex: 1; background: linear-gradient(to top, #ff6b6b, #ff8a80); border-radius: 4px 4px 0 0; position: relative; transition: all 0.3s; }
+.chart-bar:hover { opacity: 0.8; transform: scaleY(1.02); }
+.chart-bar .value { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); font-size: 10px; white-space: nowrap; }
+.chart-bar .year { position: absolute; bottom: -25px; left: 50%; transform: translateX(-50%); font-size: 11px; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0; background: rgba(255, 255, 255, 0.05); border-radius: 6px; overflow: hidden; }
+th, td { padding: 8px 10px; text-align: left; font-size: 11px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+th { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; font-weight: bold; }
+.quadrant { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 10px; margin: 15px 0 25px 0; min-height: 240px; }
+.quadrant-item { background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 2px solid rgba(255, 255, 255, 0.1); }
+.quadrant-item.star { border-color: #ff6b6b; background: rgba(255, 107, 107, 0.1); }
+.quadrant-item.cash { border-color: #4caf50; }
+.quadrant-item.question { border-color: #ff6b6b; }
+.quadrant-item.dog { border-color: #9e9e9e; opacity: 0.7; }
+.quadrant-item .icon { font-size: 28px; margin-bottom: 6px; }
+.quadrant-item .title { font-size: 14px; font-weight: bold; margin-bottom: 5px; }
+.quadrant-item .desc { font-size: 10px; color: #b0bec5; }
+.quadrant-item .position { margin-top: 6px; background: rgba(255, 255, 255, 0.1); padding: 3px 10px; border-radius: 12px; font-size: 10px; }
+.score-container { display: flex; gap: 30px; margin: 20px 0; justify-content: center; }
+.score-item { text-align: center; }
+.score-item .score { font-size: 36px; font-weight: bold; color: #ff6b6b; }
+.score-item .label { font-size: 12px; color: #b0bec5; margin-top: 4px; }
+.score-item .bar { width: 80px; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+.score-item .bar-fill { height: 100%; background: linear-gradient(90deg, #ff6b6b, #ff8a80); border-radius: 3px; }
+.recommend { display: flex; align-items: center; gap: 15px; margin: 15px 0; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 10px; border: 2px solid #ff6b6b; }
+.recommend .grade { font-size: 36px; font-weight: bold; color: #ff6b6b; }
+.recommend .target { font-size: 14px; color: #e0e0e0; }
+.recommend .reason { font-size: 11px; color: #b0bec5; margin-top: 5px; }
+.toc { margin: 30px auto; max-width: 450px; }
+.toc-item { display: flex; justify-content: space-between; padding: 12px 20px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 15px; transition: all 0.2s; cursor: pointer; }
+.toc-item:hover { background: rgba(255, 107, 107, 0.1); padding-left: 25px; }
+.footer { position: absolute; bottom: 6mm; left: 12mm; right: 12mm; display: flex; justify-content: space-between; font-size: 9px; color: rgba(255, 255, 255, 0.5); border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 5px; }
+.warning { background: rgba(255, 152, 0, 0.15); border: 1px solid #ff9800; border-radius: 8px; padding: 10px; font-size: 11px; margin: 8px 0; }
+.summary { background: rgba(255, 107, 107, 0.1); border-radius: 8px; padding: 12px; margin-top: 10px; border-left: 4px solid #ff6b6b; }
+.highlight { background: rgba(255, 107, 107, 0.2); border: 1px solid #ff6b6b; border-radius: 8px; padding: 12px; margin: 10px 0; }
+.highlight h4 { color: #ff6b6b; margin: 0 0 10px 0; }
+.highlight ul { margin: 0; padding-left: 20px; }
+.highlight li { margin: 8px 0; }
+</style>
+</head>
+<body>
+<!-- 第1頁：封面 -->
+<div class="page cover-page">
+<span class="version">v2.0 | 2026-02-11</span>
+<h1>[公司名稱]</h1>
+<h2>公司分析報告</h2>
+<div class="meta">
+<p>[英文名稱]</p>
+<p>代碼：[代碼] | [交易所]</p>
+<p>市值：[市值]</p>
+<p>報告日期：2026年2月11日</p>
+</div>
+<div class="tags">
+<span class="tag">⭐ 市場份額：[評分]</span>
+<span class="tag">📈 成長性：[評分]</span>
+<span class="tag">🔥 產品熱度：[評分]</span>
+</div>
+</div>
+
+<!-- 第2頁：目錄 -->
+<div class="page">
+<div class="header"><span>目錄</span><span class="page-num">2</span></div>
+<div class="toc">
+<div class="toc-item"><span>一、公司概況</span><span>3</span></div>
+<div class="toc-item"><span>二、市場份額評估</span><span>4</span></div>
+<div class="toc-item"><span>三、五年財務分析</span><span>5</span></div>
+<div class="toc-item"><span>四、成長性分析</span><span>6</span></div>
+<div class="toc-item"><span>五、產品賽道評估</span><span>7</span></div>
+<div class="toc-item"><span>六、四象限定位</span><span>8</span></div>
+<div class="toc-item"><span>七、風險評估</span><span>9</span></div>
+<div class="toc-item"><span>八、總結與建議</span><span>10</span></div>
+</div>
+<div class="footer"><span>[公司名稱] - 公司分析報告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第3頁：公司概況 -->
+<div class="page">
+<div class="header"><span>一、公司概況</span><span class="page-num">3</span></div>
+<div class="section-title">1.1 基本信息</div>
+<div class="content">
+<table>
+<tr><td style="width:22%"><strong>公司全稱</strong></td><td>[公司全稱]</td></tr>
+<tr><td><strong>英文名稱</strong></td><td>[英文名稱]</td></tr>
+<tr><td><strong>總部</strong></td><td>[總部城市/國家]</td></tr>
+<tr><td><strong>上市地點</strong></td><td>[交易所] [代碼]</td></tr>
+<tr><td><strong>成立時間</strong></td><td>[年份]</td></tr>
+<tr><td><strong>市值</strong></td><td>[市值]</td></tr>
+<tr><td><strong>員工規模</strong></td><td>[人數]</td></tr>
+</table>
+</div>
+<div class="section-title">1.2 發展歷程（關鍵里程碑）</div>
+<div class="card">
+<ul>
+<li><strong>[年份]</strong>：[里程碑1]</li>
+<li><strong>[年份]</strong>：[里程碑2]</li>
+<li><strong>[年份]</strong>：[里程碑3]</li>
+<li><strong>[年份]</strong>：[里程碑4]</li>
+<li><strong>[年份]</strong>：[里程碑5]</li>
+</ul>
+</div>
+<div class="section-title">1.3 業務架構</div>
+<div class="two-col">
+<div class="card"><h4>🏢 [業務板塊1]</h4><p>[描述]</p></div>
+<div class="card"><h4>🏢 [業務板塊2]</h4><p>[描述]</p></div>
+</div>
+<div class="two-col">
+<div class="card"><h4>🏢 [業務板塊3]</h4><p>[描述]</p></div>
+<div class="card"><h4>🏢 [業務板塊4]</h4><p>[描述]</p></div>
+</div>
+<div class="footer"><span>[公司名稱] - 公司分析報告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第4頁：市場份額評估 -->
+<div class="page">
+<div class="header"><span>二、市場份額評估</span><span class="page-num">4</span></div>
+<div class="section-title">2.1 全球市場地位</div>
+<div class="content">
+<table>
+<tr><td><strong>[細分市場1]</strong></td><td>第[1]位 | 市佔率約[XX]%</td></tr>
+<tr><td><strong>[細分市場2]</strong></td><td>第[2]位 | 市佔率約[XX]%</td></tr>
+<tr><td><strong>[細分市場3]</strong></td><td>第[3]位 | 市佔率約[XX]%</td></tr>
+<tr><td><strong>[區域市場]</strong></td><td>第[1]位 | [國家/區域]龍頭</td></tr>
+</table>
+</div>
+<div class="section-title">2.2 主要競爭對手</div>
+<div class="card">
+<ul>
+<li><strong>[對手1]</strong>：[優勢/劣勢對比]</li>
+<li><strong>[對手2]</strong>：[優勢/劣勢對比]</li>
+<li><strong>[對手3]</strong>：[優勢/劣勢對比]</li>
+<li><strong>[對手4]</strong>：[優勢/劣勢對比]</li>
+</ul>
+</div>
+<div class="section-title">2.3 市場份額評分</div>
+<div class="score-container">
+<div class="score-item">
+<div class="score">[8.5]</div>
+<div class="label">市場份額 (1-10)</div>
+<div class="bar"><div class="bar-fill" style="width: 85%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">[8.0]</div>
+<div class="label">品牌影響力</div>
+<div class="bar"><div class="bar-fill" style="width: 80%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">[7.5]</div>
+<div class="label">技術壁壘</div>
+<div class="bar"><div class="bar-fill" style="width: 75%"></div></div>
+</div>
+</div>
+<div class="footer"><span>[公司名稱] - 公司分析報告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第5頁：五年財務分析 -->
+<div class="page">
+<div class="header"><span>三、五年財務分析</span><span class="page-num">5</span></div>
+<div class="section-title">3.1 營收走勢（2020-2024）</div>
+<div class="chart-container">
+<div class="chart-title">年度營收（單位：十億美元）</div>
+<div class="chart">
+<div class="chart-bar" style="height: 40%"><span class="value">$2.5B</span><span class="year">2020</span></div>
+<div class="chart-bar" style="height: 50%"><span class="value">$3.2B</span><span class="year">2021</span></div>
+<div class="chart-bar" style="height: 55%"><span class="value">$3.8B</span><span class="year">2022</span></div>
+<div class="chart-bar" style="height: 70%"><span class="value">$4.5B</span><span class="year">2023</span></div>
+<div class="chart-bar" style="height: 85%"><span class="value">$5.2B</span><span class="year">2024</span></div>
+</div>
+</div>
+<div class="section-title">3.2 關鍵財務指標（5年數據）</div>
+<div class="content">
+<table>
+<tr><th>指標</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>CAGR</th></tr>
+<tr><td><strong>營收</strong></td><td>$2.5B</td><td>$3.2B</td><td>$3.8B</td><td>$4.5B</td><td>$5.2B</td><td>+20%</td></tr>
+<tr><td><strong>毛利率</strong></td><td>35%</td><td>38%</td><td>40%</td><td>42%</td><td>45%</td><td>+5pp</td></tr>
+<tr><td><strong>淨利潤</strong></td><td>$0.2B</td><td>$0.4B</td><td>$0.5B</td><td>$0.7B</td><td>$0.9B</td><td>+46%</td></tr>
+<tr><td><strong>研發費用</strong></td><td>$0.3B</td><td>$0.4B</td><td>$0.5B</td><td>$0.6B</td><td>$0.7B</td><td>+25%</td></tr>
+</table>
+</div>
+<div class="warning">
+<b>⚠️ 數據說明：</b>以上數據為示例，實際使用時需從財報獲取真實數據。如數據缺失，會標註「待補充」。
+</div>
+<div class="footer"><span>[公司名稱] - 公司分析報告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第6頁：成長性分析 -->
+<div class="page">
+<div class="header"><span>四、成長性分析</span><span class="page-num">6</span></div>
+<div class="section-title">4.1 營收成長率趨勢</div>
+<div class="metrics">
+<div class="metric"><div class="label">2024 YoY</div><div class="value">+15%</div><div class="change positive">📈 強勁</div></div>
+<div class="metric"><div class="label">5年 CAGR</div><div class="value">+20%</div><div class="change positive">📈 高速</div></div>
+<div class="metric"><div class="label">淨利潤 CAGR</div><div class="value">+46%</div><div class="change positive">📈 強勁</div></div>
+<div class="metric"><div class="label">研發投入比</div><div class="value">15%</div><div class="change">💰 持續創新</div></div>
+</div>
+<div class="section-title">4.2 成長驅動因素</div>
+<div class="two-col">
+<div class="card"><h4>🚀 核心驅動1</h4><p>[描述，如：AI芯片需求爆發]</p></div>
+<div class="card"><h4>🚀 核心驅動2</h4><p>[描述，如：市佔率提升]</p></div>
+</div>
+<div class="section-title">4.3 成長性評分</div>
+<div class="score-container">
+<div class="score-item">
+<div class="score">[9.0]</div>
+<div class="label">營收成長 (1-10)</div>
+<div class="bar"><div class="bar-fill" style="width: 90%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">[8.5]</div>
+<div class="label">利潤成長</div>
+<div class="bar"><div class="bar-fill" style="width: 85%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">[8.0]</div>
+<div class="label">市場擴張</div>
+<div class="bar"><div class="bar-fill" style="width: 80%"></div></div>
+</div>
+</div>
+<div class="footer"><span>[公司名稱] - 公司分析報告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第7頁：產品賽道評估 -->
+<div class="page">
+<div class="header"><span>五、產品賽道評估</span><span class="page-num">7</span></div>
+<div class="section-title">5.1 產品矩陣</div>
+<div class="content">
+<table>
+<tr><th>產品/服務</th><th>應用領域</th><th>市場熱度</th><th>成長潛力</th></tr>
+<tr><td>[產品1]</td><td>[領域]</td><td>🔥 熱門</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>[產品2]</td><td>[領域]</td><td>📈 成長中</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>[產品3]</td><td>[領域]</td><td>💤 成熟</td><td>⭐⭐</td></tr>
+</table>
+</div>
+<div class="section-title">5.2 賽道熱度評估</div>
+<div class="metrics">
+<div class="metric"><div class="label">AI/數據中心</div><div class="value">🔥 極熱</div></div>
+<div class="metric"><div class="label">汽車半導體</div><div class="value">🔥 熱門</div></div>
+<div class="metric"><div class="label">工業/IoT</div><div class="value">📈 成長中</div></div>
+<div class="metric"><div class="label">消費電子</div><div class="value">💤 成熟</div></div>
+</div>
+<div class="section-title">5.3 產品熱度評分</div>
+<div class="score-container">
+<div class="score-item">
+<div class="score">[9.5]</div>
+<div class="label">賽道熱度 (1-10)</div>
+<div class="bar"><div class="bar-fill" style="width: 95%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">[9.0]</div>
+<div class="label">技術領先度</div>
+<div class="bar"><div class="bar-fill" style="width: 90%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">[8.5]</div>
+<div class="label">客戶黏性</div>
+<div class="bar"><div class="bar-fill" style="width: 85%"></div></div>
+</div>
+</div>
+<div class="footer"><span>[公司名稱] - 公司分析報告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第8頁：四象限定位 -->
+<div class="page">
+<div class="header"><span>六、四象限定位</span><span class="page-num">8</span></div>
+<div class="section-title">6.1 BCG-style 四象限</div>
+<div class="quadrant">
+<div class="quadrant-item star">
+<div class="icon">⭐</div>
+<div class="title">明星業務</div>
+<div class="desc">高市場份額 + 高成長性</div>
+<div class="position">[公司定位，如：AI芯片]</div>
+</div>
+<div class="quadrant-item question">
+<div class="icon">❓</div>
+<div class="title">問題兒童</div>
+<div class="desc">低市場份額 + 高成長性</div>
+<div class="position">[待觀察業務]</div>
+</div>
+<div class="quadrant-item cash">
+<div class="icon">💰</div>
+<div class="title">現金牛</div>
+<div class="desc">高市場份額 + 低成長性</div>
+<div class="position">[成熟業務]</div>
+</div>
+<div class="quadrant-item dog">
+<div class="icon">🐕</div>
+<div class="title">瘦狗業務</div>
+<div class="desc">低市場份額 + 低成長性</div>
+<div class="position">[待退出業務]</div>
+</div>
+</div>
+<div class="section-title">6.2 評估維度總結</div>
+<div class="score-container">
+<div class="score-item">
+<div class="score">[8.7]</div>
+<div class="label">市場份額</div>
+</div>
+<div class="score-item">
+<div class="score">[8.5]</div>
+<div class="label">成長性</div>
+</div>
+<div class="score-item">
+<div class="score">[9.2]</div>
+<div class="label">產品熱度</div>
+</div>
+</div>
+<div class="summary">
+<b>📊 維度總結：</b>該公司在[市場]領域屬於[象限定位]，核心優勢在於[優勢]，未來需關注[風險]。建議策略：[建議]。
+</div>
+<div class="footer"><span>[公司名稱] - 公司分析報告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第9頁：風險評估 -->
+<div class="page">
+<div class="header"><span>七、風險評估</span><span class="page-num">9</span></div>
+<div class="section-title">7.1 風險矩陣</div>
+<div class="content">
+<table>
+<tr><th>風險類型</th><th>等級</th><th>描述</th><th>應對措施</th></tr>
+<tr><td><strong>市場競爭</strong></td><td style="color:#f44336">🔴 高</td><td>[描述]</td><td>[措施]</td></tr>
+<tr><td><strong>技術迭代</strong></td><td style="color:#ffc107">🟡 中</td><td>[描述]</td><td>[措施]</td></tr>
+<tr><td><strong>政策風險</strong></td><td style="color:#ffc107">🟡 中</td><td>[描述]</td><td>[措施]</td></tr>
+<tr><td><strong>宏觀經濟</strong></td><td style="color:#4caf50">🟢 低</td><td>[描述]</td><td>[措施]</td></tr>
+</table>
+</div>
+<div class="section-title">7.2 關鍵風險分析</div>
+<div class="card">
+<ul>
+<li><b>[風險1]</b>：[詳細分析]</li>
+<li><b>[風險2]</b>：[詳細分析]</li>
+<li><b>[風險3]</b>：[詳細分析]</li>
+</ul>
+</div>
+<div class="footer"><span>[公司名稱] - 公司分析報告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第10頁：總結與建議 -->
+<div class="page">
+<div class="header"><span>八、總結與建議</span><span class="page-num">10</span></div>
+<div class="section-title">8.1 公司定位標籤</div>
+<div class="tags" style="justify-content: center; margin: 20px 0;">
+<span class="tag" style="font-size: 18px; padding: 12px 25px;">🏆 [標籤1]</span>
+<span class="tag" style="font-size: 18px; padding: 12px 25px;">🚀 [標籤2]</span>
+<span class="tag" style="font-size: 18px; padding: 12px 25px;">🔥 [標籤3]</span>
+</div>
+<div class="section-title">8.2 個性化總結</div>
+<div class="summary">
+<b>📊 公司概況：</b>[一句话总结]<br><br>
+<b>🎯 核心優勢：</b>[核心优势]<br><br>
+<b>📈 成長動力：</b>[成長动力]<br><br>
+<b>⚠️ 主要風險：</b>[主要风险]<br><br>
+<b>💡 未來展望：</b>[未来展望]
+</div>
+<div class="section-title">8.3 評級建議</div>
+<div class="recommend">
+<div class="grade">[A]</div>
+<div class="target">
+<p><b>評級：</b>[買入/增持/持有/減持]</p>
+<p><b>目標價：</b>[價格區間]</p>
+<p class="reason"><b>邏輯：</b>[投資邏輯]</p>
+</div>
+</div>
+<div class="section-title">8.4 催化劑與風險</div>
+<div class="two-col">
+<div class="card"><h4>🚀 向上催化劑</h4><ul><li>[催化劑1]</li><li>[催化劑2]</li></ul></div>
+<div class="card"><h4>📉 向下風險</h4><ul><li>[風險1]</li><li>[風險2]</li></ul></div>
+</div>
+<div class="footer"><span>[公司名稱] - 公司分析報告 v2</span><span>2026年2月11日</span></div>
+</div>
+</body>
+</html>

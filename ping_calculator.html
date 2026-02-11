@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>坪↔平方米 換算</title>
+<style>
+*{margin:0;padding:0}
+body{font-family:'Microsoft JhengHei',Arial;background:#0f3460;min-height:100vh;display:flex;justify-content:center;align-items:center;padding:20px}
+.card{background:#fff;padding:40px;border-radius:20px;max-width:400px;width:100%;text-align:center}
+h1{color:#0f3460;font-size:22px;margin-bottom:5px}
+.rate{color:#888;font-size:12px;margin-bottom:25px}
+label{display:block;text-align:left;color:#555;font-size:14px;margin-bottom:8px}
+input{width:100%;padding:12px;font-size:18px;border:2px solid #ddd;border-radius:10px;margin-bottom:15px}
+button{width:100%;padding:15px;background:#0f3460;color:#fff;border:none;border-radius:10px;font-size:16px;cursor:pointer}
+button:hover{opacity:0.9}
+.result{background:#0f3460;color:#fff;padding:20px;border-radius:15px;margin-top:20px}
+.result div:first-child{font-size:14px;opacity:0.9}
+.result div:nth-child(2){font-size:28px;font-weight:bold;margin:10px 0}
+.result div:last-child{font-size:12px;opacity:0.8}
+.info{background:#f7fafc;padding:15px;border-radius:10px;margin-top:20px;font-size:12px;color:#666}
+</style>
+</head>
+<body>
+<div class="card">
+<h1>🏠 坪↔平方米 換算</h1>
+<p class="rate">匯率：1 臺幣 = 0.219 人民币</p>
+
+<label>一坪多少臺幣？（例如：50 或 50萬）</label>
+<input type="text" id="pingPrice" placeholder="輸入金額">
+
+<button onclick="calc()">計算</button>
+
+<div class="result">
+<div>一平方公尺多少人民幣？</div>
+<div id="output">-</div>
+<div>人民币 / 平方米</div>
+</div>
+
+<div class="info">
+1 坪 = 3.3058 平方米
+</div>
+</div>
+
+<script>
+function calc(){
+    var input = document.getElementById('pingPrice').value;
+    var val = parseFloat(input.replace('萬',''));
+    
+    if(input.indexOf('萬') > -1){
+        val = val * 10000;
+    }
+    
+    var output = document.getElementById('output');
+    
+    if(isNaN(val) || val <= 0){
+        output.textContent = '-';
+        return;
+    }
+    
+    var result = (val / 3.3058) * 0.219;
+    output.textContent = result.toFixed(2);
+}
+</script>
+</body>
+</html>

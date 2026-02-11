@@ -1,0 +1,33 @@
+公司名称,国家/地区,类型,主要产品/制程节点,发布时间线,对标产品,ABF载板需求,市场份额/地位,数据来源
+NVIDIA,美国,AI加速器/CPU/GPU,"Blackwell B100/B200 (TSMC 4nm), Rubin (2026)",2025-2026,AMD MI300X,高,数据中心GPU市占率80%+,NVIDIA官网/财报2025
+AMD,美国,AI加速器/CPU/GPU,"MI300X (CDNA3架构), MI400 (2026)",2024-2027,NVIDIA Blackwell,高,数据中心GPU市占率10-15%,AMD Advancing AI 2025
+Intel,美国,CPU/GPU,"Gaudi 3 (7nm), Falcon Shores (2026)",2024-2026,NVIDIA H100/H200,高,数据中心AI加速器份额<5%,Intel官网/投资者日2025
+Apple,美国,CPU/GPU,"M4系列 (3nm), M5 (2026)",2024-2026,高通 Snapdragon X系列,低,定制化SoC,Apple官网
+Google TPU,美国,AI加速器,"TPU v5/v6, Ironwood (2026)",2023-2026,NVIDIA GPU,中,云端AI训练市占率约10%,Google Cloud官网
+Qualcomm,美国,CPU/网通/AI,"Snapdragon X Elite, AI Hub",2024-2025,Intel/AMD PC处理器,低,ARM PC芯片新兴竞争者,Qualcomm官网2025
+Groq,美国,AI加速器,"LPU (Tensor Streaming Processor)",2024-2025,NVIDIA T4/A100,中,AI推理芯片新秀,Groq官网/Fortune 2026
+Cerebras,美国,AI加速器,"Wafer-Scale Engine 2 (TSMC 7nm)",2024-2025,NVIDIA DGX,高,超大尺寸AI训练芯片,Cerebras官网/IntuitionLabs
+SambaNova,美国,AI加速器,"DataScale架构, Chiplet设计",2024-2026,NVIDIA DGX,高,企业级AI训练,SambaNova官网
+Graphcore,英国,AI加速器,"IPU (Bow/Still)",2023-2025,NVIDIA GPU,中,英国AI芯片独角兽,Graphcore官网/退出中国市场
+Mythic,美国,AI加速器,"模拟AI芯片 (模拟内存计算)",2024-2026,NVIDIA Jetson系列,低,边缘AI模拟计算,Mythic官网
+Untether AI,美国,AI加速器,"runAI架构, 高能效比",2024-2025,Google TPU,低,边缘AI推理,Untether AI官网
+Tenstorrent,加拿大,AI加速器,"Wormhole (12nm), Blackhole (2025)",2024-2026,NVIDIA GPU,高,开源RISC-V架构AI,Tenstorrent官网
+Marvell,美国,网通芯片,"Alaska C系列 (5nm), 硅光模块",2024-2026,Broadcom,高,数据中心互连芯片,Marvell官网
+Broadcom,美国,网通/AI,"Jericho3-AI, XGS系列",2024-2026,Marvell,高,网通芯片龙头/AI ASIC,Broadcom官网
+Cisco,美国,网通芯片,"Silicon One系列, 定制化芯片",2024-2025,Broadcom/Marvell,中,网络设备集成芯片,Cisco官网
+Analog Devices,美国,模拟芯片,"数据转换器, 电源管理IC",2024-2026,TI,低,模拟信号处理,ADI官网
+TI,美国,模拟芯片,"TI 10nm模拟工艺, 嵌入式处理器",2024-2026,ADI,低,模拟芯片龙头,TI官网
+Skyworks,美国,射频芯片,"RF Front-End, 5G/6G模块",2024-2026,Qorvo,低,射频前端芯片,Skyworks官网
+Qorvo,美国,射频芯片,"RF Fusion, 氮化镓功率器件",2024-2026,Skyworks,低,射频前端芯片,Qorvo官网
+Infineon,德国,汽车芯片,"AURIX MCU, CoolSiC功率器件",2024-2026,NXP/ST,中,汽车功率半导体龙头,Infineon官网
+STMicroelectronics,意大利/法国,汽车芯片,"Stellar架构, SiC功率器件",2024-2026,NXP/Infineon,中,汽车/工业半导体,ST官网
+NXP,荷兰,汽车芯片,"S32系列, i.MX处理器",2024-2026,Infineon/ST,中,汽车/工业MCU,NXP官网
+Bosch,德国,汽车芯片,"车规级MCU, MEMS传感器",2024-2026,车厂自研芯片,低,汽车Tier 1供应商,Bosch官网
+Imagination Technologies,英国,GPU/IP,"PowerVR GPU, Catapult CPU",2024-2026,Arm/Qualcomm,中,GPU IP授权,Imagination官网
+Arm,英国,CPU/IP,Neoverse V2/N2,2024-2025,Intel x86,中,CPU IP授权龙头,Arm官网
+Mobileye,以色列,自动驾驶,"EyeQ6系列, SuperVision",2024-2026,特斯拉FSD,中,ADAS芯片龙头,Mobileye官网
+Vayyar,以色列,自动驾驶,4D雷达芯片,2024-2025,Mobileye,低,车内/车外感知,Vayyar官网
+Hailo,以色列,AI芯片,"Hailo-10H, 边缘AI推理",2024-2026,NVIDIA Jetson,低,边缘AI加速器,Hailo官网
+NeuReality,以色列,AI芯片,"NR1系列, AI推理优化",2024-2025,NVIDIA Triton,低,数据中心AI推理,NeuReality官网
+Habana Labs,以色列,AI加速器,"Gaudi 2/3 (Intel旗下)",2023-2025,NVIDIA H100,高,AI训练加速器,Intel官网
+Cortica,以色列,AI芯片,自主AI架构,2024-2026,其他AI芯片,低,无服务器AI推理,Cortica官网

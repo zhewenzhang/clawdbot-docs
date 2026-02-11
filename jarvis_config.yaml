@@ -1,0 +1,58 @@
+# 贾维斯模式配置文件
+# 创建时间：2026-02-10 20:53
+# 状态：已激活
+
+## 核心组件
+
+### 1. 长期记忆系统
+memory_path: /Users/dave/clawd/memory/
+memory_files:
+  - daily_notes: memory/YYYY-MM-DD.md
+  - long_term: MEMORY.md
+  - preferences: memory/preferences.md
+  - habits: memory/habits.md
+  - knowledge_base: memory/knowledge_base.md
+backup_enabled: true
+backup_interval: hourly
+
+### 2. 语音唤醒配置
+voice_wakeup:
+  enabled: true
+  wake_word: "可乐"
+  always_listen: false
+  sensitivity: high
+
+### 3. 常驻守护进程
+daemon:
+  auto_start: true
+  crash_restart: true
+  health_check_interval: 300  # 5分钟
+  log_path: /Users/dave/clawd/logs/
+
+### 4. 知识库自动构建
+knowledge_base:
+  auto_summary: true
+  summary_time: "23:30"
+  extract_preferences: true
+  extract_habits: true
+  extract_goals: true
+  personality_model: memory/personality.md
+
+### 5. 记忆保护
+memory_protection:
+  prevent_reset: true
+  prevent_clear: true
+  auto_backup: true
+  version_control: true
+
+### 6. 响应优化
+response_optimization:
+  learn_style: true
+  predict_needs: true
+  adaptive_responses: true
+  style_matching: true
+
+## 系统状态
+status: "贾维斯模式已激活"
+activated_at: "2026-02-10 20:53"
+version: "1.0.0"

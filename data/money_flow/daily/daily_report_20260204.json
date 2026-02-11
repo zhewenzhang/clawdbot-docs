@@ -1,0 +1,16 @@
+{
+  "report_date": "2026-02-04T22:42:59.747198",
+  "trade_date": "20260204",
+  "market_summary": {
+    "trade_date": "20260204",
+    "north_money": 322904.44,
+    "south_money": 51878.37,
+    "ggt_ss": 28658.22,
+    "ggt_sz": 23220.15,
+    "hgt": 153367.8,
+    "sgt": 169536.64
+  },
+  "market_sentiment": "bullish",
+  "north_money_status": "净流入",
+  "insight": "北向资金大幅流入，市场情绪积极"
+}

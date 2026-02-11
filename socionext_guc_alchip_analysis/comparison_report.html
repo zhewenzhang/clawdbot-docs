@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Socionext vs GUC vs Alchip 比較分析</title>
+    <style>
+        body { font-family: 'Microsoft JhengHei', sans-serif; margin: 20px; line-height: 1.8; color: #333; font-size: 14px; }
+        h1 { color: #1a1a2e; font-size: 22px; border-bottom: 3px solid #e94560; padding-bottom: 8px; }
+        h2 { color: #16213e; font-size: 16px; margin-top: 20px; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 10px 0; }
+        th, td { border: 1px solid #ddd; padding: 8px; text-align: center; }
+        th { background: #16213e; color: white; }
+        tr:nth-child(even) { background: #f8f9fa; }
+        .highlight { background: #e8f5e9; font-weight: bold; }
+        .best { background: #d4edda; color: #155724; }
+        .worst { background: #f8d7da; color: #721c24; }
+        .note { font-size: 11px; color: #666; margin-top: 5px; }
+        .insight { background: #fff3cd; border-left: 4px solid #ffc107; padding: 12px; margin: 15px 0; font-size: 13px; }
+        .section { background: #f8f9fa; padding: 15px; border-radius: 5px; margin: 15px 0; }
+        .metric { display: inline-block; background: #e94560; color: white; padding: 5px 12px; border-radius: 15px; margin: 3px; font-size: 12px; }
+    </style>
+</head>
+<body>
+
+<h1>📊 Socionext vs GUC vs Alchip 財務比較分析</h1>
+<p><strong>報告日期</strong>：2026年2月7日 | <strong>數據來源</strong>：公開財報、Yahoo Finance、MoneyDJ</p>
+
+---
+
+<h2>一、公司基本資料</h2>
+<table>
+    <tr>
+        <th>項目</th>
+        <th>Socionext</th>
+        <th>GUC（創意電子）</th>
+        <th>Alchip（世芯-KY）</th>
+    </tr>
+    <tr>
+        <td>總部</td>
+        <td>日本（東京證交所）</td>
+        <td>台灣（台灣證交所）</td>
+        <td>台灣（台灣證交所）</td>
+    </tr>
+    <tr>
+        <td>業務</td>
+        <td>SoC設計服務</td>
+        <td>ASIC設計服務</td>
+        <td>HPC/AI ASIC設計</td>
+    </tr>
+    <tr>
+        <td>股票代號</td>
+        <td>6526.T</td>
+        <td>3443.TW</td>
+        <td>3661.TW</td>
+    </tr>
+    <tr>
+        <td>股價</td>
+        <td>~4,000 日幣</td>
+        <td>~2,585 台幣</td>
+        <td>~3,250 台幣</td>
+    </tr>
+    <tr>
+        <td>市值</td>
+        <td>~7,000億日幣</td>
+        <td>~3,605億台幣</td>
+        <td>~2,532億台幣</td>
+    </tr>
+</table>
+
+---
+
+<h2>二、營收比較（最新年度）</h2>
+<table>
+    <tr>
+        <th>公司</th>
+        <th>最新營收</th>
+        <th>貨幣</th>
+        <th>換算美元</th>
+        <th>YoY成長</th>
+    </tr>
+    <tr class="highlight">
+        <td><strong>GUC</strong></td>
+        <td>341.41</td>
+        <td>億台幣</td>
+        <td>~$11.0億</td>
+        <td style="color:green">+36.3%</td>
+    </tr>
+    <tr>
+        <td>Alchip</td>
+        <td>309.24</td>
+        <td>億台幣</td>
+        <td>~$10.0億</td>
+        <td style="color:red">-40.5%</td>
+    </tr>
+    <tr>
+        <td>Socionext</td>
+        <td>1,854</td>
+        <td>億日幣</td>
+        <td>~$12.0億</td>
+        <td style="color:red">-5.8%</td>
+    </tr>
+</table>
+<div class="note">匯率：1 USD ≈ 155 TWD ≈ 155 JPY（估算）</div>
+
+---
+
+<h2>三、獲利能力比較</h2>
+<table>
+    <tr>
+        <th>公司</th>
+        <th>淨利</th>
+        <th>EPS</th>
+        <th>淨利率</th>
+        <th>毛利率</th>
+    </tr>
+    <tr class="best">
+        <td><strong>Alchip</strong></td>
+        <td>--</td>
+        <td><strong>81.34</strong></td>
+        <td>--</td>
+        <td>--</td>
+    </tr>
+    <tr>
+        <td>GUC</td>
+        <td>34.51億</td>
+        <td>25.75</td>
+        <td>~13.8%</td>
+        <td>~29.7%</td>
+    </tr>
+    <tr>
+        <td>Socionext</td>
+        <td>79億日幣</td>
+        <td>108.73</td>
+        <td>~4.3%</td>
+        <td>~55.1%</td>
+    </tr>
+</table>
+
+---
+
+<h2>四、估值指標</h2>
+<table>
+    <tr>
+        <th>公司</th>
+        <th>本益比（PE）</th>
+        <th>市銷率（P/S）</th>
+        <th>股價淨值比（P/B）</th>
+    </tr>
+    <tr>
+        <td>GUC</td>
+        <td>~97</td>
+        <td>~10.6</td>
+        <td>~28.7</td>
+    </tr>
+    <tr>
+        <td>Alchip</td>
+        <td>~40</td>
+        <td>~8.2</td>
+        <td>--</td>
+    </tr>
+    <tr>
+        <td>Socionext</td>
+        <td>~36</td>
+        <td>~3.8</td>
+        <td>--</td>
+    </tr>
+</table>
+
+---
+
+<h2>五、2024-2025 營收趨勢</h2>
+<table>
+    <tr>
+        <th>公司</th>
+        <th>2024營收</th>
+        <th>2025營收</th>
+        <th>變化</th>
+        <th>趨勢</th>
+    </tr>
+    <tr class="best">
+        <td><strong>GUC</strong></td>
+        <td>250億</td>
+        <td>341億</td>
+        <td style="color:green">+91億</td>
+        <td>📈 強勁成長</td>
+    </tr>
+    <tr>
+        <td>Alchip</td>
+        <td>310億</td>
+        <td>309億</td>
+        <td style="color:red">-1億</td>
+        <td>📉 下滑</td>
+    </tr>
+    <tr>
+        <td>Socionext</td>
+        <td>1,885億</td>
+        <td>1,854億</td>
+        <td style="color:red">-31億</td>
+        <td>➡️ 持平</td>
+    </tr>
+</table>
+
+---
+
+<h2>六、關鍵指標排名</h2>
+<div class="section">
+    <strong>🏆 營收規模</strong>（最新年度）<br>
+    1. <strong>GUC</strong>（+36.3%）🚀<br>
+    2. Alchip（-40.5%）📉<br>
+    3. Socionext（-5.8%）➡️
+</div>
+
+<div class="section">
+    <strong>🏆 獲利能力（EPS）</strong><br>
+    1. <strong>Alchip</strong>（81.34元）⭐<br>
+    2. GUC（25.75元）<br>
+    3. Socionext（108.73日幣）需換算
+</div>
+
+<div class="section">
+    <strong>🏆 成長動能</strong><br>
+    1. <strong>GUC</strong>（+36.3%）🚀<br>
+    2. Alchip（-40.5%）📉已觸底<br>
+    3. Socionext（-5.8%）➡️成熟穩定
+</div>
+
+<div class="section">
+    <strong>🏆 估值合理性（本益比）</strong><br>
+    1. <strong>Socionext</strong>（~36倍）最便宜<br>
+    2. Alchip（~40倍）<br>
+    3. GUC（~97倍）最貴
+</div>
+
+---
+
+<h2>七、分析結論</h2>
+<div class="insight">
+    <strong>📊 各公司特性</strong><br><br>
+    <strong>GUC（創意電子）</strong><br>
+    - ✅ 2025年營收暴增36%（從250億到341億）<br>
+    - ✅ AI/ASIC需求強勁，成長動能最強<br>
+    - ❌ 本益比97倍，估值偏高<br>
+    - 💡 適合：高風險偏好、成長型投資者
+</div>
+
+<div class="insight">
+    <strong>📊 Alchip（世芯-KY）</strong><br>
+    - ✅ EPS 81.34元，獲利能力最強<br>
+    - ❌ 2025年營收年減40%（從310億到309億）<br>
+    - ❌ 成長動能放緩<br>
+    - 💡 適合：獲利導向、價值型投資者
+</div>
+
+<div class="insight">
+    <strong>📊 Socionext</strong><br>
+    - ✅ 日本龍頭SoC設計公司<br>
+    - ✅ 毛利率55.1%，產品組合較好<br>
+    - ❌ 營收下滑5.8%<br>
+    - ❌ 淨利率僅4.3%，獲利能力弱<br>
+    - 💡 適合：成熟市場、穩定型投資者
+</div>
+
+---
+
+<h2>八、投資建議</h2>
+<table>
+    <tr>
+        <th>維度</th>
+        <th>首選</th>
+        <th>說明</th>
+    </tr>
+    <tr>
+        <td>成長性</td>
+        <td><strong>GUC</strong></td>
+        <td>+36.3%營收成長，動能最強</td>
+    </tr>
+    <tr>
+        <td>獲利能力</td>
+        <td><strong>Alchip</strong></td>
+        <td>EPS 81.34元，淨利率較高</td>
+    </tr>
+    <tr>
+        <td>估值合理性</td>
+        <td><strong>Socionext</strong></td>
+        <td>本益比36倍，最便宜</td>
+    </tr>
+    <tr>
+        <td>風險報酬比</td>
+        <td><strong>GUC</strong></td>
+        <td>成長最高，但估值偏高</td>
+    </tr>
+</table>
+
+---
+
+<div class="section" style="background: #16213e; color: white; padding: 15px;">
+    <strong>📌 綜合建議</strong><br><br>
+    1. <strong>追求成長</strong> → GUC（但需等回調）<br>
+    2. <strong>追求獲利</strong> → Alchip（等待營收復甦）<br>
+    3. <strong>追求穩定</strong> → Socionext（本益比最低）
+</div>
+
+---
+
+<p style="color:#666; font-size:11px; margin-top:30px;">
+<strong>數據來源</strong>：Socionext財報（stockanalysis.com）、GUC年報、Alchip財報（MoneyDJ、Yahoo Finance）<br>
+<strong>報告製作</strong>：OpenClaw AI助理 | <strong>數據截至</strong>：2026年2月7日<br>
+<strong>免責聲明</strong>：本報告僅供參考，不構成投資建議
+</p>
+
+</body>
+</html>

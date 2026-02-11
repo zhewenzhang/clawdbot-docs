@@ -1,0 +1,808 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ title }} - 深度分析报告</title>
+    <style>
+        /* ========================================
+           顶尖咨询公司报告模板 v1.0
+           基于 McKinsey 方法论设计
+           ======================================== */
+        
+        :root {
+            /* 主色系 - 深蓝色 (专业可信赖) */
+            --primary: #003366;
+            --primary-light: #1a4d7c;
+            --primary-lighter: #336699;
+            
+            /* 强调色 - 金色 (高端价值) */
+            --accent: #C4A962;
+            --accent-light: #D4B972;
+            
+            /* 功能色 */
+            --success: #2E7D32;
+            --warning: #F9A825;
+            --danger: #C62828;
+            
+            /* 背景色 */
+            --bg: #FFFFFF;
+            --bg-secondary: #F5F7FA;
+            --bg-highlight: #FFF8E7;
+            
+            /* 文字色 */
+            --text: #1A1A1A;
+            --text-secondary: #666666;
+            --text-muted: #999999;
+            
+            /* 边框色 */
+            --border: #E0E0E0;
+            --border-light: #EEEEEE;
+            
+            /* 间距系统 */
+            --space-xs: 3px;
+            --space-sm: 5px;
+            --space-md: 8px;
+            --space-lg: 12px;
+            --space-xl: 16px;
+        }
+        
+        /* 重置样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        /* 基础排版 */
+        body {
+            font-family: "PingFang TC", "Microsoft JhengHei", "Noto Sans TC", "Helvetica Neue", sans-serif;
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text);
+            background: #E8E8E8;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* ========================================
+           页面布局
+           ======================================== */
+        
+        /* A4横排页面 - 297mm × 210mm */
+        .page {
+            width: 297mm;
+            min-height: 210mm;
+            margin: 10mm auto;
+            background: var(--bg);
+            padding: 12mm 15mm;
+            box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+        }
+        
+        /* 封面特殊处理 */
+        .page.cover {
+            padding: 0;
+            background: linear-gradient(145deg, var(--primary) 0%, var(--primary-light) 60%, var(--primary-lighter) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: #FFFFFF;
+        }
+        
+        .page.cover .cover-content {
+            padding: 20mm;
+        }
+        
+        /* 分页控制 */
+        .content-page {
+            page-break-before: always;
+        }
+        
+        .content-page:first-of-type {
+            page-break-before: auto;
+        }
+        
+        /* ========================================
+           标题层级
+           ======================================== */
+        
+        /* 封面大标题 */
+        .cover-title {
+            font-size: 32px;
+            font-weight: 300;
+            letter-spacing: 4px;
+            margin-bottom: var(--space-lg);
+        }
+        
+        /* 封面副标题 */
+        .cover-subtitle {
+            font-size: 16px;
+            font-weight: 400;
+            opacity: 0.9;
+            margin-bottom: var(--space-xl);
+        }
+        
+        /* 封面分隔线 */
+        .cover-divider {
+            width: 100px;
+            height: 2px;
+            background: var(--accent);
+            margin: var(--space-xl) auto;
+        }
+        
+        /* 封面元信息 */
+        .cover-meta {
+            font-size: 12px;
+            opacity: 0.75;
+            line-height: 2;
+        }
+        
+        /* 页面主标题 */
+        .title-main {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--primary);
+            border-bottom: 3px solid var(--primary);
+            padding: 8px 0 10px 0;
+            margin-bottom: var(--space-lg);
+        }
+        
+        /* 区块标题 */
+        .section-title {
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--primary);
+            background: var(--bg-secondary);
+            padding: 6px 10px;
+            margin-bottom: var(--space-md);
+            border-left: 4px solid var(--accent);
+            display: flex;
+            align-items: center;
+        }
+        
+        /* 子区块标题 */
+        .subsection-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary-light);
+            margin: var(--space-md) 0 var(--space-sm) 0;
+        }
+        
+        /* ========================================
+           网格系统
+           ======================================== */
+        
+        .grid {
+            display: grid;
+            gap: var(--space-md);
+        }
+        
+        .grid-2 {
+            grid-template-columns: repeat(2, 1fr);
+        }
+        
+        .grid-3 {
+            grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .grid-4 {
+            grid-template-columns: repeat(4, 1fr);
+        }
+        
+        /* ========================================
+           表格系统
+           ======================================== */
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-md) 0;
+            font-size: 10px;
+        }
+        
+        th {
+            background: var(--primary);
+            color: #FFFFFF;
+            padding: 6px 10px;
+            text-align: left;
+            font-weight: 500;
+            white-space: nowrap;
+        }
+        
+        td {
+            padding: 5px 10px;
+            border-bottom: 1px solid var(--border);
+            vertical-align: top;
+        }
+        
+        tr:hover {
+            background: var(--bg-secondary);
+        }
+        
+        /* 高亮行 */
+        tr.highlight,
+        tr.hl {
+            background: var(--bg-highlight);
+            font-weight: 600;
+        }
+        
+        /* 悬停高亮 */
+        tr:hover.highlight {
+            background: #FFE8B3;
+        }
+        
+        /* 文本对齐 */
+        .text-left { text-align: left; }
+        .text-center { text-align: center; }
+        .text-right { text-align: right; }
+        
+        /* ========================================
+           卡片组件
+           ======================================== */
+        
+        .card {
+            background: var(--bg-secondary);
+            padding: var(--space-md);
+            border-radius: 4px;
+            text-align: center;
+            border-top: 3px solid var(--primary);
+        }
+        
+        .card.highlight {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+        }
+        
+        .card.highlight .card-value,
+        .card.highlight .card-label {
+            color: #FFFFFF;
+        }
+        
+        .card-value {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .card-label {
+            font-size: 10px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: var(--space-xs);
+        }
+        
+        /* ========================================
+           发现卡片 (Key Findings)
+           ======================================== */
+        
+        .finding {
+            background: #FFFFFF;
+            border: 1px solid var(--border);
+            padding: var(--space-md);
+            border-left: 3px solid var(--accent);
+            margin-bottom: var(--space-md);
+        }
+        
+        .finding-star {
+            color: var(--accent);
+            font-size: 10px;
+            letter-spacing: 1px;
+        }
+        
+        .finding-title {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--primary);
+            margin: var(--space-xs) 0;
+        }
+        
+        .finding-desc {
+            font-size: 10px;
+            color: var(--text-secondary);
+            line-height: 1.5;
+        }
+        
+        /* 2x2 发现卡片网格 */
+        .finding-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+        }
+        
+        /* ========================================
+           时间线
+           ======================================== */
+        
+        .timeline {
+            padding-left: var(--space-xl);
+            margin: var(--space-md) 0;
+            border-left: 2px solid var(--accent);
+        }
+        
+        .timeline-item {
+            position: relative;
+            padding: var(--space-sm) 0 var(--space-md) var(--space-md);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: calc(-1 * var(--space-xl) - 6px);
+            top: 8px;
+            width: 12px;
+            height: 12px;
+            background: var(--primary);
+            border-radius: 50%;
+            border: 2px solid #FFFFFF;
+        }
+        
+        .timeline-date {
+            font-size: 10px;
+            color: var(--primary);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        
+        .timeline-content {
+            background: var(--bg-secondary);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 4px;
+        }
+        
+        .timeline-title {
+            font-size: 11px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        .timeline-desc {
+            font-size: 9px;
+            color: var(--text-secondary);
+            margin-top: var(--space-xs);
+        }
+        
+        /* ========================================
+           组织架构图
+           ======================================== */
+        
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: var(--space-md) 0;
+        }
+        
+        .org-node {
+            background: var(--primary);
+            color: #FFFFFF;
+            padding: 6px 12px;
+            border-radius: 4px;
+            font-size: 10px;
+            text-align: center;
+            min-width: 100px;
+        }
+        
+        .org-node.gold {
+            background: var(--accent);
+            color: var(--primary);
+        }
+        
+        .org-node.light {
+            background: var(--primary-lighter);
+        }
+        
+        .org-line {
+            width: 1px;
+            height: 15px;
+            background: var(--border);
+        }
+        
+        .org-children {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-md);
+        }
+        
+        .org-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* ========================================
+           指标卡片
+           ======================================== */
+        
+        .metric {
+            background: var(--bg-secondary);
+            padding: var(--space-sm) var(--space-md);
+            border-radius: 4px;
+            text-align: center;
+        }
+        
+        .metric-value {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .metric-label {
+            font-size: 9px;
+            color: var(--text-secondary);
+            margin-top: var(--space-xs);
+        }
+        
+        /* 3列指标 */
+        .metric-row-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: var(--space-md);
+        }
+        
+        /* ========================================
+           告框 (Alert/Info Box)
+           ======================================== */
+        
+        .alert {
+            padding: var(--space-md) var(--space-lg);
+            margin: var(--space-md) 0;
+            border-radius: 4px;
+            font-size: 10px;
+        }
+        
+        .alert.warning {
+            background: #FFF8E1;
+            border-left: 3px solid var(--warning);
+        }
+        
+        .alert.info {
+            background: #E3F2FD;
+            border-left: 3px solid var(--primary-lighter);
+        }
+        
+        .alert.success {
+            background: #E8F5E9;
+            border-left: 3px solid var(--success);
+        }
+        
+        .alert.danger {
+            background: #FFEBEE;
+            border-left: 3px solid var(--danger);
+        }
+        
+        .alert-title {
+            font-size: 11px;
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+        
+        /* ========================================
+           评分/星级
+           ======================================== */
+        
+        .rating {
+            color: var(--accent);
+            letter-spacing: 1px;
+        }
+        
+        /* ========================================
+           页脚
+           ======================================== */
+        
+        .footer {
+            margin-top: var(--space-lg);
+            padding-top: var(--space-md);
+            border-top: 1px solid var(--border);
+            display: flex;
+            justify-content: space-between;
+            font-size: 9px;
+            color: var(--text-muted);
+        }
+        
+        .footer-left,
+        .footer-right {
+            display: flex;
+            gap: var(--space-lg);
+        }
+        
+        /* ========================================
+           执行摘要特殊样式
+           ======================================== */
+        
+        .exec-summary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: #FFFFFF;
+            padding: var(--space-lg);
+            border-radius: 4px;
+            margin-bottom: var(--space-lg);
+        }
+        
+        .exec-summary-title {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: var(--space-md);
+        }
+        
+        .exec-summary-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--space-sm);
+            font-size: 11px;
+        }
+        
+        .exec-summary-icon {
+            width: 20px;
+            height: 20px;
+            background: var(--accent);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: var(--space-md);
+            font-size: 10px;
+            flex-shrink: 0;
+        }
+        
+        /* ========================================
+           打印优化
+           ======================================== */
+        
+        @media print {
+            body {
+                background: none;
+            }
+            
+            .page {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+            }
+            
+            .page:last-child {
+                page-break-after: avoid;
+            }
+            
+            .page.cover {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+        }
+        
+        /* ========================================
+           响应式辅助
+           ======================================== */
+        
+        @media screen and (max-width: 1200px) {
+            .page {
+                width: 100%;
+                max-width: 297mm;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 封面页 -->
+    <div class="page cover">
+        <div class="cover-content">
+            <h1 class="cover-title">{{ title }}</h1>
+            <p class="cover-subtitle">{{ subtitle }}</p>
+            <div class="cover-divider"></div>
+            <div class="cover-meta">
+                {% if date %}
+                <div>分析日期：{{ date }}</div>
+                {% endif %}
+                {% if version %}
+                <div>报告版本：{{ version }}</div>
+                {% endif %}
+                {% if confidentiality %}
+                <div>机密等级：{{ confidentiality }}</div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+
+    <!-- 执行摘要页 -->
+    <div class="page content-page">
+        <div class="title-main">执行摘要 Executive Summary</div>
+        
+        {% if executive_summary %}
+        <div class="exec-summary">
+            <div class="exec-summary-title">核心发现</div>
+            {% for item in executive_summary %}
+            <div class="exec-summary-item">
+                <div class="exec-summary-icon">{{ loop.index }}</div>
+                <div>{{ item }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- 关键发现卡片 -->
+        {% if key_findings %}
+        <div class="section-title">五大核心发现</div>
+        <div class="finding-grid-2">
+            {% for finding in key_findings %}
+            <div class="finding">
+                <div class="finding-star">{{ finding.stars|default('★★★★★') }}</div>
+                <div class="finding-title">{{ finding.title }}</div>
+                <div class="finding-desc">{{ finding.description }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <!-- 关键指标概览 -->
+        {% if metrics %}
+        <div class="section-title">关键指标概览</div>
+        <div class="metric-row-3">
+            {% for metric in metrics %}
+            <div class="metric">
+                <div class="metric-value">{{ metric.value }}</div>
+                <div class="metric-label">{{ metric.label }}</div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        <div class="footer">
+            <span class="footer-left">{{ title }} {{ version|default('v1.0') }}</span>
+            <span class="footer-right">第 1 页 · 机密文件</span>
+        </div>
+    </div>
+
+    <!-- 内容页模板 -->
+    {% for section in sections %}
+    <div class="page content-page">
+        <div class="title-main">{{ section.title }}</div>
+        
+        {% if section.summary %}
+        <div class="alert info">
+            <div class="alert-title">核心要点</div>
+            {{ section.summary }}
+        </div>
+        {% endif %}
+        
+        {% if section.grid %}
+        <div class="grid grid-{{ section.grid|length }}">
+            {% for grid_item in section.grid %}
+            <div>
+                {% if grid_item.title %}
+                <div class="section-title">{{ grid_item.title }}</div>
+                {% endif %}
+                
+                {% if grid_item.table %}
+                <table>
+                    {% if grid_item.table.header %}
+                    <thead>
+                        <tr>
+                            {% for th in grid_item.table.header %}
+                            <th class="{{ th.align|default('text-left') }}">{{ th.text }}</th>
+                            {% endfor %}
+                        </tr>
+                    </thead>
+                    {% endif %}
+                    <tbody>
+                        {% for row in grid_item.table.rows %}
+                        <tr class="{{ 'highlight' if row.highlight else '' }}">
+                            {% for cell in row.cells %}
+                            <td class="{{ cell.align|default('') }}">{{ cell.text }}</td>
+                            {% endfor %}
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                {% endif %}
+                
+                {% if grid_item.findings %}
+                <div class="finding-grid-2">
+                    {% for finding in grid_item.findings %}
+                    <div class="finding">
+                        <div class="finding-star">{{ finding.stars|default('★★★★☆') }}</div>
+                        <div class="finding-title">{{ finding.title }}</div>
+                        <div class="finding-desc">{{ finding.description }}</div>
+                    </div>
+                    {% endfor %}
+                </div>
+                {% endif %}
+                
+                {% if grid_item.content %}
+                <div class="subsection-title">{{ grid_item.content.title }}</div>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if section.timeline %}
+        <div class="section-title">{{ section.timeline.title }}</div>
+        <div class="timeline">
+            {% for item in section.timeline.items %}
+            <div class="timeline-item">
+                <div class="timeline-date">{{ item.date }}</div>
+                <div class="timeline-content">
+                    <div class="timeline-title">{{ item.title }}</div>
+                    {% if item.description %}
+                    <div class="timeline-desc">{{ item.description }}</div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% endif %}
+        
+        {% if section.alerts %}
+        {% for alert in section.alerts %}
+        <div class="alert {{ alert.type }}">
+            <div class="alert-title">{{ alert.title }}</div>
+            {{ alert.content }}
+        </div>
+        {% endfor %}
+        {% endif %}
+        
+        <div class="footer">
+            <span class="footer-left">{{ title }} {{ version|default('v1.0') }}</span>
+            <span class="footer-right">第 {{ loop.index + 1 }} 页 · 机密文件</span>
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- 附录页 -->
+    {% if appendix %}
+    <div class="page content-page">
+        <div class="title-main">附录 Appendix</div>
+        
+        <div class="grid grid-2">
+            <div>
+                <div class="section-title">数据来源</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>来源</th>
+                            <th>年份</th>
+                            <th>状态</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for source in appendix.sources %}
+                        <tr>
+                            <td>{{ source.name }}</td>
+                            <td>{{ source.year }}</td>
+                            <td>{{ source.status }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            
+            <div>
+                <div class="section-title">后续研究建议</div>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>优先级</th>
+                            <th>项目</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for item in appendix.recommendations %}
+                        <tr>
+                            <td>{{ item.priority }}</td>
+                            <td>{{ item.title }}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <span class="footer-left">{{ title }} {{ version|default('v1.0') }}</span>
+            <span class="footer-right">附录页 · 机密文件</span>
+        </div>
+    </div>
+    {% endif %}
+
+</body>
+</html>

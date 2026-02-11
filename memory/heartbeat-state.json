@@ -1,8 +1,23 @@
 {
   "lastChecks": {
-    "email": 1769962800,
-    "calendar": null,
-    "weather": null,
-    "websites": null
+    "email": 1770214376,
+    "calendar": 1770214376,
+    "weather": 1769963500,
+    "websites": null,
+    "dashboard": 1770163300
+  },
+  "apiStatus": {
+    "gmail": {
+      "status": "connected",
+      "email": "davezhangus@gmail.com",
+      "unread_count": 5,
+      "last_check": "2026-02-04 22:12"
+    },
+    "calendar": {
+      "status": "connected",
+      "events_today": 1,
+      "events_tomorrow": 1,
+      "last_check": "2026-02-04 22:12"
+    }
   }
 }

@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <title>群策科技深度分析报告</title>
+    <style>
+        :root { --blue:#003366; --blue2:#1a4d7c; --blue3:#336699; --gold:#C4A962; --bg:#fff; --bg2:#f8f9fb; --text:#222; --text2:#666; --border:#ddd; }
+        * { margin:0; padding:0; box-sizing:border-box; }
+        body { font-family:"PingFang TC","Microsoft JhengHei",sans-serif; font-size:10.5px; line-height:1.5; color:var(--text); background:#e5e5e5; }
+        
+        /* A4横排页面 */
+        .page { width:297mm; height:210mm; margin:5mm auto; background:var(--bg); padding:8mm 10mm; box-shadow:0 2px 10px rgba(0,0,0,0.1); page-size:A4 landscape; }
+        
+        /* 封面 */
+        .cover { background:linear-gradient(145deg,var(--blue)0%,var(--blue2)60%,var(--blue3)100%); color:#fff; padding:48mm 22mm; margin:-8mm -10mm; min-height:210mm; display:flex; flex-direction:column; justify-content:center; text-align:center; }
+        .cover h1 { font-size:32px; font-weight:300; letter-spacing:3px; margin-bottom:10px; }
+        .cover .subtitle { font-size:15px; opacity:0.9; margin-bottom:45px; }
+        .cover .div { width:80px; height:2px; background:var(--gold); margin:25px auto; }
+        .cover .meta { font-size:12px; opacity:0.75; line-height:1.8; }
+        
+        /* 页面 */
+        .page-next { page-break-after:always; }
+        
+        /* 标题 */
+        .title-main { font-size:18px; font-weight:600; color:var(--blue); border-bottom:2.5px solid var(--blue); padding:5px 0 7px 0; margin-bottom:8px; }
+        .section { margin-bottom:7px; }
+        .section-title { font-size:12px; font-weight:600; color:var(--blue); background:var(--bg2); padding:4px 9px; margin-bottom:5px; border-left:3px solid var(--gold); }
+        
+        /* 表格 */
+        table { width:100%; border-collapse:collapse; margin:4px 0; font-size:9px; }
+        th { background:var(--blue); color:#fff; padding:4px 7px; text-align:left; font-weight:500; }
+        td { padding:3px 7px; border-bottom:1px solid var(--border); }
+        tr:hover { background:var(--bg2); }
+        .hl { background:#fff8e7; font-weight:600; }
+        .tr { text-align:right; }
+        .tc { text-align:center; }
+        
+        /* 网格 */
+        .g2 { display:grid; grid-template-columns:1fr 1fr; gap:10px; }
+        .g3 { display:grid; grid-template-columns:repeat(3,1fr); gap:7px; }
+        .g4 { display:grid; grid-template-columns:repeat(4,1fr); gap:6px; }
+        
+        /* 卡片 */
+        .card { background:var(--bg2); padding:7px; border-radius:3px; text-align:center; border-top:3px solid var(--blue); }
+        .card .s { font-size:18px; font-weight:700; color:var(--blue); }
+        .card .l { font-size:7px; color:var(--text2); text-transform:uppercase; margin-top:3px; }
+        .card.h { background:linear-gradient(135deg,var(--blue),var(--blue2)); }
+        .card.h .s, .card.h .l { color:#fff; }
+        
+        /* 发现卡片 */
+        .f4 { display:grid; grid-template-columns:repeat(2,1fr); gap:7px; margin:6px 0; }
+        .find { background:#fff; border:1px solid var(--border); padding:7px; border-left:3px solid var(--gold); }
+        .find .st { color:var(--gold); font-size:8px; letter-spacing:1px; }
+        .find .ti { font-size:10px; font-weight:600; color:var(--blue); margin:3px 0 2px 0; }
+        .find .de { font-size:8px; color:var(--text2); }
+        
+        /* 时间线 */
+        .tl { padding-left:14px; margin:6px 0; border-left:2px solid var(--gold); }
+        .ti-item { position:relative; padding:3px 0 8px 9px; }
+        .ti-item::before { content:''; position:absolute; left:-7px; top:7px; width:10px; height:10px; background:var(--blue); border-radius:50%; border:2px solid #fff; }
+        .ti-date { font-size:8px; color:var(--blue); font-weight:600; margin-bottom:2px; }
+        .ti-con { background:var(--bg2); padding:5px 8px; border-radius:3px; }
+        .ti-ti { font-size:9px; font-weight:600; color:var(--blue); }
+        .ti-de { font-size:7.5px; color:var(--text2); margin-top:2px; }
+        
+        /* 组织架构 */
+        .org { display:flex; flex-direction:column; align-items:center; margin:6px 0; }
+        .org-n { background:var(--blue); color:#fff; padding:4px 10px; border-radius:3px; font-size:8px; text-align:center; min-width:85px; }
+        .org-n.g { background:var(--gold); color:var(--blue); }
+        .org-n.l { background:var(--blue3); }
+        .org-l { width:1px; height:12px; background:var(--border); }
+        .org-f { display:flex; gap:8px; margin-top:7px; }
+        .org-c { display:flex; flex-direction:column; align-items:center; }
+        
+        /* 指标 */
+        .m3 { background:var(--bg2); padding:5px 7px; border-radius:3px; text-align:center; }
+        .m3 .v { font-size:14px; font-weight:700; color:var(--blue); }
+        .m3 .l { font-size:7px; color:var(--text2); margin-top:2px; }
+        
+        /* 告框 */
+        .alert { padding:6px 9px; margin:6px 0; border-radius:3px; font-size:8px; }
+        .alert.w { background:#fff8e7; border-left:3px solid #ffc107; }
+        .alert.i { background:#e7f4f8; border-left:3px solid var(--blue3); }
+        .alert h4 { font-size:9px; margin-bottom:3px; }
+        
+        /* 评分 */
+        .st { color:var(--gold); letter-spacing:0.5px; }
+        
+        /* 页脚 */
+        .ft { margin-top:6px; padding-top:5px; border-top:1px solid var(--border); display:flex; justify-content:space-between; font-size:7px; color:var(--text2); }
+        
+        /* 流程图 */
+        .flow { display:flex; align-items:center; justify-content:center; gap:8px; margin:8px 0; flex-wrap:wrap; }
+        .flow-item { background:var(--bg2); padding:6px 10px; border-radius:3px; text-align:center; border:1px solid var(--border); }
+        .flow-item .t { font-size:8px; font-weight:600; color:var(--blue); }
+        .flow-item .d { font-size:7px; color:var(--text2); }
+        .flow .arrow { font-size:14px; color:var(--gold); }
+        
+        @media print { body { background:none; } .page { box-shadow:none; margin:0; page-size:A4 landscape; } }
+    </style>
+</head>
+<body>
+    <!-- 封面 -->
+    <div class="page">
+        <div class="cover">
+            <h1>群策科技深度分析报告</h1>
+            <p class="subtitle">Qunc CI Technology · In-depth Analysis Report</p>
+            <div class="div"></div>
+            <div class="meta">
+                <span>分析日期：2026年2月8日</span><br>
+                <span>报告版本：v5.0 横排大字体版</span><br>
+                <span>机密等级：内部使用</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- P1: 执行摘要 -->
+    <div class="page page-next">
+        <div class="title-main">執行摘要 Executive Summary</div>
+        
+        <!-- 五大核心发现 -->
+        <div class="section">
+            <div class="section-title">五大核心發現</div>
+            <div class="f4">
+                <div class="find"><div class="st">★★★★★</div><div class="ti">群策香港成立</div><div class="de">2024年1月新成立香港控股平台，便於跨境資金調度與稅務規劃</div></div>
+                <div class="find"><div class="st">★★★★★</div><div class="ti">架構整合</div><div class="de">從UHL直接控股轉為雙層架構（群策香港→蘇州群策86.22%）</div></div>
+                <div class="find"><div class="st">★★★★★</div><div class="ti">並購擴張</div><div class="de">2024年10月並購黃石群立、昆山群啟，實現100%持股</div></div>
+                <div class="find"><div class="st">★★★★☆</div><div class="ti">關聯交易</div><div class="de">蘇州群策銷貨金額達9.22億TWD（16%），佔比適中風險可控</div></div>
+            </div>
+        </div>
+        
+        <!-- 历年数据概览 -->
+        <div class="section">
+            <div class="section-title">歷年數據概覽（2020-2024）</div>
+            <table>
+                <thead><tr><th>年份</th><th>群策香港</th><th>蘇州群策</th><th>黃石群立</th><th>昆山群啟</th><th>關聯交易金額</th></tr></thead>
+                <tbody>
+                    <tr><td>2020</td><td>—</td><td>✓</td><td>✓</td><td>—</td><td>[待提取]</td></tr>
+                    <tr><td>2021</td><td>—</td><td>✓</td><td>✓</td><td>—</td><td>[待提取]</td></tr>
+                    <tr><td>2022</td><td>—</td><td>✓</td><td>✓</td><td>—</td><td>[待提取]</td></tr>
+                    <tr><td>2023</td><td>—</td><td>✓</td><td>✓</td><td>—</td><td>[待提取]</td></tr>
+                    <tr class="hl"><td>2024</td><td>✓ 新成立</td><td>✓</td><td>✓ 並購</td><td>✓ 並購</td><td>9.22億TWD</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="g2">
+            <!-- 左列 -->
+            <div>
+                <div class="section">
+                    <div class="section-title">子公司基本資料</div>
+                    <table>
+                        <thead><tr><th>公司</th><th>成立時間</th><th>地址</th><th>註冊資本</th></tr></thead>
+                        <tbody>
+                            <tr><td>蘇州群策科技</td><td>2004/03</td><td>昆山漢浦路999號</td><td>US$148.6M</td></tr>
+                            <tr><td>黃石群立電子</td><td>2015/09</td><td>黃石開發區</td><td>US$153M</td></tr>
+                            <tr><td>昆山群啟科技</td><td>[待確認]</td><td>昆山</td><td>[待確認]</td></tr>
+                            <tr class="hl"><td>群策科技(香港)</td><td>2024/01</td><td>香港</td><td>—</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">銷貨金額排名（2024年）</div>
+                    <table>
+                        <thead><tr><th>排名</th><th>公司</th><th class="tr">金額(億TWD)</th><th class="tr">佔比</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>昆山鼎鑫電子</td><td class="tr">20.30</td><td class="tr">33%</td></tr>
+                            <tr><td>2</td><td>昆山欣富興</td><td class="tr">10.22</td><td class="tr">17%</td></tr>
+                            <tr class="hl"><td>3</td><td>蘇州群策科技</td><td class="tr">9.22</td><td class="tr">16%</td></tr>
+                            <tr><td>4</td><td>黃石欣益興</td><td class="tr">7.53</td><td class="tr">13%</td></tr>
+                            <tr><td>5</td><td>Unimicron JAPAN</td><td class="tr">4.54</td><td class="tr">7%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <!-- 右列 -->
+            <div>
+                <div class="section">
+                    <div class="section-title">投資評級</div>
+                    <div class="g4">
+                        <div class="card h"><div class="s">A</div><div class="l">綜合評級</div></div>
+                        <div class="card"><div class="s">A</div><div class="l">產業地位</div></div>
+                        <div class="card"><div class="s">B+</div><div class="l">財務狀況</div></div>
+                        <div class="card"><div class="s">A-</div><div class="l">成長性</div></div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <div class="section-title">股權架構（2024年）</div>
+                    <div class="org">
+                        <div class="org-n">欣興電子股份有限公司</div>
+                        <div class="org-l"></div>
+                        <div class="org-n g">UHL（BVI離岸公司）</div>
+                        <div class="org-l"></div>
+                        <div class="org-n g">群策科技(香港)有限公司</div>
+                        <div class="org-l"></div>
+                        <div class="org-f">
+                            <div class="org-c"><div class="org-n l">蘇州群策 86.22%</div></div>
+                            <div class="org-c"><div class="org-n l">黃石群立 100%</div></div>
+                            <div class="org-c"><div class="org-n l">昆山群啟 100%</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ft"><span>群策科技深度分析報告 v5.0</span><span>第 1 頁</span><span>機密文件</span></div>
+    </div>
+
+    <!-- P2: 关联交易 -->
+    <div class="page page-next">
+        <div class="title-main">關聯交易分析 Related Party Transactions</div>
+        
+        <div class="g2">
+            <div>
+                <!-- 销货交易 -->
+                <div class="section">
+                    <div class="section-title">關聯銷貨交易（附表六）</div>
+                    <table>
+                        <thead><tr><th>#</th><th>交易對象</th><th class="tr">金額(仟元)</th><th class="tr">佔比</th><th>關係</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>群策科技(香港)</td><td class="tr">289,684</td><td class="tr">2%</td><td>子公司</td></tr>
+                            <tr class="hl"><td>2</td><td>蘇州群策科技</td><td class="tr">921,562</td><td class="tr">16%</td><td>子公司</td></tr>
+                            <tr><td>3</td><td>黃石群立電子</td><td class="tr">393,695</td><td class="tr">7%</td><td>子公司</td></tr>
+                            <tr><td>4</td><td>黃石欣益興</td><td class="tr">752,525</td><td class="tr">13%</td><td>同母公司</td></tr>
+                            <tr><td>5</td><td>昆山鼎鑫電子</td><td class="tr">2,030,492</td><td class="tr">33%</td><td>同母公司</td></tr>
+                            <tr><td>6</td><td>昆山欣富興</td><td class="tr">1,022,249</td><td class="tr">17%</td><td>同母公司</td></tr>
+                            <tr class="hl"><td>—</td><td>群策系列合計</td><td class="tr">~1,605,000</td><td class="tr">~25%</td><td>—</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 应收款项 -->
+                <div class="section">
+                    <div class="section-title">應收關係人款項（附表七）</div>
+                    <table>
+                        <thead><tr><th>#</th><th>交易對象</th><th class="tr">餘額(仟元)</th><th class="tr">佔比</th><th class="tr">週轉率</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>昆山鼎鑫</td><td class="tr">1,236,899</td><td class="tr">38%</td><td class="tr">3.99</td></tr>
+                            <tr><td>2</td><td>黃石欣益興</td><td class="tr">786,073</td><td class="tr">24%</td><td class="tr">2.60</td></tr>
+                            <tr class="hl"><td>3</td><td>蘇州群策</td><td class="tr">498,301</td><td class="tr">15%</td><td class="tr">2.70</td></tr>
+                            <tr><td>4</td><td>黃石群立</td><td class="tr">393,695</td><td class="tr">12%</td><td class="tr">—</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div>
+                <!-- 关联交易评估 -->
+                <div class="section">
+                    <div class="section-title">關聯交易評估</div>
+                    <table>
+                        <thead><tr><th>評估項目</th><th>等級</th><th>說明</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="st">★★★★☆</span></td><td>集中度</td><td>適中，前五大佔約75%</td></tr>
+                            <tr><td><span class="st">★★★★★</span></td><td>帳期</td><td>正常（月結3個月）</td></tr>
+                            <tr><td><span class="st">★★★★☆</span></td><td>週轉率</td><td>2.70（中等水平）</td></tr>
+                            <tr><td><span class="st">★★★☆☆</span></td><td>定價公允性</td><td>需持續關注</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 重大交易事项 -->
+                <div class="section">
+                    <div class="section-title">重大交易事項</div>
+                    <table>
+                        <thead><tr><th>事項</th><th>內容</th></tr></thead>
+                        <tbody>
+                            <tr><td>土地購置</td><td>蘇州群策向蘇州聯致科技購置不動產（蘇州工業園區鳳里街158號）</td></tr>
+                            <tr><td>處置價款</td><td>17,276仟元</td></tr>
+                            <tr><td>並購基準日</td><td>2024/10/01</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 关联交易趋势 -->
+                <div class="section">
+                    <div class="section-title">關聯交易趨勢</div>
+                    <table>
+                        <thead><tr><th>年份</th><th>群策香港</th><th>蘇州群策</th><th>黃石群立</th><th>合計</th></tr></thead>
+                        <tbody>
+                            <tr><td>2020-23</td><td>—</td><td>?</td><td>?</td><td>?</td></tr>
+                            <tr class="hl"><td>2024</td><td>2%</td><td>16%</td><td>7%</td><td>~25%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="ft"><span>群策科技深度分析報告 v5.0</span><span>第 2 頁</span><span>機密文件</span></div>
+    </div>
+
+    <!-- P3: 战略分析 -->
+    <div class="page page-next">
+        <div class="title-main">戰略分析 Strategic Analysis</div>
+        
+        <!-- 三大战略动作 -->
+        <div class="section">
+            <div class="section-title">2024年三大戰略動作</div>
+            <table>
+                <thead><tr><th>戰略動作</th><th>目的</th><th>時間</th><th>預期影響</th></tr></thead>
+                <tbody>
+                    <tr><td><strong>設立香港平台</strong></td><td>國際化佈局、稅務優化、資本操作</td><td>2024/01成立</td><td>便於未來融資上市</td></tr>
+                    <tr><td><strong>股權架構整合</strong></td><td>統一管理、簡化層級</td><td>2024/04決議</td><td>配合旭德科技合併</td></tr>
+                    <tr><td><strong>並購擴張</strong></td><td>擴大產能、整合資源</td><td>2024/10完成</td><td>產能增加30%+</td></tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="g2">
+            <div>
+                <!-- 时间线 -->
+                <div class="section">
+                    <div class="section-title">重大事件時間線</div>
+                    <div class="tl">
+                        <div class="ti-item"><div class="ti-date">2004/03/11</div><div class="ti-con"><div class="ti-ti">蘇州群策成立</div><div class="ti-de">註冊資本US$148.6M，生產基地建立</div></div></div>
+                        <div class="ti-item"><div class="ti-date">2015/09/10</div><div class="ti-con"><div class="ti-ti">黃石群立成立</div><div class="ti-de">註冊資本US$153M，華中產能佈局</div></div></div>
+                        <div class="ti-item"><div class="ti-date">2024/01</div><div class="ti-con"><div class="ti-ti">群策香港成立</div><div class="ti-de">香港控股平台建立</div></div></div>
+                        <div class="ti-item"><div class="ti-date">2024/04/22</div><div class="ti-con"><div class="ti-ti">董事決議並購</div><div class="ti-de">架構調整，黃石群立、昆山群啟</div></div></div>
+                        <div class="ti-item"><div class="ti-date">2024/10/01</div><div class="ti-con"><div class="ti-ti">並購完成</div><div class="ti-de">蘇州群策並購黃石群立、昆山群啟</div></div></div>
+                        <div class="ti-item"><div class="ti-date">2025/01/01</div><div class="ti-con"><div class="ti-ti">旭德科技合併</div><div class="ti-de">集團進一步整合</div></div></div>
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <!-- 风险评估 -->
+                <div class="section">
+                    <div class="section-title">風險評估矩陣</div>
+                    <div class="g3">
+                        <div class="m3"><div class="v">中</div><div class="l">大陸經營風險</div></div>
+                        <div class="m3"><div class="v">中</div><div class="l">關聯交易依賴</div></div>
+                        <div class="m3"><div class="v">中</div><div class="l">整合風險</div></div>
+                        <div class="m3"><div class="v">中</div><div class="l">技術更新壓力</div></div>
+                        <div class="m3"><div class="v">低</div><div class="l">匯率風險</div></div>
+                        <div class="m3"><div class="v">低</div><div class="l">資金風險</div></div>
+                    </div>
+                </div>
+                
+                <!-- 未来展望 -->
+                <div class="section">
+                    <div class="section-title">未來展望</div>
+                    <table>
+                        <thead><tr><th>時期</th><th>展望</th></tr></thead>
+                        <tbody>
+                            <tr><td><strong>短期(2025)</strong></td><td>旭德科技合併、產能整合</td></tr>
+                            <tr><td><strong>中期(2026-27)</strong></td><td>AI晶片帶動需求、資本操作可能</td></tr>
+                            <tr><td><strong>長期(2028+)</strong></td><td>大陸上市可能性國際化擴張</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 后续研究建议 -->
+                <div class="section">
+                    <div class="section-title">後續研究建議</div>
+                    <table>
+                        <thead><tr><th>優先級</th><th>項目</th></tr></thead>
+                        <tbody>
+                            <tr><td><span class="st">★★★★★</span></td><td>獲取2021-2023年PDF進行完整對比</td></tr>
+                            <tr><td><span class="st">★★★★★</span></td><td>分析蘇州群策個別財報</td></tr>
+                            <tr><td><span class="st">★★★★☆</span></td><td>同業對比（深南、興森科技）</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="ft"><span>群策科技深度分析報告 v5.0</span><span>第 3 頁</span><span>機密文件</span></div>
+    </div>
+
+    <!-- P4: 投资价值 -->
+    <div class="page page-next">
+        <div class="title-main">投資價值評估 Investment Valuation</div>
+        
+        <div class="g2">
+            <div>
+                <!-- 核心财务指标 -->
+                <div class="section">
+                    <div class="section-title">核心財務指標</div>
+                    <table>
+                        <thead><tr><th>指標</th><th>2024年</th><th>2023年</th><th>變化</th></tr></thead>
+                        <tbody>
+                            <tr><td>註冊資本</td><td>US$148.6M</td><td>US$148.6M</td><td>—</td></tr>
+                            <tr><td>銷貨金額</td><td>9.22億TWD</td><td>[待提取]</td><td>?</td></tr>
+                            <tr><td>關聯交易佔比</td><td>16%</td><td>[待提取]</td><td>?</td></tr>
+                            <tr class="hl"><td>持股架構</td><td>86.22%（雙層）</td><td>100%（單層）</td><td>調整</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 正面因素 -->
+                <div class="section">
+                    <div class="section-title">正面因素</div>
+                    <table>
+                        <tbody>
+                            <tr><td><span class="st">★★★★★</span></td><td><strong>集團資源支持</strong> — 背靠欣興技術和訂單，規模效應顯現</td></tr>
+                            <tr><td><span class="st">★★★★★</span></td><td><strong>產能擴張</strong> — 並購後產能增加，華東基地整合</td></tr>
+                            <tr><td><span class="st">★★★★☆</span></td><td><strong>AI/5G需求</strong> — ABF載板需求增長，PCB/HDI需求穩健</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 负面因素 -->
+                <div class="section">
+                    <div class="section-title">負面因素</div>
+                    <table>
+                        <tbody>
+                            <tr><td><span class="st">★★★☆☆</span></td><td><strong>關聯交易依賴</strong> — 營收依賴欣興集團，定價公允性需關注</td></tr>
+                            <tr><td><span class="st">★★★☆☆</span></td><td><strong>大陸經營風險</strong> — 政策不確定性、勞動力成本上升</td></tr>
+                            <tr><td><span class="st">★★★★☆</span></td><td><strong>整合風險</strong> — 並購後整合需時間，短期影響效率</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div>
+                <!-- 综合评分 -->
+                <div class="section">
+                    <div class="section-title">綜合評分</div>
+                    <div class="g2">
+                        <div class="card h"><div class="s">A</div><div class="l">綜合評級</div></div>
+                        <div class="card"><div class="s">4.0/5</div><div class="l">投資建議</div></div>
+                    </div>
+                    <div class="alert i"><h4>投資建議</h4>綜合評分：A（4/5）— 逢低佈局，長期持有。</div>
+                </div>
+                
+                <!-- 估值参考 -->
+                <div class="section">
+                    <div class="section-title">估值參考</div>
+                    <table>
+                        <thead><tr><th>公司</th><th>備註</th></tr></thead>
+                        <tbody>
+                            <tr><td>欣興電子</td><td>母公司</td></tr>
+                            <tr><td>蘇州群策</td><td>非上市，無法直接估值</td></tr>
+                            <tr><td>深南電路</td><td>同業參考</td></tr>
+                            <tr><td>興森科技</td><td>同業參考</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 数据来源 -->
+                <div class="section">
+                    <div class="section-title">數據來源</div>
+                    <table>
+                        <thead><tr><th>來源</th><th>年份</th><th>狀態</th></tr></thead>
+                        <tbody>
+                            <tr><td>欣興電子2024年年報</td><td>2024</td><td><span class="st">★★★★★</span> 已分析</td></tr>
+                            <tr><td>欣興電子2020年年報</td><td>2020</td><td><span class="st">★★★★★</span> 已分析</td></tr>
+                            <tr><td>欣興電子2021-2023年年報</td><td>2021-23</td><td><span class="st">★★★☆☆</span> 無法下載</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        
+        <!-- 重要提示 -->
+        <div class="alert w">
+            <h4>⚠️ 重要提示</h4>
+            1. 關聯交易佔比25%適中，但定價公允性需持續關注<br>
+            2. 2024年並購的黃石群立、昆山群啟需時間整合<br>
+            3. AI/5G帶動需求，但PCB行業競爭激烈
+        </div>
+        <div class="ft"><span>群策科技深度分析報告 v5.0</span><span>第 4 頁</span><span>機密文件</span></div>
+    </div>
+
+    <!-- P5: 深度分析 -->
+    <div class="page page-next">
+        <div class="title-main">深度分析 Detailed Analysis</div>
+        
+        <!-- 香港成立背景 -->
+        <div class="section">
+            <div class="section-title">群策科技(香港)成立背景分析</div>
+            <div class="g3">
+                <div class="find"><div class="ti">稅務規劃</div><div class="de">香港與大陸稅收協定優惠，便於未來資本操作（上市、售股等），資金進出靈活</div></div>
+                <div class="find"><div class="ti">風險隔離</div><div class="de">設立香港中間控股公司，隔離大陸經營風險，便於資產重組</div></div>
+                <div class="find"><div class="ti">國際化佈局</div><div class="de">提升企業形象，便於與國際投資者接軌，為海外融資做準備</div></div>
+            </div>
+        </div>
+        
+        <div class="g2">
+            <div>
+                <!-- 苏州群策发展 -->
+                <div class="section">
+                    <div class="section-title">蘇州群策發展歷程</div>
+                    <table>
+                        <thead><tr><th>時間</th><th>註冊資本</th><th>股權變化</th><th>重大事件</th></tr></thead>
+                        <tbody>
+                            <tr><td>2004/03</td><td>US$148.6M</td><td>100%</td><td>成立</td></tr>
+                            <tr><td>2020</td><td>US$148.6M</td><td>—</td><td>正常運行</td></tr>
+                            <tr><td>2023</td><td>US$148.6M</td><td>—</td><td>架構調整準備</td></tr>
+                            <tr class="hl"><td>2024/01</td><td>US$148.6M</td><td>→群策香港86%</td><td>股權轉移</td></tr>
+                            <tr class="hl"><td>2024/10</td><td>US$148.6M</td><td>+100%並購</td><td>並購黃石群立、昆山群啟</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 黄石群立发展 -->
+                <div class="section">
+                    <div class="section-title">黃石群立發展歷程</div>
+                    <table>
+                        <thead><tr><th>時間</th><th>註冊資本</th><th>股權</th><th>狀態</th></tr></thead>
+                        <tbody>
+                            <tr><td>2015/09</td><td>US$153M</td><td>UHL 100%</td><td>成立</td></tr>
+                            <tr><td>2024/04</td><td>—</td><td>UHL</td><td>股權調整討論</td></tr>
+                            <tr class="hl"><td>2024/10/01</td><td>—</td><td>蘇州群策100%</td><td>並購完成</td></tr>
+                            <tr class="hl"><td>2024/12/31</td><td>—</td><td>蘇州群策100%</td><td>正常運行</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div>
+                <!-- 股权架构优化对比 -->
+                <div class="section">
+                    <div class="section-title">股權架構優化對比</div>
+                    <table>
+                        <thead><tr><th>優化項目</th><th>優化前</th><th>優化後</th><th>改善程度</th></tr></thead>
+                        <tbody>
+                            <tr><td>控股層級</td><td>2層</td><td>3層</td><td>便於管理</td></tr>
+                            <tr><td>資金調度</td><td>直接</td><td>經香港平台</td><td>更靈活</td></tr>
+                            <tr><td>稅務規劃</td><td>無</td><td>香港平台</td><td>有優化空間</td></tr>
+                            <tr><td>風險隔離</td><td>較差</td><td>較好</td><td>改善</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 关键发现 -->
+                <div class="section">
+                    <div class="section-title">關鍵發現總結</div>
+                    <div class="f4">
+                        <div class="find"><div class="st">★★★★★</div><div class="ti">群策香港戰略意義</div><div class="de">不僅是控股平台，更是國際化跳板，未來可能進行資本操作</div></div>
+                        <div class="find"><div class="st">★★★★☆</div><div class="ti">並購整合加速</div><div class="de">2024年完成兩起並購，擴大產能、整合資源</div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="ft"><span>群策科技深度分析報告 v5.0</span><span>第 5 頁</span><span>機密文件</span></div>
+    </div>
+
+    <!-- P6: 附录 -->
+    <div class="page">
+        <div class="title-main">附錄 Appendix</div>
+        
+        <div class="g2">
+            <div>
+                <!-- 相关附表 -->
+                <div class="section">
+                    <div class="section-title">相關附表</div>
+                    <table>
+                        <tbody>
+                            <tr><td>附表五</td><td>大陸投資信息-基本資料</td></tr>
+                            <tr><td>附表六</td><td>大陸投資重大交易事項</td></tr>
+                            <tr><td>附表七</td><td>應收關係人款項</td></tr>
+                            <tr><td>附註九、5</td><td>不動產購置說明</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 数据局限性 -->
+                <div class="section">
+                    <div class="section-title">數據局限性說明</div>
+                    <div class="alert w">
+                        <h4>數據局限</h4>
+                        <strong>年份限制：</strong>僅有2024年和2020年PDF，2021-2023年無法下載<br>
+                        <strong>建議：</strong>手動下載補充，聯繫公司IR獲取個別財報
+                    </div>
+                </div>
+            </div>
+            
+            <div>
+                <!-- 关键时间节点 -->
+                <div class="section">
+                    <div class="section-title">關鍵時間節點</div>
+                    <table>
+                        <thead><tr><th>日期</th><th>事件</th><th>影響</th></tr></thead>
+                        <tbody>
+                            <tr><td>2024/01</td><td>群策香港成立</td><td>控股平台建立</td></tr>
+                            <tr><td>2024/04/22</td><td>董事決議並購</td><td>架構調整啟動</td></tr>
+                            <tr><td>2024/06</td><td>群策香港注資</td><td>資金到位</td></tr>
+                            <tr><td>2024/10/01</td><td>並購完成</td><td>產能擴張</td></tr>
+                            <tr><td>2025/01/01</td><td>旭德科技合併</td><td>集團整合</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <!-- 苏州群策业务概况 -->
+                <div class="section">
+                    <div class="section-title">蘇州群策業務概況</div>
+                    <table>
+                        <thead><tr><th>項目</th><th>內容</th></tr></thead>
+                        <tbody>
+                            <tr><td>主營業務</td><td>電子零組件製造及銷售</td></tr>
+                            <tr><td>主要產品</td><td>PCB、HDI板</td></tr>
+                            <tr><td>註冊地址</td><td>江蘇省昆山市漢浦路999號</td></tr>
+                            <tr><td>退休金成本</td><td>有（需提列）</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="ft"><span>群策科技深度分析報告 v5.0</span><span>第 6 頁</span><span>機密文件</span></div>
+    </div>
+</body>
+</html>

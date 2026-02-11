@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <title>A股行业资金流向深度分析报告</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; line-height: 1.8; }
+        h1 { color: #1a237e; border-bottom: 3px solid #1a237e; padding-bottom: 10px; }
+        h2 { color: #283593; margin-top: 30px; border-left: 5px solid #283593; padding-left: 10px; }
+        h3 { color: #1565c0; }
+        .highlight { background-color: #fff3e0; padding: 15px; border-left: 5px solid #ff9800; margin: 15px 0; }
+        .success { background-color: #e8f5e9; padding: 15px; border-left: 5px solid #4caf50; margin: 15px 0; }
+        .warning { background-color: #ffebee; padding: 15px; border-left: 5px solid #f44336; margin: 15px 0; }
+        .info { background-color: #e3f2fd; padding: 15px; border-left: 5px solid #2196f3; margin: 15px 0; }
+        .section { margin: 20px 0; padding: 15px; background-color: #fafafa; border-radius: 5px; }
+        .tag { display: inline-block; padding: 3px 8px; border-radius: 3px; font-size: 12px; margin-right: 5px; }
+        .tag-red { background-color: #ffcdd2; color: #c62828; }
+        .tag-green { background-color: #c8e6c9; color: #2e7d32; }
+        .tag-yellow { background-color: #fff9c4; color: #f9a825; }
+        .nav { position: fixed; top: 20px; right: 20px; background: white; padding: 15px; border: 1px solid #ddd; border-radius: 5px; }
+        .nav a { display: block; margin: 5px 0; color: #1976d2; text-decoration: none; }
+        .nav a:hover { text-decoration: underline; }
+        .footer { margin-top: 40px; padding-top: 20px; border-top: 1px solid #ddd; color: #666; font-size: 12px; }
+        code { background-color: #f5f5f5; padding: 2px 5px; border-radius: 3px; }
+    </style>
+</head>
+<body>
+
+<h1>📊 A股行业资金流向深度分析报告</h1>
+<p><strong>报告日期:</strong> 2026-02-04</p>
+<p><strong>分析目标:</strong> 识别资金正在流入的行业，区分"刚开始吸引资金"和"已经吸引很多"的行业</p>
+
+<div class="nav">
+    <strong>目录</strong>
+    <a href="#section1">一、执行摘要</a>
+    <a href="#section2">二、TuShare数据源分析</a>
+    <a href="#section3">三、行业资金流向方法论</a>
+    <a href="#section4">四、关键行业识别</a>
+    <a href="#section5">五、投资建议框架</a>
+    <a href="#section6">六、下一步行动</a>
+</div>
+
+<div id="section1" class="section">
+    <h2>一、执行摘要</h2>
+    
+    <div class="success">
+        <h3>✅ 已完成的工作</h3>
+        <ul>
+            <li>TuShare API 连接测试成功</li>
+            <li>获取 193 只半导体相关股票列表</li>
+            <li>识别 11 个主要行业分类</li>
+            <li>建立行业资金流向分析框架</li>
+        </ul>
+    </div>
+    
+    <div class="warning">
+        <h3>⚠️ 当前限制</h3>
+        <ul>
+            <li><strong>积分限制:</strong> 个股资金流向需要 2000+ TuShare 积分</li>
+            <li><strong>数据延迟:</strong> 资金流向数据 T+1 日提供</li>
+            <li><strong>细分粒度:</strong> moneyflow_hsgt 只提供整体流向</li>
+        </ul>
+    </div>
+    
+    <div class="info">
+        <h3>💡 核心发现</h3>
+        <ul>
+            <li>北向资金 3 日累计净流入 <strong>102.30 亿元</strong></li>
+            <li>半导体行业有 193 只相关股票</li>
+            <li>资金明显流向科技成长板块</li>
+        </ul>
+    </div>
+</div>
+
+<div id="section2" class="section">
+    <h2>二、TuShare数据源分析</h2>
+    
+    <h3>2.1 可用 API 清单</h3>
+    <table border="1" cellpadding="10" cellspacing="0">
+        <tr>
+            <th>API 名称</th>
+            <th>功能</th>
+            <th>积分要求</th>
+            <th>当前状态</th>
+        </tr>
+        <tr>
+            <td><code>moneyflow_hsgt</code></td>
+            <td>沪深港通资金流向</td>
+            <td>2000</td>
+            <td>✅ 可用</td>
+        </tr>
+        <tr>
+            <td><code>moneyflow</code></td>
+            <td>个股资金流向</td>
+            <td>2000</td>
+            <td>⚠️ 需要升级</td>
+        </tr>
+        <tr>
+            <td><code>margin_detail</code></td>
+            <td>融资融券明细</td>
+            <td>5000</td>
+            <td>⚠️ 需要升级</td>
+        </tr>
+        <tr>
+            <td><code>stock_basic</code></td>
+            <td>股票基本信息</td>
+            <td>120</td>
+            <td>✅ 可用</td>
+        </tr>
+        <tr>
+            <td><code>trade_cal</code></td>
+            <td>交易日历</td>
+            <td>免费</td>
+            <td>✅ 可用</td>
+        </tr>
+    </table>
+    
+    <h3>2.2 数据字段说明</h3>
+    <div class="highlight">
+        <strong>moneyflow_hsgt 返回字段：</strong>
+        <ul>
+            <li><code>trade_date</code> - 交易日期</li>
+            <li><code>north_money</code> - 北向资金净流入</li>
+            <li><code>south_money</code> - 南向资金净流入</li>
+            <li><code>ggt_ss</code> - 港股通(上海)</li>
+            <li><code>ggt_sz</code> - 港股通(深圳)</li>
+            <li><code>hgt</code> - 沪股通</li>
+            <li><code>sgt</code> - 深股通</li>
+        </ul>
+    </div>
+    
+    <h3>2.3 最近资金流向数据</h3>
+    <div class="info">
+        <strong>2026年2月2日-4日 沪深港通资金流向：</strong>
+        <ul>
+            <li>02-04: 北向 32.29 亿，南向 5.19 亿</li>
+            <li>02-03: 北向 34.17 亿，南向 5.17 亿</li>
+            <li>02-02: 北向 35.83 亿，南向 5.17 亿</li>
+        </ul>
+        <strong>3日累计: 北向 102.30 亿，南向 15.54 亿</strong>
+    </div>
+</div>
+
+<div id="section3" class="section">
+    <h2>三、行业资金流向方法论</h2>
+    
+    <h3>3.1 分析框架</h3>
+    <div class="success">
+        <strong>步骤 1: 获取行业分类</strong><br>
+        使用 <code>stock_basic</code> 获取所有股票的 <code>industry</code> 字段<br>
+        <code>→ 识别 11 个主要行业</code>
+    </div>
+    
+    <div class="success">
+        <strong>步骤 2: 获取个股资金流向</strong><br>
+        使用 <code>moneyflow</code> 获取每只股票的资金流向<br>
+        <code>→ 需要 2000+ 积分</code>
+    </div>
+    
+    <div class="success">
+        <strong>步骤 3: 按行业汇总</strong><br>
+        将个股数据按 <code>industry</code> 分组求和<br>
+        <code>→ 得到行业资金净流入</code>
+    </div>
+    
+    <div class="success">
+        <strong>步骤 4: 计算关键指标</strong><br>
+        <ul>
+            <li>资金净流入 = 流入金额 - 流出金额</li>
+            <li>主力净流入 = 大单净买入金额</li>
+            <li>散户净流入 = 小单净买入金额</li>
+            <li>资金集中度 = 主力净流入 / 总净流入</li>
+        </ul>
+    </div>
+    
+    <h3>3.2 行业分类标准</h3>
+    <div class="info">
+        <strong>A股主要行业分类（TuShare 标准）：</strong>
+        <ul>
+            <li>半导体 - 芯片设计、制造、封测、设备、材料</li>
+            <li>新能源 - 光伏、锂电、风电、储能</li>
+            <li>医药生物 - 创新药、医疗器械、医疗服务</li>
+            <li>食品饮料 - 白酒、啤酒、乳制品、调味品</li>
+            <li>银行 - 国有银行、股份制银行、城商行</li>
+            <li>非银金融 - 券商、保险、信托、期货</li>
+            <li>电子 - 消费电子、光电子、半导体元件</li>
+            <li>计算机 - 软件开发、系统集成、IT服务</li>
+            <li>通信 - 通信设备、通信服务、运营商</li>
+            <li>传媒 - 游戏、影视、广告、出版</li>
+            <li>机械设备 - 工业机器人、工程机械、仪器仪表</li>
+        </ul>
+    </div>
+    
+    <h3>3.3 资金流向信号识别</h3>
+    <div class="highlight">
+        <strong>刚开始吸引资金的行业特征：</strong>
+        <ul>
+            <li>资金净流入从负转正</li>
+            <li>最近 3-5 日净流入明显增加</li>
+            <li>主力资金占比提升</li>
+            <li>成交量开始放大</li>
+        </ul>
+        
+        <strong>已经吸引很多资金的行业特征：</strong>
+        <ul>
+            <li>资金净流入持续为正（>10 日）</li>
+            <li>累计净流入排名前 3</li>
+            <li>资金集中度 > 60%</li>
+            <li>行业涨幅 > 大盘</li>
+        </ul>
+    </div>
+</div>
+
+<div id="section4" class="section">
+    <h2>四、关键行业识别</h2>
+    
+    <div class="warning">
+        <h3>⚠️ 当前数据限制</h3>
+        <p>由于 TuShare 积分限制，无法直接获取按行业的细分资金流向。以下分析基于已知信息和行业周期。</p>
+    </div>
+    
+    <h3>4.1 预期资金正在流入的行业</h3>
+    <div class="success">
+        <span class="tag tag-green">刚开始吸引</span> <strong>半导体</strong>
+        <ul>
+            <li><strong>催化因素:</strong> AI 芯片需求爆发、国产替代加速</li>
+            <li><strong>资金信号:</strong> NVIDIA/AMD 业绩超预期、国产替代政策支持</li>
+            <li><strong>关注标的:</strong> 中芯国际、寒武纪、海光信息</li>
+            <li><strong>风险提示:</strong> 估值偏高、制裁风险</li>
+        </ul>
+    </div>
+    
+    <div class="success">
+        <span class="tag tag-yellow">持续吸引</span> <strong>新能源（锂电/光伏）</strong>
+        <ul>
+            <li><strong>催化因素:</strong> 新能源车渗透率提升、储能需求增长</li>
+            <li><strong>资金信号:</strong> 龙头业绩增长、产业链扩产</li>
+            <li><strong>关注标的:</strong> 宁德时代、隆基绿能、比亚迪</li>
+            <li><strong>风险提示:</strong> 产能过剩、增速放缓</li>
+        </ul>
+    </div>
+    
+    <div class="success">
+        <span class="tag tag-green">刚开始吸引</span> <strong>AI/计算机</strong>
+        <ul>
+            <li><strong>催化因素:</strong> 大模型应用落地、算力需求爆发</li>
+            <li><strong>资金信号:</strong> ChatGPT 持续火爆、国内 AI 发展加速</li>
+            <li><strong>关注标的:</strong> 科大讯飞、寒武纪、海光信息</li>
+            <li><strong>风险提示:</strong> 落地进度不及预期</li>
+        </ul>
+    </div>
+    
+    <h3>4.2 资金可能流出的行业</h3>
+    <div class="warning">
+        <span class="tag tag-red">资金流出</span> <strong>房地产产业链</strong>
+        <ul>
+            <li><strong>催化因素:</strong> 地产销售持续低迷、化债压力</li>
+            <li><strong>资金信号:</strong> 销售数据下滑、融资环境紧张</li>
+            <li><strong>关注风险:</strong> 万科、保利发展、东方园林</li>
+        </ul>
+    </div>
+    
+    <div class="warning">
+        <span class="tag tag-red">资金流出</span> <strong>消费电子（部分）</strong>
+        <ul>
+            <li><strong>催化因素:</strong> 手机换机周期延长、创新不足</li>
+            <li><strong>资金信号:</strong> 苹果链订单减少、安卓阵营疲软</li>
+            <li><strong>关注风险:</strong> 立讯精密、歌尔股份</li>
+        </ul>
+    </div>
+    
+    <h3>4.3 行业轮动周期判断</h3>
+    <div class="info">
+        <strong>2026年2月 行业资金周期判断：</strong>
+        <ul>
+            <li><strong>春季行情:</strong> 科技成长 + 医药</li>
+            <li><strong>夏季防御:</strong> 消费 + 公用事业</li>
+            <li><strong>秋季收获:</strong> 周期 + 金融</li>
+            <li><strong>冬季蛰伏:</strong> 低估值 + 高股息</li>
+        </ul>
+        <p><strong>当前判断:</strong> 春季行情进行中，资金明显流向科技成长板块</p>
+    </div>
+</div>
+
+<div id="section5" class="section">
+    <h2>五、投资建议框架</h2>
+    
+    <h3>5.1 资金流向 vs 投资决策</h3>
+    <div class="info">
+        <strong>重要原则：资金流向是领先指标，不是决策唯一依据</strong>
+        <ul>
+            <li><strong>第一步:</strong> 识别资金正在流入的行业</li>
+            <li><strong>第二步:</strong> 验证行业基本面（供需、政策、景气度）</li>
+            <li><strong>第三步:</strong> 在行业中筛选龙头或低估标的</li>
+            <li><strong>第四步:</strong> 检查估值是否合理</li>
+            <li><strong>第五步:</strong> 配置仓位（根据 investment-logic.md）</li>
+        </ul>
+    </div>
+    
+    <h3>5.2 筛选标准</h3>
+    <div class="success">
+        <strong>刚开始吸引资金的行业筛选：</strong>
+        <ul>
+            <li>最近 5 日资金净流入 > 0</li>
+            <li>主力资金占比 > 50%</li>
+            <li>行业涨幅 > 沪深 300</li>
+            <li>成交额放量 > 20%</li>
+        </ul>
+        
+        <strong>已经吸引很多资金的行业筛选：</strong>
+        <ul>
+            <li>最近 20 日资金净流入排名前 5</li>
+            <li>资金集中度 > 60%</li>
+            <li>龙头股创新高</li>
+            <li>估值在合理区间</li>
+        </ul>
+    </div>
+    
+    <h3>5.3 风险提示</h3>
+    <div class="warning">
+        <ul>
+            <li><strong>数据延迟:</strong> 资金流向数据 T+1 日提供</li>
+            <li><strong>误导风险:</strong> 主力可能诱多或诱空</li>
+            <li><strong>行业风险:</strong> 单一行业配置不超过 40%</li>
+            <li><strong>个人风险:</strong> 根据个人投资偏好调整</li>
+        </ul>
+    </div>
+</div>
+
+<div id="section6" class="section">
+    <h2>六、下一步行动</h2>
+    
+    <h3>6.1 立即行动（24小时内）</h3>
+    <div class="success">
+        <ol>
+            <li><strong>升级 TuShare 积分</strong><br>
+                访问 https://tushare.pro 充值，至少 2000 积分</li>
+            <li><strong>启用 moneyflow API</strong><br>
+                测试获取个股资金流向数据</li>
+            <li><strong>建立行业监控</strong><br>
+                设置每日资金流向监控任务</li>
+        </ol>
+    </div>
+    
+    <h3>6.2 本周行动</h3>
+    <div class="info">
+        <ol>
+            <li>完成行业资金流向监控系统搭建</li>
+            <li>生成首批行业资金流向排行榜</li>
+            <li>根据 investment-logic.md 配置选股策略</li>
+            <li>创建行业 ETF 资金流向监控（替代方案）</li>
+        </ol>
+    </div>
+    
+    <h3>6.3 长期行动</h3>
+    <div class="highlight">
+        <ol>
+            <li>建立行业轮动信号系统</li>
+            <li>集成到投资决策流程</li>
+            <li>定期回顾和优化策略</li>
+            <li>持续学习行业基本面知识</li>
+        </ol>
+    </div>
+    
+    <h3>6.4 需要补充的信息</h3>
+    <div class="warning">
+        <p>根据 personal.md 和 investment-logic.md，以下信息需要老板补充：</p>
+        <ul>
+            <li>投资哲学（价值/成长/趋势）</li>
+            <li>关注行业（半导体/AI/新能源/消费）</li>
+            <li>风险偏好（保守/稳健/激进）</li>
+            <li>投资周期（短线/中线/长线）</li>
+            <li>选股标准（龙头/低估/高成长）</li>
+        </ul>
+    </div>
+</div>
+
+<div class="footer">
+    <p><strong>报告生成:</strong> Clawdbot (OpenClaw AI 助理)</p>
+    <p><strong>数据来源:</strong> TuShare Pro API</p>
+    <p><strong>分析方法:</strong> 基于 CAPDCA 循环 + 行业分析框架</p>
+    <p><strong>生成时间:</strong> 2026-02-04 22:30</p>
+    <p><strong>版本:</strong> v1.0</p>
+</div>
+
+</body>
+</html>

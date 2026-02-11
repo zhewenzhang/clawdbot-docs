@@ -63,6 +63,19 @@
           "total": 57100
         }
       }
+    },
+    {
+      "date": "2026-02-04",
+      "total_in": 56000,
+      "total_out": 1100,
+      "total": 57100,
+      "by_model": {
+        "minimax/MiniMax-M2.1": {
+          "in": 56000,
+          "out": 1100,
+          "total": 57100
+        }
+      }
     }
   ]
 }

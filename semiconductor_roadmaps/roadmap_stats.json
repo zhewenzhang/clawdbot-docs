@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-02-07 23:05:00",
+  "directory": "/Users/dave/clawd/semiconductor_roadmaps/",
+  "roadmap_statistics": {
+    "total_markdown_files": 10,
+    "total_lines_of_markdown": 4004,
+    "total_excel_files": 27,
+    "total_csv_files": 2,
+    "total_html_files": 4,
+    "total_subdirectories": 16
+  },
+  "file_list": {
+    "root_level": [
+      "INDEX.md (2762 bytes)",
+      "File_Architecture_Plan.md (3534 bytes)",
+      "competitor_list.md (1748 bytes)",
+      "TASK_COMPLETION_REPORT.md (5853 bytes)",
+      "competitor_list.csv (1093 bytes)",
+      "packaging_substrate_top20.csv (1239 bytes)",
+      "CHIP_Master_Database.xlsx (15227 bytes)",
+      "companies.html (2370 bytes)",
+      "index.html (12900 bytes)",
+      "insights.html (2641 bytes)",
+      "roadmap.html (2651 bytes)"
+    ],
+    "region_directories": {
+      "usa": ["Broadcom_Roadmap.xlsx"],
+      "taiwan": ["MediaTek_Roadmap.xlsx", "GlobalUnichip_Roadmap.xlsx", "Novatek_Roadmap.xlsx", "Realtek_Roadmap.xlsx", "SiliconPower_Roadmap.xlsx"],
+      "korea": ["SamsungExynos_Roadmap.xlsx", "SKHynix_Roadmap.xlsx"],
+      "japan": ["Renesas_Roadmap.xlsx", "Fujitsu_Roadmap.xlsx", "SonyCIS_Roadmap.xlsx", "Toshiba_Roadmap.xlsx"],
+      "china": ["Loongson_Roadmap.xlsx", "Hygon_Roadmap.xlsx", "THead_Roadmap.xlsx", "Phytium_Roadmap.xlsx", "Zhaoxin_Roadmap.xlsx", "Huawei_Roadmap.xlsx", "Cambricon_Roadmap.xlsx"],
+      "europe": ["Infineon_Roadmap.xlsx", "STMicro_Roadmap.xlsx", "NXP_Roadmap.xlsx"],
+      "foundry": ["TSMC_Roadmap.xlsx"],
+      "intel": ["Intel_Roadmap.xlsx"],
+      "amd": ["AMD_Roadmap.xlsx"],
+      "competitors": ["Competitor_Comparison.xlsx"]
+    },
+    "other_directories": ["nvidia", "packaging", "history", "source_references"]
+  },
+  "coverage_analysis": {
+    "total_companies": 28,
+    "categories": {
+      "fabless": ["AMD", "MediaTek", "Novatek", "Realtek", "SiliconPower", "GlobalUnichip", "Broadcom"],
+      "foundry": ["TSMC"],
+      "idm": ["Intel", "Samsung", "SK Hynix", "Fujitsu", "Toshiba", "Renesas", "Sony", "Infineon", "STMicro", "NXP"],
+      "asic": ["Loongson", "Hygon", "THead", "Phytium", "Zhaoxin", "Huawei", "Cambricon"]
+    },
+    "company_types": {
+      "fabless": 7,
+      "foundry": 1,
+      "idm": 10,
+      "asic": 7
+    }
+  },
+  "storage_usage": {
+    "total_directory_size_bytes": 72704,
+    "total_directory_size_human": "71 KB",
+    "largest_file": "CHIP_Master_Database.xlsx (15227 bytes)"
+  },
+  "documentation_status": {
+    "md_files_readable": 10,
+    "xlsx_files_accessible": 27,
+    "html_dashboards": 4,
+    "overall_health": "Excellent"
+  }
+}

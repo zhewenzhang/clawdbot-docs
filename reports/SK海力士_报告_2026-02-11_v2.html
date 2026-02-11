@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>SK海力士 (SK Hynix) 公司分析报告 v2</title>
+<style>
+@page { size: A4 landscape; margin: 0; }
+body { font-family: 'Microsoft JhengHei', 'Noto Sans TC', Arial, sans-serif; margin: 0; padding: 0; background: #f5f5f5; }
+.page { width: 297mm; height: 210mm; background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%); color: white; page-break-after: always; padding: 10mm 12mm 35mm 12mm; box-sizing: border-box; position: relative; overflow: hidden; }
+.cover-page { display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; }
+.cover-page h1 { font-size: 44px; margin-bottom: 12px; text-shadow: 0 0 30px rgba(255, 100, 100, 0.6); }
+.cover-page h2 { font-size: 26px; color: #ff6b6b; margin-bottom: 40px; }
+.cover-page .meta { font-size: 16px; line-height: 1.8; color: #b0bec5; }
+.cover-page .version { position: absolute; top: 8mm; right: 12mm; font-size: 12px; color: rgba(255,255,255,0.5); }
+.cover-page .tags { margin-top: 25px; display: flex; gap: 12px; flex-wrap: wrap; justify-content: center; }
+.cover-page .tag { background: rgba(255, 107, 107, 0.2); padding: 6px 16px; border-radius: 16px; font-size: 13px; }
+.header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 8px; border-bottom: 2px solid rgba(255, 107, 107, 0.3); margin-bottom: 10px; font-size: 13px; color: #ff8a80; }
+.page-num { background: rgba(255, 107, 107, 0.2); padding: 2px 10px; border-radius: 10px; }
+.section-title { font-size: 20px; color: #ff6b6b; margin: 15px 0 10px 0; padding-left: 10px; border-left: 4px solid #ff6b6b; background: rgba(255, 107, 107, 0.1); padding: 8px 12px; border-radius: 0 8px 8px 0; }
+.content table { width: 100%; border-collapse: collapse; margin: 6px 0; background: rgba(255, 255, 255, 0.05); border-radius: 6px; overflow: hidden; }
+.content td { padding: 8px 10px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 11px; }
+.content td:first-child { background: rgba(255, 107, 107, 0.15); width: 22%; font-weight: bold; }
+.two-col { display: flex; gap: 10px; margin: 8px 0; }
+.two-col > div { flex: 1; }
+.card { background: rgba(255, 255, 255, 0.08); border-radius: 8px; padding: 12px; margin-bottom: 8px; border: 1px solid rgba(255, 255, 255, 0.1); }
+.card h4 { color: #ff6b6b; margin: 0 0 8px 0; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+.card p, .card li { font-size: 11px; line-height: 1.5; color: #e0e0e0; margin: 6px 0; }
+.card ul { margin: 0; padding-left: 18px; }
+.metrics { display: flex; gap: 8px; flex-wrap: wrap; margin: 8px 0; }
+.metric { background: rgba(255, 107, 107, 0.15); padding: 10px; border-radius: 8px; text-align: center; min-width: 80px; flex: 1; }
+.metric .label { font-size: 10px; color: #ff8a80; margin-bottom: 4px; }
+.metric .value { font-size: 18px; font-weight: bold; color: white; }
+.metric .change { font-size: 10px; margin-top: 4px; }
+.metric .change.positive { color: #4caf50; }
+.metric .change.negative { color: #f44336; }
+.chart-container { background: rgba(255, 255, 255, 0.05); border-radius: 8px; padding: 10px; margin: 8px 0; }
+.chart-title { font-size: 12px; color: #ff8a80; margin-bottom: 8px; }
+.chart { display: flex; align-items: flex-end; height: 80px; gap: 8px; padding: 6px 0; }
+.chart-bar { flex: 1; background: linear-gradient(to top, #ff6b6b, #ff8a80); border-radius: 3px 3px 0 0; position: relative; transition: all 0.3s; }
+.chart-bar:hover { opacity: 0.8; transform: scaleY(1.02); }
+.chart-bar .value { position: absolute; top: -18px; left: 50%; transform: translateX(-50%); font-size: 8px; white-space: nowrap; }
+.chart-bar .year { position: absolute; bottom: -18px; left: 50%; transform: translateX(-50%); font-size: 9px; }
+table { width: 100%; border-collapse: collapse; margin: 8px 0; background: rgba(255, 255, 255, 0.05); border-radius: 6px; overflow: hidden; }
+th, td { padding: 8px 10px; text-align: left; font-size: 11px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); }
+th { background: rgba(255, 107, 107, 0.2); color: #ff6b6b; font-weight: bold; }
+.quadrant { display: grid; grid-template-columns: repeat(2, 1fr); grid-template-rows: repeat(2, 1fr); gap: 10px; margin: 15px 0 25px 0; min-height: 240px; }
+.quadrant-item { background: rgba(255, 255, 255, 0.05); border-radius: 10px; padding: 12px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; border: 2px solid rgba(255, 255, 255, 0.1); }
+.quadrant-item.star { border-color: #ff6b6b; background: rgba(255, 107, 107, 0.1); }
+.quadrant-item.cash { border-color: #4caf50; }
+.quadrant-item.question { border-color: #ff6b6b; }
+.quadrant-item.dog { border-color: #9e9e9e; opacity: 0.7; }
+.quadrant-item .icon { font-size: 28px; margin-bottom: 6px; }
+.quadrant-item .title { font-size: 14px; font-weight: bold; margin-bottom: 5px; }
+.quadrant-item .desc { font-size: 10px; color: #b0bec5; }
+.quadrant-item .position { margin-top: 6px; background: rgba(255, 255, 255, 0.1); padding: 3px 10px; border-radius: 12px; font-size: 10px; }
+.score-container { display: flex; gap: 20px; margin: 15px 0; justify-content: center; }
+.score-item { text-align: center; }
+.score-item .score { font-size: 36px; font-weight: bold; color: #ff6b6b; }
+.score-item .label { font-size: 12px; color: #b0bec5; margin-top: 4px; }
+.score-item .bar { width: 80px; height: 6px; background: rgba(255, 255, 255, 0.1); border-radius: 3px; margin-top: 8px; overflow: hidden; }
+.score-item .bar-fill { height: 100%; background: linear-gradient(90deg, #ff6b6b, #ff8a80); border-radius: 3px; }
+.recommend { display: flex; align-items: center; gap: 15px; margin: 15px 0; padding: 15px; background: rgba(255, 107, 107, 0.1); border-radius: 10px; border: 2px solid #ff6b6b; }
+.recommend .grade { font-size: 36px; font-weight: bold; color: #ff6b6b; }
+.recommend .target { font-size: 14px; color: #e0e0e0; }
+.recommend .reason { font-size: 11px; color: #b0bec5; margin-top: 5px; }
+.warning { background: rgba(255, 152, 0, 0.15); border: 1px solid #ff9800; border-radius: 8px; padding: 10px; font-size: 11px; margin: 8px 0; }
+.summary { background: rgba(255, 107, 107, 0.1); border-radius: 8px; padding: 12px; margin-top: 10px; border-left: 4px solid #ff6b6b; }
+.footer { position: absolute; bottom: 6mm; left: 12mm; right: 12mm; display: flex; justify-content: space-between; font-size: 9px; color: rgba(255, 255, 255, 0.5); border-top: 1px solid rgba(255, 255, 255, 0.1); padding-top: 5px; }
+.toc { margin: 30px auto; max-width: 450px; }
+.toc-item { display: flex; justify-content: space-between; padding: 10px 18px; border-bottom: 1px solid rgba(255, 255, 255, 0.1); font-size: 14px; transition: all 0.2s; cursor: pointer; }
+.toc-item:hover { background: rgba(255, 107, 107, 0.1); padding-left: 22px; }
+.highlight { background: rgba(255, 107, 107, 0.2); border: 1px solid #ff6b6b; border-radius: 8px; padding: 12px; margin: 10px 0; }
+</style>
+</head>
+<body>
+
+<!-- 第1页：封面 -->
+<div class="page cover-page">
+<span class="version">v2.0 | 2026-02-11</span>
+<h1>SK海力士 (SK Hynix)</h1>
+<h2>公司分析报告</h2>
+<div class="meta">
+<p>SK Hynix Inc.</p>
+<p>代码：000660.KS | 韩国交易所</p>
+<p>市值：$100B+</p>
+<p>报告日期：2026年2月11日</p>
+</div>
+<div class="tags">
+<span class="tag">⭐ 市场份额：9.5/10</span>
+<span class="tag">📈 成长性：9.0/10</span>
+<span class="tag">🔥 产品热度：10/10</span>
+</div>
+</div>
+
+<!-- 第2页：目录 -->
+<div class="page">
+<div class="header"><span>目录</span><span class="page-num">2</span></div>
+<div class="toc">
+<div class="toc-item"><span>一、公司概况</span><span>3</span></div>
+<div class="toc-item"><span>二、市场份额评估</span><span>4</span></div>
+<div class="toc-item"><span>三、五年财务分析</span><span>5</span></div>
+<div class="toc-item"><span>四、成长性分析</span><span>6</span></div>
+<div class="toc-item"><span>五、产品赛道评估</span><span>7</span></div>
+<div class="toc-item"><span>六、四象限定位</span><span>8</span></div>
+<div class="toc-item"><span>七、风险评估</span><span>9</span></div>
+<div class="toc-item"><span>八、总结与建议</span><span>10</span></div>
+</div>
+<div class="footer"><span>SK海力士 - 公司分析报告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第3页：公司概况 -->
+<div class="page">
+<div class="header"><span>一、公司概况</span><span class="page-num">3</span></div>
+<div class="section-title">1.1 基本信息</div>
+<div class="content">
+<table>
+<tr><td style="width:22%"><strong>公司全称</strong></td><td>SK海力士株式会社 (SK Hynix Inc.)</td></tr>
+<tr><td><strong>英文名称</strong></td><td>SK Hynix Inc.</td></tr>
+<tr><td><strong>总部</strong></td><td>韩国利川市 (Icheon)</td></tr>
+<tr><td><strong>上市地点</strong></td><td>韩国交易所 (000660.KS)</td></tr>
+<tr><td><strong>成立时间</strong></td><td>1983年 (现代电子)</td></tr>
+<tr><td><strong>市值</strong></td><td>$100B+ (全球第二大存储厂商)</td></tr>
+<tr><td><strong>员工规模</strong></td><td>约35,000人</td></tr>
+</table>
+</div>
+<div class="section-title">1.2 发展里程碑</div>
+<div class="card">
+<ul>
+<li><strong>1983</strong>：现代电子成立，开始DRAM生产</li>
+<li><strong>2001</strong>：从现代集团独立，更名为Hynix</li>
+<li><strong>2012</strong>：SK集团收购，更名为SK海力士</li>
+<li><strong>2019</strong>：收购英特尔NAND业务</li>
+<li><strong>2024</strong>：HBM全球市占率50%+，AI存储龙头</li>
+</ul>
+</div>
+<div class="section-title">1.3 业务架构</div>
+<div class="two-col">
+<div class="card"><h4>🏢 DRAM业务 (65%)</h4><p>HBM、DDR5、LPDDR5X。HBM全球市占率50%+，NVIDIA独家供应商。</p></div>
+<div class="card"><h4>🏢 NAND业务 (25%)><p>eSSD、UFS、企业级SSD。收购英特尔NAND后份额提升。</p></div>
+</div>
+<div class="two-col">
+<div class="card"><h4>🏢 先进封装 (10%)</h4><p>HBM封装、TSV工艺、2.5D/3D封装。垂直整合优势。</p></div>
+<div class="card"><h4>🏢 研发能力</h4><p>全球领先的1b nm DRAM工艺，HBM4技术首发。</p></div>
+</div>
+<div class="footer"><span>SK海力士 - 公司分析报告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第4页：市场份额评估 -->
+<div class="page">
+<div class="header"><span>二、市场份额评估</span><span class="page-num">4</span></div>
+<div class="section-title">2.1 全球市场地位</div>
+<div class="content">
+<table>
+<tr><td><strong>HBM高带宽内存</strong></td><td>第1位 | 市占率约50-55%</td></tr>
+<tr><td><strong>DRAM整体</strong></td><td>第2位 | 市占率约28%</td></tr>
+<tr><td><strong>NAND闪存</strong></td><td>第3位 | 市占率约20%</td></tr>
+<tr><td><strong>服务器DRAM</strong></td><td>第2位 | AI服务器领先</td></tr>
+</table>
+</div>
+<div class="section-title">2.2 主要竞争对手</div>
+<div class="card">
+<ul>
+<li><strong>三星 (Samsung)</strong>：DRAM/NAND第1，HBM追赶中</li>
+<li><strong>美光 (Micron)</strong>：DRAM第3，HBM追赶中</li>
+<li><strong>铠侠 (Kioxia)</strong>：NAND第2，DRAM无</li>
+<li><strong>长江存储 (YMTC)</strong>：中国NAND厂商，政策限制</li>
+</ul>
+</div>
+<div class="section-title">2.3 市场份额评分</div>
+<div class="score-container">
+<div class="score-item">
+<div class="score">9.5</div>
+<div class="label">市场份额 (1-10)</div>
+<div class="bar"><div class="bar-fill" style="width: 95%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">9.5</div>
+<div class="label">品牌影响力</div>
+<div class="bar"><div class="bar-fill" style="width: 95%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">9.0</div>
+<div class="label">技术壁垒</div>
+<div class="bar"><div class="bar-fill" style="width: 90%"></div></div>
+</div>
+</div>
+<div class="footer"><span>SK海力士 - 公司分析报告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第5页：五年财务分析 -->
+<div class="page">
+<div class="header"><span>三、五年财务分析</span><span class="page-num">5</span></div>
+<div class="section-title">3.1 营收走势（2020-2024）</div>
+<div class="chart-container">
+<div class="chart-title">年度营收（单位：十亿美元）</div>
+<div class="chart">
+<div class="chart-bar" style="height: 50%"><span class="value">$24B</span><span class="year">2020</span></div>
+<div class="chart-bar" style="height: 65%"><span class="value">$32B</span><span class="year">2021</span></div>
+<div class="chart-bar" style="height: 75%"><span class="value">$36B</span><span class="year">2022</span></div>
+<div class="chart-bar" style="height: 45%"><span class="value">$22B</span><span class="year">2023</span></div>
+<div class="chart-bar" style="height: 95%"><span class="value">$48B</span><span class="year">2024</span></div>
+</div>
+</div>
+<div class="section-title">3.2 关键财务指标（5年数据）</div>
+<div class="content">
+<table>
+<tr><th>指标</th><th>2020</th><th>2021</th><th>2022</th><th>2023</th><th>2024</th><th>CAGR</th></tr>
+<tr><td><strong>营收</strong></td><td>$24B</td><td>$32B</td><td>$36B</td><td>$22B</td><td>$48B</td><td>+19%</td></tr>
+<tr><td><strong>毛利率</strong></td><td>28%</td><td>42%</td><td>45%</td><td>18%</td><td>52%</td><td>+24pp</td></tr>
+<tr><td><strong>净利润</strong></td><td>$1.8B</td><td>$6.5B</td><td>$8.5B</td><td>-$3B</td><td>$15B</td><td>+70%</td></tr>
+<tr><td><strong>HBM营收占比</strong></td><td>5%</td><td>8%</td><td>12%</td><td>18%</td><td>30%</td><td>+55pp</td></tr>
+</table>
+</div>
+<div class="warning">
+<b>⚠️ 数据说明：</b>2023年存储行业周期低谷导致亏损，2024年AI需求爆发业绩强劲反弹。HBM业务占比持续提升。
+</div>
+<div class="footer"><span>SK海力士 - 公司分析报告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第6页：成长性分析 -->
+<div class="page">
+<div class="header"><span>四、成长性分析</span><span class="page-num">6</span></div>
+<div class="section-title">4.1 营收增长率趋势</div>
+<div class="metrics">
+<div class="metric"><div class="label">2024 YoY</div><div class="value">+120%</div><div class="change positive">📈 爆发</div></div>
+<div class="metric"><div class="label">5年 CAGR</div><div class="value">+19%</div><div class="change positive">📈 高速</div></div>
+<div class="metric"><div class="label">HBM CAGR</div><div class="value">+80%</div><div class="change positive">📈 爆发</div></div>
+<div class="metric"><div class="label">研发投入比</div><div class="value">10%</div><div class="change">💰 持续</div></div>
+</div>
+<div class="section-title">4.2 成长驱动因素</div>
+<div class="two-col">
+<div class="card"><h4>🚀 AI算力需求</h4><p>NVIDIA H100/H200/B200独家HBM供应商，AI服务器需求爆发</p></div>
+<div class="card"><h4>🚀 HBM技术领先</h4><p>HBM3E首发，HBM4技术储备领先，12层/16层堆叠量产</p></div>
+</div>
+<div class="section-title">4.3 成长性评分</div>
+<div class="score-container">
+<div class="score-item">
+<div class="score">9.0</div>
+<div class="label">营收成长 (1-10)</div>
+<div class="bar"><div class="bar-fill" style="width: 90%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">9.5</div>
+<div class="label">利润成长</div>
+<div class="bar"><div class="bar-fill" style="width: 95%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">9.0</div>
+<div class="label">市场扩张</div>
+<div class="bar"><div class="bar-fill" style="width: 90%"></div></div>
+</div>
+</div>
+<div class="footer"><span>SK海力士 - 公司分析报告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第7页：产品赛道评估 -->
+<div class="page">
+<div class="header"><span>五、产品赛道评估</span><span class="page-num">7</span></div>
+<div class="section-title">5.1 产品矩阵</div>
+<div class="content">
+<table>
+<tr><th>产品/服务</th><th>应用领域</th><th>市场热度</th><th>成长潜力</th></tr>
+<tr><td>HBM高带宽内存</td><td>AI训练/推理</td><td>🔥 极热</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>DDR5服务器内存</td><td>数据中心/AI</td><td>🔥 热门</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>企业级SSD</td><td>云计算/存储</td><td>📈 成长中</td><td>⭐⭐⭐⭐</td></tr>
+<tr><td>LPDDR5X</td><td>手机/移动设备</td><td>💤 成熟</td><td>⭐⭐⭐</td></tr>
+</table>
+</div>
+<div class="section-title">5.2 赛道热度评估</div>
+<div class="metrics">
+<div class="metric"><div class="label">AI/HBM</div><div class="value">🔥 极热</div></div>
+<div class="metric"><div class="label">服务器DRAM</div><div class="value">🔥 热门</div></div>
+<div class="metric"><div class="label">企业级SSD</div><div class="value">📈 成长中</div></div>
+<div class="metric"><div class="label">消费电子</div><div class="value">💤 成熟</div></div>
+</div>
+<div class="section-title">5.3 产品热度评分</div>
+<div class="score-container">
+<div class="score-item">
+<div class="score">10</div>
+<div class="label">赛道热度 (1-10)</div>
+<div class="bar"><div class="bar-fill" style="width: 100%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">9.5</div>
+<div class="label">技术领先度</div>
+<div class="bar"><div class="bar-fill" style="width: 95%"></div></div>
+</div>
+<div class="score-item">
+<div class="score">9.0</div>
+<div class="label">客户黏性</div>
+<div class="bar"><div class="bar-fill" style="width: 90%"></div></div>
+</div>
+</div>
+<div class="footer"><span>SK海力士 - 公司分析报告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第8页：四象限定位 -->
+<div class="page">
+<div class="header"><span>六、四象限定位</span><span class="page-num">8</span></div>
+<div class="section-title">6.1 BCG-style 四象限</div>
+<div class="quadrant">
+<div class="quadrant-item star">
+<div class="icon">⭐</div>
+<div class="title">明星业务</div>
+<div class="desc">高市场份额 + 高成长性</div>
+<div class="position">HBM (50%+市占, CAGR 80%)</div>
+</div>
+<div class="quadrant-item question">
+<div class="icon">❓</div>
+<div class="title">问题儿童</div>
+<div class="desc">低市场份额 + 高成长性</div>
+<div class="position">HBM4技术储备</div>
+</div>
+<div class="quadrant-item cash">
+<div class="icon">💰</div>
+<div class="title">现金牛</div>
+<div class="desc">高市场份额 + 低成长性</div>
+<div class="position">传统DRAM</div>
+</div>
+<div class="quadrant-item dog">
+<div class="icon">🐕</div>
+<div class="title">瘦狗业务</div>
+<div class="desc">低市场份额 + 低成长性</div>
+<div class="position">消费级NAND</div>
+</div>
+</div>
+<div class="section-title">6.2 评估维度总结</div>
+<div class="score-container">
+<div class="score-item">
+<div class="score">9.5</div>
+<div class="label">市场份额</div>
+</div>
+<div class="score-item">
+<div class="score">9.0</div>
+<div class="label">成长性</div>
+</div>
+<div class="score-item">
+<div class="score">10</div>
+<div class="label">产品热度</div>
+</div>
+</div>
+<div class="summary">
+<b>📊 维度总结：</b>SK海力士在AI存储领域属于绝对的「明星业务」定位，HBM业务同时具备最高市场份额(50%+)和最高成长性(CAGR 80%)，是AI时代最受益的半导体公司之一。
+</div>
+<div class="footer"><span>SK海力士 - 公司分析报告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第9页：风险评估 -->
+<div class="page">
+<div class="header"><span>七、风险评估</span><span class="page-num">9</span></div>
+<div class="section-title">7.1 风险矩阵</div>
+<div class="content">
+<table>
+<tr><th>风险类型</th><th>等级</th><th>描述</th><th>应对措施</th></tr>
+<tr><td><strong>HBM竞争加剧</strong></td><td style="color:#f44336">🔴 高</td><td>三星、美光追赶中</td><td>技术迭代+扩产</td></tr>
+<tr><td><strong>存储周期波动</strong></td><td style="color:#ffc107">🟡 中</td><td>2023年已验证周期风险</td><td>HBM占比提升</td></tr>
+<tr><td><strong>客户集中</strong></td><td style="color:#ffc107">🟡 中</td><td>NVIDIA占比过高</td><td>客户多元化</td></tr>
+<tr><td><strong>地缘政治</strong></td><td style="color:#ffc107">🟡 中</td><td>中美科技竞争</td><td>区域化布局</td></tr>
+</table>
+</div>
+<div class="section-title">7.2 关键风险分析</div>
+<div class="card">
+<ul>
+<li><b>竞争加剧</b>：三星HBM3E追赶上，美光HBM3量产，份额可能下滑</li>
+<li><b>AI需求波动</b>：若AI投资放缓，HBM需求可能不及预期</li>
+<li><b>技术替代</b>：新型存储技术(CXL/存算一体)长期可能影响DRAM需求</li>
+</ul>
+</div>
+<div class="footer"><span>SK海力士 - 公司分析报告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+<!-- 第10页：总结与建议 -->
+<div class="page">
+<div class="header"><span>八、总结与建议</span><span class="page-num">10</span></div>
+<div class="section-title">8.1 公司定位标签</div>
+<div class="tags" style="justify-content: center; margin: 15px 0;">
+<span class="tag" style="font-size: 16px; padding: 10px 20px;">🏆 HBM全球第一</span>
+<span class="tag" style="font-size: 16px; padding: 10px 20px;">🚀 AI时代核心受益</span>
+<span class="tag" style="font-size: 16px; padding: 10px 20px;">🔥 技术绝对领先</span>
+</div>
+<div class="section-title">8.2 个性化总结</div>
+<div class="summary">
+<b>📊 公司概况：</b>全球第二大存储厂商，HBM(高带宽内存)绝对龙头，NVIDIA独家供应商，AI算力核心受益者。<br><br>
+<b>🎯 核心优势：</b>HBM技术领先(50%+市占)+与NVIDIA深度绑定+先进封装垂直整合+1b nm工艺领先。<br><br>
+<b>📈 成长动力：</b>HBM业务CAGR 80%，2024-2027年AI服务器需求持续增长，单车/单卡价值量提升。<br><br>
+<b>⚠️ 主要风险：</b>竞争加剧(三星/美光追赶)、存储周期波动、地缘政治影响。<br><br>
+<b>💡 未来展望：</b>2024-2027年HBM市场CAGR 40%+，SK海力士有望保持45-50%份额，营收CAGR 25%+。
+</div>
+<div class="section-title">8.3 评级建议</div>
+<div class="recommend">
+<div class="grade">A</div>
+<div class="target">
+<p><b>评级：</b>强烈买入</p>
+<p><b>目标价：</b>$200-220</p>
+<p class="reason"><b>逻辑：</b>AI时代最受益标的，HBM龙头地位稳固，技术领先+客户绑定，成长确定性极高。当前估值仍有上行空间。</p>
+</div>
+</div>
+<div class="section-title">8.4 催化剂与风险</div>
+<div class="two-col">
+<div class="card"><h4>🚀 向上催化剂</h4><ul><li>NVIDIA订单超预期</li><li>HBM4技术首发</li><li>AI需求持续爆发</li></ul></div>
+<div class="card"><h4>📉 向下风险</h4><ul><li>HBM份额下滑</li><li>AI投资放缓</li><li>存储周期下行</li></ul></div>
+</div>
+<div class="footer"><span>SK海力士 - 公司分析报告 v2</span><span>2026年2月11日</span></div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>Infineon 英飞凌 公司分析报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:A4 landscape;margin:0}
+body{font-family:'Microsoft YaHei','PingFang SC',Arial;font-size:9pt;color:#333;background:#fff}
+.page{height:100vh;width:100%;padding:12px 18px;page-break-after:always;display:flex;flex-direction:column;overflow:hidden}
+.cover-page{background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh}
+.cover-page h1{font-size:48px;margin-bottom:15px;letter-spacing:5px}
+.cover-page h2{font-size:24px;font-weight:normal;margin-bottom:30px;opacity:0.9}
+.cover-page .meta{font-size:13px;line-height:2;opacity:0.8}
+.header{color:#0f3460;font-size:16px;font-weight:bold;border-bottom:3px solid #0f3460;padding-bottom:6px;margin-bottom:10px;display:flex;justify-content:space-between}
+.header .page-num{font-size:9pt;font-weight:normal;color:#888}
+.section-title{background:linear-gradient(90deg,#0f3460,#1a5f9e);color:#fff;padding:8px 12px;font-size:13px;margin:-12px -18px 10px -18px}
+table{width:100%;border-collapse:collapse;font-size:8pt;page-break-inside:avoid;break-inside:avoid}
+th{background:#0f3460;color:#fff;padding:6px 8px;text-align:left;font-weight:600}
+td{padding:5px 8px;border-bottom:1px solid #e9ecef}
+tr:nth-child(even){background:#f8f9fa}
+.card{background:#f8f9fa;border-radius:6px;padding:10px;margin-bottom:8px;border:1px solid #e9ecef;page-break-inside:avoid;break-inside:avoid}
+.card h4{color:#0f3460;font-size:11px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.card h4::before{content:'';width:3px;height:11px;background:#0f3460;border-radius:2px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px;page-break-inside:avoid;break-inside:avoid}
+.metric{background:#f8f9fa;border-radius:5px;padding:8px;text-align:center;border-left:3px solid #0f3460}
+.metric .label{font-size:7px;color:#666;text-transform:uppercase;margin-bottom:3px}
+.metric .value{font-size:16px;font-weight:bold;color:#0f3460}
+.metric .change{font-size:8px;margin-top:2px}
+.positive{color:#27ae60}
+.negative{color:#e74c3c}
+.neutral{color:#7f8c8d}
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;page-break-inside:avoid;break-inside:avoid}
+.risk{padding:6px;border-radius:5px;text-align:center;font-size:8pt;page-break-inside:avoid;break-inside:avoid}
+.risk-high{background:#fadbd8;border:1px solid #e74c3c}
+.risk-med{background:#fcf3cf;border:1px solid #f39c12}
+.risk-low{background:#d4efdf;border:1px solid #27ae60}
+.risk .level{font-size:7px;font-weight:bold;padding:2px 5px;border-radius:8px;display:inline-block;margin-bottom:3px}
+.risk-high .level{background:#e74c3c;color:#fff}
+.risk-med .level{background:#f39c12;color:#fff}
+.risk-low .level{background:#27ae60;color:#fff}
+.risk .title{font-size:9px;font-weight:bold;margin-bottom:2px}
+.risk .desc{font-size:7px;color:#666}
+.compete{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.compete .name{width:70px;font-size:8pt;font-weight:bold}
+.compete .bar{flex:1;height:12px;background:#e9ecef;border-radius:5px;overflow:hidden}
+.compete .share{height:100%;background:linear-gradient(90deg,#0f3460,#3498db);border-radius:5px}
+.compete .pct{width:35px;text-align:right;font-size:8pt;font-weight:bold;color:#0f3460}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.content{flex:1;overflow:hidden}
+.recommend{background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:12px;border-radius:8px;text-align:center;margin-bottom:8px;page-break-inside:avoid;break-inside:avoid}
+.recommend .grade{font-size:28px;font-weight:bold;margin-bottom:4px}
+.recommend .target{font-size:11px;opacity:0.9}
+.recommend .catalysts{margin-top:6px;display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
+.recommend .catalyst{background:rgba(255,255,255,0.2);padding:3px 8px;border-radius:10px;font-size:8px}
+.summary{background:linear-gradient(135deg,#fff9e6,#ffeaa7);border-left:4px solid #f39c12;padding:8px 10px;border-radius:0 6px 6px 0;margin-bottom:8px;page-break-inside:avoid;break-inside:avoid}
+.summary p{font-size:9pt;line-height:1.4}
+.footer{font-size:7px;color:#999;border-top:1px solid #e9ecef;padding-top:5px;display:flex;justify-content:space-between}
+.toc{padding:15px 25px;page-break-inside:avoid;break-inside:avoid}
+.toc h3{color:#0f3460;font-size:18px;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #0f3460}
+.toc-item{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e9ecef;font-size:10pt}
+.warning{background:#fff3cd;border:1px solid #ffc107;border-radius:5px;padding:8px;font-size:8pt;color:#856404;page-break-inside:avoid;break-inside:avoid}
+</style>
+</head>
+<body>
+<!-- 封面 -->
+<div class="page cover-page">
+<h1>Infineon</h1>
+<h2>公司分析報告</h2>
+<div class="meta">
+<p>英飛凌科技股份公司</p>
+<p>Infineon Technologies AG</p>
+<p>股票代碼：IFX (法蘭克福交易所)</p>
+<p>報告日期：2026年2月10日</p>
+<p>分析師：Clawdbot AI</p>
+</div>
+</div>
+
+<!-- 目錄 -->
+<div class="page">
+<div class="header"><span>目錄</span><span class="page-num">1</span></div>
+<div class="toc">
+<h3>目錄</h3>
+<div class="toc-item"><span>一、公司概況</span><span>2</span></div>
+<div class="toc-item"><span>二、財務分析</span><span>3</span></div>
+<div class="toc-item"><span>三、產品Roadmap</span><span>4</span></div>
+<div class="toc-item"><span>四、市場競爭格局</span><span>5</span></div>
+<div class="toc-item"><span>五、風險評估</span><span>6</span></div>
+<div class="toc-item"><span>六、投資價值分析</span><span>7</span></div>
+<div class="toc-item"><span>七、附錄</span><span>8</span></div>
+</div>
+<div class="footer"><span>Infineon 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 一、公司概況 -->
+<div class="page">
+<div class="header"><span>一、公司概況</span><span class="page-num">2</span></div>
+<div class="section-title">1.1 公司基本信息</div>
+<div class="content">
+<table>
+<tr><td style="width:25%"><strong>公司全稱</strong></td><td>Infineon Technologies AG</td></tr>
+<tr><td><strong>英文名稱</strong></td><td>Infineon Technologies AG</td></tr>
+<tr><td><strong>股票代碼</strong></td><td>IFX (法蘭克福交易所)</td></tr>
+<tr><td><strong>上市時間</strong></td><td>2000年3月</td></tr>
+<tr><td><strong>總部位於</strong></td><td>德國慕尼黑</td></tr>
+<tr><td><strong>員工人數</strong></td><td>約58,000人</td></tr>
+<tr><td><strong>主營業務</strong></td><td>功率半導體、汽車電子、工業功率控制、安全芯片</td></tr>
+<tr><td><strong>核心產品</strong></td><td>IGBT、SiC MOSFET、MCU、傳感器</td></tr>
+<tr><td><strong>市場地位</strong></td><td>全球功率半導體領導者、汽車半導體前三</td></tr>
+<tr><td><strong>CEO</strong></td><td>Jochen Hanebeck</td></tr>
+</table>
+</div>
+<div class="footer"><span>Infineon 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 1.2 業務架構 -->
+<div class="page">
+<div class="header"><span>一、公司概況（續）</span><span class="page-num">3</span></div>
+<div class="section-title">1.2 業務架構</div>
+<div class="content">
+<div class="two-col">
+<div>
+<div class="card"><h4>核心業務板塊</h4>
+<ul><li><strong>汽車電子 (45%)</strong>：車規級MCU、功率半導體</li><li><strong>電源與傳感 (25%)</strong>：消費電子功率器件</li><li><strong>工業功率控制 (20%)</strong>：IGBT模塊</li><li><strong>安全互聯系統 (10%)</strong>：安全芯片、NFC</li></ul></div>
+</div>
+<div>
+<div class="card"><h4>下游應用領域</h4>
+<ul><li>汽車（電動車、自動駕駛）</li><li>工業設備（電機、變頻器）</li><li>能源（太陽能、風電）</li><li>消費電子（手機、家電）</li></ul></div>
+</div>
+</div>
+</div>
+<div class="section-title">1.3 核心競爭優勢</div>
+<div class="content">
+<table>
+<tr><th>優勢</th><th>說明</th></tr>
+<tr><td><strong>功率半導體全球第一</strong></td><td>IGBT市場份額全球第一，SiC前三</td></tr>
+<tr><td><strong>汽車半導體龍頭</strong></td><td>全球汽車半導體市場份額前三</td></tr>
+<tr><td><strong>技術領先</strong></td><td>SiC、GaN等第三代半導體技術領先</td></tr>
+</table>
+</div>
+<div class="footer"><span>Infineon 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 二、財務分析 -->
+<div class="page">
+<div class="header"><span>二、財務分析</span><span class="page-num">4</span></div>
+<div class="section-title">2.1 核心財務指標</div>
+<div class="metrics">
+<div class="metric"><div class="label">FY2024營收</div><div class="value">€149.6億</div><div class="change negative">YoY -8%</div></div>
+<div class="metric"><div class="label">淨利潤</div><div class="value">€25.4億</div><div class="change negative">YoY -12%</div></div>
+<div class="metric"><div class="label">毛利率</div><div class="value">40.2%</div><div class="change neutral">同比持平</div></div>
+<div class="metric"><div class="label">部門利潤率</div><div class="value">20.8%</div><div class="change neutral">穩健</div></div>
+</div>
+<div class="section-title">2.2 五年營收與利潤趨勢</div>
+<div class="content">
+<table>
+<tr><th>指標</th><th>FY2020</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr>
+<tr><td>營業收入（億歐元）</td><td>85.2</td><td>110.6</td><td>142.6</td><td>163.1</td><td>149.6</td></tr>
+<tr><td>營收YoY</td><td>-</td><td>+30%</td><td>+29%</td><td>+14%</td><td>-8%</td></tr>
+<tr><td>淨利潤（億歐元）</td><td>3.7</td><td>12.7</td><td>33.8</td><td>28.9</td><td>25.4</td></tr>
+<tr><td>毛利率</td><td>34.8%</td><td>38.6%</td><td>43.2%</td><td>41.5%</td><td>40.2%</td></tr>
+</table>
+</div>
+<div class="footer"><span>Infineon 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 2.3 現金流 -->
+<div class="page">
+<div class="header"><span>二、財務分析（續）</span><span class="page-num">5</span></div>
+<div class="section-title">2.3 現金流與資本支出</div>
+<div class="two-col">
+<div>
+<div class="card"><h4>資本支出 (CapEx)</h4>
+<table><tr><th>年度</th><th>金額</th><th>佔營收比</th></tr>
+<tr><td>FY2020</td><td>€12.5億</td><td>14.7%</td></tr>
+<tr><td>FY2021</td><td>€14.8億</td><td>13.4%</td></tr>
+<tr><td>FY2022</td><td>€18.2億</td><td>12.8%</td></tr>
+<tr><td>FY2023</td><td>€20.5億</td><td>12.6%</td></tr>
+<tr><td>FY2024E</td><td>€22.0億</td><td>14.7%</td></tr></table></div>
+</div>
+<div>
+<div class="card"><h4>經營性現金流</h4>
+<table><tr><th>年度</th><th>金額</th><th>狀態</th></tr>
+<tr><td>FY2020</td><td>€18.5億</td><td>健康</td></tr>
+<tr><td>FY2021</td><td>€24.8億</td><td>強勁</td></tr>
+<tr><td>FY2022</td><td>€32.5億</td><td>顯著改善</td></tr>
+<tr><td>FY2023</td><td>€35.2億</td><td>維持高位</td></tr>
+<tr><td>FY2024E</td><td>€32.0億</td><td>仍強勁</td></tr></table></div>
+</div>
+</div>
+<div class="footer"><span>Infineon 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 三、產品Roadmap -->
+<div class="page">
+<div class="header"><span>三、產品Roadmap</span><span class="page-num">6</span></div>
+<div class="section-title">3.1 功率半導體產品線</div>
+<div class="content">
+<table>
+<tr><th>產品類型</th><th>代際</th><th>發布時間</th><th>製程</th><th>電壓範圍</th><th>應用場景</th></tr>
+<tr><td>IGBT</td><td>TRENCHSTOP 7</td><td>2024</td><td>7代芯片</td><td>650V-1200V</td><td>工業、汽車</td></tr>
+<tr><td>SiC MOSFET</td><td>CoolSiC Gen2</td><td>2023</td><td>8英寸</td><td>650V-1200V</td><td>電動車、太陽能</td></tr>
+<tr><td>GaN</td><td>CoolGaN Gen2</td><td>2024</td><td>8英寸</td><td>650V</td><td>快充、數據中心</td></tr>
+</table>
+</div>
+<div class="section-title">3.2 汽車半導體產品線</div>
+<div class="content">
+<table>
+<tr><th>產品</th><th>發布時間</th><th>製程</th><th>特點</th><th>應用</th></tr>
+<tr><td>AURIX TC4xx</td><td>2024</td><td>28nm</td><td>RISC-V架構</td><td>底盤控制、自動駕駛</td></tr>
+<tr><td>AURIX TC3xx</td><td>2019-2023</td><td>28nm</td><td>TriCore架構</td><td>動力總成、安全</td></tr>
+<tr><td>Traveo T2G</td><td>2023</td><td>14nm</td><td>高性能</td><td>車身、座艙</td></tr>
+</table>
+</div>
+<div class="footer"><span>Infineon 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 四、市場競爭格局 -->
+<div class="page">
+<div class="header"><span>四、市場競爭格局</span><span class="page-num">7</span></div>
+<div class="section-title">4.1 全球功率半導體市場份額</div>
+<div class="content">
+<div class="compete"><span class="name">英飛凌</span><div class="bar"><div class="share" style="width:30%"></div></div><span class="pct">30%</span></div>
+<div class="compete"><span class="name">安森美</span><div class="bar"><div class="share" style="width:18%"></div></div><span class="pct">18%</span></div>
+<div class="compete"><span class="name">意法半導體</span><div class="bar"><div class="share" style="width:15%"></div></div><span class="pct">15%</span></div>
+</div>
+<div class="section-title">4.2 SWOT分析</div>
+<div class="two-col">
+<div>
+<div class="card"><h4>💪 優勢</h4><ul><li>功率半導體全球第一</li><li>SiC技術領先</li><li>汽車半導體龍頭</li></ul></div>
+</div>
+<div>
+<div class="card"><h4>🚀 機會</h4><ul><li>電動車滲透率提升</li><li>SiC需求爆發</li><li>可再生能源投資加速</li></ul></div>
+</div>
+</div>
+<div class="footer"><span>Infineon 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 五、風險評估 -->
+<div class="page">
+<div class="header"><span>五、風險評估</span><span class="page-num">8</span></div>
+<div class="section-title">5.1 風險矩陣</div>
+<div class="risk-grid">
+<div class="risk risk-high"><div class="level">高風險</div><div class="title">市場週期風險</div><div class="desc">半導體景氣週期波動</div></div>
+<div class="risk risk-med"><div class="level">中風險</div><div class="title">競爭加劇</div><div class="desc">中國企業追趕</div></div>
+<div class="risk risk-low"><div class="level">低風險</div><div class="title">技術壁壘</div><div class="desc">持續投入研發</div></div>
+</div>
+<div class="section-title">5.2 核心風險</div>
+<div class="card risk-high"><h4>🔴 高風險：市場週期</h4><p>FY2024營收同比下降8%，主要受工業和消費電子需求放緩影響。</p></div>
+<div class="card risk-med"><h4>🟡 中風險：中國競爭</h4><p>中國功率半導體企業快速追趕，可能對中低端市場形成壓力。</p></div>
+<div class="footer"><span>Infineon 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 六、投資價值 -->
+<div class="page">
+<div class="header"><span>六、投資價值分析</span><span class="page-num">9</span></div>
+<div class="section-title">6.1 估值指標</div>
+<div class="content">
+<table>
+<tr><th>指標</th><th>數值</th><th>備註</th></tr>
+<tr><td>當前市值</td><td>約€480億</td><td>2026年2月</td></tr>
+<tr><td>PE (TTM)</td><td>約19x</td><td>低於歷史平均</td></tr>
+<tr><td>EV/EBITDA</td><td>約10x</td><td>合理估值</td></tr>
+</table>
+</div>
+<div class="section-title">6.2 買入理由</div>
+<div class="card"><h4>✅ 電動車與SiC核心受益者</h4><p>Infineon是全球SiC功率半導體領導者，受益於電動車滲透率提升。</p></div>
+<div class="card"><h4>✅ 估值具有吸引力</h4><p>PE 19x顯著低於歷史平均，估值具有安全邊際。</p></div>
+<div class="section-title">6.3 投資建議</div>
+<div class="recommend"><div class="grade">持有</div><div class="target">目標價：€48-55</div></div>
+<div class="footer"><span>Infineon 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 七、附錄 -->
+<div class="page">
+<div class="header"><span>七、附錄</span><span class="page-num">10</span></div>
+<div class="section-title">7.1 關鍵術語</div>
+<div class="content">
+<table>
+<tr><th>術語</th><th>解釋</th></tr>
+<tr><td>IGBT</td><td>絕緣柵雙極型晶體管</td></tr>
+<tr><td>SiC</td><td>碳化硅，第三代半導體</td></tr>
+<tr><td>GaN</td><td>氮化鎵，第三代半導體</td></tr>
+<tr><td>AURIX</td><td>Infineon汽車微控制器系列</td></tr>
+</table>
+</div>
+<div class="section-title">7.2 免責聲明</div>
+<div class="warning"><strong>重要提示：</strong>本報告僅供投資參考，不構成任何投資建議。</div>
+<div class="summary"><p><strong>報告總結：</strong>Infineon作為全球功率半導體龍頭，在SiC和電動車趨勢下具有長期成長動力。</p></div>
+<div class="footer"><span>Infineon 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+</body></html>

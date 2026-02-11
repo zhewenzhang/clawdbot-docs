@@ -1,0 +1,76 @@
+company,country,region,category,products,process_node,abf_demand,competitor,market_position,funding_status,data_source,last_updated
+NVIDIA,USA,北美,AI加速器/GPU,H100/B200/GB200 (Blackwell),4nm,极高,AMD MI300X,龙头,上市,NVIDIA官网/财报,2026-02-05
+AMD,USA,北美,AI加速器/CPU/GPU,MI300X/MI400 (CDNA3),5nm,极高,NVIDIA Blackwell,挑战者,上市,AMD Advancing AI 2025,2026-02-05
+Intel,USA,北美,CPU/GPU,Gaudi 3/Falcon Shores,7nm,高,NVIDIA H100,挑战者,上市,Intel官网/投资者日2025,2026-02-05
+Apple,USA,北美,CPU/GPU,M4/M5系列,3nm,低,高通 Snapdragon X,定制化SoC,上市,Apple官网,2026-02-05
+Google TPU,USA,北美,AI加速器,TPU v5/v6/Ironwood,5nm,中,NVIDIA GPU,云端AI第二,上市,Google Cloud官网,2026-02-05
+Qualcomm,USA,北美,CPU/网通/AI,Snapdragon X Elite/AI Hub,4nm,低,Intel/AMD PC,ARM PC新竞争者,上市,Qualcomm官网2025,2026-02-05
+Groq,USA,北美,AI加速器,LPU (Tensor Streaming),5nm,中,NVIDIA T4/A100,AI推理新秀,私募,Groq官网/Fortune 2026,2026-02-05
+Cerebras,USA,北美,AI加速器,WSE-2/WSE-3 (晶圆级),7nm/5nm,高,NVIDIA DGX,超大尺寸AI训练,私募,Cerebras官网/IntuitionLabs,2026-02-05
+SambaNova,USA,北美,AI加速器,SN40L (Chiplet设计),7nm,高,NVIDIA DGX,企业级AI训练,私募,SambaNova官网,2026-02-05
+Graphcore,UK,欧洲,AI加速器,IPU (Bow/Still),7nm,中,NVIDIA GPU,英国AI独角兽,被收购,Graphcore官网/退出中国市场,2026-02-05
+Mythic,USA,北美,AI加速器,模拟AI芯片 (存内计算),28nm,低,NVIDIA Jetson,边缘AI模拟计算,私募,Mythic官网,2026-02-05
+Untether AI,USA,北美,AI加速器,runAI架构,7nm,低,Google TPU,边缘AI推理,被AMD收购,AMD收购公告,2026-02-05
+Tenstorrent,加拿大,北美,AI加速器,Blackhole/Wormhole,12nm/5nm,高,NVIDIA GPU,开源RISC-V AI,私募,Tenstorrent官网,2026-02-05
+Marvell,USA,北美,网通芯片,Alaska C系列/硅光模块,5nm,高,Broadcom,数据中心互连芯片,上市,Marvell官网,2026-02-05
+Broadcom,USA,北美,网通/AI,Jericho3-AI/XGS系列,5nm,高,Marvell,网通芯片龙头/AI ASIC,上市,Broadcom官网,2026-02-05
+Cisco,USA,北美,网通芯片,Silicon One系列,7nm,中,Broadcom/Marvell,网络设备集成芯片,上市,Cisco官网,2026-02-05
+Analog Devices,USA,北美,模拟芯片,数据转换器/电源管理IC,10nm,低,TI,模拟信号处理,上市,ADI官网,2026-02-05
+TI,USA,北美,模拟芯片,TI 10nm模拟工艺/嵌入式处理器,10nm,低,ADI,模拟芯片龙头,上市,TI官网,2026-02-05
+Skyworks,USA,北美,射频芯片,RF Front-End/5G/6G模块,10nm,低,Qorvo,射频前端芯片,上市,Skyworks官网,2026-02-05
+Qorvo,USA,北美,射频芯片,RF Fusion/氮化镓功率器件,10nm,低,Skyworks,射频前端芯片,上市,Qorvo官网,2026-02-05
+Infineon,德国,欧洲,汽车芯片,AURIX MCU/CoolSiC功率器件,14nm,中,NXP/ST,汽车功率半导体龙头,上市,Infineon官网,2026-02-05
+STMicroelectronics,意大利/法国,欧洲,汽车芯片,Stellar架构/SiC功率器件,16nm,中,NXP/Infineon,汽车/工业半导体,上市,ST官网,2026-02-05
+NXP,荷兰,欧洲,汽车芯片,S32系列/i.MX处理器,16nm,中,Infineon/ST,汽车/工业MCU,上市,NXP官网,2026-02-05
+Bosch,德国,欧洲,汽车芯片,车规级MCU/MEMS传感器,28nm,低,车厂自研芯片,汽车Tier 1供应商,上市,Bosch官网,2026-02-05
+Imagination Technologies,UK,欧洲,GPU/IP,PowerVR GPU/Catapult CPU,7nm,中,Arm/Qualcomm,GPU IP授权,上市,Imagination官网,2026-02-05
+Arm,UK,欧洲,CPU/IP,Neoverse V2/N2,7nm,中,Intel x86,CPU IP授权龙头,上市,Arm官网,2026-02-05
+Mobileye,以色列,中东,自动驾驶,EyeQ6系列/SuperVision,7nm,中,特斯拉FSD,ADAS芯片龙头,上市,Mobileye官网,2026-02-05
+Vayyar,以色列,中东,自动驾驶,4D雷达芯片,28nm,低,Mobileye,车内/车外感知,私募,Vayyar官网,2026-02-05
+Hailo,以色列,中东,AI芯片,Hailo-10H,16nm,低,NVIDIA Jetson,边缘AI加速器,私募,Hailo官网,2026-02-05
+NeuReality,以色列,中东,AI芯片,NR1系列,7nm,低,NVIDIA Triton,数据中心AI推理,私募,NeuReality官网,2026-02-05
+Habana Labs,以色列,中东,AI加速器,Gaudi 2/3 (Intel旗下),7nm,高,NVIDIA H100,AI训练加速器,Intel旗下,Intel官网,2026-02-05
+Cortica,以色列,中东,AI芯片,自主AI架构,28nm,低,其他AI芯片,无服务器AI推理,私募,Cortica官网,2026-02-05
+Nscale,UK,欧洲,AI数据中心/芯片,AI云服务基础设施,7nm,高,NVIDIA DGX Cloud,Nvidia投资的AI云,私募,Nvidia投资公告,2026-02-05
+Quantinuum,USA,北美,量子计算,量子处理器,特殊工艺,低,N/A,量子计算领先,私募,Nvidia投资公告,2026-02-05
+Rebellions,韩国,亚太,AI加速器,Rebel-Quad (SAPEON合并),4nm,高,NVIDIA H100,韩国AI芯片独角兽,IPO筹备,CRN/行业新闻,2026-02-05
+Lightmatter,USA,北美,光子计算芯片,M1000/L200 (光学带宽),特殊工艺,高,NVIDIA GPU,光子计算领先,私募,CRN/行业新闻,2026-02-05
+Speedata,以色列,中东,APU,Callisto (数据分析APU),7nm,中,Intel/AMD GPU,数据分析加速,私募,CRN/行业新闻,2026-02-05
+Blumind,USA,北美,AI芯片,AI推理芯片,7nm,中,NVIDIA,AI推理新秀,私募,行业新闻,2026-02-05
+Enfabrica,USA,北美,AI芯片,AI加速器芯片,7nm,高,NVIDIA,AI互连芯片,私募,行业新闻,2026-02-05
+Mistral,法国,欧洲,AI模型/芯片,AI模型/潜在芯片,特殊工艺,低,N/A,欧洲AI希望,Nvidia/ASML投资,Bloomberg,2026-02-05
+Humain,沙特,中东,AI芯片,AI云服务/芯片,特殊工艺,中,N/A,沙特AI国家战略,政府投资,行业新闻,2026-02-05
+Axelera AI,荷兰,欧洲,边缘AI,Titania/D-IMC架构,特殊工艺,低,NVIDIA Jetson,欧洲边缘AI,私募,CRN/行业新闻,2026-02-05
+Celestial AI,USA,北美,光互连,Photonic Fabric,特殊工艺,高,NVIDIA互连,光互连领先,私募,CRN/行业新闻,2026-02-05
+Cornelis Networks,USA,北美,网络解决方案,CN5000系列 (800Gbps),7nm,中,NVIDIA互连,Intel分拆/Scale-out网络,私募,CRN/行业新闻,2026-02-05
+d-Matrix,USA,北美,存内计算,Corsair/SquadRack,特殊工艺,高,NVIDIA GPU,存内计算领先,私募,CRN/行业新闻,2026-02-05
+FuriosaAI,韩国,亚太,AI加速器,RNGD/NXT RNGD Server,7nm,高,NVIDIA H100,韩国AI芯片,私募,CRN/行业新闻,2026-02-05
+NextSilicon,以色列,中东,AI加速器/CPU,Maverick-2/Arbel (RISC-V),7nm,高,NVIDIA/Intel/AMD,高效AI芯片,私募,CRN/行业新闻,2026-02-05
+Tsavorite Scalable Intelligence,USA,北美,CPU/GPU,Omni Processing Unit (OPU),7nm,高,NVIDIA GPU,统一处理器,私募,CRN/行业新闻,2026-02-05
+Xsight Labs,以色列,中东,DPU,E1-SoC/E1-Server,7nm,中,NVIDIA/Mellanox,800G DPU,私募,CRN/行业新闻,2026-02-05
+AWS Tranium,USA,北美,AI加速器,Tranium1/2 (训练),5nm,高,NVIDIA H100,云厂商自研第二,上市,AWS官网,2026-02-05
+AWS Inferentia,USA,北美,AI加速器,Inferentia1/2 (推理),7nm,高,NVIDIA T4,云厂商自研推理,上市,AWS官网,2026-02-05
+Microsoft Maia,USA,北美,AI加速器,Maia 100/Braga,5nm,高,NVIDIA GPU,云厂商自研AI,上市,Microsoft官网,2026-02-05
+Meta MTIA,USA,北美,AI加速器,MTIA v1/v2,5nm,中,NVIDIA GPU,Meta自研训练,上市,Meta官网,2026-02-05
+IBM AIU,USA,北美,AI加速器,AIU (深度学习),7nm,中,NVIDIA GPU,IBM深度学习芯片,上市,IBM官网,2026-02-05
+Alibaba Hanguang,中国大陆,亚太,AI加速器,Hanguang 800,7nm,中,NVIDIA,阿里AI推理,上市,阿里云官网,2026-02-05
+_openAI/Broadcom,USA,北美,AI加速器,AI推理芯片 (设计阶段),3nm,高,NVIDIA GPU,OpenAI自研,设计阶段,Broadcom合作公告,2026-02-05
+_etched,USA,北美,AI加速器,Sohu (Transformer ASIC),5nm,高,NVIDIA B200,Transformer专用,私募,行业新闻,2026-02-05
+Extropic,USA,北美,前沿计算,热力学计算芯片,特殊工艺,低,N/A,可逆计算先驱,私募,行业新闻,2026-02-05
+Vaire,UK,欧洲,前沿计算,可逆计算测试芯片,特殊工艺,低,N/A,可逆计算,私募,行业新闻,2026-02-05
+SiFive,USA,北美,RISC-V IP,Intelligence X100系列/P870-D,7nm/5nm,中,Arm Neoverse,RISC-V IP龙头,私募,SiFive官网,2026-02-05
+Andes Technology,台湾,亚太,RISC-V IP,N系列/E系列,12nm,中,SiFive,RISC-V IP重要玩家,上市,Andes官网,2026-02-05
+Codasip,捷克,欧洲,RISC-V IP,RISC-V定制化,12nm,低,SiFive/Andes,RISC-V IP,私募,Codasip官网,2026-02-05
+Semidynamics,西班牙,欧洲,RISC-V IP,RISC-V高性能IP,12nm,低,SiFive,RISC-V欧洲玩家,私募,行业新闻,2026-02-05
+Think Silicon,希腊,欧洲,RISC-V IP,超低功耗RISC-V,28nm,低,SiFive,边缘RISC-V,私募,行业新闻,2026-02-05
+StarFive,中国大陆,亚太,RISC-V IP,RISC-V SoC,14nm,中,SiFive,中国RISC-V,私募,行业新闻,2026-02-05
+Synopsys,USA,北美,RISC-V IP,ARC RISC-V,7nm,低,SiFive,EDA+RISC-V,上市,Synopsys官网,2026-02-05
+Espressif Systems,中国大陆,亚太,WiFi/蓝牙SoC,ESP32系列,40nm,低,其他WiFi芯片,WiFi SoC全球第一,上市,Espressif官网,2026-02-05
+Raspberry Pi,UK,欧洲,SoC,RP2040/Pico,28nm,低,其他MCU,单板计算机芯片,上市,Raspberry Pi官网,2026-02-05
+Lattice,USA,北美,FPGA,iCE40/ECP5,28nm,低,Xilinx/Intel,低功耗FPGA,上市,Lattice官网,2026-02-05
+Microchip,USA,北美,FPGA/MCU,FPGA/MCU产品线,28nm,低,Xilinx/Intel,FPGA/MCU,上市,Microchip官网,2026-02-05
+Achronix,USA,北美,FPGA,Speedster,16nm,中,Xilinx,高性能FPGA,私募,Achronix官网,2026-02-05
+QuickLogic,USA,北美,eFPGA,eFPGA,22nm,低,Lattice,嵌入式FPGA,上市,QuickLogic官网,2026-02-05
+Flex Logix,USA,北美,eFPGA,eFPGA,22nm,低,Lattice,嵌入式FPGA,私募,Flex Logix官网,2026-02-05
+Menta,法国,欧洲,eFPGA,eFPGA,22nm,低,Lattice,欧洲eFPGA,私募,Menta官网,2026-02-05
+Prophesee,法国,欧洲,事件相机,事件视觉传感器,特殊工艺,低,其他视觉芯片,事件相机,私募,Prophesee官网,2026-02-05

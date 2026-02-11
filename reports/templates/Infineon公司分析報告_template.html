@@ -1,0 +1,597 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>Infineon公司分析報告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:A4 landscape;margin:0}
+body{font-family:'Microsoft JhengHei','Microsoft YaHei',Arial;font-size:11pt;color:#333;background:#fff}
+.page{min-height:100vh;padding:20px 30px;position:relative}
+
+/* 封面 */
+.cover{background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:48px;margin-bottom:20px;letter-spacing:8px}
+.cover h2{font-size:24px;font-weight:normal;margin-bottom:40px;opacity:0.9}
+.cover .meta{font-size:14px;line-height:2;opacity:0.8}
+.cover .badge{position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.15);padding:10px 20px;border-radius:25px;font-size:12px}
+
+/* 頁眉 */
+.header{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #0f3460;padding-bottom:10px;margin-bottom:15px}
+.header h2{color:#0f3460;font-size:20px}
+.header .page-num{font-size:10px;color:#888}
+
+/* 標題區 */
+.section-title{background:linear-gradient(90deg,#0f3460,#1a5f9e);color:#fff;padding:12px 20px;font-size:16px;margin:-20px -30px 15px -30px}
+
+/* 表格 */
+table{width:100%;border-collapse:collapse;font-size:10pt}
+th{background:#0f3460;color:#fff;padding:10px 12px;text-align:left;font-weight:600}
+td{padding:8px 12px;border-bottom:1px solid #e9ecef}
+tr:nth-child(even){background:#f8f9fa}
+
+/* 卡片式佈局 */
+.card{background:#f8f9fa;border-radius:10px;padding:15px;margin-bottom:15px;border:1px solid #e9ecef}
+.card h4{color:#0f3460;font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4::before{content:'';width:4px;height:14px;background:#0f3460;border-radius:2px}
+
+/* 指標卡片 */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:15px}
+.metric{background:#f8f9fa;border-radius:8px;padding:12px;text-align:center;border-left:4px solid #0f3460}
+.metric .label{font-size:9px;color:#666;text-transform:uppercase;margin-bottom:5px}
+.metric .value{font-size:20px;font-weight:bold;color:#0f3460}
+.metric .change{font-size:10px;margin-top:3px}
+.positive{color:#27ae60}
+.negative{color:#e74c3c}
+.neutral{color:#7f8c8d}
+
+/* 進度條 */
+.progress-bar{height:18px;background:#e9ecef;border-radius:9px;overflow:hidden;margin:6px 0}
+.progress-fill{height:100%;background:linear-gradient(90deg,#0f3460,#3498db);border-radius:9px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:9px;font-weight:bold}
+
+/* 風險卡片 */
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.risk{padding:10px;border-radius:8px;text-align:center;font-size:10pt}
+.risk-high{background:#fadbd8;border:1px solid #e74c3c}
+.risk-med{background:#fcf3cf;border:1px solid #f39c12}
+.risk-low{background:#d4efdf;border:1px solid #27ae60}
+.risk .level{font-size:9px;font-weight:bold;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:5px}
+.risk-high .level{background:#e74c3c;color:#fff}
+.risk-med .level{background:#f39c12;color:#fff}
+.risk-low .level{background:#27ae60;color:#fff}
+.risk .title{font-size:11px;font-weight:bold;margin-bottom:3px}
+.risk .desc{font-size:9px;color:#666}
+
+/* 投資建議 */
+.recommend{background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:20px;border-radius:12px;text-align:center;margin-bottom:15px}
+.recommend .grade{font-size:36px;font-weight:bold;margin-bottom:5px}
+.recommend .target{font-size:14px;opacity:0.9}
+.recommend .catalysts{margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.recommend .catalyst{background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:15px;font-size:10px}
+
+/* 頁腳 */
+.footer{position:absolute;bottom:10px;left:30px;right:30px;display:flex;justify-content:space-between;font-size:8px;color:#999;border-top:1px solid #e9ecef;padding-top:8px}
+
+/* 目錄 */
+.toc{padding:30px 40px}
+.toc h3{color:#0f3460;font-size:22px;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #0f3460}
+.toc-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #e9ecef;font-size:13px}
+
+/* 兩欄佈局 */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.full-width{grid-column:1/-1}
+
+/* 公司概況表格 */
+.info-table td:nth-child(1){width:120px;font-weight:bold;color:#0f3460;background:#f8f9fa}
+.info-table td:nth-child(2){}
+
+/* Roadmap表格 */
+.roadmap th{font-size:9pt}
+.roadmap td{font-size:9pt;padding:6px 10px}
+.roadmap .year{text-align:center;font-weight:bold;background:#0f3460;color:#fff}
+
+/* 競爭格局 */
+.compete{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.compete .name{width:100px;font-size:10pt;font-weight:bold}
+.compete .bar{flex:1;height:16px;background:#e9ecef;border-radius:8px;overflow:hidden}
+.compete .share{height:100%;background:linear-gradient(90deg,#0f3460,#3498db);border-radius:8px}
+.compete .pct{width:45px;text-align:right;font-size:10pt;font-weight:bold;color:#0f3460}
+
+/* 摘要框 */
+.summary{background:linear-gradient(135deg,#fff9e6,#ffeaa7);border-left:4px solid #f39c12;padding:12px 15px;border-radius:0 10px 10px 0;margin-bottom:15px}
+.summary p{font-size:11pt;line-height:1.5}
+
+/* 圖例說明 */
+.legend{font-size:9px;color:#666;margin-top:10px}
+
+/* 警告框 */
+.warning{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px;font-size:10pt;color:#856404}
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="page cover">
+<div class="badge">📊 IC Design</div>
+<h1>Infineon</h1>
+<h2>公司分析報告</h2>
+<div class="meta">
+<p>英飛凌半導體科技股份有限公司</p>
+<p>Infineon Technologies AG</p>
+<p>報告日期：2026年2月9日</p>
+<p>分析框架：McKinsey + BCG + Bain</p>
+</div>
+</div>
+
+<!-- 目錄 -->
+<div class="page">
+<div class="header">
+<h2>目錄</h2>
+<span class="page-num">Infineon公司分析報告</span>
+</div>
+<div class="toc">
+<h3>目錄</h3>
+<div class="toc-item"><span>1. 公司概況</span><span>01</span></div>
+<div class="toc-item"><span>2. 產品Roadmap（簡易版）</span><span>02</span></div>
+<div class="toc-item"><span>3. 產品Roadmap（詳細版）</span><span>03</span></div>
+<div class="toc-item"><span>4. 市場分析</span><span>04</span></div>
+<div class="toc-item"><span>5. 競爭格局</span><span>05</span></div>
+<div class="toc-item"><span>6. 風險評估</span><span>06</span></div>
+<div class="toc-item"><span>7. 投資價值</span><span>07</span></div>
+<div class="toc-item"><span>8. 附錄</span><span>08</span></div>
+</div>
+</div>
+
+<!-- 1. 公司概況 -->
+<div class="page">
+<div class="header">
+<h2>01 公司概況</h2>
+<span class="page-num">Infineon公司分析報告</span>
+</div>
+
+<table class="info-table" style="margin-bottom:15px">
+<tr><td>公司名稱</td><td>中文：英飛凌半導體 / 英文：Infineon Technologies AG</td></tr>
+<tr><td>公司總部</td><td>德國，慕尼黑（Munich, Germany）</td></tr>
+<tr><td>公司類型</td><td>IC Design / **Foundry** / OSAT / **IDM** / EDA&IP / OEM-EMS / Distributors / Others</td></tr>
+<tr><td>成立時間</td><td>1999年4月1日</td></tr>
+<tr><td>註冊資本</td><td>€1,964百萬（約USD 2,100百萬）</td></tr>
+<tr><td>應用分類</td><td>AI / **HPC** / **Automotive** / **Networking** / FPGA / **ASIC** / Others</td></tr>
+<tr><td>芯片產品應用</td><td>IGBT、MOSFET、SiC、GaN、MCU（TriCore、AURIX）、雷達晶片、安全晶片</td></tr>
+<tr><td>是否上市</td><td>是，法蘭克福交易所_IFX / 那斯達克_IFX</td></tr>
+<tr><td>上市時間</td><td>2000年11月17日</td></tr>
+<tr><td>前三大股東</td><td>1. The Vanguard Group (8.2%) 2. BlackRock (7.1%) 3. State Street (5.3%)</td></tr>
+</table>
+
+<div class="metrics">
+<div class="metric">
+<div class="label">FY2024營收</div>
+<div class="value">€149.55億</div>
+<div class="change negative">YoY -8%</div>
+</div>
+<div class="metric">
+<div class="label">員工人數</div>
+<div class="value">58,000人</div>
+<div class="change neutral">全球30國</div>
+</div>
+<div class="metric">
+<div class="label">全球據點</div>
+<div class="value">50+</div>
+<div class="change neutral">製造/銷售/研發</div>
+</div>
+<div class="metric">
+<div class="label">研發投入</div>
+<div class="value">€17億</div>
+<div class="change positive">佔營收11%</div>
+</div>
+</div>
+
+<div class="two-col">
+<div class="card">
+<h4>營收結構</h4>
+<div class="progress-bar"><div class="progress-fill" style="width:45%">汽車電子 45%</div></div>
+<div class="progress-bar"><div class="progress-fill" style="width:25%;background:linear-gradient(90deg,#3498db,#5dade2)">電源與傳感 25%</div></div>
+<div class="progress-bar"><div class="progress-fill" style="width:20%;background:linear-gradient(90deg,#27ae60,#58d68d)">工業功率控制 20%</div></div>
+<div class="progress-bar"><div class="progress-fill" style="width:10%;background:linear-gradient(90deg,#f39c12,#f5b041)">安全互聯系統 10%</div></div>
+</div>
+<div class="card">
+<h4>市場地位</h4>
+<table style="font-size:10pt">
+<tr><th>產品領域</th><th>全球排名</th></tr>
+<tr><td>功率半導體</td><td>#1</td></tr>
+<tr><td>IGBT</td><td>#1</td></tr>
+<tr><td>SiC</td><td>Top 3</td></tr>
+<tr><td>汽車MCU</td><td>Top 3</td></tr>
+</table>
+</div>
+</div>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 2. Roadmap簡易版 -->
+<div class="page">
+<div class="header">
+<h2>02 產品Roadmap（簡易版）</h2>
+<span class="page-num">Infineon公司分析報告</span>
+</div>
+
+<div class="card">
+<h4>功率半導體產品線</h4>
+<table class="roadmap">
+<tr><th width="15%">產品類別</th><th width="17%">2024</th><th width="17%">2025</th><th width="17%">2026</th><th width="17%">2027</th><th width="17%">2028+</th><th width="17%">備註</th></tr>
+<tr><td><strong>IGBT</strong></td><td>第5代IGBT</td><td>第5代Enhanced</td><td>第6代IGBT</td><td>-</td><td>-</td><td>12吋晶圓量產</td></tr>
+<tr><td><strong>SiC</strong></td><td>CoolSiC Gen1</td><td>CoolSiC Gen2</td><td>8吋SiC量產</td><td>SiC Gen3</td><td>垂直整合</td><td>馬來西亞新廠</td></tr>
+<tr><td><strong>GaN</strong></td><td>-</td><td>GaN 400V</td><td>GaN 650V</td><td>-</td><td>全面量產</td><td>消費/工業應用</td></tr>
+<tr><td><strong>MOSFET</strong></td><td>OptiMOS 5</td><td>OptiMOS 6</td><td>新一代MOSFET</td><td>-</td><td>-</td><td>低壓/高壓</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>汽車微控制器產品線</h4>
+<table class="roadmap">
+<tr><th width="15%">產品系列</th><th width="17%">2024</th><th width="17%">2025</th><th width="17%">2026</th><th width="17%">2027</th><th width="17%">2028+</th><th width="17%">安全等級</th></tr>
+<tr><td><strong>AURIX TC4x</strong></td><td>樣品階段</td><td>量產</td><td>-</td><td>-</td><td>-</td><td>ASIL D</td></tr>
+<tr><td><strong>AURIX TC5x</strong></td><td>-</td><td>樣品</td><td>量產</td><td>-</td><td>-</td><td>ASIL D</td></tr>
+<tr><td><strong>TRAVEO T2G</strong></td><td>T2G Gen2</td><td>T2G Gen3</td><td>-</td><td>-</td><td>-</td><td>ASIL B</td></tr>
+<tr><td><strong>下一代MCU</strong></td><td>-</td><td>-</td><td>研發</td><td>樣品</td><td>量產</td><td>ASIL D</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>傳感器與無線產品線</h4>
+<table class="roadmap">
+<tr><th width="15%">產品類別</th><th width="17%">2024</th><th width="17%">2025</th><th width="17%">2026</th><th width="17%">2027</th><th width="17%">2028+</th><th width="17%">應用領域</th></tr>
+<tr><td><strong>雷達晶片</strong></td><td>77GHz Gen3</td><td>77GHz Gen4</td><td>成像雷達</td><td>-</td><td>-</td><td>ADAS/自動駕駛</td></tr>
+<tr><td><strong>飛行時間感測</strong></td><td>REAL3 Gen5</td><td>REAL3 Gen6</td><td>-</td><td>-</td><td>-</td><td>手機/汽車</td></tr>
+<tr><td><strong>WiFi</strong></td><td>WiFi 6/6E</td><td>WiFi 7</td><td>WiFi 7量產</td><td>-</td><td>-</td><td>IoT/消費電子</td></tr>
+<tr><td><strong>藍牙</strong></td><td>BLE 5.2</td><td>BLE 5.3</td><td>BLE 6.0</td><td>-</td><td>-</td><td>IoT/汽車</td></tr>
+</table>
+</div>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 3. Roadmap詳細版 -->
+<div class="page">
+<div class="header">
+<h2>03 產品Roadmap（詳細版）</h2>
+<span class="page-num">Infineon公司分析報告</span>
+</div>
+
+<div class="card">
+<h4>功率半導體詳細規格</h4>
+<table class="roadmap">
+<tr><th>產品系列</th><th>類型</th><th>製程節點</th><th>電壓範圍</th><th>2024重點</th><th>2025重點</th><th>2026重點</th><th>應用領域</th></tr>
+<tr><td><strong>IGBT 5</strong></td><td>IGBT</td><td>12吋</td><td>600V-1200V</td><td>標準版本</td><td>Enhanced版</td><td>第六代</td><td>工業變頻/太陽能</td></tr>
+<tr><td><strong>CoolSiC</strong></td><td>SiC MOSFET</td><td>8吋SiC</td><td>650V-3300V</td><td>Gen1量產</td><td>Gen2量產</td><td>Gen3投產</td><td>電動車/充電樁</td></tr>
+<tr><td><strong>CoolGaN</strong></td><td>GaN HEMT</td><td>8吋GaN</td><td>400V-650V</td><td>-</td><td>消費級量產</td><td>工業級量產</td><td>快充/數據中心</td></tr>
+<tr><td><strong>OptiMOS</strong></td><td>MOSFET</td><td>12吋</td><td>25V-150V</td><td>OptiMOS 5</td><td>OptiMOS 6</td><td>新一代</td><td>伺服器/汽車</td></tr>
+<tr><td><strong>StrongIRFET</strong></td><td>MOSFET</td><td>8吋</td><td>40V-100V</td><td>第二代</td><td>-</td><td>-</td><td>工業/汽車</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>汽車MCU詳細規格</h4>
+<table class="roadmap">
+<tr><th>產品系列</th><th>CPU核心</th><th>製程節點</th><th>2024狀態</th><th>2025狀態</th><th>2026狀態</th><th>安全等級</th><th>生態系統</th></tr>
+<tr><td><strong>AURIX TC4x</strong></td><td>TriCore 1.8</td><td>28nm</td><td>樣品/Design Win</td><td>量產</td><td>-</td><td>ASIL D</td><td>Eclipse/C++</td></tr>
+<tr><td><strong>AURIX TC5x</strong></td><td>TriCore 2.0</td><td>16nm</td><td>-</td><td>樣品</td><td>量產</td><td>ASIL D</td><td>新一代</td></tr>
+<tr><td><strong>TRAVEO T2G</strong></td><td>Cortex-M4/M7</td><td>40nm</td><td>T2G Gen2</td><td>T2G Gen3</td><td>-</td><td>ASIL B</td><td>低功耗</td></tr>
+<tr><td><strong>PSoC</strong></td><td>Cortex-M0/M4</td><td>22nm</td><td>Edge系列</td><td>Edge量產</td><td>-</td><td>ASIL B</td><td>軟體定義</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>先進封裝技術Roadmap</h4>
+<table class="roadmap">
+<tr><th>封裝類型</th><th>2024</th><th>2025</th><th>2026</th><th>2027</th><th>2028+</th><th>合作夥伴</th></tr>
+<tr><td><strong>2.5D封裝</strong></td><td>成熟</td><td>擴大量產</td><td>先進2.5D</td><td>-</td><td>-</td><td>TSMC/ASE</td></tr>
+<tr><td><strong>3D封裝</strong></td><td>研發</td><td>小量產</td><td>擴大量產</td><td>量產</td><td>-</td><td>ASE/Amkor</td></tr>
+<tr><td><strong>Chiplet</strong></td><td>評估</td><td>原型</td><td>驗證</td><td>量產</td><td>-</td><td>AMD/Xilinx</td></tr>
+<tr><td><strong>固態硬盤</strong></td><td>PCIe 5.0</td><td>PCIe 6.0</td><td>PCIe 7.0</td><td>-</td><td>-</td><td>控制器</td></tr>
+</table>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 4. 市場分析 -->
+<div class="page">
+<div class="header">
+<h2>04 市場分析</h2>
+<span class="page-num">Infineon公司分析報告</span>
+</div>
+
+<div class="metrics">
+<div class="metric">
+<div class="label">功率半導體市場</div>
+<div class="value">$350億</div>
+<div class="change positive">2030年預測</div>
+</div>
+<div class="metric">
+<div class="label">SiC市場CAGR</div>
+<div class="value">25%</div>
+<div class="change positive">2024-2030</div>
+</div>
+<div class="metric">
+<div class="label">電動車滲透率</div>
+<div class="value">40%</div>
+<div class="change positive">2030年預測</div>
+</div>
+<div class="metric">
+<div class="label">MCU市場規模</div>
+<div class="value">$120億</div>
+<div class="change neutral">2024年</div>
+</div>
+</div>
+
+<div class="two-col">
+<div class="card">
+<h4>電動車功率半導體需求</h4>
+<table style="font-size:10pt">
+<tr><th>組件</th><th>用量/車</th><th>單價</th><th>2024市場</th><th>2030預測</th></tr>
+<tr><td>主逆變器</td><td>1-2顆</td><td>$150-300</td><td>$80億</td><td>$150億</td></tr>
+<tr><td>OBC</td><td>1顆</td><td>$50-100</td><td>$30億</td><td>$60億</td></tr>
+<tr><td>DC-DC</td><td>1顆</td><td>$30-50</td><td>$20億</td><td>$40億</td></tr>
+<tr><td>PD充電</td><td>1顆</td><td>$20-40</td><td>$15億</td><td>$35億</td></tr>
+<tr><td><strong>合計</strong></td><td>-</td><td>-</td><td><strong>$145億</strong></td><td><strong>$285億</strong></td></tr>
+</table>
+</div>
+<div class="card">
+<h4>成長驅動因素</h4>
+<table style="font-size:10pt">
+<tr><th>驅動因素</th><th>2024</th><th>2025</th><th>2026</th><th>2027</th></tr>
+<tr><td>電動車產量（百萬）</td><td>18</td><td>25</td><td>35</td><td>45</td></tr>
+<tr><td>SiC滲透率</td><td>25%</td><td>35%</td><td>45%</td><td>55%</td></tr>
+<tr><td>800V平台佔比</td><td>30%</td><td>45%</td><td>60%</td><td>75%</td></tr>
+<tr><td>自動駕駛Level 3+</td><td>5%</td><td>10%</td><td>18%</td><td>25%</td></tr>
+</table>
+</div>
+</div>
+
+<div class="summary">
+<p><strong>核心洞察：</strong>電動車功率半導體市場將以25%的CAGR增長，SiC在800V高壓平台中的滲透率持續提升。英飛凌在SiC市場位居前三，8吋SiC量產將顯著降低成本，預計2026年產能將翻倍。</p>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 5. 競爭格局 -->
+<div class="page">
+<div class="header">
+<h2>05 競爭格局</h2>
+<span class="page-num">Infineon公司分析報告</span>
+</div>
+
+<div class="card">
+<h4>全球功率半導體市場份額</h4>
+<div class="compete"><div class="name">英飛凌</div><div class="bar"><div class="share" style="width:20%"></div></div><div class="pct">20%</div></div>
+<div class="compete"><div class="name">意法半導體</div><div class="bar"><div class="share" style="width:15%"></div></div><div class="pct">15%</div></div>
+<div class="compete"><div class="name">安森美</div><div class="bar"><div class="share" style="width:12%"></div></div><div class="pct">12%</div></div>
+<div class="compete"><div class="name">Wolfspeed</div><div class="bar"><div class="share" style="width:8%"></div></div><div class="pct">8%</div></div>
+<div class="compete"><div class="name">瑞薩</div><div class="bar"><div class="share" style="width:7%"></div></div><div class="pct">7%</div></div>
+<div class="compete"><div class="name">其他</div><div class="bar"><div class="share" style="width:38%;background:#95a5a6"></div></div><div class="pct">38%</div></div>
+</div>
+
+<div class="two-col">
+<div class="card">
+<h4>竞争优势</h4>
+<table style="font-size:10pt">
+<tr><th>優勢</th><th>評估</th></tr>
+<tr><td>SiC垂直整合（晶圓到模組）</td><td class="positive">⭐⭐⭐</td></tr>
+<tr><td>8吋SiC晶圓技術領先</td><td class="positive">⭐⭐⭐</td></tr>
+<tr><td>汽車MCU生態系統完整</td><td class="positive">⭐⭐⭐</td></tr>
+<tr><td>馬來西亞封測產能優勢</td><td class="positive">⭐⭐</td></tr>
+<tr><td>與Tier 1供應商關係深厚</td><td class="positive">⭐⭐⭐</td></tr>
+</table>
+</div>
+<div class="card">
+<h4>競爭劣勢</h4>
+<table style="font-size:10pt">
+<tr><th>劣勢</th><th>評估</th></tr>
+<tr><td>毛利率相對較低（~40%）</td><td class="negative">⚠️</td></tr>
+<tr><td>對中國市場依賴度較高</td><td class="negative">⚠️</td></tr>
+<tr><td>消費電子業務疲軟</td><td class="negative">⚠️</td></tr>
+<tr><td>產能擴張資本支出壓力</td><td class="negative">⚠️</td></tr>
+</table>
+</div>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 6. 風險評估 -->
+<div class="page">
+<div class="header">
+<h2>06 風險評估</h2>
+<span class="page-num">Infineon公司分析報告</span>
+</div>
+
+<div class="risk-grid" style="margin-bottom:15px">
+<div class="risk risk-high">
+<div class="level">高風險</div>
+<div class="title">SiC價格戰</div>
+<div class="desc">中國廠商擴產導致供過於求</div>
+</div>
+<div class="risk risk-high">
+<div class="level">高風險</div>
+<div class="title">地緣政治</div>
+<div class="desc">中美貿易摩擦影響中國市場</div>
+</div>
+<div class="risk risk-med">
+<div class="level">中風險</div>
+<div class="title">電動車增速放緩</div>
+<div class="desc">市場需求不及預期</div>
+</div>
+<div class="risk risk-med">
+<div class="level">中風險</div>
+<div class="title">客戶垂直整合</div>
+<div class="desc">比亞迪/特斯拉自研晶片</div>
+</div>
+<div class="risk risk-med">
+<div class="level">中風險</div>
+<div class="title">匯率波動</div>
+<div div="desc">歐元/美元匯率影響</div>
+</div>
+<div class="risk risk-low">
+<div class="level">低風險</div>
+<div class="title">技術迭代落後</div>
+<div class="desc">持續投資研發保持領先</div>
+</div>
+</div>
+
+<div class="card">
+<h4>SWOT分析</h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;font-size:10pt">
+<div>
+<strong style="color:#27ae60">優勢 S</strong>
+<ul style="margin-top:8px;line-height:1.8;padding-left:20px">
+<li>SiC技術領先，8吋晶圓量產</li>
+<li>汽車MCU市佔率高</li>
+<li>垂直整合能力強</li>
+<li>全球化佈局</li>
+</ul>
+</div>
+<div>
+<strong style="color:#e74c3c">劣勢 W</strong>
+<ul style="margin-top:8px;line-height:1.8;padding-left:20px">
+<li>毛利率相對較低</li>
+<li>對中國市場依賴</li>
+<li>消費電子弱</li>
+<li>產能擴張壓力</li>
+</ul>
+</div>
+<div>
+<strong style="color:#3498db">機會 O</strong>
+<ul style="margin-top:8px;line-height:1.8;padding-left:20px">
+<li>電動車滲透率提升</li>
+<li>SiC需求爆發</li>
+<li>工業自動化升級</li>
+<li>資料中心擴張</li>
+</ul>
+</div>
+<div>
+<strong style="color:#f39c12">威脅 T</strong>
+<ul style="margin-top:8px;line-height:1.8;padding-left:20px">
+<li>中國廠商崛起</li>
+<li>價格競爭加劇</li>
+<li>地緣政治風險</li>
+<li>客戶自研晶片</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 7. 投資價值 -->
+<div class="page">
+<div class="header">
+<h2>07 投資價值</h2>
+<span class="page-num">Infineon公司分析報告</span>
+</div>
+
+<div class="valuation" style="display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:15px">
+<div class="recommend" style="background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:20px;border-radius:12px;text-align:center">
+<div style="font-size:12px;opacity:0.9">相對估值 - P/E</div>
+<div style="font-size:28px;font-weight:bold">22x</div>
+<div style="font-size:10px;opacity:0.8">vs行業24x (-8%)</div>
+</div>
+<div class="recommend" style="background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:20px;border-radius:12px;text-align:center">
+<div style="font-size:12px;opacity:0.9">相對估值 - P/S</div>
+<div style="font-size:28px;font-weight:bold">5x</div>
+<div style="font-size:10px;opacity:0.8">vs行業6x (-15%)</div>
+</div>
+<div class="recommend" style="background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:20px;border-radius:12px;text-align:center">
+<div style="font-size:12px;opacity:0.9">目標價</div>
+<div style="font-size:28px;font-weight:bold">€50</div>
+<div style="font-size:10px;opacity:0.8">當前€38 (+30%)</div>
+</div>
+</div>
+
+<div class="recommend">
+<div style="font-size:14px;opacity:0.9">投資評級</div>
+<div style="font-size:40px;font-weight:bold;margin:10px 0">持有</div>
+<div style="font-size:16px">目標價€50 | 當前€38 | 上行空間30%</div>
+<div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.2)">
+<div style="font-size:12px;margin-bottom:8px">關鍵催化劑</div>
+<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+<span style="background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:15px;font-size:10px">SiC需求爆發</span>
+<span style="background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:15px;font-size:10px">8吋產能開出</span>
+<span style="background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:15px;font-size:10px">電動車超預期</span>
+<span style="background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:15px;font-size:10px">庫存週期反轉</span>
+</div>
+</div>
+</div>
+
+<div class="two-col" style="margin-top:15px">
+<div class="card">
+<h4>買入理由</h4>
+<ul style="line-height:1.8;font-size:10pt;padding-left:20px">
+<li>SiC技術領先，受益電動車滲透率提升</li>
+<li>估值合理，相對歷史和行業存在折價</li>
+<li>股息穩定，年化收益率約3.5%</li>
+<li>產能擴張進入收獲期</li>
+</ul>
+</div>
+<div class="card">
+<h4>風險因素</h4>
+<ul style="line-height:1.8;font-size:10pt;padding-left:20px">
+<li>中國市場地緣政治風險</li>
+<li>SiC價格競爭加劇</li>
+<li>電動車增速放緩</li>
+<li>客戶垂直整合壓力</li>
+</ul>
+</div>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 8. 附錄 -->
+<div class="page">
+<div class="header">
+<h2>08 附錄</h2>
+<span class="page-num">Infineon公司分析報告</span>
+</div>
+
+<div class="card">
+<h4>名詞解釋</h4>
+<table style="font-size:9pt">
+<tr><th width="20%">名詞</th><th>解釋</th></tr>
+<tr><td>IGBT</td><td>Insulated Gate Bipolar Transistor，絕緣柵雙極型晶體管</td></tr>
+<tr><td>SiC</td><td>Silicon Carbide，碳化矽，寬能隙半導體材料</td></tr>
+<tr><td>GaN</td><td>Gallium Nitride，氮化鎵，第三代半導體材料</td></tr>
+<tr><td>AURIX</td><td>英飛凌車規級MCU系列產品，支援ASIL D安全等級</td></tr>
+<tr><td>MOSFET</td><td>Metal-Oxide-Semiconductor Field-Effect Transistor</td></tr>
+<tr><td>ASIL</td><td>Automotive Safety Integrity Level，汽車安全完整性等級</td></tr>
+<tr><td>MCU</td><td>Microcontroller Unit，微控制器</td></tr>
+<tr><td>OBC</td><td>On-Board Charger，車載充電機</td></tr>
+<tr><td>PD</td><td>Power Delivery，電力傳輸快充協議</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>數據來源</h4>
+<table style="font-size:9pt">
+<tr><th>來源類型</th><th>來源</th></tr>
+<tr><td>公司財報</td><td>Infineon FY2024 Annual Report</td></tr>
+<tr><td>投資者簡報</td><td>Infineon Q4 2024 Earnings Presentation</td></tr>
+<tr><td>行業報告</td><td>TrendForce, Gartner, IHS Markit</td></tr>
+<tr><td>新聞媒體</td><td>Reuters, Bloomberg, EE Times</td></tr>
+<tr><td>公司官網</td><td>www.infineon.com</td></tr>
+</table>
+</div>
+
+<div class="warning" style="margin-top:15px">
+<p><strong>免責聲明：</strong>本報告僅供參考，不構成投資建議。投資者應獨立判斷並承擔相應風險。數據來源為公開信息，請以公司官方公告為準。</p>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+</body>
+</html>

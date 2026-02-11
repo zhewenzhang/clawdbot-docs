@@ -1,0 +1,1082 @@
+/* 
+ * 芯片产业分析平台 - 专业样式
+ * 半导体行业风格设计
+ */
+
+/* ============== CSS 变量 ============== */
+:root {
+    --bg-primary: #0A1628;
+    --bg-secondary: #0D1F3C;
+    --bg-tertiary: #162A4D;
+    --bg-card: #1A3A5C;
+    
+    --accent-blue: #00D4FF;
+    --accent-cyan: #00B4D8;
+    --accent-light: #48CAE4;
+    
+    --text-primary: #FFFFFF;
+    --text-secondary: #B8D4E8;
+    --text-muted: #6B8AA8;
+    
+    --border-color: #2A4A6D;
+    --border-light: #3A5A7D;
+    
+    --success: #10B981;
+    --warning: #F59E0B;
+    --danger: #EF4444;
+    
+    --gradient-hero: linear-gradient(135deg, #0A1628 0%, #1A3A5C 50%, #0D1F3C 100%);
+    --gradient-card: linear-gradient(180deg, #1A3A5C 0%, #162A4D 100%);
+    
+    --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.3);
+    --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+    --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+    
+    --transition-fast: 0.2s ease;
+    --transition-normal: 0.3s ease;
+}
+
+/* ============== 全局样式 ============== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+a {
+    color: var(--accent-blue);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+}
+
+a:hover {
+    color: var(--accent-light);
+}
+
+/* ============== 导航栏 ============== */
+.navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(10, 22, 40, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--border-color);
+    z-index: 1000;
+}
+
+.nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 64px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-icon {
+    color: var(--accent-blue);
+    font-size: 24px;
+}
+
+.logo-text {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.nav-links {
+    display: flex;
+    list-style: none;
+    gap: 32px;
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 6px;
+    transition: all var(--transition-fast);
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text-primary);
+    background: var(--bg-tertiary);
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    background: var(--bg-secondary);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 0 12px;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    color: var(--text-primary);
+    padding: 8px 12px;
+    width: 200px;
+    outline: none;
+}
+
+.search-box input::placeholder {
+    color: var(--text-muted);
+}
+
+.search-btn {
+    background: none;
+    border: none;
+    color: var(--text-muted);
+    cursor: pointer;
+    padding: 4px;
+}
+
+.search-btn:hover {
+    color: var(--accent-blue);
+}
+
+/* ============== Hero 区域 ============== */
+.hero {
+    padding: 140px 24px 80px;
+    background: var(--gradient-hero);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+        radial-gradient(circle at 20% 50%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 50%, rgba(0, 180, 216, 0.08) 0%, transparent 50%);
+    pointer-events: none;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+}
+
+.hero h1 {
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, var(--text-primary) 0%, var(--accent-blue) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.hero-subtitle {
+    font-size: 20px;
+    color: var(--text-secondary);
+    margin-bottom: 48px;
+}
+
+.hero-stats {
+    display: flex;
+    justify-content: center;
+    gap: 48px;
+    flex-wrap: wrap;
+}
+
+.stat-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 32px;
+    background: var(--bg-card);
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    min-width: 140px;
+}
+
+.stat-number {
+    font-size: 36px;
+    font-weight: 700;
+    color: var(--accent-blue);
+}
+
+.stat-label {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-top: 4px;
+}
+
+/* ============== 主要内容区域 ============== */
+.main-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 64px 24px;
+}
+
+.section {
+    margin-bottom: 64px;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.section-header h2 {
+    font-size: 28px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.section-badge {
+    padding: 4px 12px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+/* ============== 统计卡片网格 ============== */
+.stats-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.stats-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.stat-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    transition: all var(--transition-normal);
+}
+
+.stat-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.stat-card.highlight {
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(0, 212, 255, 0.1) 100%);
+    border-color: var(--accent-blue);
+}
+
+.stat-icon {
+    font-size: 32px;
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-tertiary);
+    border-radius: 12px;
+}
+
+.stat-card h3 {
+    font-size: 16px;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+}
+
+.stat-value {
+    font-size: 28px;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.stat-note {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+/* ============== 最新动态 ============== */
+.updates-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.update-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all var(--transition-normal);
+}
+
+.update-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+}
+
+.update-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.update-company {
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.update-company.nvidia { background: rgba(76, 175, 80, 0.2); color: #4CAF50; }
+.update-company.amd { background: rgba(255, 87, 34, 0.2); color: #FF5722; }
+.update-company.intel { background: rgba(33, 150, 243, 0.2); color: #2196F3; }
+.update-company.china { background: rgba(244, 67, 54, 0.2); color: #F44336; }
+
+.update-date {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.update-content h4 {
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.update-content p {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+/* ============== 行业洞察 ============== */
+.insights-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 24px;
+}
+
+.insight-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all var(--transition-normal);
+}
+
+.insight-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-2px);
+}
+
+.insight-icon {
+    font-size: 32px;
+    margin-bottom: 16px;
+}
+
+.insight-card h4 {
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.insight-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+}
+
+.insight-impact {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.insight-impact.high {
+    background: rgba(239, 68, 68, 0.2);
+    color: #EF4444;
+}
+
+.insight-impact.medium {
+    background: rgba(245, 158, 11, 0.2);
+    color: #F59E0B;
+}
+
+.insight-impact.low {
+    background: rgba(16, 185, 129, 0.2);
+    color: #10B981;
+}
+
+/* ============== 头部玩家表格 ============== */
+.players-table {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.players-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.players-table th,
+.players-table td {
+    padding: 16px 24px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.players-table th {
+    background: var(--bg-tertiary);
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.players-table td {
+    color: var(--text-primary);
+}
+
+.players-table tr:last-child td {
+    border-bottom: none;
+}
+
+.players-table tr:hover td {
+    background: var(--bg-tertiary);
+}
+
+.company-tag {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.company-tag.nvidia { background: rgba(76, 175, 80, 0.2); color: #4CAF50; }
+.company-tag.amd { background: rgba(255, 87, 34, 0.2); color: #FF5722; }
+.company-tag.intel { background: rgba(33, 150, 243, 0.2); color: #2196F3; }
+.company-tag.china { background: rgba(244, 67, 54, 0.2); color: #F44336; }
+
+/* ============== 页脚 ============== */
+.footer {
+    background: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    padding: 64px 24px 32px;
+}
+
+.footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 48px;
+    margin-bottom: 48px;
+}
+
+.footer-section h4 {
+    font-size: 16px;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+}
+
+.footer-section ul {
+    list-style: none;
+}
+
+.footer-section li {
+    color: var(--text-secondary);
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 32px;
+    border-top: 1px solid var(--border-color);
+}
+
+.footer-bottom p {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* ============== 响应式设计 ============== */
+@media (max-width: 1024px) {
+    .stats-row {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .insights-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .hero-stats {
+        gap: 24px;
+    }
+    
+    .stat-item {
+        min-width: 120px;
+        padding: 20px 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 32px;
+    }
+    
+    .hero-subtitle {
+        font-size: 16px;
+    }
+    
+    .hero-stats {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .stats-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .updates-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .insights-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 32px;
+    }
+}
+
+/* ============== Roadmap 页面专用样式 ============== */
+.roadmap-header {
+    padding: 120px 24px 48px;
+    background: var(--gradient-hero);
+    text-align: center;
+}
+
+.roadmap-header h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.roadmap-filters {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 32px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    padding: 10px 24px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    background: var(--accent-blue);
+    border-color: var(--accent-blue);
+    color: var(--bg-primary);
+}
+
+.timeline-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 48px 24px;
+}
+
+.timeline {
+    position: relative;
+    padding: 24px 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 2px;
+    background: var(--border-color);
+    transform: translateX(-50%);
+}
+
+.timeline-item {
+    display: flex;
+    margin-bottom: 48px;
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) {
+    flex-direction: row-reverse;
+}
+
+.timeline-content {
+    width: 45%;
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    position: relative;
+}
+
+.timeline-item:nth-child(odd) .timeline-content {
+    margin-right: 5%;
+}
+
+.timeline-item:nth-child(even) .timeline-content {
+    margin-left: 5%;
+}
+
+.timeline-year {
+    position: absolute;
+    top: -12px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: var(--accent-blue);
+    color: var(--bg-primary);
+    padding: 4px 16px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.timeline-product {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.timeline-specs {
+    font-size: 14px;
+    color: var(--accent-blue);
+    margin-bottom: 8px;
+}
+
+.timeline-process {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.timeline-company {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+/* ============== 公司页面样式 ============== */
+.companies-header {
+    padding: 120px 24px 48px;
+    background: var(--gradient-hero);
+    text-align: center;
+}
+
+.companies-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 48px 24px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.company-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+    transition: all var(--transition-normal);
+}
+
+.company-card:hover {
+    border-color: var(--accent-blue);
+    transform: translateY(-4px);
+    box-shadow: var(--shadow-lg);
+}
+
+.company-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 16px;
+}
+
+.company-name {
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.company-region {
+    padding: 4px 12px;
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.company-category {
+    font-size: 14px;
+    color: var(--accent-blue);
+    margin-bottom: 12px;
+}
+
+.company-description {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.company-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.metric {
+    padding: 12px;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+}
+
+.metric-label {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.metric-value {
+    font-size: 14px;
+    color: var(--text-primary);
+    font-weight: 600;
+    margin-top: 4px;
+}
+
+.company-products {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.product-tag {
+    padding: 4px 10px;
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+/* ============== 洞察页面样式 ============== */
+.insights-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 120px 24px 48px;
+}
+
+.insights-hero {
+    text-align: center;
+    margin-bottom: 64px;
+}
+
+.insights-hero h1 {
+    font-size: 40px;
+    font-weight: 700;
+    margin-bottom: 16px;
+}
+
+.insights-hero p {
+    font-size: 18px;
+    color: var(--text-secondary);
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.insight-section {
+    margin-bottom: 64px;
+}
+
+.insight-section h2 {
+    font-size: 24px;
+    color: var(--text-primary);
+    margin-bottom: 32px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.trend-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.trend-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.trend-card h3 {
+    font-size: 18px;
+    color: var(--text-primary);
+    margin-bottom: 12px;
+}
+
+.trend-card p {
+    font-size: 14px;
+    color: var(--text-secondary);
+    margin-bottom: 16px;
+    line-height: 1.6;
+}
+
+.trend-companies {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.company-chip {
+    padding: 4px 12px;
+    background: var(--bg-tertiary);
+    border-radius: 20px;
+    font-size: 12px;
+    color: var(--accent-blue);
+}
+
+.player-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.player-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.player-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 16px;
+}
+
+.player-name {
+    font-size: 22px;
+    font-weight: 600;
+    color: var(--text-primary);
+}
+
+.player-share {
+    padding: 6px 16px;
+    background: var(--accent-blue);
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--bg-primary);
+}
+
+.player-section {
+    margin-bottom: 16px;
+}
+
+.player-section h4 {
+    font-size: 12px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 8px;
+}
+
+.player-section p {
+    font-size: 14px;
+    color: var(--text-secondary);
+}
+
+.player-outlook {
+    padding: 12px 16px;
+    background: var(--bg-tertiary);
+    border-radius: 8px;
+    font-size: 14px;
+    color: var(--accent-cyan);
+}
+
+.abf-analysis {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+}
+
+.abf-tier {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.abf-tier h3 {
+    font-size: 18px;
+    margin-bottom: 16px;
+}
+
+.abf-tier.high h3 { color: #EF4444; }
+.abf-tier.medium h3 { color: #F59E0B; }
+.abf-tier.low h3 { color: #10B981; }
+
+.abf-item {
+    margin-bottom: 16px;
+}
+
+.abf-item h4 {
+    font-size: 14px;
+    color: var(--text-primary);
+    margin-bottom: 8px;
+}
+
+.abf-item p {
+    font-size: 12px;
+    color: var(--text-muted);
+}
+
+.insights-list {
+    background: var(--bg-card);
+    border: 1px solid var(--border-color);
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.insights-list li {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    font-size: 16px;
+    color: var(--text-secondary);
+    padding-left: 24px;
+    position: relative;
+}
+
+.insights-list li:last-child {
+    border-bottom: none;
+}
+
+.insights-list li::before {
+    content: '\2713';
+    position: absolute;
+    left: 0;
+    color: var(--accent-blue);
+    font-weight: bold;
+}
+
+@media (max-width: 1024px) {
+    .companies-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .trend-cards,
+    .abf-analysis {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .player-cards {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .companies-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .trend-cards,
+    .abf-analysis {
+        grid-template-columns: 1fr;
+    }
+    
+    .timeline::before {
+        left: 20px;
+    }
+    
+    .timeline-item,
+    .timeline-item:nth-child(odd) {
+        flex-direction: column;
+    }
+    
+    .timeline-content,
+    .timeline-item:nth-child(odd) .timeline-content,
+    .timeline-item:nth-child(even) .timeline-content {
+        width: 100%;
+        margin: 0;
+    }
+    
+    .timeline-year {
+        left: 20px;
+        transform: none;
+    }
+}

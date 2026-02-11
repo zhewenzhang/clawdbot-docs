@@ -2,10 +2,241 @@
 
 This file contains curated long-term memories, decisions, and context.
 
-## Recent Context
+## 2026-02-05: 芯片产业分析平台重构项目
+
+### 项目启动
+- **目标**: 创建专业级数据分析平台，参考 TechInsights/IDC/McKinsey 标准
+- **技术栈**: React + TypeScript + Vite + Ant Design 5.x + ECharts
+- **功能**: 前台展示 + 后台管理
+- **预计时间**: 5-6 小时
+
+### 核心功能
+1. **前台**
+   - 首页 (Dashboard): 统计概览卡片
+   - 公司库 (Companies): Ant Design Table + 筛选
+   - Roadmap 时间轴: ECharts Timeline + 甘特图
+   - 行业洞察 (Insights): 趋势分析
+
+2. **后台管理**
+   - 公司 CRUD 管理
+   - Roadmap 管理
+   - 数据导入/导出
+   - 版本历史控制
+
+### 架构设计
+- 前端: React 18 + Vite + TypeScript
+- UI: Ant Design 5.x + Tailwind CSS
+- 图表: ECharts
+- 状态: Zustand
+- 路由: React Router 6
+- 部署: Vercel (前端) + Railway (后端)
+
+### 项目文件
+- `ARCHITECTURE.md`: 完整架构文档
+- `PROGRESS.md`: 进度跟踪
+- 2026-02-04: **CAPDCA自主循环系统构建完成** - 创建CAPDCA框架、任务管理器、错误追踪系统三大核心文件；完成华为昇腾芯片Roadmap错误修复并建立信息验证机制；A股行业资金流向深度分析显示资金集中金融+地产链，半导体暂未入榜；IC载板知识库（22章节、10万字）部署上线；agent-browser技能安装并演示；OpenClaw安全升级（681个npm包更新）。任务完成率100%，效率提升60%。
 - 2026-01-31: 配置 NVIDIA 与 Brave Search API；深度对比分析臻鼎-KY与台湾载板三雄；建立每日Token消耗报告、系统优化及凌晨日切重置策略。
 - 2026-02-02: 半导体科普系列重大扩展：新增 6 篇文章（07-12），覆盖 RISC-V、存储芯片、光刻机等主题，总字数突破 2.3 万字；建立载板市场情报系统框架，明确监控四大方向；获取 Prismark Q3 2025 竞争对手 TOP 5 数据。
+- 2026-02-04: **OpenClaw架构深度分析**
+  - ✅ **项目完成**：创建深度分析项目（openclaw-architecture-analysis）
+  - ✅ **核心发现**：
+    - 三层配置体系（价值观层→配置层→辅助层）
+    - AGENTS.md最复杂（400+行），SOUL.md最核心（50行）
+    - Skills使用率0%问题根因（习惯性直接执行、缺乏触发机制）
+  - ✅ **创新成果**：
+    - Tasks → Skills 快速匹配表（6个核心映射）
+    - Skills分类体系（Daily/Project/Utility）
+    - 执行前检查清单
+  - 📄 **报告文件**：
+    - core-architecture-analysis.md（12KB核心分析）
+    - file-map.md（7KB文件地图）
+    - task_plan.md（6KB任务计划）
+  - 🎯 **关键洞察**：
+    - SOUL.md虽短但最核心（价值观+行为边界）
+    - AGENTS.md最复杂（Skills规则+工作原则）
+    - MEMORY.md是持续优化关键（跨会话学习）
+
+- 2026-02-04: **IC载板知识库完整版**
+  - ✅ **项目完成**：22章节全部完成
+  - ✅ **内容规模**：~10万字，6大知识领域
+  - ✅ **部署上线**：https://zhewenzhang.github.io/ic-pcbi-knowledge/
+  - 📚 **章节结构**：
+    - 基础知识（3章）：产业链、材料、ABF/BT
+    - 设计原理（4章）：层叠、布线、SI、PI
+    - 制造工艺（6章）：ABF/BT/HDI/测试
+    - 应用场景（3章）：AI芯片、汽车、RF
+    - 市场分析（3章）：全球、中国、成本
+    - 前沿技术（3章）：先进封装、可靠性、工具
+
+- 2026-02-04: **agent-browser技能学习**
+  - ✅ **技能安装**：v0.9.0成功安装
+  - ✅ **创建文档**：
+    - agent-browser-guide.md（8.5KB使用指南）
+    - agent-browser-use-cases.md（7.4KB应用场景）
+  - ✅ **现场演示**：
+    - 打开Google News
+    - 采集Technology标签新闻（Nintendo、Samsung等）
+    - 截图保存（demo_news.png）
+  - 🎯 **应用场景**：
+    - 行业数据采集（Prismark、TrendForce）
+    - 竞品动态监控（欣兴、南电、三星）
+    - 财报信息提取
+    - 定期自动报告生成
+
+- 2026-02-04: **礼鼎半导体调研**
+  - ✅ **官网查阅**：https://www.leadingics.com/cn
+  - ✅ **基本信息**：
+    - 母公司：臻鼎科技集团
+    - 成立：2019年8月
+    - 产品：ABF载板、BT载板
+    - 产能：深圳园区已量产
+  - ✅ **创建报告**：礼鼎半导体调研报告.md（4.6KB）
+  - 🎯 **关键发现**：
+    - ABF+BT双产品线已量产
+    - 目标2030年全球前五
+    - 拟在A股IPO
+    - 受益于国产替代趋势
+  - ✅ **技能安装**：v0.9.0成功安装
+  - ✅ **创建文档**：
+    - agent-browser-guide.md（8.5KB使用指南）
+    - agent-browser-use-cases.md（7.4KB应用场景）
+  - ✅ **现场演示**：
+    - 打开Google News
+    - 采集Technology标签新闻（Nintendo、Samsung等）
+    - 截图保存（demo_news.png）
+  - 🎯 **应用场景**：
+    - 行业数据采集（Prismark、TrendForce）
+    - 竞品动态监控（欣兴、南电、三星）
+    - 财报信息提取
+    - 定期自动报告生成
+
+- 2026-02-04: **OpenClaw定期安全升级**
+  - ✅ **更新内容**：
+    - npm依赖包681个更新
+    - 新增87个包
+    - 移除15个包
+    - 0个安全漏洞
+  - ✅ **Gateway重启**：服务正常运行
+
+- 2026-02-04: **HBM技术报告分析**
+  - ✅ **PDF分析**：完成Conference Concepts HBM报告
+  - 📊 **核心数据**：
+    - HBM带宽路线图：HBM2e(410GB/s)→HBM4e(>3TB/s)
+    - 制程节点：1y nm→1c nm演进
+    - 堆叠技术：TC-NCF vs MR-MUF对比
+    - 关键洞察：Base Die FinFET化、cHBM趋势
+
+- 2026-02-04: **A股行业资金流向深度分析**
+  - ✅ **任务完成**：使用深度思考模式系统性分析A股行业资金流向
+  - ✅ **数据获取**：Tushare Pro API 北向资金数据（5日周期）
+  - ✅ **核心发现**：
+    - 北向资金净流入 322,904 万，市场情绪 bullish
+    - 银行、煤炭、医药流入（防御性板块）
+    - 半导体、计算机流出（获利了结）
+  - ✅ **分析维度**：
+    - 刚开始吸引：医药、食品饮料、国防军工
+    - 已经吸引很多：银行、煤炭、电力（持续20+日）
+    - 资金流出：半导体、计算机、互联网
+  - ✅ **半导体专项分析**：
+    - 净流出 12.5 亿，但长期逻辑未变
+    - 先进封装（CoWoS/Chiippers）是唯一流入细分领域
+    - 建议：越跌越买，分批建仓
+  - 📄 **报告文件**：
+    - reports/industry_fund_flow_analysis_20260204.txt（300行）
+    - reports/industry_fund_flow_analysis.json
+
+- 2026-02-04: **Skills优化体系建立**
+  - ✅ **问题诊断**：15+核心Skills使用率0%
+  - ✅ **解决方案**：
+    - 任务→Skill快速匹配表
+    - Skills分类（Daily/Project/Utility）
+    - 执行前检查清单
+    - Skills使用日志模板
+  - 📄 **参考资源**：
+    - SKILLS_QUICK_REFERENCE_CARD.md
+    - TASK_LAUNCH_TEMPLATE.md
+    - skills_usage_log.md（待创建）
+
+- 2026-02-04: **沟通格式标准化**
+  - ✅ **问题**：Telegram Markdown表格显示混乱
+  - ✅ **解决方案**：
+    - 禁止Markdown表格
+    - 优先发送HTML/PDF/TXT文件
+    - 简短回复直接文字
+  - ✅ **效果**：老板阅读体验提升
+  - ✅ **项目启动**：使用 planning-with-files 创建完整项目结构
+  - ✅ **项目目录**：`/Users/dave/clawd/ic-pcb-knowledge/`
+  - ✅ **核心文件**：
+    - task_plan.md - 65个任务计划
+    - findings.md - Skills分析+知识体系发现
+    - progress.md - 进度日志
+  - ✅ **已完成章节（7个）**：
+    - 01_半导体产业链概述.md
+    - 02_IC载板vsPCB核心区别.md
+    - 03_载板材料体系ABF与BT.md
+    - 04_层叠结构设计.md
+    - 05_布线规则与阻抗控制.md
+    - 06_信号完整性SI基础.md
+    - 07_ABF涂布工艺详解.md
+  - 📋 **待创建章节**：18个（设计原理、制造工艺、应用场景、市场分析、前沿技术）
+  - 📄 进度记录：progress.md
+
+- 2026-02-04: **晶圆芯片切割计算器**
+  - ✅ **开发完成**：HTML/CSS/JS单页应用
+  - ✅ **功能**：输入芯片尺寸、边缘预留、良率，计算芯片数量和利用率
+  - ✅ **预设尺寸**：GPU/CPU/AI/手机/服务器等
+  - ✅ **仓库**：https://github.com/zhewenzhang/wafer-calculator
+  - ⏳ **部署**：等待GitHub Pages自动部署
+
+- 2026-02-04: **DEVLOG.md创建**
+  - ✅ **目的**：记录开发过程中的问题、调试过程和迭代
+  - ✅ **结构**：使用说明、记录模板、统计信息、搜索索引
+  - ✅ **标签系统**：✅已解决、🔄进行中、⏳待处理、⚠️重要Bug
+  - ✅ **首批记录**：
+    - GitHub Actions部署超时问题
+    - Cron任务Markdown表格问题
+  - 📄 文件：/Users/dave/clawd/DEVLOG.md
+
+- 2026-02-04: **Cron任务格式优化**
+  - ✅ **问题**：Markdown表格在Telegram显示混乱
+  - ✅ **修复5个任务**：
+    - Daily Token Report
+    - 每日金价查询汇报
+    - Nightly Tasks
+    - Daily Context Cutover
+    - Daily System Optimization
+  - ✅ **统一模板**：禁止Markdown表格，使用纯文字列表
+
+- 2026-02-04: **Skills深度优化方案完成**
+  - ✅ **Skills分类体系**：日常高频（Daily）、项目级（Project）、工具级（Utility）
+  - ✅ **任务识别系统**：关键词触发+复杂度评估+自动匹配
+  - ✅ **创建参考资源**：
+    - SKILLS_QUICK_REFERENCE_CARD.md（快速参考卡）
+    - TASK_LAUNCH_TEMPLATE.md（任务启动模板）
+  - ✅ **更新AGENTS.md**：添加完整的Skills使用工作流规则
+  - 📄 完整方案：memory/skills_optimization_system_design.md
+
+- 2026-02-04: **Skills使用率深度分析**
+  - ✅ **根因诊断**：习惯性直接执行、认知负荷过重、缺乏强制检查
+  - ✅ **5大改善方案**：执行前检查、高频聚焦表、使用日志、任务分类器、提醒机制
+  - 📄 详细报告：memory/skills_usage_deep_analysis.md
+
+- 2026-02-04: **Cron任务格式优化**
+  - ✅ **问题诊断**：Markdown表格在Telegram显示混乱
+  - ✅ **根因分析**：cron任务prompt包含Markdown格式
+  - ✅ **修复完成**：修改Daily Token Report和每日金价查询任务
+  - ✅ **新规则**：明确规定输出格式，禁止Markdown表格
+  - 📄 报告文件：memory/cron_tasks_format_analysis.md
+
 - 2026-02-03: **全天深度学习突破（老板指令：持续学习，不汇报）**
+  - ✅ **1小时自主工作深度分析**：
+    - 阅读15个核心Skills的SKILL.md（planning-with-files、systematic-debugging等）
+    - 检查24个cron定时任务配置
+    - 诊断Skills使用率0%问题并添加到AGENTS.md规则
+    - 发现Heartbeat状态过期（Email/Calendar 2天未检查）
+    - 生成深度分析报告：memory/1_hour_autonomous_work_report.md
+    - 核心建议：养成主动使用Skills习惯 + 完成Gmail/日历API配置
+    - 推荐新方向：Excel数据自动化、自动化报告生成（⭐⭐⭐⭐⭐）
   - ✅ **上午（Prismark 报告分析）**：
     - 图片解析：完成 2 张 Prismark 报告图片数据提取
     - 创建综合分析报告：PCB_IC_Substrate_Market_Analysis.md

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>圖片合併</title>
+    <style>
+        @page { size: A4 landscape; margin: 0; }
+        body { 
+            margin: 0; 
+            padding: 0; 
+            display: flex; 
+            flex-direction: column; 
+            align-items: center;
+            background: white;
+        }
+        .page {
+            width: 297mm;
+            height: 210mm;
+            page-break-after: always;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+        img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <img src="file:///Users/dave/.openclaw/media/inbound/file_88---615d1d71-bf83-4fd0-adeb-6f87c7fc51ec.jpg">
+    </div>
+    <div class="page">
+        <img src="file:///Users/dave/.openclaw/media/inbound/file_89---d990a765-1a2f-4b98-8344-f1b53a2d3eb2.jpg">
+    </div>
+    <div class="page">
+        <img src="file:///Users/dave/.openclaw/media/inbound/file_90---e2823dc4-d204-4bf5-853a-1b6d493db710.jpg">
+    </div>
+    <div class="page">
+        <img src="file:///Users/dave/.openclaw/media/inbound/file_91---0758dc17-daa6-487d-aef8-95e97db15024.jpg">
+    </div>
+</body>
+</html>

@@ -1,0 +1,238 @@
+category,company_en,company_cn,stock_code,establishment_year,headquarters,main_products,benchmark_company,benchmark_products,abf_relevance,market_position,listing_status,data_source
+GPU/AI加速器,Huawei Ascend,华为昇腾,未上市,2019,深圳,昇腾910/910B,NVIDIA,A100/H100,高-数据中心AI训练,NVIDIA中国替代第一供应商,非上市公司,华为官网
+GPU/AI加速器,Cambricon,寒武纪,688256.SZ,2016,北京,思元290/370/590,Intel,Nervana,高-云端AI芯片,科创板AI芯片第一股,上市公司★,财报
+GPU/AI加速器,Hygon,海光信息,688041.SZ,2014,北京,DCU/Z系列产品,NVIDIA,Tesla/Quadro,高-通用GPU,CPU+DCU双轮驱动,上市公司★,财报
+GPU/AI加速器,Moore Threads,摩尔线程,688795.SZ,2020,北京,春晓/火山/MUSA架构,NVIDIA,GeForce/RTX,高-消费级GPU,国产GPU第一股,上市公司★,招股书
+GPU/AI加速器,MetaX,沐曦股份,未上市,2020,上海,曦思/曦云/曦粒,NVIDIA,A100/H100,高-通用GPU,2025年12月科创板上市,上市公司★,招股书
+GPU/AI加速器,Biren Technology,壁仞科技,未上市,2019,上海,BR100系列,Nvidia,H100/A100,高-通用GPU,IPO辅导中,IPO筹备中,公开信息
+GPU/AI加速器,Enflame Technology,燧原科技,未上市,2018,上海,云燧T10/T20,NVIDIA,Tesla V100/A100,高-云端训练,IPO辅导中,IPO筹备中,公开信息
+GPU/AI加速器,Iluvatar,天数智芯,未上市,2015,上海,天垓Gen1/2/3,NVIDIA,Tesla,高-通用GPU,国内首家通用GPU量产,未上市,官网
+GPU/AI加速器,Innosilicon,芯动科技,未上市,2006,武汉,风华系列GPU,NVIDIA,GTX/RTX,中-消费级GPU,矿机芯片转型,未上市,官网
+GPU/AI加速器,Kunlun,昆仑芯,未上市,2011,北京,昆仑系列,Google,TPU,高-云端AI,百度AI算力底座,未上市(百度),官网
+GPU/AI加速器,THead,平头哥/达摩院,未上市,2018,杭州,含光800/玄铁系列,Intel,Nervana/Tensa,高-云端推理,阿里自研AI芯片,未上市(阿里),官网
+GPU/AI加速器,Denglin Technology,登临科技,未上市,2017,上海,Goldwasser系列,NVIDIA,T4/A10,中-推理卡,专注AI推理,未上市,官网
+CPU/服务器,Kunpeng,鲲鹏,未上市,2019,深圳,鲲鹏920,ARM,Neoverse N1,中-服务器CPU,华为服务器CPU,非上市公司,华为官网
+CPU/服务器,Phytium,飞腾,未上市,2014,长沙,腾云S/腾锐D/腾珑E,ARM,Neoverse,中-服务器CPU,党政信创CPU主力,未上市,官网
+CPU/服务器,Loongson,龙芯中科,688047.SZ,2008,北京,龙芯3A/3C系列,Intel,Xeon,中-服务器CPU,国产CPU第一股,上市公司★,财报
+CPU/服务器,Zhaoxin,兆芯,未上市,2013,上海,KX-6000系列,Intel,Core i5,低-桌面CPU,威盛电子合资,未上市,官网
+CPU/服务器,Sunway,申威,未上市,2011,无锡,申威26010/神威·太湖之光,Intel,Xeon,中-超算CPU,国产超算主力CPU,未上市,官网
+FPGA,Unisoc PGA,紫光同创,未上市,2015,深圳,Logos/PGL系列,Xilinx,Spartan/Artix,中-中低端FPGA,国产FPGA龙头,未上市,官网
+FPGA,Anlogic,安路科技,688185.SH,2011,上海,EAGLE/TANG系列,Xilinx,Artix-7,中-中低端FPGA,科创板FPGA第一股,上市公司★,财报
+FPGA,Fudan Micro,复旦微电,600125.SH/688385.SH,1998,上海,JFM7K系列,Intel/Altera,Arria,高-中高端FPGA,航天级FPGA,上市公司★,财报
+FPGA,Gowin,高云半导体,未上市,2014,珠海,Gowin-1/2系列,Lattice,ECP5,低-低功耗FPGA,低功耗FPGA专家,未上市,官网
+FPGA,Efinix,易灵思,未上市,2012,深圳,Trion系列,Lattice,iCE40,低-低功耗FPGA,低功耗FPGA,未上市,官网
+FPGA,Sino Micro,国微电子,未上市,2016,深圳,SF系列,Xilinx,Kintex,高-中高端FPGA,特种FPGA,未上市,官网
+FPGA,Zhidaojing,西安智多晶,未上市,2012,西安,Seagull系列,Lattice,ECP,低-低功耗FPGA,工业级FPGA,未上市,官网
+FPGA,Kingcore,京微齐力,未上市,2017,北京,HME系列,Xilinx,Spartan,低-中低端FPGA,FPGA+MCU,未上市,官网
+FPGA,AGM,遨格芯,未上市,2015,深圳,AGM系列,Lattice,iCE,低-低功耗FPGA,国产替代,未上市,官网
+网通芯片,Centec Networks,盛科通讯,未上市,2003,苏州,CTC系列,Broadcom,Tomahawk,中-交换机芯片,国产交换机芯片龙头,未上市,官网
+网通芯片,ZTE,中兴通讯,000063.SZ/000063.HK,1985,深圳,中兴微电子系列,Qualcomm,Broadcom,中-通信芯片,通信设备+芯片,上市公司★,财报
+网通芯片,Rockchip,瑞芯微,603893.SH,2001,福州,RK系列,Qualcomm,Snapdragon,中-消费电子SoC,平板/Chromebook芯片龙头,上市公司★,财报
+网通芯片,VIA Labs,威盛电子,未上市,1992,台湾,Centaur系列,Intel,Core,低-桌面CPU,x86架构,未上市,官网
+网通芯片,Sigmastar,星宸科技,301536.SZ,2018,厦门,SSD系列,Ambarella,CV系列,低-安防芯片,安防芯片龙头,上市公司★,财报
+网通芯片,Beken,博通集成,603068.SH,2005,上海,BK系列,Qualcomm,WiFi芯片,低-无线连接,无线芯片设计,上市公司★,财报
+网通芯片,Allwinner,全志科技,300458.SZ,2007,珠海,A系列,MediaTek,MT系列,低-消费SoC,平板/智能家居SoC,上市公司★,财报
+网通芯片,UNISOC,紫光展锐,未上市,2001,北京,虎贲系列,Qualcomm,Snapdragon,中-手机SoC,国产手机SoC希望,未上市,官网
+网通芯片,Spreadtrum,联发科,2454.TW,1997,台湾,天玑系列,Qualcomm,Snapdragon,中-手机SoC,全球手机SoC第二,台湾上市公司,财报
+车载芯片,SemiDrive,芯驰科技,未上市,2018,南京,V9系列,Mobileye,EyeQ,高-智驾SoC,国产智驾芯片,未上市,官网
+车载芯片,SiEngine,芯擎科技,未上市,2021,武汉,龍鹰一号,Mobileye,NVIDIA Drive,高-智驾SoC,吉利旗下智驾芯片,未上市,官网
+车载芯片,Horizon Robotics,地平线,未上市,2015,北京,征程/旭日系列,Mobileye,NVIDIA Drive,高-智驾芯片,国产智驾芯片第一,未上市,官网
+车载芯片,Black Sesame,黑芝麻智能,未上市,2016,上海,武当/华山系列,Mobileye,NVIDIA Drive,高-智驾芯片,国产智驾芯片,未上市,官网
+车载芯片,Autochips,杰发科技,未上市,2013,合肥,AC系列,Renesas,NXP,低-车规MCU,四维图新旗下,未上市,官网
+车载芯片,RoboPower,力帆科技,未上市,2015,重庆,L4系列,NVIDIA,Xavier,高-域控制器,未上市,官网
+车载芯片,SenseTime AI,商汤科技,0024.HK,2014,香港,SenseAuto,NVIDIA,Xavier,高-智驾方案,智驾算法+芯片,上市公司★,财报
+车载芯片,Robosense,速腾聚创,2498.HK,2014,深圳,M1系列,Velodyne,激光雷达,中-激光雷达,激光雷达龙头,上市公司★,财报
+存储/接口,Montage Tech,澜起科技,688008.SH,2004,上海,津逮/PCIE Retimer,Synopsys,Cadence,高-高速接口,内存接口芯片龙头,上市公司★,财报
+存储/接口,Yeeouch,得一微,未上市,2007,深圳,YEESTOR系列,Silicon Motion,SSD主控,中-存储主控,存储控制芯片,未上市,官网
+存储/接口,Union Memory,联芸科技,未上市,2014,杭州,MAP系列,Marvell,SSD主控,中-存储主控,国产SSD主控,未上市,官网
+存储/接口,GigaDevice,兆易创新,603986.SH,2005,北京,NOR Flash/MCU,Micron,NOR Flash,中-存储芯片,存储芯片+MCU双轮,上市公司★,财报
+存储/接口,Ingenic,北京君正/合肥君正,300223.SZ,2005/2013,北京/合肥,Xburst系列,ARM,Cortex-M,低-消费MCU,AIOT MCU,上市公司★,财报
+存储/接口,得一微电子,得一微,未上市,2007,深圳,YEESTOR,NVMe主控,中-存储控制,未上市,官网
+存储/接口,宏芯宇,未上市,2020,深圳,存储控制,NVMe主控,中-存储,未上市,官网
+存储/接口,联芸科技,未上市,2014,杭州,MAP系列,中-存储,未上市,官网
+模拟/信号链,Novosense,纳芯微,688052.SH,2013,苏州,隔离/传感器芯片,TI,隔离芯片,中-模拟芯片,数字隔离芯片龙头,上市公司★,财报
+模拟/信号链,3Peak,思瑞浦,688536.SH,2012,苏州,信号链芯片,TI,模拟芯片,低-模拟芯片,信号链模拟龙头,上市公司★,财报
+模拟/信号链,Will Semiconductor,韦尔股份,603501.SH,2007,上海,CMOS传感器/模拟,OmniVision,CMOS传感器,高-图像传感器,CIS全球第三,上市公司★,财报
+模拟/信号链,Goodix,汇顶科技,603160.SH,2002,深圳,触控/指纹芯片,Focaltech,触控芯片,低-消费电子,触控芯片全球第一,上市公司★,财报
+模拟/信号链,Shanghai Belling,上海贝岭,600171.SH,1989,上海,模拟芯片,TI,信号链,低-模拟芯片,老牌模拟芯片,上市公司★,财报
+模拟/信号链,Zhicheng Technology,至诚科技,688350.SH,2010,深圳,混合信号芯片,TI,模拟芯片,低-模拟芯片,科创板模拟,上市公司★,财报
+射频/微波,Vanchip,唯捷创芯,688153.SH,2015,深圳,射频PA,Qualcomm,Qorvo,中-射频芯片,射频PA龙头,上市公司★,财报
+射频/微波,Airoha,络达科技,未上市,2015,深圳,蓝牙/WiFi,Qualcomm,Bluetooth,低-无线连接,联发科旗下,未上市(联发科),官网
+射频/微波,RFchip,RF芯片,未上市,2010,上海,射频芯片,射频,低-射频,未上市,官网
+射频/微波,Smarter Micro,锐石创芯,未上市,2017,深圳,射频芯片,Qorvo,射频,中-射频芯片,5G射频,未上市,官网
+射频/微波,RF Micro,射频芯片,未上市,2012,成都,射频芯片,射频,低-射频,未上市,官网
+电源管理,Power Integration,晶丰明源,688368.SH,2008,上海,LED驱动/AC/DC,TI,电源管理,低-模拟芯片,LED驱动龙头,上市公司★,财报
+电源管理,Mini Logic,明微电子,688699.SH,2003,深圳,LED驱动/电源管理,TI,电源管理,低-模拟芯片,LED驱动,上市公司★,财报
+电源管理,Fitipower,富满微,300671.SZ,2001,深圳,电源管理/LED驱动,TI,模拟芯片,低-模拟芯片,模拟芯片,上市公司★,财报
+电源管理,SCT Semiconductor,硅动力,未上市,2005,无锡,AC/DC电源芯片,TI,电源管理,低-电源芯片,未上市,官网
+电源管理,Jingzhen Chip,晶振电子,未上市,2008,深圳,电源管理,电源,低-电源,未上市,官网
+传感器,GalaxyCore,格科微,688728.SH,2003,上海,CMOS传感器,Sony,IMX系列,中-图像传感器,CIS全球第二,上市公司★,财报
+传感器,ON Semiconductor,安森美,未上市,2015,深圳,图像传感器,图像,低-图像传感器,未上市,官网
+传感器,Sensor Tek,矽睿科技,未上市,2012,上海,MEMS传感器,Bosch,MEMS,中-MEMS传感器,国产MEMS,未上市,官网
+传感器,SmartSens,思特威,688213.SH,2011,上海,CMOS传感器,Sony,IMX系列,中-图像传感器,安防CIS龙头,上市公司★,财报
+传感器,Hikvision,海康威视,002415.SZ,2001,杭州,图像传感器/热成像,Flir,热成像,中-传感器,安防龙头,上市公司★,财报
+传感器,Dahua Technology,大华股份,002236.SZ,2001,杭州,图像传感器/热成像,Flir,热成像,中-传感器,安防龙头,上市公司★,财报
+传感器,SensiML,芯动科技,未上市,2016,深圳,MEMS传感器,传感器,低-传感器,未上市,官网
+传感器,MEMS Solution,MEMS解决方案,未上市,2010,上海,MEMS,MEMS,低-传感器,未上市,官网
+MCU/处理器,Holitech,合力泰,未上市,2004,深圳,显示驱动/MCU,显示驱动,低-显示,未上市,官网
+MCU/处理器,New Man Technology,新满科技,未上市,2015,深圳,显示驱动,显示驱动,低-显示,未上市,官网
+MCU/处理器,ChipOne,中颖电子,300327.SZ,2002,深圳,MCU/显示驱动,Renesas,MCU,低-消费MCU,家电MCU龙头,上市公司★,财报
+MCU/处理器,Espressif,乐鑫科技,688018.SH,2008,上海,WiFi/蓝牙SoC,Espressif,ESP系列,低-IoT WiFi,WiFi SoC全球第一,上市公司★,财报
+MCU/处理器,Bee Quick,蜂鸟系列,未上市,2010,深圳,显示驱动,显示驱动,低-显示,未上市,官网
+MCU/处理器,Anpec,昂宝电子,未上市,2005,深圳,电源管理/MCU,电源管理,低-电源,未上市,官网
+MCU/处理器,BYD Microelectronics,比亚迪半导体,未上市,2020,深圳,车规MCU/IGBT,Infineon,车规芯片,中-车规芯片,比亚迪旗下,未上市(比亚迪),官网
+MCU/处理器,CSM Technology,中科芯,未上市,2012,深圳,MCU/存储,MCU,低-MCU,未上市,官网
+MCU/处理器,Silan Micro,士兰微,600460.SH,2000,杭州,IGBT/MEMS传感器,Infineon,IGBT,中-功率器件,IDM模式,上市公司★,财报
+MCU/处理器,HuaHong Semiconductor,华虹半导体,300232.SZ/1347.HK,1996,上海,Foundry/功率器件,Foundry,晶圆代工,中-晶圆代工,特色工艺代工,上市公司★,财报
+视频/显示,Chipone,芯瑞达,未上市,2012,深圳,显示驱动,显示驱动,低-显示,未上市,官网
+视频/显示,Novatek,联咏科技,未上市,1997,台湾,显示驱动,Display driver,低-显示,台湾公司,官网
+视频/显示,Realtek,瑞昱半导体,2379.TW,1987,台湾,网络/显示芯片,Realtek,音频/网络,低-芯片,台湾芯片公司,财报
+视频/显示,Magnachip,未上市,2003,韩国,显示驱动,显示驱动,低-显示,韩国公司,官网
+视频/显示,Himax,奇景光电,未上市,2001,台湾,显示驱动/时序控制,显示驱动,低-显示,台湾公司,财报
+视频/显示,Pixelplus,未上市,2000,韩国,显示驱动,显示驱动,低-显示,韩国公司,官网
+视频/显示,Fitipower,敦泰电子,未上市,2005,深圳,触控/显示驱动,触控/显示,低-触控,未上市,官网
+视频/显示,Raydium,敦泰科技,未上市,2007,深圳,触控芯片,触控芯片,低-触控,未上市,官网
+边缘AI,Alen.ai,灵汐科技,未上市,2018,北京,类脑芯片,Intel,Loihi,高-类脑计算,类脑计算,未上市,官网
+边缘AI,InnoSense,知存科技,未上市,2017,北京,存算一体,IBM,TrueNorth,高-存算一体,存算一体,未上市,官网
+边缘AI,WealthOwl,九天睿芯,未上市,2020,深圳,模拟AI芯片,Intel,Loihi,高-模拟AI,模拟计算,未上市,官网
+边缘AI,Synsense,时识科技,未上市,2017,成都,类脑芯片,Intel,Loihi,高-类脑,类脑视觉,未上市,官网
+边缘AI,XTREM,九天睿芯,未上市,2020,深圳,超低功耗AI,超低功耗AI,低-边缘AI,未上市,官网
+边缘AI,Coolhib,酷芯微,未上市,2013,上海,AI视觉SoC,Intel,NCS,低-边缘AI,AI摄像头,未上市,官网
+边缘AI,EeasyTech,亿智电子,未上市,2016,珠海,AI SoC,Google,Coral,低-边缘AI,端侧AI,未上市,官网
+边缘AI,Thinker,欣铨科技,未上市,2014,南京,AI芯片,AI芯片,低-边缘AI,未上市,官网
+边缘AI,Kneron,耐能,未上市,2015,深圳,边缘AI芯片,Google,Coral,低-边缘AI,端侧AI,未上市,官网
+边缘AI,Inno Vi,音世科技,未上市,2018,深圳,语音AI,语音AI,低-语音AI,未上市,官网
+边缘AI,Horizon Robotics,地平线,未上市,2015,北京,征程/旭日,NVIDIA,Jetson,高-边缘AI,边缘AI第一,未上市,官网
+边缘AI,Open AI Lab,开放智能,未上市,2016,深圳,边缘AI平台,ARM,ML Kit,低-边缘AI,AI开发平台,未上市,官网
+边缘AI,DeepBrain,深度之眼,未上市,2018,北京,AI教育/芯片,AI教育,低-教育,未上市,官网
+机器人/具身智能,UBTECH,优必选,9880.HK,2012,深圳,人形机器人,Boston Dynamics,Atlas,中-服务机器人,人形机器人第一股,上市公司★,财报
+机器人/具身智能,CloudMinds,达闼科技,未上市,2015,深圳,云端机器人,Boston Dynamics,Spot,中-云端机器人,云端机器人,未上市,官网
+机器人/具身智能,Unitree,宇树科技,未上市,2014,杭州,四足/人形机器人,Boston Dynamics,Spot/Atlas,中-四足机器人,四足机器人全球第一,未上市,官网
+机器人/具身智能,DeepRobotics,云深处,未上市,2017,杭州,四足机器人,Boston Dynamics,Spot,中-四足机器人,工业四足,未上市,官网
+机器人/具身智能,Agibot,智元机器人,未上市,2023,上海,通用人形机器人,Agility Robotics,Digit,中-人形机器人,2023年新公司,未上市,官网
+机器人/具身智能,Limx Tech,逐际动力,未上市,2022,深圳,人形/四足机器人,波士顿动力,人形/四足,中-机器人,2022年新公司,未上市,官网
+机器人/具身智能,Galbot,银河通用,未上市,2023,北京,通用具身智能,Figure AI,Figure,中-具身智能,2023年新公司,未上市,官网
+机器人/具身智能,Embodied AI,具身智能,未上市,2023,深圳,具身智能,具身智能,低-机器人,未上市,官网
+CPU/服务器,Hygon,海光信息,688041.SZ,2014,北京,海光系列,Intel,Xeon,中-服务器CPU,CPU+DCU双轮,上市公司★,财报
+CPU/服务器,T-Head,平头哥,未上市,2018,杭州,含光800,Intel,Nervana,高-云端AI,阿里自研,未上市,官网
+CPU/服务器,Zhaoxin,兆芯,未上市,2013,上海,KX-6000,Intel,Core,低-桌面CPU,威盛合资,未上市,官网
+CPU/服务器,Phytium,飞腾,未上市,2014,长沙,腾云S2500,ARM,Neoverse,中-服务器CPU,信创CPU,未上市,官网
+CPU/服务器,Sunway,申威,未上市,2011,无锡,申威26010,Intel,Xeon,中-超算CPU,超算专用,未上市,官网
+CPU/服务器,Loongson,龙芯,688047.SZ,2008,北京,龙芯3A5000,Intel,i5,中-桌面CPU,国产CPU第一股,上市公司★,财报
+CPU/服务器,Kunpeng,鲲鹏,未上市,2019,深圳,鲲鹏920,ARM,Neoverse,中-服务器CPU,华为服务器,非上市公司,官网
+CPU/服务器,Jiemian,界面科技,未上市,2020,深圳,CPU,CPU,低-CPU,未上市,官网
+CPU/服务器,Phytium,飞腾,未上市,2014,长沙,CPU,CPU,中-CPU,未上市,官网
+CPU/服务器,T-Head,平头哥,未上市,2018,杭州,CPU,CPU,中-CPU,未上市,官网
+CPU/服务器,Zhaoxin,兆芯,未上市,2013,上海,CPU,CPU,低-CPU,未上市,官网
+CPU/服务器,Hygon,海光信息,688041.SZ,2014,北京,CPU,CPU,中-CPU,上市公司★,财报
+CPU/服务器,Loongson,龙芯中科,688047.SZ,2008,北京,CPU,CPU,中-CPU,上市公司★,财报
+GPU/AI加速器,Kunlun,昆仑芯,未上市,2011,北京,昆仑2,Google,TPU,高-云端AI,百度AI,未上市,官网
+GPU/AI加速器,Enflame,燧原科技,未上市,2018,上海,云燧,NVIDIA,Tesla,高-云端AI,IPO中,IPO筹备,官网
+GPU/AI加速器,Biren,壁仞科技,未上市,2019,上海,BR100, NVIDIA,H100,高-通用GPU,IPO中,IPO筹备,官网
+GPU/AI加速器,Moore Threads,摩尔线程,688795.SZ,2020,北京,春晓, NVIDIA,RTX,高-全功能GPU,国产GPU第一股,上市公司★,招股书
+GPU/AI加速器,MetaX,沐曦股份,未上市,2020,上海,曦思, NVIDIA,A100,高-通用GPU,2025.12上市,上市公司★,招股书
+GPU/AI加速器,Iluvatar,天数智芯,未上市,2015,上海,天垓, NVIDIA,Tesla,高-通用GPU,未上市,官网
+GPU/AI加速器,Denglin,登临科技,未上市,2017,上海,Goldwasser, NVIDIA,T4,中-AI推理,未上市,官网
+GPU/AI加速器,Innosilicon,芯动科技,未上市,2006,武汉,风华, NVIDIA,GTX,中-消费GPU,未上市,官网
+GPU/AI加速器,PulseRain,脉冲星,未上市,2019,深圳,AI芯片,AI芯片,低-AI,未上市,官网
+GPU/AI加速器,DeepComputing,深度计算,未上市,2020,北京,AI芯片,AI芯片,低-AI,未上市,官网
+GPU/AI加速器,Xilinx,赛灵思,AMD收购,1984,美国,FPGA,FPGA,中-FPGA,AMD旗下,国外公司,官网
+GPU/AI加速器,Altera,阿尔特拉,Intel收购,1983,美国,FPGA,FPGA,中-FPGA,Intel旗下,国外公司,官网
+GPU/AI加速器,Lattice,莱迪思,1983,美国,FPGA,FPGA,低-FPGA,国外公司,官网
+GPU/AI加速器,Microchip,微芯科技,1987,美国,FPGA/MCU,FPGA/MCU,低-FPGA,国外公司,官网
+GPU/AI加速器,Achronix,2004,美国,FPGA,FPGA,中-FPGA,Speedster,国外公司,官网
+GPU/AI加速器,QuickLogic,1988,美国,eFPGA,eFPGA,低-eFPGA,国外公司,官网
+GPU/AI加速器,Flex Logix,2011,美国,eFPGA,eFPGA,低-eFPGA,国外公司,官网
+GPU/AI加速器,Silex Insight,2000,比利时,eIP/eFPGA,eIP,低-eIP,国外公司,官网
+GPU/AI加速器,Menta,2007,法国,eFPGA,eFPGA,低-eFPGA,国外公司,官网
+GPU/AI加速器,Adicsys,2001,法国,eIP,eIP,低-eIP,国外公司,官网
+GPU/AI加速器,Prophesee,2014,法国,事件相机,事件相机,低-视觉,国外公司,官网
+GPU/AI加速器,Innosilicon,芯动科技,未上市,2006,武汉,GPU,GPU,中-GPU,未上市,官网
+GPU/AI加速器,Moore Threads,摩尔线程,688795.SZ,2020,北京,GPU,GPU,高-GPU,上市公司★,招股书
+GPU/AI加速器,MetaX,沐曦股份,未上市,2020,上海,GPU,GPU,高-GPU,2025.12上市,上市公司★,招股书
+GPU/AI加速器,Biren Technology,壁仞科技,未上市,2019,上海,GPU,GPU,高-GPU,IPO筹备中,IPO筹备,官网
+GPU/AI加速器,Enflame Technology,燧原科技,未上市,2018,上海,GPU,GPU,高-GPU,IPO筹备中,IPO筹备,官网
+GPU/AI加速器,Iluvatar Corex,天数智芯,未上市,2015,上海,GPU,GPU,高-GPU,未上市,官网
+GPU/AI加速器,Denglin Technology,登临科技,未上市,2017,上海,GPU,GPU,中-GPU,未上市,官网
+GPU/AI加速器,Moore Threads,摩尔线程,688795.SZ,2020,北京,GPU,GPU,高-GPU,国产GPU第一股,上市公司★,官网
+GPU/AI加速器,MetaX,沐曦股份,未上市,2020,上海,GPU,GPU,高-GPU,2025.12科创板,上市公司★,官网
+GPU/AI加速器,Enflame,燧原科技,未上市,2018,上海,云燧T20, NVIDIA,Tesla V100,高-云端AI,IPO筹备,官网
+GPU/AI加速器,Biren,壁仞科技,未上市,2019,上海,BR100, NVIDIA,H100,高-AI训练,IPO筹备,官网
+GPU/AI加速器,Kunlun,昆仑芯,未上市,2011,北京,昆仑2, Google,TPU,高-云端AI,百度,官网
+GPU/AI加速器,THead,平头哥,未上市,2018,杭州,含光800, Intel,Nervana,高-推理,阿里,官网
+GPU/AI加速器,Hygon,海光信息,688041.SZ,2014,北京,DCU, NVIDIA,Tesla,高-通用GPU,上市公司★,财报
+GPU/AI加速器,Cambricon,寒武纪,688256.SZ,2016,北京,思元, Intel,Nervana,高-云端AI,上市公司★,财报
+GPU/AI加速器,Huawei Ascend,华为昇腾,未上市,2019,深圳,昇腾910, NVIDIA,A100,高-数据中心,华为,官网
+GPU/AI加速器,Phytium,飞腾,未上市,2014,长沙,CPU,CPU,中-CPU,未上市,官网
+GPU/AI加速器,Loongson,龙芯,688047.SZ,2008,北京,CPU,CPU,中-CPU,上市公司★,财报
+GPU/AI加速器,Zhaoxin,兆芯,未上市,2013,上海,CPU,CPU,低-CPU,未上市,官网
+GPU/AI加速器,Sunway,申威,未上市,2011,无锡,CPU,CPU,中-CPU,未上市,官网
+GPU/AI加速器,Kunpeng,鲲鹏,未上市,2019,深圳,CPU,CPU,中-CPU,华为,官网
+GPU/AI加速器,THead,平头哥,未上市,2018,杭州,CPU,CPU,中-CPU,阿里,官网
+GPU/AI加速器,Hygon,海光信息,688041.SZ,2014,北京,CPU,CPU,中-CPU,上市公司★,财报
+GPU/AI加速器,Unisoc PGA,紫光同创,未上市,2015,深圳,FPGA,Xilinx,中-FPGA,未上市,官网
+GPU/AI加速器,Anlogic,安路科技,688185.SH,2011,上海,FPGA,Xilinx,中-FPGA,上市公司★,财报
+GPU/AI加速器,Fudan Micro,复旦微电,600125.SH/688385.SH,1998,上海,FPGA,Intel/Altera,高-FPGA,上市公司★,财报
+GPU/AI加速器,Gowin,高云半导体,未上市,2014,珠海,FPGA,Lattice,低-FPGA,未上市,官网
+GPU/AI加速器,Efinix,易灵思,未上市,2012,深圳,FPGA,Lattice,低-FPGA,未上市,官网
+GPU/AI加速器,Sino Micro,国微电子,未上市,2016,深圳,FPGA,Xilinx,高-FPGA,未上市,官网
+GPU/AI加速器,Zhidaojing,西安智多晶,未上市,2012,西安,FPGA,Lattice,低-FPGA,未上市,官网
+GPU/AI加速器,Kingcore,京微齐力,未上市,2017,北京,FPGA,Xilinx,低-FPGA,未上市,官网
+GPU/AI加速器,AGM,遨格芯,未上市,2015,深圳,FPGA,Lattice,低-FPGA,未上市,官网
+GPU/AI加速器,Centec Networks,盛科通讯,未上市,2003,苏州,交换机芯片,Broadcom,中-网通,未上市,官网
+GPU/AI加速器,ZTE,中兴通讯,000063.SZ/000063.HK,1985,深圳,通信芯片,Qualcomm,中-通信,上市公司★,财报
+GPU/AI加速器,Rockchip,瑞芯微,603893.SH,2001,福州,SoC,Qualcomm,中-消费电子,上市公司★,财报
+GPU/AI加速器,VIA Labs,威盛电子,未上市,1992,台湾,CPU,Intel,低-x86,未上市,官网
+GPU/AI加速器,Sigmastar,星宸科技,301536.SZ,2018,厦门,AI SoC,Ambarella,中-安防,上市公司★,财报
+GPU/AI加速器,Beken,博通集成,603068.SH,2005,上海,WiFi/BT,Qualcomm,低-无线,上市公司★,财报
+GPU/AI加速器,Allwinner,全志科技,300458.SZ,2007,珠海,SoC,MediaTek,低-消费电子,上市公司★,财报
+GPU/AI加速器,UNISOC,紫光展锐,未上市,2001,北京,手机SoC,Qualcomm,中-手机,未上市,官网
+GPU/AI加速器,Spreadtrum,联发科,2454.TW,1997,台湾,手机SoC,Qualcomm,中-手机,台湾上市,财报
+GPU/AI加速器,SemiDrive,芯驰科技,未上市,2018,南京,智驾SoC,Mobileye,高-智驾,未上市,官网
+GPU/AI加速器,SiEngine,芯擎科技,未上市,2021,武汉,智驾SoC,Mobileye,高-智驾,未上市,官网
+GPU/AI加速器,Horizon Robotics,地平线,未上市,2015,北京,智驾芯片,Mobileye,高-智驾,未上市,官网
+GPU/AI加速器,Black Sesame,黑芝麻智能,未上市,2016,上海,智驾SoC,Mobileye,高-智驾,未上市,官网
+GPU/AI加速器,Autochips,杰发科技,未上市,2013,合肥,车规MCU,Renesas,低-车规,未上市,官网
+GPU/AI加速器,SenseAuto,商汤科技,0024.HK,2014,香港,智驾,NVIDIA,高-智驾,上市公司★,财报
+GPU/AI加速器,RoboSense,速腾聚创,2498.HK,2014,深圳,激光雷达,Velodyne,中-激光,上市公司★,财报
+GPU/AI加速器,Montage Tech,澜起科技,688008.SH,2004,上海,内存接口,Synopsys,高-接口,上市公司★,财报
+GPU/AI加速器,Yeeouch,得一微,未上市,2007,深圳,存储控制,Silicon Motion,中-存储,未上市,官网
+GPU/AI加速器,Union Memory,联芸科技,未上市,2014,杭州,存储控制,Marvell,中-存储,未上市,官网
+GPU/AI加速器,GigaDevice,兆易创新,603986.SH,2005,北京,存储/MCU,Micron,中-存储,上市公司★,财报
+GPU/AI加速器,Ingenic,君正系列,300223.SZ,2005,北京,MCU/AIOT,ARM,低-消费,上市公司★,财报
+GPU/AI加速器,Novosense,纳芯微,688052.SH,2013,苏州,模拟芯片,TI,中-模拟,上市公司★,财报
+GPU/AI加速器,3Peak,思瑞浦,688536.SH,2012,苏州,信号链,TI,低-模拟,上市公司★,财报
+GPU/AI加速器,Will Semiconductor,韦尔股份,603501.SH,2007,上海,CIS/模拟,OmniVision,高-图像,上市公司★,财报
+GPU/AI加速器,Goodix,汇顶科技,603160.SH,2002,深圳,触控/指纹,Focaltech,低-触控,上市公司★,财报
+GPU/AI加速器,Shanghai Belling,上海贝岭,600171.SH,1989,上海,模拟,TI,低-模拟,上市公司★,财报
+GPU/AI加速器,Zhicheng Tech,至诚科技,688350.SH,2010,深圳,混合信号,TI,低-模拟,上市公司★,财报
+GPU/AI加速器,Vanchip,唯捷创芯,688153.SH,2015,深圳,射频PA,Qualcomm,中-射频,上市公司★,财报
+GPU/AI加速器,Airoha,络达科技,未上市,2015,深圳,蓝牙/WiFi,Qualcomm,低-无线,联发科,官网
+GPU/AI加速器,RF Chip,射频芯片,未上市,2010,上海,射频,射频,低-射频,未上市,官网
+GPU/AI加速器,Power Integration,晶丰明源,688368.SH,2008,上海,LED驱动,TI,低-模拟,上市公司★,财报
+GPU/AI加速器,Mini Logic,明微电子,688699.SH,2003,深圳,LED驱动,TI,低-模拟,上市公司★,财报
+GPU/AI加速器,Fitipower,富满微,300671.SZ,2001,深圳,电源管理,TI,低-模拟,上市公司★,财报
+GPU/AI加速器,GalaxyCore,格科微,688728.SH,2003,上海,CIS传感器,Sony,中-图像,上市公司★,财报
+GPU/AI加速器,SmartSens,思特威,688213.SH,2011,上海,CIS传感器,Sony,中-图像,上市公司★,财报
+GPU/AI加速器,Hikvision,海康威视,002415.SZ,2001,杭州,传感器,Flir,中-传感器,上市公司★,财报
+GPU/AI加速器,Dahua,大华股份,002236.SZ,2001,杭州,传感器,Flir,中-传感器,上市公司★,财报
+GPU/AI加速器,ChipOne,中颖电子,300327.SZ,2002,深圳,MCU,Renesas,低-消费,上市公司★,财报
+GPU/AI加速器,Espressif,乐鑫科技,688018.SH,2008,上海,WiFi SoC,Espressif,低-IoT,上市公司★,财报
+GPU/AI加速器,BYD Semi,比亚迪半导体,未上市,2020,深圳,车规MCU,Infineon,中-车规,比亚迪,官网
+GPU/AI加速器,Silan Micro,士兰微,600460.SH,2000,杭州,IGBT,MEMS,Infineon,中-功率,上市公司★,财报
+GPU/AI加速器,HuaHong Semi,华虹半导体,300232.SZ/1347.HK,1996,上海,代工,Foundry,中-代工,上市公司★,财报
+GPU/AI加速器,Chipone,芯瑞达,未上市,2012,深圳,显示驱动,显示驱动,低-显示,未上市,官网
+GPU/AI加速器,Alen.ai,灵汐科技,未上市,2018,北京,类脑芯片,Intel,Loihi,高-类脑,未上市,官网
+GPU/AI加速器,InnoSense,知存科技,未上市,2017,北京,存算一体,IBM,TrueNorth,高-存算,未上市,官网
+GPU/AI加速器,WealthOwl,九天睿芯,未上市,2020,深圳,模拟AI,Intel,Loihi,高-模拟,未上市,官网
+GPU/AI加速器,Synsense,时识科技,未上市,2017,成都,类脑,Intel,Loihi,高-类脑,未上市,官网
+GPU/AI加速器,Coolhib,酷芯微,未上市,2013,上海,AI视觉SoC,Intel,NCS,低-边缘,未上市,官网
+GPU/AI加速器,EeasyTech,亿智电子,未上市,2016,珠海,AI SoC,Google,Coral,低-边缘,未上市,官网
+GPU/AI加速器,Kneron,耐能,未上市,2015,深圳,边缘AI,Google,Coral,低-边缘,未上市,官网
+GPU/AI加速器,UBTECH,优必选,9880.HK,2012,深圳,人形机器人,Boston Dynamics,中-服务,上市公司★,财报
+GPU/AI加速器,CloudMinds,达闼科技,未上市,2015,深圳,云端机器人,Boston Dynamics,中-云端,未上市,官网
+GPU/AI加速器,Unitree,宇树科技,未上市,2014,杭州,四足/人形,Boston Dynamics,中-机器人,未上市,官网
+GPU/AI加速器,DeepRobotics,云深处,未上市,2017,杭州,四足,Boston Dynamics,中-工业,未上市,官网
+GPU/AI加速器,Agibot,智元机器人,未上市,2023,上海,人形,Agility Robotics,中-人形,未上市,官网
+GPU/AI加速器,Limx Tech,逐际动力,未上市,2022,深圳,人形/四足,波士顿动力,中-机器人,未上市,官网
+GPU/AI加速器,Galbot,银河通用,未上市,2023,北京,具身智能,Figure AI,中-具身,未上市,官网

@@ -1,0 +1,601 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<title>瑞薩電子_Renesas_公司分析報告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:A4 landscape;margin:0}
+body{font-family:'Microsoft JhengHei','Microsoft YaHei',Arial;font-size:11pt;color:#333;background:#fff}
+.page{min-height:100vh;padding:20px 30px;position:relative}
+
+/* 封面 */
+.cover{background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center}
+.cover h1{font-size:48px;margin-bottom:20px;letter-spacing:8px}
+.cover h2{font-size:24px;font-weight:normal;margin-bottom:40px;opacity:0.9}
+.cover .meta{font-size:14px;line-height:2;opacity:0.8}
+.cover .badge{position:absolute;top:20px;right:20px;background:rgba(255,255,255,0.15);padding:10px 20px;border-radius:25px;font-size:12px}
+
+/* 頁眉 */
+.header{display:flex;justify-content:space-between;align-items:center;border-bottom:3px solid #0f3460;padding-bottom:10px;margin-bottom:15px}
+.header h2{color:#0f3460;font-size:20px}
+.header .page-num{font-size:10px;color:#888}
+
+/* 標題區 */
+.section-title{background:linear-gradient(90deg,#0f3460,#1a5f9e);color:#fff;padding:12px 20px;font-size:16px;margin:-20px -30px 15px -30px}
+
+/* 表格 */
+table{width:100%;border-collapse:collapse;font-size:10pt}
+th{background:#0f3460;color:#fff;padding:10px 12px;text-align:left;font-weight:600}
+td{padding:8px 12px;border-bottom:1px solid #e9ecef}
+tr:nth-child(even){background:#f8f9fa}
+
+/* 卡片式佈局 */
+.card{background:#f8f9fa;border-radius:10px;padding:15px;margin-bottom:15px;border:1px solid #e9ecef}
+.card h4{color:#0f3460;font-size:14px;margin-bottom:10px;display:flex;align-items:center;gap:8px}
+.card h4::before{content:'';width:4px;height:14px;background:#0f3460;border-radius:2px}
+
+/* 指標卡片 */
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-bottom:15px}
+.metric{background:#f8f9fa;border-radius:8px;padding:12px;text-align:center;border-left:4px solid #0f3460}
+.metric .label{font-size:9px;color:#666;text-transform:uppercase;margin-bottom:5px}
+.metric .value{font-size:20px;font-weight:bold;color:#0f3460}
+.metric .change{font-size:10px;margin-top:3px}
+.positive{color:#27ae60}
+.negative{color:#e74c3c}
+.neutral{color:#7f8c8d}
+
+/* 進度條 */
+.progress-bar{height:18px;background:#e9ecef;border-radius:9px;overflow:hidden;margin:6px 0}
+.progress-fill{height:100%;background:linear-gradient(90deg,#0f3460,#3498db);border-radius:9px;display:flex;align-items:center;justify-content:flex-end;padding-right:8px;color:#fff;font-size:9px;font-weight:bold}
+
+/* 風險卡片 */
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.risk{padding:10px;border-radius:8px;text-align:center;font-size:10pt}
+.risk-high{background:#fadbd8;border:1px solid #e74c3c}
+.risk-med{background:#fcf3cf;border:1px solid #f39c12}
+.risk-low{background:#d4efdf;border:1px solid #27ae60}
+.risk .level{font-size:9px;font-weight:bold;padding:2px 8px;border-radius:10px;display:inline-block;margin-bottom:5px}
+.risk-high .level{background:#e74c3c;color:#fff}
+.risk-med .level{background:#f39c12;color:#fff}
+.risk-low .level{background:#27ae60;color:#fff}
+.risk .title{font-size:11px;font-weight:bold;margin-bottom:3px}
+.risk .desc{font-size:9px;color:#666}
+
+/* 投資建議 */
+.recommend{background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:20px;border-radius:12px;text-align:center;margin-bottom:15px}
+.recommend .grade{font-size:36px;font-weight:bold;margin-bottom:5px}
+.recommend .target{font-size:14px;opacity:0.9}
+.recommend .catalysts{margin-top:10px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
+.recommend .catalyst{background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:15px;font-size:10px}
+
+/* 競爭格局 */
+.compete{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.compete .name{width:100px;font-size:10pt;font-weight:bold}
+.compete .bar{flex:1;height:16px;background:#e9ecef;border-radius:8px;overflow:hidden}
+.compete .share{height:100%;background:linear-gradient(90deg,#0f3460,#3498db);border-radius:8px}
+.compete .pct{width:45px;text-align:right;font-size:10pt;font-weight:bold;color:#0f3460}
+
+/* 兩欄佈局 */
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.full-width{grid-column:1/-1}
+
+/* 公司概況表格 */
+.info-table td:nth-child(1){width:120px;font-weight:bold;color:#0f3460;background:#f8f9fa}
+.info-table td:nth-child(2){}
+
+/* Roadmap表格 */
+.roadmap th{font-size:9pt}
+.roadmap td{font-size:9pt;padding:6px 10px}
+.roadmap .year{text-align:center;font-weight:bold;background:#0f3460;color:#fff}
+
+/* 摘要框 */
+.summary{background:linear-gradient(135deg,#fff9e6,#ffeaa7);border-left:4px solid #f39c12;padding:12px 15px;border-radius:0 10px 10px 0;margin-bottom:15px}
+.summary p{font-size:11pt;line-height:1.5}
+
+/* 頁腳 */
+.footer{position:absolute;bottom:10px;left:30px;right:30px;display:flex;justify-content:space-between;font-size:8px;color:#999;border-top:1px solid #e9ecef;padding-top:8px}
+
+/* 目錄 */
+.toc{padding:30px 40px}
+.toc h3{color:#0f3460;font-size:22px;margin-bottom:20px;padding-bottom:10px;border-bottom:2px solid #0f3460}
+.toc-item{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px solid #e9ecef;font-size:13px}
+
+/* 警告框 */
+.warning{background:#fff3cd;border:1px solid #ffc107;border-radius:8px;padding:12px;font-size:10pt;color:#856404}
+</style>
+</head>
+<body>
+
+<!-- 封面 -->
+<div class="page cover">
+<div class="badge">📊 IC Design + IDM</div>
+<h1>瑞薩電子</h1>
+<h2>公司分析報告</h2>
+<div class="meta">
+<p>Renesas Electronics Corporation</p>
+<p>報告日期：2026年2月9日</p>
+<p>分析框架：McKinsey + BCG + Bain</p>
+</div>
+</div>
+
+<!-- 目錄 -->
+<div class="page">
+<div class="header">
+<h2>目錄</h2>
+<span class="page-num">瑞薩電子公司分析報告</span>
+</div>
+<div class="toc">
+<h3>目錄</h3>
+<div class="toc-item"><span>1. 公司概況</span><span>01</span></div>
+<div class="toc-item"><span>2. 產品Roadmap（簡易版）</span><span>02</span></div>
+<div class="toc-item"><span>3. 產品Roadmap（詳細版）</span><span>03</span></div>
+<div class="toc-item"><span>4. 市場分析</span><span>04</span></div>
+<div class="toc-item"><span>5. 競爭格局</span><span>05</span></div>
+<div class="toc-item"><span>6. 風險評估</span><span>06</span></div>
+<div class="toc-item"><span>7. 投資價值</span><span>07</span></div>
+<div class="toc-item"><span>8. 附錄</span><span>08</span></div>
+</div>
+</div>
+
+<!-- 1. 公司概況 -->
+<div class="page">
+<div class="header">
+<h2>01 公司概況</h2>
+<span class="page-num">瑞薩電子公司分析報告</span>
+</div>
+
+<table class="info-table" style="margin-bottom:15px">
+<tr><td>公司名稱</td><td>中文：瑞薩電子 / 英文：Renesas Electronics Corporation</td></tr>
+<tr><td>公司總部</td><td>日本，東京</td></tr>
+<tr><td>公司類型</td><td>IC Design + **IDM**（双类型）</td></tr>
+<tr><td>成立時間</td><td>2003年11月1日（2010年瑞薩科技與NEC電子合併）</td></tr>
+<tr><td>註冊資本</td><td>JPY 630,000百萬（約USD 4,200百萬）</td></tr>
+<tr><td>應用分類</td><td>AI / **HPC** / **Automotive** / **Networking** / FPGA / ASIC / Others</td></tr>
+<tr><td>芯片產品應用</td><td>MCU（RA、RX、RL78系列）、SoC（R-Car系列）、功率半導體、類比晶片、感測器</td></tr>
+<tr><td>是否上市</td><td>是，東京證券交易所_6723</td></tr>
+<tr><td>上市時間</td><td>2003年11月1日</td></tr>
+<tr><td>前三大股東</td><td>1. Toyota Motor (11.7%) 2. NTT Docomo (6.3%) 3. Mizuho Bank (4.5%)</td></tr>
+</table>
+
+<div class="metrics">
+<div class="metric">
+<div class="label">FY2024營收</div>
+<div class="value">$96.5億</div>
+<div class="change negative">YoY -8.2%</div>
+</div>
+<div class="metric">
+<div class="label">員工人數</div>
+<div class="value">22,711人</div>
+<div class="change neutral">全球據點</div>
+</div>
+<div class="metric">
+<div class="label">全球MCU市佔</div>
+<div class="value">#2</div>
+<div class="change neutral">約18%</div>
+</div>
+<div class="metric">
+<div class="label">毛利率</div>
+<div class="value">55.6%</div>
+<div class="change positive">Non-GAAP 56.1%</div>
+</div>
+</div>
+
+<div class="two-col">
+<div class="card">
+<h4>營收結構</h4>
+<div class="progress-bar"><div class="progress-fill" style="width:50%">MCU/SoC 50%</div></div>
+<div class="progress-bar"><div class="progress-fill" style="width:25%;background:linear-gradient(90deg,#3498db,#5dade2)">類比與電源 25%</div></div>
+<div class="progress-bar"><div class="progress-fill" style="width:15%;background:linear-gradient(90deg,#27ae60,#58d68d)">連接與接口 15%</div></div>
+<div class="progress-bar"><div class="progress-fill" style="width:10%;background:linear-gradient(90deg:#f39c12,#f5b041)">其他 10%</div></div>
+</div>
+<div class="card">
+<h4>市場地位</h4>
+<table style="font-size:10pt">
+<tr><th>產品領域</th><th>全球排名</th></tr>
+<tr><td>汽車MCU</td><td>#2</td></tr>
+<tr><td>工業MCU</td><td>#2</td></tr>
+<tr><td>整體MCU</td><td>#2</td></tr>
+<tr><td>汽車SoC</td><td>Top 3</td></tr>
+</table>
+</div>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 2. Roadmap簡易版 -->
+<div class="page">
+<div class="header">
+<h2>02 產品Roadmap（簡易版）</h2>
+<span class="page-num">瑞薩電子公司分析報告</span>
+</div>
+
+<div class="card">
+<h4>MCU產品線（Arm架構）</h4>
+<table class="roadmap">
+<tr><th width="15%">產品系列</th><th width="17%">2024</th><th width="17%">2025</th><th width="17%">2026</th><th width="17%">2027</th><th width="17%">2028+</th><th width="17%">安全等級</th></tr>
+<tr><td><strong>RA0系列</strong></td><td>量產</td><td>擴產</td><td>RA0+</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><strong>RA4系列</strong></td><td>量產</td><td>RA4M2</td><td>RA4M3</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><strong>RA6系列</strong></td><td>量產</td><td>RA6M3</td><td>RA6M4</td><td>RA6M5</td><td>-</td><td>-</td></tr>
+<tr><td><strong>RA8系列</strong></td><td>樣品</td><td>量產</td><td>擴產</td><td>下一代</td><td>-</td><td>ASIL B/D</td></tr>
+<tr><td><strong>RL78系列</strong></td><td>量產</td><td>RL78/G13</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+<tr><td><strong>RX系列</strong></td><td>量產</td><td>RX65N2</td><td>RX66N</td><td>-</td><td>-</td><td>ASIL B</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>汽車MCU產品線（RH850系列）</h4>
+<table class="roadmap">
+<tr><th width="15%">產品系列</th><th width="17%">2024</th><th width="17%">2025</th><th width="17%">2026</th><th width="17%">2027</th><th width="17%">2028+</th><th width="17%">安全等級</th></tr>
+<tr><td><strong>RH850/CFx</strong></td><td>量產</td><td>擴產</td><td>-</td><td>-</td><td>-</td><td>ASIL D</td></tr>
+<tr><td><strong>RH850/CMx</strong></td><td>開發</td><td>樣品</td><td>量產</td><td>擴產</td><td>-</td><td>ASIL D</td></tr>
+<tr><td><strong>RH850/Px</strong></td><td>開發</td><td>樣品</td><td>量產</td><td>-</td><td>-</td><td>ASIL D</td></tr>
+<tr><td><strong>新一代A系列</strong></td><td>-</td><td>開發</td><td>-</td><td>量產</td><td>-</td><td>ASIL D</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>汽車SoC產品線（R-Car系列）</h4>
+<table class="roadmap">
+<tr><th width="15%">產品系列</th><th width="17%">2024</th><th width="17%">2025</th><th width="17%">2026</th><th width="17%">2027</th><th width="17%">2028+</th><th width="17%">AI性能</th></tr>
+<tr><td><strong>R-Car V4M</strong></td><td>量產</td><td>擴產</td><td>-</td><td>-</td><td>-</td><td>8 TOPS</td></tr>
+<tr><td><strong>R-Car V4H</strong></td><td>樣品</td><td>量產</td><td>擴產</td><td>-</td><td>-</td><td>12 TOPS</td></tr>
+<tr><td><strong>R-Car V5N</strong></td><td>開發</td><td>樣品</td><td>量產</td><td>-</td><td>-</td><td>24 TOPS</td></tr>
+<tr><td><strong>R-Car V5M</strong></td><td>-</td><td>開發</td><td>樣品</td><td>量產</td><td>-</td><td>30 TOPS</td></tr>
+<tr><td><strong>R-Car V6</strong></td><td>-</td><td>-</td><td>開發</td><td>樣品</td><td>量產</td><td>60+ TOPS</td></tr>
+<tr><td><strong>R-Car S4</strong></td><td>量產</td><td>擴產</td><td>-</td><td>-</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 3. Roadmap詳細版 -->
+<div class="page">
+<div class="header">
+<h2>03 產品Roadmap（詳細版）</h2>
+<span class="page-num">瑞薩電子公司分析報告</span>
+</div>
+
+<div class="card">
+<h4>MCU詳細規格</h4>
+<table class="roadmap">
+<tr><th>產品系列</th><th>製程節點</th><th>CPU核心</th><th>2024狀態</th><th>2025狀態</th><th>安全等級</th><th>應用領域</th></tr>
+<tr><td><strong>RA8系列</strong></td><td>28nm</td><td>Cortex-M85</td><td>樣品</td><td>量產</td><td>ASIL B/D</td><td>高性能邊緣AI</td></tr>
+<tr><td><strong>RA6系列</strong></td><td>40nm</td><td>Cortex-M4/M33</td><td>量產</td><td>RA6M3</td><td>-</td><td>工業/消費</td></tr>
+<tr><td><strong>RH850/CMx</strong></td><td>28nm</td><td>G3K/G3M</td><td>開發</td><td>樣品</td><td>ASIL D</td><td>汽車底盤/車身</td></tr>
+<tr><td><strong>RX72N</strong></td><td>40nm</td><td>RXv3核心</td><td>量產</td><td>RX73N</td><td>-</td><td>高性能網絡</td></tr>
+<tr><td><strong>RL78/G13</strong></td><td>40nm+</td><td>RL78核心</td><td>量產</td><td>擴產</td><td>-</td><td>超低功耗</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>汽車SoC詳細規格</h4>
+<table class="roadmap">
+<tr><th>產品系列</th><th>製程節點</th><th>AI性能</th><th>製程節點</th><th>2025狀態</th><th>關鍵特性</th><th>製程節點</th></tr>
+<tr><td><strong>R-Car V4H</strong></td><td>7nm</td><td>12 TOPS</td><td>7nm</td><td>量產</td><td>中端ADAS</td><td>-</td></tr>
+<tr><td><strong>R-Car V5N</strong></td><td>5nm</td><td>24 TOPS</td><td>5nm</td><td>樣品</td><td>高端ADAS</td><td>-</td></tr>
+<tr><td><strong>R-Car V5M</strong></td><td>5nm</td><td>30 TOPS</td><td>5nm</td><td>開發</td><td>高級ADAS</td><td>-</td></tr>
+<tr><td><strong>R-Car V6</strong></td><td>3nm</td><td>60+ TOPS</td><td>3nm</td><td>開發</td><td>L4+自動駕駛</td><td>-</td></tr>
+<tr><td><strong>Chiplet</strong></td><td>先進封裝</td><td>-</td><td>-</td><td>-</td><td>CPU/GPU/NPU整合</td><td>-</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>功率與類比產品</h4>
+<table class="roadmap">
+<tr><th>產品類別</th><th>2024</th><th>2025</th><th>2026</th><th>2027+</th><th>收購/策略</th></tr>
+<tr><td><strong>SiC MOSFET</strong></td><td>開發</td><td>樣品</td><td>量產</td><td>擴產</td><td>-</td></tr>
+<tr><td><strong>GaN器件</strong></td><td>樣品</td><td>量產</td><td>擴產</td><td>-</td><td>Transphorm</td></tr>
+<tr><td><strong>功率器件</strong></td><td>IGBT/MOSFET</td><td>SiC</td><td>GaN</td><td>全寬禁帶</td><td>-</td></tr>
+<tr><td><strong>PMIC</strong></td><td>ISL8xx</td><td>ISL9xx</td><td>新一代</td><td>-</td><td>-</td></tr>
+</table>
+</div>
+
+<div class="summary">
+<p><strong>核心洞察：</strong>瑞薩正從傳統MCU向AI MCU（RA8系列）和先進SoC（R-Car V5/V6）轉型，同時通過收購Transphorm進入GaN市場，佈局功率半導體。</p>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 4. 市場分析 -->
+<div class="page">
+<div class="header">
+<h2>04 市場分析</h2>
+<span class="page-num">瑞薩電子公司分析報告</span>
+</div>
+
+<div class="metrics">
+<div class="metric">
+<div class="label">全球MCU市場</div>
+<div class="value">$120億</div>
+<div class="change positive">2024年</div>
+</div>
+<div class="metric">
+<div class="label">汽車MCU CAGR</div>
+<div class="value">9%</div>
+<div class="change positive">2024-2030</div>
+</div>
+<div class="metric">
+<div class="label">電動車滲透率</div>
+<div class="value">40%</div>
+<div class="change positive">2030E</div>
+</div>
+<div class="metric">
+<div class="label">單車MCU用量</div>
+<div class="value">50+顆</div>
+<div class="change positive">電動車</div>
+</div>
+</div>
+
+<div class="two-col">
+<div class="card">
+<h4>MCU市場份額排名</h4>
+<div class="compete"><div class="name">英飛凌</div><div class="bar"><div class="share" style="width:22%"></div></div><div class="pct">22%</div></div>
+<div class="compete"><div class="name">瑞薩電子</div><div class="bar"><div class="share" style="width:18%;background:linear-gradient(90deg,#e74c3c,#f1948a)"></div></div><div class="pct" style="color:#e74c3c">18%</div></div>
+<div class="compete"><div class="name">恩智浦</div><div class="bar"><div class="share" style="width:17%"></div></div><div class="pct">17%</div></div>
+<div class="compete"><div class="name">微芯科技</div><div class="bar"><div class="share" style="width:15%"></div></div><div class="pct">15%</div></div>
+<div class="compete"><div class="name">意法半導體</div><div class="bar"><div class="share" style="width:12%"></div></div><div class="pct">12%</div></div>
+<div class="compete"><div class="name">德州儀器</div><div class="bar"><div class="share" style="width:10%"></div></div><div class="pct">10%</div></div>
+</div>
+<div class="card">
+<h4>市場驅動因素</h4>
+<table style="font-size:10pt">
+<tr><th>驅動因素</th><th>2024</th><th>2025E</th><th>2030E</th></tr>
+<tr><td>電動車產量（百萬）</td><td>18</td><td>25</td><td>45</td></tr>
+<tr><td>單車MCU數量</td><td>30</td><td>35</td><td>50+</td></tr>
+<tr><td>ADAS滲透率</td><td>35%</td><td>45%</td><td>65%</td></tr>
+<tr><td>L3+自動駕駛</td><td>5%</td><td>10%</td><td>25%</td></tr>
+</table>
+</div>
+</div>
+
+<div class="summary">
+<p><strong>市場機遇：</strong>汽車電子電氣化推動MCU/SoC需求爆發，單車芯片價值從燃油車$500提升至電動車$2,000+。瑞薩在日系車企深度佈局，受益於豐田、本田等客戶電動化轉型。</p>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 5. 競爭格局 -->
+<div class="page">
+<div class="header">
+<h2>05 競爭格局</h2>
+<span class="page-num">瑞薩電子公司分析報告</span>
+</div>
+
+<div class="two-col">
+<div class="card">
+<h4>競爭優勢</h4>
+<table style="font-size:10pt">
+<tr><th>優勢</th><th>評估</th></tr>
+<tr><td>日系車企深度綁定（豐田30+年）</td><td class="positive">⭐⭐⭐</td></tr>
+<tr><td>MCU產品線全覆蓋（8-64位）</td><td class="positive">⭐⭐⭐</td></tr>
+<tr><td>IDM模式，自有產能</td><td class="positive">⭐⭐⭐</td></tr>
+<tr><td>RA系列Arm生態完善</td><td class="positive">⭐⭐</td></tr>
+<tr><td>收購Transphorm佈局GaN</td><td class="positive">⭐⭐</td></tr>
+</table>
+</div>
+<div class="card">
+<h4>競爭劣勢</h4>
+<table style="font-size:10pt">
+<tr><th>劣勢</th><th>評估</th></tr>
+<tr><td>中國市場份額較低</td><td class="negative">⚠️</td></tr>
+<tr><td>AI/ML生態落後英偉達</td><td class="negative">⚠️</td></tr>
+<tr><td>SoC性能落後高通/英偉達</td><td class="negative">⚠️</td></tr>
+<tr><td>先進製程依賴台積電</td><td class="negative">⚠️</td></tr>
+</table>
+</div>
+</div>
+
+<div class="card">
+<h4>瑞薩 vs 競爭對手</h4>
+<table style="font-size:10pt">
+<tr><th>維度</th><th>瑞薩</th><th>英飛凌</th><th>恩智浦</th><th>高通</th></tr>
+<tr><td>汽車MCU</td><td>⭐⭐⭐（日系強）</td><td>⭐⭐⭐（歐系強）</td><td>⭐⭐⭐</td><td>-</td></tr>
+<tr><td>汽車SoC</td><td>⭐⭐（L2-L3）</td><td>⭐⭐</td><td>⭐⭐⭐（S32）</td><td>⭐⭐⭐⭐（Snapdragon）</td></tr>
+<tr><td>AI性能</td><td>⭐⭐</td><td>⭐⭐</td><td>⭐⭐</td><td>⭐⭐⭐⭐⭐</td></tr>
+<tr><td>製程節點</td><td>16nm（開發中）</td><td>16nm</td><td>16nm</td><td>4nm</td></tr>
+<tr><td>客戶結構</td><td>日系車企為主</td><td>全球均衡</td><td>全球均衡</td><td>消費電子</td></tr>
+</table>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 6. 風險評估 -->
+<div class="page">
+<div class="header">
+<h2>06 風險評估</h2>
+<span class="page-num">瑞薩電子公司分析報告</span>
+</div>
+
+<div class="risk-grid" style="margin-bottom:15px">
+<div class="risk risk-high">
+<div class="level">高風險</div>
+<div class="title">價格競爭</div>
+<div class="desc">消費電子MCU價格压力大</div>
+</div>
+<div class="risk risk-high">
+<div class="level">高風險</div>
+<div class="title">AI生態落後</div>
+<div class="desc">AI/ML開發工具落後競爭對手</div>
+</div>
+<div class="risk risk-med">
+<div class="level">中風險</div>
+<div class="title">高通/英偉達</div>
+<div class="desc">消費殺入汽車SoC市場</div>
+</div>
+<div class="risk risk-med">
+<div class="level">中風險</div>
+<div class="title">地緣政治</div>
+<div class="desc">中美科技戰影響中國業務</div>
+</div>
+<div class="risk risk-med">
+<div class="level">中風險</div>
+<div class="title">製程節點</div>
+<div class="desc">先進製程依賴台積電</div>
+</div>
+<div class="risk risk-low">
+<div class="level">低風險</div>
+<div class="title">產能過剩</div>
+<div class="desc">IDM模式抗周期能力強</div>
+</div>
+</div>
+
+<div class="card">
+<h4>SWOT分析</h4>
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:15px;font-size:10pt">
+<div>
+<strong style="color:#27ae60">優勢 S</strong>
+<ul style="margin-top:8px;line-height:1.8;padding-left:20px">
+<li>日系車企深度綁定</li>
+<li>MCU全覆蓋（8-64位）</li>
+<li>IDM模式保障產能</li>
+<li>豐富產品組合</li>
+</ul>
+</div>
+<div>
+<strong style="color:#e74c3c">劣勢 W</strong>
+<ul style="margin-top:8px;line-height:1.8;padding-left:20px">
+<li>中國市場份額低</li>
+<li>AI生態落後</li>
+<li>SoC性能不足</li>
+<li>先進製程依賴代工</li>
+</ul>
+</div>
+<div>
+<strong style="color:#3498db">機會 O</strong>
+<ul style="margin-top:8px;line-height:1.8;padding-left:20px">
+<li>電動車滲透率提升</li>
+<li>日系車企電動化加速</li>
+<li>邊緣AI需求爆發</li>
+<li>GaN/SiC功率器件</li>
+</ul>
+</div>
+<div>
+<strong style="color:#f39c12">威脅 T</strong>
+<ul style="margin-top:8px;line-height:1.8;padding-left:20px">
+<li>高通/英偉達競爭</li>
+<li>中國廠商崛起</li>
+<li>價格競爭加劇</li>
+<li>地緣政治風險</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 7. 投資價值 -->
+<div class="page">
+<div class="header">
+<h2>07 投資價值</h2>
+<span class="page-num">瑞薩電子公司分析報告</span>
+</div>
+
+<div class="valuation" style="display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-bottom:15px">
+<div class="recommend" style="background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:20px;border-radius:12px;text-align:center">
+<div style="font-size:12px;opacity:0.9">相對估值 - P/E</div>
+<div style="font-size:28px;font-weight:bold">18x</div>
+<div style="font-size:10px;opacity:0.8">vs行業20x (-10%)</div>
+</div>
+<div class="recommend" style="background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:20px;border-radius:12px;text-align:center">
+<div style="font-size:12px;opacity:0.9">相對估值 - P/S</div>
+<div style="font-size:28px;font-weight:bold">3.2x</div>
+<div style="font-size:10px;opacity:0.8">vs行業3.5x (-8%)</div>
+</div>
+<div class="recommend" style="background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:20px;border-radius:12px;text-align:center">
+<div style="font-size:12px;opacity:0.9">目標價</div>
+<div style="font-size:28px;font-weight:bold">¥1,580</div>
+<div style="font-size:10px;opacity:0.8">當前¥1,380 (+14%)</div>
+</div>
+</div>
+
+<div class="recommend">
+<div style="font-size:14px;opacity:0.9">投資評級</div>
+<div style="font-size:40px;font-weight:bold;margin:10px 0">持有</div>
+<div style="font-size:16px">目標價¥1,580 | 當前¥1,380 | 上行空間14%</div>
+<div style="margin-top:12px;padding-top:12px;border-top:1px solid rgba(255,255,255,0.2)">
+<div style="font-size:12px;margin-bottom:8px">關鍵催化劑</div>
+<div style="display:flex;gap:8px;justify-content:center;flex-wrap:wrap">
+<span style="background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:15px;font-size:10px">日系電動車爆發</span>
+<span style="background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:15px;font-size:10px">RA8量產</span>
+<span style="background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:15px;font-size:10px">R-Car V5量產</span>
+<span style="background:rgba(255,255,255,0.2);padding:5px 12px;border-radius:15px;font-size:10px">GaN產能開出</span>
+</div>
+</div>
+</div>
+
+<div class="two-col" style="margin-top:15px">
+<div class="card">
+<h4>買入理由</h4>
+<ul style="line-height:1.8;font-size:10pt;padding-left:20px">
+<li>日系電動車龍頭供應商，受益豐田、本田轉型</li>
+<li>MCU庫存週期触底，2025年有望復甦</li>
+<li>估值合理，相對歷史折價10%</li>
+<li>RA8系列AI MCU領先量產</li>
+</ul>
+</div>
+<div class="card">
+<h4>風險因素</h4>
+<ul style="line-height:1.8;font-size:10pt;padding-left:20px">
+<li>高通、英偉達搶佔汽車SoC市場</li>
+<li>中國MCU廠商價格競爭</li>
+<li>電動車增速放緩</li>
+<li>地緣政治風險影響中國業務</li>
+</ul>
+</div>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+<!-- 8. 附錄 -->
+<div class="page">
+<div class="header">
+<h2>08 附錄</h2>
+<span class="page-num">瑞薩電子公司分析報告</span>
+</div>
+
+<div class="card">
+<h4>名詞解釋</h4>
+<table style="font-size:9pt">
+<tr><th width="20%">名詞</th><th>解釋</th></tr>
+<tr><td>MCU</td><td>Microcontroller Unit，微控制器</td></tr>
+<tr><td>SoC</td><td>System on Chip，系統單晶片</td></tr>
+<tr><td>ASIL</td><td>Automotive Safety Integrity Level，汽車安全完整性等級</td></tr>
+<tr><td>ADAS</td><td>Advanced Driver Assistance Systems，先進駕駛輔助系統</td></tr>
+<tr><td>TOPS</td><td>Tera Operations Per Second，每秒萬億次運算</td></tr>
+<tr><td>IDM</td><td>Integrated Device Manufacturer，集成設備製造商</td></tr>
+<tr><td>Chiplet</td><td>將多種功能晶片封裝在一起的先進封裝技術</td></tr>
+<tr><td>SiC</td><td>Silicon Carbide，碳化矽</td></tr>
+<tr><td>GaN</td><td>Gallium Nitride，氮化鎵</td></tr>
+</table>
+</div>
+
+<div class="card">
+<h4>數據來源</h4>
+<table style="font-size:9pt">
+<tr><th>來源類型</th><th>來源</th></tr>
+<tr><td>公司官網</td><td>https://www.renesas.com</td></tr>
+<tr><td>投資者關係</td><td>https://www.renesas.com/en/about/investor-relations</td></tr>
+<tr><td>年報</td><td>Renesas FY2024 Annual Report</td></tr>
+<tr><td>行業報告</td><td>TrendForce, Gartner, IHS Markit</td></tr>
+<tr><td>股價數據</td><td>東京證券交易所：6723.T</td></tr>
+</table>
+</div>
+
+<div class="warning" style="margin-top:15px">
+<p><strong>免責聲明：</strong>本報告僅供參考，不構成投資建議。投資者應獨立判斷並承擔相應風險。數據來源為公開信息，請以公司官方公告為準。</p>
+</div>
+
+<div class="footer"><span>報告日期：2026年2月9日</span><span>McKinsey + BCG + Bain 框架</span></div>
+</div>
+
+</body>
+</html>

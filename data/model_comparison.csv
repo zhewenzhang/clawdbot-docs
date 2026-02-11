@@ -1,0 +1,50 @@
+参数类别,参数名称,MiniMax M2.1,Kimi K2.5,优胜者,数据来源,获取日期
+基本信息,发布厂商,MiniMax,Moonshot AI,-,llm-stats.com,2026-02-05
+基本信息,发布时间,2025-12-23,2026-01-27,Kimi,llm-stats.com; siliconangle.com,2026-02-05
+基本信息,开源情况,是,是,-,Hugging Face,2026-02-05
+基本信息,模型定位,Agent-native 编码专家,通用旗舰 万亿参数,-,官方文档,2026-02-05
+技术规格,上下文窗口,196600 tokens,256000 tokens,Kimi,galaxy.ai; wikipedia.org,2026-02-05
+技术规格,最大输出 tokens,约10000,96000,Kimi,galaxy.ai; huggingface.co,2026-02-05
+技术规格,参数规模,~10B活跃参数,1T总参数/3B活跃,Kimi,medium.com; wikipedia.org,2026-02-05
+技术规格,模型架构,标准 Transformer,Mixture-of-Experts,-,官方文档,2026-02-05
+技术规格,注意力机制,标准注意力,Kimi Delta Attention,Kimi,scmp.com,2026-02-05
+定价,输入成本,$0.27/1M,$0.60/1M,MiniMax,galaxy.ai; costgoat.com,2026-02-05
+定价,输出成本,$0.95/1M,$2.50/1M,MiniMax,galaxy.ai; codecademy.com,2026-02-05
+定价,上下文缓存,未明确,节省75%,Kimi,costgoat.com,2026-02-05
+编程基准,SWE-bench,74%,76.8%,Kimi,galaxy.ai; automatio.ai,2026-02-05
+编程基准,HumanEval,~90%+,99%,Kimi,automatio.ai,2026-02-05
+编程基准,VIBE,88.6%,-,MiniMax,digitalapplied.com,2026-02-05
+编程基准,LiveCodeBench,-,85%,Kimi,automatio.ai,2026-02-05
+数学基准,MMLU,~88%,92%,Kimi,automatio.ai,2026-02-05
+数学基准,MATH,-,98%,Kimi,automatio.ai,2026-02-05
+数学基准,GSM8k,-,99%,Kimi,automatio.ai,2026-02-05
+数学基准,AIME 2025,-,96.1%,Kimi,automatio.ai,2026-02-05
+数学基准,GPQA,-,87.6%,Kimi,automatio.ai,2026-02-05
+数学基准,HLE,-,50.2%,Kimi,automatio.ai,2026-02-05
+推理基准,IFEval,-,94%,Kimi,automatio.ai,2026-02-05
+推理基准,SimpleQA,-,54%,Kimi,automatio.ai,2026-02-05
+推理基准,ARC-AGI,-,12%,Kimi,automatio.ai,2026-02-05
+多模态基准,MMMU,-,84%,Kimi,automatio.ai,2026-02-05
+多模态基准,MathVista,-,84.2%,Kimi,automatio.ai,2026-02-05
+多模态基准,DocVQA,-,88.8%,Kimi,automatio.ai,2026-02-05
+多模态基准,ChartQA,-,77.5%,Kimi,automatio.ai,2026-02-05
+多模态基准,MMMU Pro,-,78.5%,Kimi,automatio.ai,2026-02-05
+工具调用,Tool Calling,支持,支持,-,官方文档,2026-02-05
+工具调用,API兼容性,Anthropic+OpenAI,OpenAI+Anthropic,-,platform.minimax.io; platform.moonshot.ai,2026-02-05
+工具调用,Agent-native,✅ 是,✅ 是,-,官方文档,2026-02-05
+工具调用,连续调用优化,✅ 有,✅ 200-300次,Kimi,medium.com,2026-02-05
+工具调用,推理模式,支持 interleaved thinking,支持,-,platform.minimax.io,2026-02-05
+生态系统,GitHub示例,Mini-Agent官方示例,官方仓库,-,github.com,2026-02-05
+生态系统,liteLLM支持,✅ 直接支持,✅ 支持,-,docs.litellm.ai,2026-02-05
+生态系统,vLLM/SGLang,✅ 支持,⚠️ 需验证,-,reddit.com,2026-02-05
+生态系统,Hugging Face,✅ 可用,✅ 可用,-,huggingface.co,2026-02-05
+本地部署,4bit量化,✅ AWQ可用,-,reddit.com,2026-02-05
+本地部署,硬件需求,中等,较高,Kimi,huggingface.co,2026-02-05
+多模态支持,图像输入,⚠️ 基本支持,✅ 原生支持,Kimi,huggingface.co; build.nvidia.com,2026-02-05
+多模态支持,视频输入,❌ 不支持,✅ 支持,Kimi,huggingface.co,2026-02-05
+多模态支持,音频输入,❌ 不支持,⚠️ Speech模型,-,minimax.io,2026-02-05
+系统提示词,完整支持,✅,✅,-,官方文档,2026-02-05
+对话历史,多轮对话,✅,✅,-,官方文档,2026-02-05
+成本对比,月度成本(估算),$7.17,$17.60,MiniMax,本分析,2026-02-05
+成本对比,年度成本(估算),$86.04,$211.20,MiniMax,本分析,2026-02-05
+成本对比,成本节省比例,基准,59%节省,MiniMax,本分析,2026-02-05

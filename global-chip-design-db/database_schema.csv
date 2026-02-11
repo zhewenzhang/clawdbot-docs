@@ -1,0 +1,32 @@
+field_name,field_name_cn,data_type,required,default_value,description,example_values,source
+company_id,公司ID,varchar(20),Y,,唯一标识符，股票代码或简写,NVDA;AMD;INTC,user_input
+company_name_cn,公司中文名,varchar(100),N,,公司官方中文名称,英伟达;超威半导体;英特尔,company_website
+company_name_en,公司英文名,varchar(100),Y,,公司官方英文名称,NVIDIA;AMD;Intel,company_website
+stock_code,股票代码,varchar(20),N,,多地用分号分隔,NVDA;AMD (NASDAQ);2454.TW (TWSE),stock_exchange
+exchange,上市交易所,varchar(50),N,,主要上市交易所,NASDAQ;NYSE;TWSE;KRX,stock_exchange
+founded_year,成立年份,int,N,,公司成立年份,1993;1969;1968,company_annual_report
+headquarters,总部位置,varchar(100),N,,总部所在城市和国家,Santa Clara, CA, USA;Taipei, Taiwan,company_website
+website,官网,varchar(200),N,,公司官方网站URL,https://www.nvidia.com,company_website
+chip_type,芯片类型,varchar(50),Y,,主芯片分类,GPU/AI;CPU;FPGA;ASIC;通信芯片;存储芯片;MCU,user_input
+chip_subtype,子类型,varchar(50),N,,具体产品子分类,数据中心GPU;消费级GPU;AI加速器;通用CPU;服务器CPU,product_announcement
+application,应用领域,varchar(200),N,,主要应用领域,数据中心;PC;移动设备;物联网;工业;汽车,product_documentation
+abf_usage,ABF载板使用,enum,,未知,ABF载板使用状态,是;否;潜在;未知,industry_analysis
+bt_usage,BT载板使用,enum,,未知,BT载板使用状态,是;否;潜在;未知,industry_analysis
+packaging_tech,封装技术,varchar(100),N,,主要封装技术,CoWoS;InFO;2.5D;3D;Flip Chip;Wire Bond,tsmc_presentation
+chip_size,芯片尺寸,varchar(50),N,,芯片尺寸规格,~800mm²;~500mm²;~200mm²,tech_analysis
+est_annual_volume,预计年用量,int,N,,预计年度用量（Kpcs）,10000;5000;1000,industry_estimate
+main_customers,主要客户,varchar(500),N,,主要客户或应用场景,数据中心云服务商;PC OEM;手机厂商,company_presentation
+foundry,晶圆代工,varchar(100),N,,主要晶圆代工厂商,TSMC;Samsung;SMIC;Intel Foundry,company_annual_report
+assembly_test,封装测试厂,varchar(200),N,,主要封装测试合作伙伴,ASE;Amkor;JCET,company_presentation
+tech_node,技术节点,varchar(50),N,,最先进工艺节点,5nm;7nm;14nm;28nm,company_presentation
+revenue_usd,营收规模,decimal(18,2),N,,芯片相关营收（百万美元）,6092;22748;15420,company_annual_report
+growth_outlook,增长预期,enum,N,,增长预期评估,高;中;低;稳定,industry_analysis
+data_status,数据状态,enum,,草稿,数据质量状态,草稿;已验证;待更新,user_input
+last_verified,最后验证日期,date,N,,最后验证数据准确性的日期,2026-01-15,user_input
+source,数据来源,varchar(200),N,,主要数据来源,公司财报;行业报告;新闻报道,user_input
+notes,备注,text,N,,其他补充信息,,user_input
+category_region,地区分类,varchar(50),N,,按地区分类,北美;台湾;韩国;中国大陆;日本;欧洲,user_input
+listing_status,上市状态,enum,N,,是否上市公司,是;否;部分,user_input
+market_cap_usd,市值,decimal(18,2),N,,市值（百万美元）,1200000;200000;150000,stock_market_data
+employees,员工人数,int,N,,全球员工总数,29600;26000;121000,company_website
+r_and_d_spend,研发投入,decimal(18,2),N,,年度研发支出（百万美元）,1700;5000;18000,company_annual_report

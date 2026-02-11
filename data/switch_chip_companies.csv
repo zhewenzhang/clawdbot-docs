@@ -1,0 +1,30 @@
+公司,产品系列,制程节点,交换容量(Tbps),端口密度,单端口带宽,应用场景,量产时间,主要客户,市占率(%),营收估算($B),技术特点
+Broadcom,Tomahawk 5,5nm,51.2,64×800G,800G,DataCenter,2024 Q2,AWS/Google/Meta,55,3.5,51.2T 5nm领先
+Broadcom,Tomahawk 4,7nm,25.6,64×400G,400G,DataCenter,2022,AWS/Google/Meta,15,0.9,25.6T 100G SerDes
+Broadcom,Jericho3-AI,5nm,30,128×200G,200G,AI Fabric,2024,Hyperscaler,5,0.3,AI优化架构
+Broadcom,Jericho3,7nm,17.6,88×200G,200G,Spine/Leaf,2023,运营商/云厂商,8,0.5,高密度Spine
+Broadcom,Questa,7nm,8,64×100G,100G,Enterprise,2022,白盒/OEM,10,0.4,企业级
+Cisco,Silicon One P100,5nm,25.6,64×400G,400G,Web-Scale,2024 Q3,特定CSP,3,0.2,P4可编程
+Cisco,Silicon One Q200,7nm,12.8,64×200G,200G,Routing/Spine,2021,运营商,8,0.5,深度Buffer
+Cisco,Silicon One Q200L,7nm,12.8,64×200G,200G,Web-Scale Switch,2021,企业,4,0.3,交换优化
+Cisco,Silicon One Q100,16nm,10.8,32×400G,400G,Routing,2020,运营商,3,0.2,第一代
+Cisco,Silicon One G100,7nm,3.2,32×100G,100G,Enterprise ToR,2023,企业,2,0.1,低成本
+NVIDIA,Spectrum-X800,5nm,51.2,64×800G,800G,AI Factory,2024 Q2,Meta/Oracle,5,0.3,CPO原生支持
+NVIDIA,Spectrum-4,7nm,25.6,64×400G,400G,DataCenter,2022,Meta/Oracle,3,0.2,AI优化
+NVIDIA,Spectrum-3,16nm,12.8,64×200G,200G,DataCenter,2020,企业/HPC,1,0.1,成熟产品
+Marvell,Teralynx 10,5nm,51.2,64×800G,800G,Web-Scale,2024 Q4,Hyperscaler,5,0.3,P4可编程
+Marvell,Teralynx 8,7nm,25.6,64×400G,400G,DataCenter,2022,云厂商,4,0.2,性价比优势
+Marvell,Prestera DX,7nm,12.8,64×200G,200G,Enterprise,2023,白盒,5,0.2,企业级
+Marvell,Prestera CX,16nm,6.4,32×200G,200G,Enterprise,2021,白盒,3,0.1,成熟产品
+Intel,Tofino 3,16nm,10,64×100G,100G,Enterprise,2023,Dell/HPE,5,0.2,P4可编程
+Intel,Tofino 2,16nm,6.4,32×200G,200G,Enterprise,2020,Dell/HPE,2,0.1,成熟产品
+Juniper,PTX10008,7nm,12.8,64×200G,200G,运营商,2022,运营商,2,0.1,Junos OS
+Juniper,MX304,16nm,6.4,32×200G,200G,运营商,2021,运营商,1,0.05,路由优化
+Arista,7050X4,7nm,12.8,64×200G,200G,DataCenter,2023,云厂商,2,0.1,Cloud EOS
+Arista,7800R4,7nm,25.6,64×400G,400G,DataCenter,2024,云厂商,1,0.05,大规模部署
+Realtek,RTL838x,28nm,1-2,24-48×1G,1G,嵌入式,2020,消费电子,10,0.08,低成本
+Realtek,RTL839x,28nm,2-4,48×10G,10G,中小企业,2021,SMB,5,0.04,入门级
+Microchip,VSC7448,28nm,1.6,48×10G,10G,工业,2021,工业客户,8,0.06,工业级可靠
+Microchip,VSC7442,28nm,0.8,24×10G,10G,嵌入式,2020,嵌入式,5,0.03,小尺寸
+Centec,EastDragon,28nm,1-2,24×10G,10G,中国市场,2022,中国客户,1,0.01,国产替代
+盛科通信,Crushman,28nm,1.2,48×10G,10G,中国市场,2023,中国客户,<1,<0.01,国产替代

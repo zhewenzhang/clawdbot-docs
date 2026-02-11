@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<title>寒武纪 公司分析报告</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@page{size:A4 landscape;margin:0}
+body{font-family:'Microsoft YaHei','PingFang SC',Arial;font-size:9pt;color:#333;background:#fff}
+.page{height:100vh;width:100%;padding:12px 18px;page-break-after:always;display:flex;flex-direction:column;overflow:hidden}
+.cover-page{background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;height:100vh}
+.cover-page h1{font-size:48px;margin-bottom:15px;letter-spacing:5px}
+.cover-page h2{font-size:24px;font-weight:normal;margin-bottom:30px;opacity:0.9}
+.cover-page .meta{font-size:13px;line-height:2;opacity:0.8}
+.header{color:#0f3460;font-size:16px;font-weight:bold;border-bottom:3px solid #0f3460;padding-bottom:6px;margin-bottom:10px;display:flex;justify-content:space-between}
+.header .page-num{font-size:9pt;font-weight:normal;color:#888}
+.section-title{background:linear-gradient(90deg,#0f3460,#1a5f9e);color:#fff;padding:8px 12px;font-size:13px;margin:-12px -18px 10px -18px}
+table{width:100%;border-collapse:collapse;font-size:8pt;page-break-inside:avoid;break-inside:avoid}
+th{background:#0f3460;color:#fff;padding:6px 8px;text-align:left;font-weight:600}
+td{padding:5px 8px;border-bottom:1px solid #e9ecef}
+tr:nth-child(even){background:#f8f9fa}
+.card{background:#f8f9fa;border-radius:6px;padding:10px;margin-bottom:8px;border:1px solid #e9ecef;page-break-inside:avoid;break-inside:avoid}
+.card h4{color:#0f3460;font-size:11px;margin-bottom:6px;display:flex;align-items:center;gap:5px}
+.card h4::before{content:'';width:3px;height:11px;background:#0f3460;border-radius:2px}
+.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:8px;page-break-inside:avoid;break-inside:avoid}
+.metric{background:#f8f9fa;border-radius:5px;padding:8px;text-align:center;border-left:3px solid #0f3460}
+.metric .label{font-size:7px;color:#666;text-transform:uppercase;margin-bottom:3px}
+.metric .value{font-size:16px;font-weight:bold;color:#0f3460}
+.metric .change{font-size:8px;margin-top:2px}
+.positive{color:#27ae60}
+.negative{color:#e74c3c}
+.neutral{color:#7f8c8d}
+.risk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;page-break-inside:avoid;break-inside:avoid}
+.risk{padding:6px;border-radius:5px;text-align:center;font-size:8pt;page-break-inside:avoid;break-inside:avoid}
+.risk-high{background:#fadbd8;border:1px solid #e74c3c}
+.risk-med{background:#fcf3cf;border:1px solid #f39c12}
+.risk-low{background:#d4efdf;border:1px solid #27ae60}
+.risk .level{font-size:7px;font-weight:bold;padding:2px 5px;border-radius:8px;display:inline-block;margin-bottom:3px}
+.risk-high .level{background:#e74c3c;color:#fff}
+.risk-med .level{background:#f39c12;color:#fff}
+.risk-low .level{background:#27ae60;color:#fff}
+.risk .title{font-size:9px;font-weight:bold;margin-bottom:2px}
+.risk .desc{font-size:7px;color:#666}
+.compete{display:flex;align-items:center;gap:6px;margin-bottom:5px}
+.compete .name{width:70px;font-size:8pt;font-weight:bold}
+.compete .bar{flex:1;height:12px;background:#e9ecef;border-radius:5px;overflow:hidden}
+.compete .share{height:100%;background:linear-gradient(90deg,#0f3460,#3498db);border-radius:5px}
+.compete .pct{width:35px;text-align:right;font-size:8pt;font-weight:bold;color:#0f3460}
+.two-col{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.content{flex:1;overflow:hidden}
+.recommend{background:linear-gradient(135deg,#0f3460,#16213e);color:#fff;padding:12px;border-radius:8px;text-align:center;margin-bottom:8px;page-break-inside:avoid;break-inside:avoid}
+.recommend .grade{font-size:28px;font-weight:bold;margin-bottom:4px}
+.recommend .target{font-size:11px;opacity:0.9}
+.recommend .catalysts{margin-top:6px;display:flex;gap:5px;justify-content:center;flex-wrap:wrap}
+.recommend .catalyst{background:rgba(255,255,255,0.2);padding:3px 8px;border-radius:10px;font-size:8px}
+.summary{background:linear-gradient(135deg,#fff9e6,#ffeaa7);border-left:4px solid #f39c12;padding:8px 10px;border-radius:0 6px 6px 0;margin-bottom:8px;page-break-inside:avoid;break-inside:avoid}
+.summary p{font-size:9pt;line-height:1.4}
+.footer{font-size:7px;color:#999;border-top:1px solid #e9ecef;padding-top:5px;display:flex;justify-content:space-between}
+.toc{padding:15px 25px;page-break-inside:avoid;break-inside:avoid}
+.toc h3{color:#0f3460;font-size:18px;margin-bottom:12px;padding-bottom:6px;border-bottom:2px solid #0f3460}
+.toc-item{display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px solid #e9ecef;font-size:10pt}
+.warning{background:#fff3cd;border:1px solid #ffc107;border-radius:5px;padding:8px;font-size:8pt;color:#856404;page-break-inside:avoid;break-inside:avoid}
+</style>
+</head>
+<body>
+<!-- 封面 -->
+<div class="page cover-page">
+<h1>寒武紀</h1>
+<h2>公司分析報告</h2>
+<div class="meta">
+<p>中科寒武紀科技股份有限公司</p>
+<p>CAMBRICON TECHNOLOGIES CO., LTD.</p>
+<p>股票代碼：688256.SH</p>
+<p>報告日期：2026年2月10日</p>
+<p>分析師：Clawdbot AI</p>
+</div>
+</div>
+
+<!-- 目錄 -->
+<div class="page">
+<div class="header"><span>目錄</span><span class="page-num">1</span></div>
+<div class="toc">
+<h3>目錄</h3>
+<div class="toc-item"><span>一、公司概況</span><span>2</span></div>
+<div class="toc-item"><span>二、財務分析</span><span>3</span></div>
+<div class="toc-item"><span>三、產品Roadmap</span><span>4</span></div>
+<div class="toc-item"><span>四、市場競爭格局</span><span>5</span></div>
+<div class="toc-item"><span>五、風險評估</span><span>6</span></div>
+<div class="toc-item"><span>六、投資價值分析</span><span>7</span></div>
+<div class="toc-item"><span>七、附錄</span><span>8</span></div>
+</div>
+<div class="footer"><span>寒武紀 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 一、公司概況 -->
+<div class="page">
+<div class="header"><span>一、公司概況</span><span class="page-num">2</span></div>
+<div class="section-title">1.1 公司基本信息</div>
+<div class="content">
+<table>
+<tr><td style="width:25%"><strong>公司全稱</strong></td><td>中科寒武紀科技股份有限公司</td></tr>
+<tr><td><strong>英文名稱</strong></td><td>CAMBRICON TECHNOLOGIES CO., LTD.</td></tr>
+<tr><td><strong>股票代碼</strong></td><td>688256.SH</td></tr>
+<tr><td><strong>上市時間</strong></td><td>2020年7月</td></tr>
+<tr><td><strong>總部位於</strong></td><td>北京市海淀區</td></tr>
+<tr><td><strong>註冊資本</strong></td><td>4.01億元人民幣</td></tr>
+<tr><td><strong>主營業務</strong></td><td>AI芯片研發、設計、銷售</td></tr>
+<tr><td><strong>核心產品</strong></td><td>思元系列AI芯片、加速卡、整機系統</td></tr>
+<tr><td><strong>技術背景</strong></td><td>中科院計算所孵化，陳天澤創始團隊</td></tr>
+<tr><td><strong>實際控制人</strong></td><td>陳天澤（董事長）</td></tr>
+</table>
+</div>
+<div class="footer"><span>寒武紀 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 1.2-1.3 -->
+<div class="page">
+<div class="header"><span>一、公司概況（續）</span><span class="page-num">3</span></div>
+<div class="section-title">1.2 業務架構</div>
+<div class="content">
+<div class="two-col">
+<div>
+<div class="card"><h4>核心業務板塊</h4>
+<ul><li><strong>雲端AI芯片 (50%+)</strong>：思元290/590系列</li><li><strong>邊緣AI芯片 (30%)</strong>：思元220系列</li><li><strong>終端AI芯片 (10%)</strong>：智能手機、智能家居</li><li><strong>整機與系統 (10%)</strong>：AI服務器、加速卡</li></ul></div>
+</div>
+<div>
+<div class="card"><h4>下游應用領域</h4>
+<ul><li>互聯網頭部企業（字節、百度、阿里）</li><li>政府與國企（政務雲、城市大腦）</li><li>科研機構（中科院體系、高校）</li><li>智能製造（質檢、巡檢）</li></ul></div>
+</div>
+</div>
+</div>
+<div class="section-title">1.3 核心競爭優勢</div>
+<div class="content">
+<table>
+<tr><th>優勢</th><th>說明</th></tr>
+<tr><td><strong>國產AI芯片龍頭</strong></td><td>中國AI芯片設計龍頭，市值突破千億</td></tr>
+<tr><td><strong>中科院背景</strong></td><td>中科院計算所孵化，頂級科研資源支持</td></tr>
+<tr><td><strong>全棧自主可控</strong></td><td>芯片架構、軟件棧、工具鏈全自研</td></tr>
+<tr><td><strong>產品線完整</strong></td><td>雲端+邊緣+終端全場景覆蓋</td></tr>
+</table>
+</div>
+<div class="footer"><span>寒武紀 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 二、財務分析 -->
+<div class="page">
+<div class="header"><span>二、財務分析</span><span class="page-num">4</span></div>
+<div class="section-title">2.1 核心財務指標</div>
+<div class="metrics">
+<div class="metric"><div class="label">FY2024營收</div><div class="value">¥30.5億</div><div class="change positive">YoY +45%</div></div>
+<div class="metric"><div class="label">淨利潤</div><div class="value">¥-8.5億</div><div class="change neutral">虧損收窄</div></div>
+<div class="metric"><div class="label">毛利率</div><div class="value">65.2%</div><div class="change positive">同比提升</div></div>
+<div class="metric"><div class="label">研發費用</div><div class="value">¥15.8億</div><div class="change neutral">佔營收比52%</div></div>
+</div>
+<div class="section-title">2.2 營收與利潤趨勢</div>
+<div class="content">
+<table>
+<tr><th>指標</th><th>FY2021</th><th>FY2022</th><th>FY2023</th><th>FY2024</th></tr>
+<tr><td>營業收入（億元）</td><td>7.2</td><td>11.5</td><td>21.0</td><td>30.5</td></tr>
+<tr><td>營收YoY</td><td>-</td><td>+60%</td><td>+83%</td><td>+45%</td></tr>
+<tr><td>淨利潤（億元）</td><td>-8.3</td><td>-12.5</td><td>-10.0</td><td>-8.5</td></tr>
+<tr><td>毛利率</td><td>58.5%</td><td>62.5%</td><td>63.8%</td><td>65.2%</td></tr>
+</table>
+</div>
+<div class="footer"><span>寒武紀 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 2.3 現金流 -->
+<div class="page">
+<div class="header"><span>二、財務分析（續）</span><span class="page-num">5</span></div>
+<div class="section-title">2.3 現金流與資本支出</div>
+<div class="two-col">
+<div>
+<div class="card"><h4>經營性現金流</h4>
+<table><tr><th>年度</th><th>金額</th><th>狀態</th></tr>
+<tr><td>FY2021</td><td>¥-6.2億</td><td>淨流出</td></tr>
+<tr><td>FY2022</td><td>¥-8.5億</td><td>淨流出</td></tr>
+<tr><td>FY2023</td><td>¥-5.2億</td><td>淨流出收窄</td></tr>
+<tr><td>FY2024E</td><td>¥-3.5億</td><td>持續改善</td></tr></table></div>
+</div>
+<div>
+<div class="card"><h4>貨幣資金與融資</h4>
+<table><tr><th>項目</th><th>金額</th><th>狀態</th></tr>
+<tr><td>貨幣資金</td><td>¥45.8億</td><td>資金充裕</td></tr>
+<tr><td>IPO募集資金</td><td>¥25.8億</td><td>2020年</td></tr>
+<tr><td>再融資</td><td>¥16.5億</td><td>2023年</td></tr>
+<tr><td>研發投入</td><td>¥15.8億</td><td>持續投入</td></tr></table></div>
+</div>
+</div>
+<div class="section-title">2.4 財務健康度評估</div>
+<div class="card"><h4>📈 營收高速增長</h4><p>FY2024營收同比增長45%，連續4年保持50%+增速，受益於國產替代和AI算力需求爆發。</p></div>
+<div class="card"><h4>💰 虧損持續收窄</h4><p>淨虧損從FY2022的12.5億收窄至FY2024的8.5億，盈利能力逐步改善。</p></div>
+<div class="card"><h4>💵 現金流承壓</h4><p>經營性現金流仍為負，但持續收窄，公司資金充裕，能夠支撐持續研發投入。</p></div>
+<div class="footer"><span>寒武紀 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 三、產品Roadmap -->
+<div class="page">
+<div class="header"><span>三、產品Roadmap</span><span class="page-num">6</span></div>
+<div class="section-title">3.1 雲端AI芯片產品線</div>
+<div class="content">
+<table>
+<tr><th>產品</th><th>發布時間</th><th>製程</th><th>算力</th><th>內存</th><th>應用場景</th></tr>
+<tr><td>思元270</td><td>2021</td><td>14nm</td><td>128 TOPS</td><td>HBM2 16GB</td><td>推理</td></tr>
+<tr><td>思元290</td><td>2022</td><td>7nm</td><td>256 TOPS</td><td>HBM2 32GB</td><td>訓練/推理</td></tr>
+<tr><td>思元370</td><td>2023</td><td>7nm</td><td>384 TOPS</td><td>HBM2 64GB</td><td>訓練</td></tr>
+<tr><td>思元590</td><td>2024</td><td>5nm</td><td>512 TOPS</td><td>HBM2E 128GB</td><td>大模型訓練</td></tr>
+<tr><td>思元590+（規劃）</td><td>2025</td><td>5nm</td><td>768 TOPS</td><td>HBM3 256GB</td><td>超大模型</td></tr>
+</table>
+</div>
+<div class="section-title">3.2 邊緣與終端AI芯片</div>
+<div class="content">
+<table>
+<tr><th>產品系列</th><th>發布時間</th><th>製程</th><th>算力</th><th>功耗</th><th>應用</th></tr>
+<tr><td>思元220M</td><td>2022</td><td>12nm</td><td>8 TOPS</td><td>8W</td><td>邊緣推理</td></tr>
+<tr><td>思元220C</td><td>2023</td><td>12nm</td><td>16 TOPS</td><td>15W</td><td>邊緣計算</td></tr>
+<tr><td>思元220 Pro</td><td>2024</td><td>12nm</td><td>32 TOPS</td><td>25W</td><td>邊緣AI</td></tr>
+<tr><td>終端芯片</td><td>2024</td><td>6nm</td><td>4 TOPS</td><td>2W</td><td>手機、IoT</td></tr>
+</table>
+</div>
+<div class="footer"><span>寒武紀 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 四、市場競爭格局 -->
+<div class="page">
+<div class="header"><span>四、市場競爭格局</span><span class="page-num">7</span></div>
+<div class="section-title">4.1 中國AI芯片市場份額</div>
+<div class="content">
+<div class="compete"><span class="name">NVIDIA</span><div class="bar"><div class="share" style="width:75%"></div></div><span class="pct">75%</span></div>
+<div class="compete"><span class="name">寒武紀</span><div class="bar"><div class="share" style="width:8%"></div></div><span class="pct">8%</span></div>
+<div class="compete"><span class="name">華為海思</span><div class="bar"><div class="share" style="width:6%"></div></div><span class="pct">6%</span></div>
+<div class="compete"><span class="name">其他</span><div class="bar"><div class="share" style="width:11%"></div></div><span class="pct">11%</span></div>
+</div>
+<div class="section-title">4.2 SWOT分析</div>
+<div class="two-col">
+<div>
+<div class="card"><h4>💪 優勢 Strengths</h4><ul><li>國產AI芯片龍頭，市值破千億</li><li>中科院背景，技術實力強</li><li>全棧自研，生態逐步完善</li><li>產品線完整，覆蓋全場景</li></ul></div>
+<div class="card"><h4>⚠️ 劣勢 Weaknesses</h4><ul><li>營收規模遠小於NVIDIA</li><li>生態完善度落後</li><li>持續虧損，盈利能力待驗證</li></ul></div>
+</div>
+<div>
+<div class="card"><h4>🚀 機會 Opportunities</h4><ul><li>國產替代需求爆發</li><li>AI算力需求持續增長</li><li>政策大力支持半導體</li><li>大模型訓練需求旺盛</li></ul></div>
+<div class="card"><h4>🚨 威脅 Threats</h4><ul><li>NVIDIA競爭優勢明顯</li><li>華為海思等其他對手追趕</li><li>美國對華芯片限制加劇</li><li>研發投入持續高位</li></ul></div>
+</div>
+</div>
+<div class="footer"><span>寒武紀 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 五、風險評估 -->
+<div class="page">
+<div class="header"><span>五、風險評估</span><span class="page-num">8</span></div>
+<div class="section-title">5.1 風險矩陣</div>
+<div class="risk-grid">
+<div class="risk risk-high"><div class="level">高風險</div><div class="title">競爭風險</div><div class="desc">NVIDIA市佔率75%，華為追趕</div></div>
+<div class="risk risk-high"><div class="level">高風險</div><div class="title">持續虧損</div><div class="desc">連續7年虧損</div></div>
+<div class="risk risk-high"><div class="level">高風險</div><div class="title">技術差距</div><div class="desc">與國際巨頭仍有2-3年差距</div></div>
+<div class="risk risk-med"><div class="level">中風險</div><div class="title">生態風險</div><div class="desc">CUDA生態強大</div></div>
+<div class="risk risk-med"><div class="level">中風險</div><div class="title">人才競爭</div><div class="desc">AI芯片人才競爭激烈</div></div>
+<div class="risk risk-low"><div class="level">低風險</div><div class="title">資金風險</div><div class="desc">現金充裕</div></div>
+</div>
+<div class="section-title">5.2 核心風險分析</div>
+<div class="card risk-high"><h4>🔴 高風險：國際巨頭競爭</h4><p>NVIDIA在AI芯片市場佔據75%份額，生態（CUDA）壁壘極高。</p></div>
+<div class="card risk-high"><h4>🔴 高風險：持續虧損</h4><p>公司已連續7年虧損，FY2024虧損8.5億，何時盈利仍存在不確定性。</p></div>
+<div class="footer"><span>寒武紀 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 六、投資價值分析 -->
+<div class="page">
+<div class="header"><span>六、投資價值分析</span><span class="page-num">9</span></div>
+<div class="section-title">6.1 估值指標</div>
+<div class="content">
+<table>
+<tr><th>指標</th><th>數值</th><th>備註</th></tr>
+<tr><td>當前市值</td><td>約¥1,200億</td><td>2026年2月</td></tr>
+<tr><td>PS (TTM)</td><td>約39x</td><td>極高估值</td></tr>
+<tr><td>PB</td><td>約15x</td><td>極高</td></tr>
+<tr><td>營收增速</td><td>45% YoY</td><td>高增長</td></tr>
+</table>
+</div>
+<div class="section-title">6.2 買入理由</div>
+<div class="card"><h4>✅ 國產AI芯片龍頭</h4><p>寒武紀是中國AI芯片設計絕對龍頭，在國產替代大趨勢下具有不可替代的戰略價值。</p></div>
+<div class="card"><h4>✅ 營收高速增長</h4><p>連續4年營收增速超45%，受益於AI算力需求爆發和國產替代。</p></div>
+<div class="card"><h4>✅ 政策支持確定性</h4><p>AI芯片是國家戰略需求，預計將獲得持續的政策和資金支持。</p></div>
+<div class="section-title">6.3 風險因素</div>
+<div class="warning">⚠️ 估值極高：PS 39x遠超半導體行業平均<br>⚠️ 持續虧損：連續7年虧損，盈利時間表不確定<br>⚠️ 競爭激烈：NVIDIA市場份額75%</div>
+<div class="section-title">6.4 投資建議</div>
+<div class="recommend"><div class="grade">觀望</div><div class="target">目標價：¥280-350</div></div>
+<div class="footer"><span>寒武紀 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+
+<!-- 七、附錄 -->
+<div class="page">
+<div class="header"><span>七、附錄</span><span class="page-num">10</span></div>
+<div class="section-title">7.1 關鍵術語</div>
+<div class="content">
+<table>
+<tr><th>術語</th><th>解釋</th></tr>
+<tr><td>TOPS</td><td>Tera Operations Per Second，每秒萬億次運算</td></tr>
+<tr><td>TFLOPS</td><td>Tera Floating Point Operations Per Second</td></tr>
+<tr><td>HBM</td><td>High Bandwidth Memory，高帶寬內存</td></tr>
+<tr><td>MLU</td><td>Machine Learning Unit，寒武紀AI處理器架構</td></tr>
+</table>
+</div>
+<div class="section-title">7.2 免責聲明</div>
+<div class="warning"><strong>重要提示：</strong>本報告僅供投資參考，不構成任何投資建議。</div>
+<div class="summary"><p><strong>報告總結：</strong>寒武紀作為中國AI芯片龍頭，在國產替代和AI算力需求爆發下具有長期成長潛力。但當前估值極高，建議「觀望」評級。</p></div>
+<div class="footer"><span>寒武紀 公司分析報告</span><span>2026年2月10日</span></div>
+</div>
+</body></html>

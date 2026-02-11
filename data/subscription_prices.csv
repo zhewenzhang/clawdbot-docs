@@ -1,0 +1,17 @@
+Provider,Plan,Price_USD_Month,Price_USD_Year,Billing_Mode,Min_Users,Model_Access,Context_Window,Key_Features,Enterprise_Features,API_Included,Storage_GB,Best_For
+Anthropic,Free,0,0,Monthly,1,Claude Basic,Unknown,Basic conversation,No,No,0,Individual trial
+Anthropic,Pro,17,200,Monthly/Annual,1,Claude Full,Unknown,"More usage, Claude Code, Unlimited projects, Research, MCP connectors",No,No,0,Individual power users
+Anthropic,Max 5x,100,1200,Monthly,1,Claude Full,Unknown,"5x Pro usage, Higher output limits, Early access",No,No,0,Heavy users
+Anthropic,Max 20x,200,2400,Monthly,1,Claude Full,Unknown,"20x Pro usage, Highest output limits, Early access",No,No,0,Extreme users
+Anthropic,Team,20,25,Annual/Monthly,5-75,"Opus 4.5, Sonnet 4.5",Enhanced,"Claude Code, Slack/365 integration, Enterprise search, SSO, Admin controls",SSO, Domain capture, Audit logs,No,0,Small-medium teams
+Anthropic,Enterprise,Custom,Custom,Annual,Large Org,"All models",Enhanced+,"SCIM, Role-based access, Compliance API, HIPAA-ready",All enterprise features,No,0,Large enterprises
+OpenAI,Free,0,0,Monthly,1,Limited GPT-5.2,16K,Basic conversation,No,No,0,Individual trial
+OpenAI,Go,5-10,60-120,Monthly,1,Expanded GPT-5.2,32K,"More access, Longer memory",No,No,0,Individual upgrade
+OpenAI,Plus,20,240,Monthly,1,Full GPT-5.2,32K,"Advanced reasoning, Unlimited messages, Sora, Codex",No,No,0,Individual power users
+OpenAI,Pro,200,2400,Monthly,1,GPT-5.2 Pro,128K,"Unlimited everything, Maximum research",No,No,0,Extreme users
+OpenAI,Business,30,360,Annual/Monthly,5-500,"GPT-5.2 Full series, GPT-4o",32K,"60+ app integrations, SAML SSO, SOC 2, Company knowledge",SSO, Analytics, Compliance,No,0,Startups growing teams
+OpenAI,Enterprise,Custom,Custom,Annual,Large Org,"All models",128K,"SCIM, EKM, Custom retention, 10-region residency",All enterprise features,No,0,Large enterprises
+Google,AI Plus,9.99,119.88,Monthly,1,Gemini 3 Pro,128K,"200GB storage, Higher access to Gemini 3 Pro, Veo 3.1 Fast",No,No,200,Individual with storage needs
+Google,AI Pro,19.99,239.88,Monthly,1,Gemini 3 Pro Higher,1M,"2TB storage, Jules, Deep Research, NotebookLM Higher, $10 Cloud credits",No,No,2048,Individual professionals
+Google,AI Ultra,249,2988,Monthly,1,Gemini 3 Pro Highest,1M,"30TB storage, Deep Think, Gemini Agent, Project Mariner, YouTube Premium, $100 Cloud credits",No,No,30720,Creators, developers heavy AI users
+Google,API,0,0,Pay-as-you-go,1,Gemini Pro/Ultra,Variable,API access,No,Yes,0,Developers needing API access

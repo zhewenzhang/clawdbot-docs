@@ -1,0 +1,910 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>群策科技深度分析报告 | Qunc CI Technology Analysis Report</title>
+    <style>
+        /* ========== 麦肯锡风格设计系统 ========== */
+        :root {
+            /* 核心色板 */
+            --mckinsey-blue: #003366;
+            --mckinsey-dark: #001a33;
+            --mckinsey-light: #336699;
+            --accent-gold: #C4A962;
+            --text-primary: #1a1a1a;
+            --text-secondary: #4a4a4a;
+            --text-light: #6a6a6a;
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8f9fa;
+            --bg-tertiary: #e9ecef;
+            --border-light: #dee2e6;
+            --border-medium: #adb5bd;
+            
+            /* 语义色 */
+            --success: #28a745;
+            --warning: #ffc107;
+            --danger: #dc3545;
+            --info: #17a2b8;
+            
+            /* 间距系统 */
+            --space-xs: 0.25rem;
+            --space-sm: 0.5rem;
+            --space-md: 1rem;
+            --space-lg: 1.5rem;
+            --space-xl: 2rem;
+            --space-2xl: 3rem;
+            --space-3xl: 4rem;
+        }
+
+        /* 基础排版 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+            font-size: 16px;
+            line-height: 1.7;
+            color: var(--text-primary);
+            background: var(--bg-primary);
+        }
+
+        /* 纸张容器 */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 0 auto;
+            padding: 20mm 25mm;
+            background: var(--bg-primary);
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+        }
+
+        /* 封面设计 */
+        .cover {
+            text-align: center;
+            padding: 60mm 0;
+            background: linear-gradient(135deg, var(--mckinsey-dark) 0%, var(--mckinsey-blue) 100%);
+            color: white;
+            margin: -20mm -25mm;
+            padding-left: 25mm;
+            padding-right: 25mm;
+        }
+
+        .cover .logo {
+            font-size: 12px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 40mm;
+            opacity: 0.9;
+        }
+
+        .cover h1 {
+            font-size: 36px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            margin-bottom: 15mm;
+            line-height: 1.3;
+        }
+
+        .cover .subtitle {
+            font-size: 18px;
+            font-weight: 300;
+            opacity: 0.9;
+            margin-bottom: 50mm;
+        }
+
+        .cover .meta {
+            font-size: 14px;
+            opacity: 0.7;
+        }
+
+        .cover .meta span {
+            display: block;
+            margin: 8px 0;
+        }
+
+        .cover .gold-line {
+            width: 80px;
+            height: 3px;
+            background: var(--accent-gold);
+            margin: 30mm auto;
+        }
+
+        /* 页面标题 */
+        .page-title {
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--mckinsey-blue);
+            border-bottom: 3px solid var(--mckinsey-blue);
+            padding-bottom: var(--space-sm);
+            margin-bottom: var(--space-xl);
+            letter-spacing: 1px;
+        }
+
+        /* 章节标题 */
+        .section {
+            margin-bottom: var(--space-2xl);
+        }
+
+        .section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: var(--mckinsey-dark);
+            background: linear-gradient(90deg, var(--mckinsey-blue) 0%, var(--mckinsey-light) 100%);
+            color: white;
+            padding: var(--space-md) var(--space-lg);
+            margin-bottom: var(--space-lg);
+            border-left: 4px solid var(--accent-gold);
+        }
+
+        .section-number {
+            font-size: 12px;
+            opacity: 0.7;
+            margin-right: var(--space-sm);
+        }
+
+        /* 执行摘要 */
+        .executive-summary {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-light);
+            border-left: 4px solid var(--accent-gold);
+            padding: var(--space-lg);
+            margin-bottom: var(--space-xl);
+        }
+
+        .executive-summary h3 {
+            color: var(--mckinsey-blue);
+            font-size: 16px;
+            margin-bottom: var(--space-md);
+            display: flex;
+            align-items: center;
+        }
+
+        .executive-summary h3::before {
+            content: "◆";
+            color: var(--accent-gold);
+            margin-right: var(--space-sm);
+        }
+
+        .key-findings {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--space-md);
+            margin-top: var(--space-lg);
+        }
+
+        .finding-card {
+            background: white;
+            padding: var(--space-md);
+            border: 1px solid var(--border-light);
+            transition: all 0.3s ease;
+        }
+
+        .finding-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transform: translateY(-2px);
+        }
+
+        .finding-card .importance {
+            font-size: 10px;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: var(--space-xs);
+        }
+
+        .finding-card .title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--mckinsey-dark);
+            margin-bottom: var(--space-xs);
+        }
+
+        .finding-card .desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* 数据表格 */
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--space-lg) 0;
+            font-size: 13px;
+        }
+
+        .data-table thead {
+            background: var(--mckinsey-blue);
+            color: white;
+        }
+
+        .data-table th {
+            padding: var(--space-sm) var(--space-md);
+            text-align: left;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+        }
+
+        .data-table td {
+            padding: var(--space-sm) var(--space-md);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .data-table tbody tr {
+            transition: background 0.2s ease;
+        }
+
+        .data-table tbody tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        .data-table .highlight {
+            background: #fff3cd;
+            font-weight: 600;
+        }
+
+        /* 时间线 */
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+            margin: var(--space-xl) 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 8px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--mckinsey-blue), var(--accent-gold));
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-bottom: var(--space-lg);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -26px;
+            top: 6px;
+            width: 12px;
+            height: 12px;
+            background: var(--mckinsey-blue);
+            border: 2px solid white;
+            border-radius: 50%;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        .timeline-item:last-child {
+            padding-bottom: 0;
+        }
+
+        .timeline-date {
+            font-size: 12px;
+            color: var(--mckinsey-blue);
+            font-weight: 600;
+            margin-bottom: var(--space-xs);
+        }
+
+        .timeline-content {
+            background: var(--bg-secondary);
+            padding: var(--space-md);
+            border-radius: 4px;
+            border-left: 3px solid var(--mckinsey-light);
+        }
+
+        .timeline-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--mckinsey-dark);
+            margin-bottom: var(--space-xs);
+        }
+
+        .timeline-desc {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        /* 评估卡片 */
+        .evaluation-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: var(--space-md);
+            margin: var(--space-lg) 0;
+        }
+
+        .eval-card {
+            text-align: center;
+            padding: var(--space-lg);
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .eval-card:hover {
+            transform: scale(1.02);
+            box-shadow: 0 8px 24px rgba(0,0,0,0.1);
+        }
+
+        .eval-card .score {
+            font-size: 36px;
+            font-weight: 700;
+            color: var(--mckinsey-blue);
+            margin-bottom: var(--space-xs);
+        }
+
+        .eval-card .label {
+            font-size: 12px;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .eval-card.highlight {
+            background: linear-gradient(135deg, var(--mckinsey-blue) 0%, var(--mckinsey-light) 100%);
+        }
+
+        .eval-card.highlight .score,
+        .eval-card.highlight .label {
+            color: white;
+        }
+
+        /* 图表容器 */
+        .chart-container {
+            background: var(--bg-secondary);
+            padding: var(--space-xl);
+            margin: var(--space-lg) 0;
+            border-radius: 8px;
+        }
+
+        .chart-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--mckinsey-dark);
+            margin-bottom: var(--space-md);
+            text-align: center;
+        }
+
+        /* 架构图 */
+        .org-chart {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: var(--space-xl) 0;
+        }
+
+        .org-node {
+            background: var(--mckinsey-blue);
+            color: white;
+            padding: var(--space-sm) var(--space-lg);
+            border-radius: 4px;
+            font-size: 13px;
+            font-weight: 500;
+            text-align: center;
+            min-width: 200px;
+            position: relative;
+        }
+
+        .org-node.subsidiary {
+            background: var(--mckinsey-light);
+        }
+
+        .org-node.holding {
+            background: var(--accent-gold);
+            color: var(--mckinsey-dark);
+        }
+
+        .org-connector {
+            width: 2px;
+            height: 30px;
+            background: var(--border-medium);
+            position: relative;
+        }
+
+        .org-connector::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 2px;
+            background: var(--border-medium);
+        }
+
+        .org-children {
+            display: flex;
+            gap: var(--space-md);
+            margin-top: var(--space-md);
+        }
+
+        .org-child {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .org-child .org-node {
+            font-size: 11px;
+            min-width: 120px;
+            padding: var(--space-xs) var(--space-md);
+        }
+
+        /* 警告框 */
+        .alert {
+            padding: var(--space-md) var(--space-lg);
+            margin: var(--space-lg) 0;
+            border-radius: 4px;
+            border-left: 4px solid;
+        }
+
+        .alert.warning {
+            background: #fff3cd;
+            border-color: var(--warning);
+        }
+
+        .alert.info {
+            background: #d1ecf1;
+            border-color: var(--info);
+        }
+
+        .alert h4 {
+            font-size: 14px;
+            margin-bottom: var(--space-xs);
+        }
+
+        .alert p {
+            font-size: 13px;
+            color: var(--text-secondary);
+        }
+
+        /* 页脚 */
+        .page-footer {
+            margin-top: var(--space-2xl);
+            padding-top: var(--space-lg);
+            border-top: 1px solid var(--border-light);
+            display: flex;
+            justify-content: space-between;
+            font-size: 11px;
+            color: var(--text-light);
+        }
+
+        /* 打印优化 */
+        @media print {
+            body {
+                -webkit-print-color-adjust: exact;
+                print-color-adjust: exact;
+            }
+            
+            .page {
+                box-shadow: none;
+                margin: 0;
+                page-break-after: always;
+            }
+            
+            .page:last-child {
+                page-break-after: avoid;
+            }
+        }
+
+        /* 分页 */
+        .page-break {
+            page-break-after: always;
+        }
+
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .page {
+                padding: 15mm 20mm;
+            }
+            
+            .key-findings,
+            .evaluation-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .org-children {
+                flex-direction: column;
+            }
+        }
+
+        /* 目录 */
+        .toc {
+            background: var(--bg-secondary);
+            padding: var(--space-xl);
+            margin: var(--space-xl) 0;
+            border-radius: 8px;
+        }
+
+        .toc h3 {
+            color: var(--mckinsey-blue);
+            margin-bottom: var(--space-lg);
+            text-align: center;
+        }
+
+        .toc-list {
+            list-style: none;
+            columns: 2;
+            column-gap: var(--space-xl);
+        }
+
+        .toc-list li {
+            padding: var(--space-sm) 0;
+            border-bottom: 1px dashed var(--border-light);
+        }
+
+        .toc-list a {
+            color: var(--text-primary);
+            text-decoration: none;
+            font-size: 13px;
+            transition: color 0.2s;
+        }
+
+        .toc-list a:hover {
+            color: var(--mckinsey-blue);
+        }
+
+        .toc-list .page-num {
+            float: right;
+            color: var(--text-light);
+        }
+    </style>
+</head>
+<body>
+    <!-- 封面 -->
+    <div class="page">
+        <div class="cover">
+            <div class="logo">McKinsey Style Analysis Report</div>
+            
+            <h1>群策科技深度分析报告</h1>
+            <p class="subtitle">Qunc CI Technology<br>In-depth Analysis Report</p>
+            
+            <div class="gold-line"></div>
+            
+            <div class="meta">
+                <span>分析日期：2026年2月8日</span>
+                <span>报告版本：v2.0</span>
+                <span>机密等级：内部使用</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- 第一页：执行摘要 -->
+    <div class="page">
+        <div class="page-title">执行摘要 Executive Summary</div>
+        
+        <div class="executive-summary">
+            <h3>核心发现</h3>
+            <p>本报告深入分析了欣兴电子旗下群策科技系列公司2020-2024年的发展轨迹，揭示其股权结构演变、关联交易变化及战略意图。</p>
+            
+            <div class="key-findings">
+                <div class="finding-card">
+                    <div class="importance">⭐⭐⭐⭐⭐</div>
+                    <div class="title">香港控股平台成立</div>
+                    <div class="desc">群策科技(香港)于2024年1月成立，作为跨境资金调度平台</div>
+                </div>
+                <div class="finding-card">
+                    <div class="importance">⭐⭐⭐⭐</div>
+                    <div class="title">股权架构优化</div>
+                    <div class="desc">从UHL直接控股转为双层架构，便于管理</div>
+                </div>
+                <div class="finding-card">
+                    <div class="importance">⭐⭐⭐⭐</div>
+                    <div class="title">并购扩张</div>
+                    <div class="desc">2024年10月并购黄石群立、昆山群启</div>
+                </div>
+                <div class="finding-card">
+                    <div class="importance">⭐⭐⭐</div>
+                    <div class="title">关联交易规模</div>
+                    <div class="desc">苏州群策销货9.22亿TWD，占比16%</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">01</span>
+                投资评级
+            </div>
+            
+            <div class="evaluation-grid">
+                <div class="eval-card highlight">
+                    <div class="score">⭐⭐⭐⭐</div>
+                    <div class="label">综合评级</div>
+                </div>
+                <div class="eval-card">
+                    <div class="score">A</div>
+                    <div class="label">产业地位</div>
+                </div>
+                <div class="eval-card">
+                    <div class="score">B+</div>
+                    <div class="label">财务状况</div>
+                </div>
+                <div class="eval-card">
+                    <div class="score">A-</div>
+                    <div class="label">成长性</div>
+                </div>
+            </div>
+            
+            <div class="alert info">
+                <h4>投资建议</h4>
+                <p>综合评分：<strong>⭐⭐⭐⭐（4/5）</strong>。建议逢低布局，长期持有。受惠于AI/5G带动PCB需求增长，产能整合后规模效应将显现。</p>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>群策科技深度分析报告</span>
+            <span>第 1 页</span>
+            <span>机密文件</span>
+        </div>
+    </div>
+
+    <!-- 第二页：公司概览 -->
+    <div class="page">
+        <div class="page-title">公司概览 Company Overview</div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">02</span>
+                群策系列公司架构（2024年）
+            </div>
+
+            <div class="org-chart">
+                <div class="org-node">欣兴电子股份有限公司</div>
+                <div class="org-connector"></div>
+                <div class="org-node holding">UHL（BVI离岸公司）</div>
+                <div class="org-connector"></div>
+                <div class="org-node holding">群策科技(香港)有限公司</div>
+                <div class="org-connector"></div>
+                <div class="org-children">
+                    <div class="org-child">
+                        <div class="org-node subsidiary">苏州群策科技<br>86.22%</div>
+                        <div class="org-connector"></div>
+                        <div class="org-node subsidiary">黄石群立</div>
+                    </div>
+                    <div class="org-child">
+                        <div class="org-node subsidiary">昆山群启</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">03</span>
+                历年关联交易金额
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>公司名称</th>
+                        <th>销货金额(亿TWD)</th>
+                        <th>占比</th>
+                        <th>应收余额(亿TWD)</th>
+                        <th>账期</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr class="highlight">
+                        <td>群策科技(香港)</td>
+                        <td>2.90</td>
+                        <td>2%</td>
+                        <td>-</td>
+                        <td>月结3个月</td>
+                    </tr>
+                    <tr class="highlight">
+                        <td>苏州群策科技</td>
+                        <td>9.22</td>
+                        <td>16%</td>
+                        <td>4.98</td>
+                        <td>月结3个月</td>
+                    </tr>
+                    <tr>
+                        <td>黄石群立电子</td>
+                        <td>3.94</td>
+                        <td>7%</td>
+                        <td>3.94</td>
+                        <td>月结3个月</td>
+                    </tr>
+                    <tr>
+                        <td>合计（群策系列）</td>
+                        <td>~16</td>
+                        <td>~25%</td>
+                        <td>-</td>
+                        <td>-</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">04</span>
+                重大事件时间线
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">2004年3月</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">苏州群策成立</div>
+                        <div class="timeline-desc">注册资本US$148.6M，设立于江苏昆山</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2015年9月</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">黄石群立成立</div>
+                        <div class="timeline-desc">注册资本US$153M，华中地区产能布局</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024年1月</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">群策科技(香港)成立</div>
+                        <div class="timeline-desc">新设香港控股平台，便于跨境资金调度</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2024年10月1日</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">并购完成</div>
+                        <div class="timeline-desc">苏州群策并购黄石群立、昆山群启</div>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-date">2025年1月1日</div>
+                    <div class="timeline-content">
+                        <div class="timeline-title">旭德科技合并</div>
+                        <div class="timeline-desc">集团进一步整合，旭德科技为消灭公司</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="page-footer">
+            <span>群策科技深度分析报告</span>
+            <span>第 2 页</span>
+            <span>机密文件</span>
+        </div>
+    </div>
+
+    <!-- 第三页：深度分析 -->
+    <div class="page">
+        <div class="page-title">深度分析 Deep Analysis</div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">05</span>
+                战略意图分析
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>战略动作</th>
+                        <th>目的</th>
+                        <th>时间</th>
+                        <th>影响</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>设立香港平台</td>
+                        <td>国际化布局、税务优化</td>
+                        <td>2024/01</td>
+                        <td>便于未来资本操作</td>
+                    </tr>
+                    <tr>
+                        <td>股权架构整合</td>
+                        <td>统一管理、简化层级</td>
+                        <td>2024/04</td>
+                        <td>配合旭德合并</td>
+                    </tr>
+                    <tr>
+                        <td>并购扩张</td>
+                        <td>扩大产能、整合资源</td>
+                        <td>2024/10</td>
+                        <td>产能增加30%+</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">06</span>
+                风险评估
+            </div>
+
+            <div class="evaluation-grid">
+                <div class="eval-card">
+                    <div class="score" style="color: var(--warning);">中</div>
+                    <div class="label">大陆经营风险</div>
+                </div>
+                <div class="eval-card">
+                    <div class="score" style="color: var(--warning);">中</div>
+                    <div class="label">关联交易依赖</div>
+                </div>
+                <div class="eval-card">
+                    <div class="score" style="color: var(--success);">低</div>
+                    <div class="label">汇率风险</div>
+                </div>
+                <div class="eval-card">
+                    <div class="score" style="color: var(--warning);">中</div>
+                    <div class="label">整合风险</div>
+                </div>
+            </div>
+
+            <div class="alert warning">
+                <h4>⚠️ 重要提示</h4>
+                <p>1. 关联交易占比适中（25%），但定价公允性需持续关注<br>
+                   2. 2024年并购的黄石群立、昆山群启需时间整合<br>
+                   3. AI/5G带动需求，但PCB行业竞争激烈</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">07</span>
+                数据局限性说明
+            </div>
+
+            <div class="alert info">
+                <h4>报告数据来源</h4>
+                <p>✅ 2024年繁体中文年报（已分析）<br>
+                   ✅ 2020年英文版年报（已分析）<br>
+                   ❌ 2021-2023年PDF无法下载，需手动补充<br>
+                   ⚠️ 部分关联交易金额可能不完整</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-title">
+                <span class="section-number">08</span>
+                后续研究建议
+            </div>
+
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>优先级</th>
+                        <th>研究项目</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span style="color: var(--danger);">高</span></td>
+                        <td>获取2021-2023年PDF</td>
+                        <td>手动下载进行完整对比</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: var(--danger);">高</span></td>
+                        <td>苏州群策个别财报</td>
+                        <td>分析营收、获利能力</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: var(--warning);">中</span></td>
+                        <td>同业对比分析</td>
+                        <td>深南电路、兴森科技</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="page-footer">
+            <span>群策科技深度分析报告</span>
+            <span>第 3 页</span>
+            <span>机密文件</span>
+        </div>
+    </div>
+</body>
+</html>

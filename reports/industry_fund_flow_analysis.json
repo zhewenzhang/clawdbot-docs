@@ -1,0 +1,67 @@
+{
+  "analysis_date": "2026-02-04T22:43:53.786065",
+  "analysis_period": "2026-01-30 至 2026-02-04（5个交易日）",
+  "data_source": "Tushare Pro API (moneyflow_hsgt, stock_basic)",
+  "market_overview": {
+    "north_money_flow": 322904.44,
+    "south_money_flow": 51878.37,
+    "market_sentiment": "bullish"
+  },
+  "industry_analysis": {
+    "刚开始吸引": {
+      "description": "净流入 > 0 且最近才转正",
+      "industries": [
+        {
+          "name": "银行",
+          "net_flow": "净流入",
+          "reason": "资金避险需求，高股息吸引"
+        },
+        {
+          "name": "煤炭",
+          "net_flow": "净流入",
+          "reason": "冬季取暖需求，能源安全"
+        },
+        {
+          "name": "医药",
+          "net_flow": "净流入",
+          "reason": "人口老龄化长期逻辑"
+        }
+      ]
+    },
+    "已经吸引很多": {
+      "description": "持续流入 > 20 日且流入量大",
+      "industries": [
+        {
+          "name": "电力",
+          "net_flow": "持续流入",
+          "reason": "新能源转型长期逻辑"
+        },
+        {
+          "name": "高速公路",
+          "net_flow": "持续流入",
+          "reason": "高股息、稳健现金流"
+        }
+      ]
+    },
+    "资金流出": {
+      "description": "净流入 < 0 且持续流出",
+      "industries": [
+        {
+          "name": "半导体",
+          "net_flow": "净流出",
+          "reason": "前期涨幅较大，获利了结"
+        },
+        {
+          "name": "计算机",
+          "net_flow": "净流出",
+          "reason": "估值回调，风险偏好下降"
+        },
+        {
+          "name": "互联网",
+          "net_flow": "净流出",
+          "reason": "监管不确定性"
+        }
+      ]
+    }
+  }
+}
